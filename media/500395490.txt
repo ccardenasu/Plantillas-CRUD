@@ -1,0 +1,20 @@
+CFS: 500395490
+Tipo de configuración: Instalacion_ADI_Alcatel_Xco
+RFS-IP-PORT: 6000307594
+Cliente: FUNDACION VALLE DEL LILI
+SEDE: SAN JOAQUIN
+DKO: 8620293 (8623772)
+SW: L2698808ZG009
+Interface SW: GigabitEthernet0/0/19
+PE: ar4.cal1
+Interface PE: ae-13
+Unit: 911
+SV: 911
+CV: 1300
+BW: 50
+WAN: 172.20.1.44/30
+ASN: 65211
+Fecha de creación: 2024-09-09 00:35:55.395895+00:00
+set interfaces ae-13 unit 911 family inet address 172.20.1.45/30
+set interfaces ae-13 unit 911 disable
+deactivate interfaces ae-13 unit 911

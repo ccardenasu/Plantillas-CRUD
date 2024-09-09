@@ -9,7 +9,7 @@ class DatosForm(forms.ModelForm):
     class Meta:
         model = Datos
         fields = [
-            'cfs', 'tipo_configuracion', 'tipo_servicio', 'rfs_ip_port', 'cliente', 'sede', 'dko', 'sw', 'interface_sw', 'vrf', 'rd', 'unit', 
+            'cfs', 'dko', 'tipo_configuracion', 'tipo_servicio', 'rfs_ip_port', 'cliente', 'sede', 'sw', 'interface_sw', 'swb', 'interface_swb', 'vrf', 'rd', 'unit', 
             'vt', 'sv', 'cv', 'bw', 'wan', 'wanv6', 'asn', 'lan', 'lbcpe', 'lnnid', 'bundle_ether', 'pe', 'interface_pe'
         ]
         widgets = {
@@ -23,6 +23,8 @@ class DatosForm(forms.ModelForm):
             'dko': forms.TextInput(attrs={'class': 'form-control'}),
             'sw': forms.TextInput(attrs={'class': 'form-control'}),
             'interface_sw': forms.TextInput(attrs={'class': 'form-control'}),
+            'swb': forms.TextInput(attrs={'class': 'form-control'}),
+            'interface_swb': forms.TextInput(attrs={'class': 'form-control'}),
             'pe': forms.TextInput(attrs={'class': 'form-control'}),
             'interface_pe': forms.TextInput(attrs={'class': 'form-control'}),
             'vrf': forms.TextInput(attrs={'class': 'form-control'}),

@@ -55,10 +55,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             var tipoServicioField = document.getElementById('id_tipo_servicio');
             var bundleEtherField = document.getElementById('id_bundle_ether');
+            var vrfField = document.getElementById('id_vrf');
+            var rdField = document.getElementById('id_rd');
 
             tipoServicioField.addEventListener('change', function() {
                 if (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') {
                     bundleEtherField.innerHTML = `
+                        <option value="N/A">N/A</option>
                         <option value="Bundle-ether10">Bundle-ether10</option>
                         <option value="Bundle-ether11">Bundle-ether11</option>
                         <option value="Bundle-ether14">Bundle-ether14</option>
@@ -66,12 +69,41 @@
                 } else {
                     // Aquí puedes agregar las opciones por defecto o vaciar el campo
                     bundleEtherField.innerHTML = `
+                        <option value="N/A">N/A</option>
                         <option value="">Seleccione una opción</option>
                         <option value="Bundle-ether12">Bundle-ether12</option>
                         <option value="Bundle-ether13">Bundle-ether13</option>
                         <option value="Bundle-ether32">Bundle-ether32</option>
                         <option value="Bundle-ether33">Bundle-ether33</option>                    `;
                 }
+
+                if (tipoServicioField.value === 'ADI') {
+                    vrfField.disabled = true;
+                    rdField.disabled = true;
+                    vrfField.required = false;
+                    rdField.required = false;
+                    vrfField.value = '';
+                    rdField.value = '';
+                } else {
+                    vrfField.disabled = false;
+                    rdField.disabled = false;
+                    vrfField.required = true;
+                    rdField.required = true;
+                }
+                if (tipoServicioField.value === 'VPLS') {
+                    vrfField.disabled = true;
+                    rdField.disabled = true;
+                    vrfField.required = false;
+                    rdField.required = false;
+                    vrfField.value = '';
+                    rdField.value = '';
+                } else {
+                    vrfField.disabled = false;
+                    rdField.disabled = false;
+                    vrfField.required = true;
+                    rdField.required = true;
+                }
+
             });
         });
 

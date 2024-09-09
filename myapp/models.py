@@ -30,6 +30,7 @@ class Datos(models.Model):
     ]
 
     BUNDLE_ETHER_CHOICES = [
+        ('N/A', 'N/A'),
         ('Bundle-ether10', 'Bundle-ether10'),
         ('Bundle-ether11', 'Bundle-ether11'),
         ('Bundle-ether12', 'Bundle-ether12'),
@@ -39,28 +40,30 @@ class Datos(models.Model):
         ('Bundle-ether33', 'Bundle-ether33'),
     ]
 
-    bundle_ether = models.CharField(max_length=100, choices=BUNDLE_ETHER_CHOICES, default='Bundle-ether10')
+    bundle_ether = models.CharField(max_length=100, choices=BUNDLE_ETHER_CHOICES, default='N/A')
     cfs = models.CharField(max_length=100)
     tipo_configuracion = models.CharField(max_length=100, choices=TIPO_CONFIGURACION_CHOICES, default='default_config')
     tipo_servicio = models.CharField(max_length=100, choices=TIPO_SERVICIO_CHOICES, default='VPN')
     rfs_ip_port = models.CharField(max_length=100, default='default_rfs_ip_port')
     cliente = models.CharField(max_length=100, default='default_cliente')
     sede = models.CharField(max_length=100, default='default_sede')
-    dko = models.CharField(max_length=100)
-    sw = models.CharField(max_length=100)
-    interface_sw = models.CharField(max_length=100)
-    pe = models.CharField(max_length=100)
-    interface_pe = models.CharField(max_length=100)
-    vrf = models.CharField(max_length=100)
-    rd = models.CharField(max_length=100)
-    unit = models.CharField(max_length=100)
+    dko = models.CharField(max_length=100, blank=True, null=True)
+    sw = models.CharField(max_length=100, blank=True, null=True)
+    interface_sw = models.CharField(max_length=100, blank=True, null=True)
+    swb = models.CharField(max_length=100, blank=True, null=True)
+    interface_swb = models.CharField(max_length=100, blank=True, null=True)
+    pe = models.CharField(max_length=100, blank=True, null=True)
+    interface_pe = models.CharField(max_length=100, blank=True, null=True)
+    vrf = models.CharField(max_length=100, blank=True, null=True)
+    rd = models.CharField(max_length=100, blank=True, null=True)
+    unit = models.CharField(max_length=100, blank=True, null=True)
     vt = models.CharField(max_length=100, blank=True, null=True)
-    sv = models.CharField(max_length=100)
+    sv = models.CharField(max_length=100, blank=True, null=True)
     cv = models.CharField(max_length=100, blank=True, null=True)
-    bw = models.CharField(max_length=100)
-    wan = models.CharField(max_length=100)
+    bw = models.CharField(max_length=100, blank=True, null=True)
+    wan = models.CharField(max_length=100, default='default_sede')
     wanv6 = models.CharField(max_length=100, blank=True, null=True)
-    asn = models.CharField(max_length=100)
+    asn = models.CharField(max_length=100, blank=True, null=True)
     lan = models.CharField(max_length=100, blank=True, null=True)
     lbcpe = models.CharField(max_length=100, blank=True, null=True)
     lnnid = models.CharField(max_length=100, blank=True, null=True)
