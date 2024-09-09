@@ -13,28 +13,27 @@
             <h1 class="titulo">Datos Guardados</h1>
         </header>
         <main>
-            {% load network_filters %}
             <div class="copy-box">
                 <div class="title">Datos del Cliente</div>
                 <textarea id="dataTextArea" class="datos-textarea" readonly>
-CFS: {{ datos.cfs }}
-RFS-IP-PORT: {{ datos.rfs_ip_port }}
-Cliente: {{ datos.cliente }}
-SEDE: {{ datos.sede }}
-DKO: {{ datos.dko }}
-SW: {{ datos.sw }}
-Interface SW: {{ datos.interface_sw }}
-PE: {{ datos.pe }}
-Interface PE: {{ datos.interface_pe }}
-VRF: {{ datos.vrf }}
-RD: {{ datos.rd }}
-Unit: {{ datos.unit }}
-SV: {{ datos.sv }}
-CV: {{ datos.cv }}
-BW: {{ datos.bw }}
-WAN: {{ datos.wan }}
-ASN: {{ datos.asn }}
-Fecha de creación: {{ datos.created_at }}
+{% if datos.cfs %}CFS: {{ datos.cfs }}{% endif %}
+{% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
+{% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
+{% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
+{% if datos.dko %}DKO: {{ datos.dko }}{% endif %}
+{% if datos.sw %}SW: {{ datos.sw }}{% endif %}
+{% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
+{% if datos.pe %}PE: {{ datos.pe }}{% endif %}
+{% if datos.interface_pe %}Interface PE: {{ datos.interface_pe }}{% endif %}
+{% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
+{% if datos.rd %}RD: {{ datos.rd }}{% endif %}
+{% if datos.unit %}Unit: {{ datos.unit }}{% endif %}
+{% if datos.sv %}SV: {{ datos.sv }}{% endif %}
+{% if datos.cv %}CV: {{ datos.cv }}{% endif %}
+{% if datos.bw %}BW: {{ datos.bw }}{% endif %}
+{% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
+{% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
+{% if datos.created_at %}Fecha de creación: {{ datos.created_at }}{% endif %}
                 </textarea>
                 <div class="button-container">
                     <button class="datos-button" onclick="copyToClipboard('dataTextArea')" aria-label="Copiar Datos">Copiar Datos</button>
@@ -90,6 +89,15 @@ set routing-instances atento_ecopetrol interface {{ datos.interface_pe }}.{{ dat
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var dataTextArea = document.getElementById('dataTextArea');
+            var lines = dataTextArea.value.split('\n');
+            var filteredLines = lines.filter(function(line) {
+                return line.trim() !== '' && line.trim() !== 'WAN: 0.0.0.0/0';
+            });
+            dataTextArea.value = filteredLines.join('\n');
+        });
+
         function copyToClipboard(elementId) {
             var copyText = document.getElementById(elementId);
             copyText.select();

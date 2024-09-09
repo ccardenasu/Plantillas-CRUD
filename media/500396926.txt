@@ -8,8 +8,7 @@ SW: BOGTCLBLZG014
 Interface SW: GigabitEthernet0/0/19
 BW: 20
 WAN: 0.0.0.0/0
-ASN: 65211
-Fecha de creación: 2024-09-09 01:03:24.039796+00:00
+Fecha de creación: 2024-09-09 01:23:50.527983+00:00
 set interfaces None unit None family inet address 0.0.0.1/0
 set interfaces None unit None disable
 deactivate interfaces None unit None
