@@ -13,6 +13,8 @@
             <h1 class="titulo">CRUD PE</h1>
         </header>
         <main>
+            <a href="http://deliveryconsole/pdetailsearch.asp" target="_blank">Ir a Delivery Console</a><br>
+            <a href="http://ximelat/" target="_blank">Ir a Xime Metro2</a>
             <form method="post" onsubmit="return validateForm(event)">
                 {% csrf_token %}
                 <div>
@@ -54,11 +56,44 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             var tipoServicioField = document.getElementById('id_tipo_servicio');
+            var tipoConfiguracionField = document.getElementById('id_tipo_configuracion');
             var bundleEtherField = document.getElementById('id_bundle_ether');
             var vrfField = document.getElementById('id_vrf');
             var rdField = document.getElementById('id_rd');
             var swbField = document.getElementById('id_swb');
             var interfaceSwbField = document.getElementById('id_interface_swb');
+            var fieldsToShowVPN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
+            var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_swb', 'id_interface_swb', 'id_unit', 'bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
+            var allFields = document.querySelectorAll('.form-control');
+        
+            function updateFieldVisibility() {
+                var tipoConfiguracion = tipoConfiguracionField.value;
+                var tipoServicio = tipoServicioField.value;
+        
+                allFields.forEach(field => {
+                    if (tipoConfiguracion === 'Ampliacion' && tipoServicio === "VPN") {
+                        if (fieldsToShowVPN.includes(field.id)) {
+                            field.style.display = 'block';
+                        } else {
+                            field.style.display = 'none';
+                        }
+                    } else if (tipoConfiguracion === 'Ampliacion' && tipoServicio === "VPLS") {
+                        if (fieldsToShowVPLS.includes(field.id)) {
+                            field.style.display = 'block';
+                        } else {
+                            field.style.display = 'none';
+                        }
+                    } else {
+                        field.style.display = 'block';
+                    }
+                });
+            }
+        
+            tipoConfiguracionField.addEventListener('change', updateFieldVisibility);
+            tipoServicioField.addEventListener('change', updateFieldVisibility);
+        
+            updateFieldVisibility(); // Para establecer el estado inicial
+        
 
             tipoServicioField.addEventListener('change', function() {
                 if (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') {
@@ -78,23 +113,7 @@
                         <option value="Bundle-ether32">Bundle-ether32</option>
                         <option value="Bundle-ether33">Bundle-ether33</option>                    `;
                 }
-                var tipoServicio = tipoServicioField.value;
-                if (tipoServicio === 'ADI') {
-                    vrfField.style.display = 'none';
-                    rdField.style.display = 'none';
-                    swbField.style.display = 'none';
-                    interfaceSwbField.style.display = 'none';
-                } else if (tipoServicio === 'VPN') {
-                    vrfField.style.display = 'block';
-                    rdField.style.display = 'block';
-                    swbField.style.display = 'none';
-                    interfaceSwbField.style.display = 'none';
-                } else if (tipoServicio === 'VPLS') {
-                    vrfField.style.display = 'none';
-                    rdField.style.display = 'none';
-                    swbField.style.display = 'block';
-                    interfaceSwbField.style.display = 'block';
-                }
+                
             });
         });
 

@@ -46,6 +46,15 @@ bash
 roci {{ datos.pe }}
 configure private
 
+
+show interfaces {{ datos.interface_pe }} | no | display set
+show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+show routing-instances {{ datos.vrf }} | display set | match lo0
+show routing-instances {{ datos.vrf }} | display set | match vrf
+show | display set | match 16528:4800321
+show | display set | match {{ datos.interface_pe }}.{{ datos.unit }} | no
+run show route table {{ datos.vrf }} {{ datos.wan }}
+
 show interfaces {{ datos.interface_pe }} | no | display set
                 </textarea>
                 <div class="button-container">
