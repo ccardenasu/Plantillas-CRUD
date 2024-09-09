@@ -104,6 +104,8 @@ def buscar_cfs(request):
                             'dko': dato.dko,
                             'sw': dato.sw,
                             'interface_sw': dato.interface_sw,
+                            'swb': dato.sw,
+                            'interface_swb': dato.interface_sw,
                             'pe': dato.pe,
                             'interface_pe': dato.interface_pe,
                             'vrf': dato.vrf,
