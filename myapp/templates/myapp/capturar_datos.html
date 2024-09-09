@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD PE</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="titulo">CRUD PE</h1>
+        </header>
+        <main>
+            <form method="post" onsubmit="return validateForm(event)">
+                {% csrf_token %}
+                <div>
+                    <label for="id_cfs">Cfs:</label>
+                    <input type="text" name="cfs" id="id_cfs" class="form-control">
+                    <div id="error-message" aria-live="assertive"></div>
+                    <button type="button" onclick="buscarCfs()">Buscar</button>
+                    <button type="button" onclick="limpiarCampos()">Limpiar</button>
+                </div>
+                
+                <div id="record-selection" style="display: none;">
+                    <label for="record-select">Seleccione un registro:</label>
+                    <select id="record-select" onchange="fillForm(this.value)">
+                        <!-- Opciones se llenarán dinámicamente -->
+                    </select>
+                </div>
+                {{ form.as_p }}
+                <button type="button" onclick="concatenar()">Concatenar</button>
+                <input type="hidden" id="rs-sw-be" name="rs-sw-be" value="">
+                <button type="submit" aria-label="Enviar Formulario">Enviar</button>
+
+
+
+            </form>
+            <div id="search-result"></div>
+            <h2>Buscar en CSV</h2>
+            <form id="csv-search-form">
+                <label for="search-term">Buscar:</label>
+                <input type="text" id="search-term" name="search-term" class="form-control">
+                <button type="button" onclick="buscarEnCSV()">Buscar</button>
+            </form>
+
+        </main>
+        <footer>
+            <p>© 2024 CECU</p>
+        </footer>
+    </div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var tipoServicioField = document.getElementById('id_tipo_servicio');
+            var bundleEtherField = document.getElementById('id_bundle_ether');
+
+            tipoServicioField.addEventListener('change', function() {
+                if (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') {
+                    bundleEtherField.innerHTML = `
+                        <option value="Bundle-ether10">Bundle-ether10</option>
+                        <option value="Bundle-ether11">Bundle-ether11</option>
+                        <option value="Bundle-ether14">Bundle-ether14</option>
+                    `;
+                } else {
+                    // Aquí puedes agregar las opciones por defecto o vaciar el campo
+                    bundleEtherField.innerHTML = `
+                        <option value="">Seleccione una opción</option>
+                        <option value="Bundle-ether12">Bundle-ether12</option>
+                        <option value="Bundle-ether13">Bundle-ether13</option>
+                        <option value="Bundle-ether32">Bundle-ether32</option>
+                        <option value="Bundle-ether33">Bundle-ether33</option>                    `;
+                }
+            });
+        });
+
+        function concatenar() {
+            var tipo_servicio = document.querySelector('[name="tipo_servicio"]').value;
+            var sw = document.querySelector('[name="sw"]').value;
+            var bundle_ether = document.querySelector('[name="bundle_ether"]').value;
+            var rs_sw_be = `${tipo_servicio} ${sw} ${bundle_ether}`;
+            document.getElementById('rs-sw-be').value = rs_sw_be;
+            document.getElementById('search-term').value = rs_sw_be;
+            buscarEnCSV();  // Llamar a la función buscarEnCSV
+        }
+
+        function buscarCfs() {
+            var cfs = document.getElementById('id_cfs').value;
+            console.log(`Buscando CFS: ${cfs}`);
+            fetch(`/buscar_cfs/?cfs=${cfs}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Datos recibidos:', data);
+                    var errorMessage = document.getElementById('error-message');
+                    if (data.exists) {
+                        errorMessage.innerText = "";
+                        if (data.records.length > 1) {
+                            var select = document.getElementById('record-select');
+                            select.innerHTML = '';
+                            data.records.forEach(record => {
+                                var option = document.createElement('option');
+                                option.value = JSON.stringify(record);
+                                option.text = `Registro ${record.id} - ${record.created_at}`;
+                                select.appendChild(option);
+                            });
+                            document.getElementById('record-selection').style.display = 'block';
+                        } else {
+                            fillForm(JSON.stringify(data.records[0]));
+                        }
+                    } else {
+                        errorMessage.innerText = "El CFS no existe.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function fillForm(record) {
+            var data = JSON.parse(record);
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    var field = document.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        field.value = data[key];
+                    }
+                }
+            }
+        }
+
+        function limpiarCampos() {
+            var fields = document.querySelectorAll('.form-control');
+            fields.forEach(field => field.value = '');
+            document.getElementById('error-message').innerText = '';
+            document.getElementById('record-selection').style.display = 'none';
+        }
+
+        function validateForm(event) {
+            var nombre = document.querySelector('[name="nombre"]').value;
+            if (nombre === "") {
+                document.getElementById('error-message').innerText = "El nombre es obligatorio.";
+                event.preventDefault();
+                window.scrollTo(0, 0);
+                return false;
+            }
+            return true;
+        }
+
+        function buscarEnCSV() {
+            var searchTerm = document.getElementById('search-term').value;
+            if (!searchTerm) {
+                alert("Por favor, ingresa un término de búsqueda.");
+                return;
+            }
+            fetch(`/buscar_en_csv/?term=${searchTerm}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var resultDiv = document.getElementById('search-result');
+                    resultDiv.innerHTML = '';
+                    if (data.found) {
+                        resultDiv.innerHTML = `<p><strong>PE:</strong><br> ${data.value2}<br><br><strong>Interface PE:</strong><br> ${data.value1}</p>`;
+                        document.querySelector('[name="pe"]').value = data.value2;
+                        document.querySelector('[name="interface_pe"]').value = data.value1;
+                    } else {
+                        resultDiv.innerText = "No se encontraron resultados en el CSV.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    var resultDiv = document.getElementById('search-result');
+                    resultDiv.innerText = "Ocurrió un error al buscar en el CSV.";
+                });
+        }
+        function concatenar() {
+            var tipo_servicio = document.querySelector('[name="tipo_servicio"]').value;
+            var sw = document.querySelector('[name="sw"]').value;
+            var bundle_ether = document.querySelector('[name="bundle_ether"]').value;
+            var rs_sw_be = `${tipo_servicio}${sw}${bundle_ether}`;
+            document.getElementById('rs-sw-be').value = rs_sw_be;
+            document.getElementById('search-term').value = rs_sw_be;
+            buscarEnCSV();  // Llamar a la función buscarEnCSV
+        }
+    </script>
+</body>
+</html>

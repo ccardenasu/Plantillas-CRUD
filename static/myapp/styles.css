@@ -1,0 +1,196 @@
+:root {
+    --primary-color: #2980b9;
+    --secondary-color: #2c3e50;
+    --accent-color: #4caf50;
+    --font-family: 'Roboto', sans-serif;
+    --font-size-base: 1em;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 4px solid var(--primary-color);
+}
+
+header .titulo {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+main {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: var(--font-size-base);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: var(--font-size-base);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3498db;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--secondary-color);
+    color: #fff;
+    margin-top: 20px;
+    border-top: 4px solid var(--primary-color);
+}
+
+#error-message {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Estilos específicos para CRUD PE */
+.crud-container {
+    background-color: #e8f0fe;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.crud-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: var(--font-size-base);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.crud-button:hover {
+    background-color: #45a049;
+}
+
+.crud-form input[type="text"],
+.crud-form input[type="email"],
+.crud-form input[type="password"],
+.crud-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: var(--font-size-base);
+    margin-bottom: 10px;
+}
+
+.crud-main {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Estilos específicos para Datos Guardados */
+.datos-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.datos-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: var(--font-size-base);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.datos-button:hover {
+    background-color: #3498db;
+}
+
+.copy-box {
+    margin-bottom: 20px;
+}
+
+.copy-box .title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.copy-box textarea {
+    width: 100%;
+    height: 300px; /* Ajusta la altura según tus necesidades */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.2em; /* Aumenta el tamaño de la fuente */
+    margin-bottom: 10px;
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    header .titulo {
+        font-size: 2em;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+}
