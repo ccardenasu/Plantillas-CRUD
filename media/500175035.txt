@@ -11,7 +11,7 @@ Interface PE: ae3
 Unit: 2938
 BW: 2
 WAN: 192.168.156.204/30
-Fecha de creación: 2024-09-10 16:37:21.454754+00:00
+Fecha de creación: 2024-09-10 17:33:40.166748+00:00
 set interfaces ae3 unit 2938 family inet address 192.168.156.205/30
 set interfaces ae3 unit 2938 disable
 deactivate interfaces ae3 unit 2938
