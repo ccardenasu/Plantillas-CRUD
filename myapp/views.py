@@ -27,6 +27,7 @@ def datos_view(request):
 
                     write_if_not_none('CFS', datos.cfs)
                     write_if_not_none('Tipo de configuración', datos.tipo_configuracion)
+                    write_if_not_none('Tipo de equipo', datos.tipo_equipo)
                     write_if_not_none('RFS-IP-PORT', datos.rfs_ip_port)
                     write_if_not_none('RFS-IP-PORT_B', datos.rfs_ip_port_b)
                     write_if_not_none('Cliente', datos.cliente)
@@ -105,6 +106,7 @@ def buscar_cfs(request):
                         {
                             'id': dato.id,
                             'tipo_servicio': dato.tipo_servicio,
+                            'tipo_equipo': dato.tipo_equipo,
                             'tipo_configuracion': dato.tipo_configuracion,
                             'rfs_ip_port': dato.rfs_ip_port,
                             'rfs_ip_port_b': dato.rfs_ip_port_b,

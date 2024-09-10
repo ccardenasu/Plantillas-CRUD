@@ -19,6 +19,12 @@ class Datos(models.Model):
         ('ADI', 'ADI'),
     ]
 
+    TIPO_EQUIPO_CHOICES = [
+        ('', ''),
+        ('JUNIPER', 'JUNIPER'),
+        ('ALCATEL', 'ALCATEL'),
+        ('CISCO', 'CISCO'),
+    ]
     BUNDLE_ETHER_CHOICES = [
         ('N/A', 'N/A'),
         ('Bundle-ether10', 'Bundle-ether10'),
@@ -35,6 +41,7 @@ class Datos(models.Model):
     cfs = models.CharField(max_length=100)
     tipo_configuracion = models.CharField(max_length=100, choices=TIPO_CONFIGURACION_CHOICES, default='default_config')
     tipo_servicio = models.CharField(max_length=100, choices=TIPO_SERVICIO_CHOICES, default='')
+    tipo_equipo = models.CharField(max_length=100, choices=TIPO_EQUIPO_CHOICES, default='')
     rfs_ip_port = models.CharField(max_length=100, blank=True, null=True)
     rfs_ip_port_b = models.CharField(max_length=100, blank=True, null=True)
     cliente = models.CharField(max_length=100, blank=True, null=True)
