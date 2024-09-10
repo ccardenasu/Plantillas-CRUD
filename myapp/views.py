@@ -32,6 +32,7 @@ def datos_view(request):
                     write_if_not_none('bundle_ether', datos.bundle_ether)
                     write_if_not_none('bundle_ether_b', datos.bundle_ether_b)
                     write_if_not_none('SEDE', datos.sede)
+                    write_if_not_none('SEDE_B', datos.sede_b)
                     write_if_not_none('DKO', datos.dko)
                     write_if_not_none('SW', datos.sw)
                     write_if_not_none('Interface SW', datos.interface_sw)
@@ -107,6 +108,7 @@ def buscar_cfs(request):
                             'bundle_ether': dato.bundle_ether,
                             'bundle_ether_b': dato.bundle_ether_b,
                             'sede': dato.sede,
+                            'sede_b': dato.sede,
                             'dko': dato.dko,
                             'sw': dato.sw,
                             'interface_sw': dato.interface_sw,

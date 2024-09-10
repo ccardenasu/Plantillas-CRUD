@@ -36,6 +36,7 @@ class Datos(models.Model):
     rfs_ip_port = models.CharField(max_length=100, blank=True, null=True)
     cliente = models.CharField(max_length=100, blank=True, null=True)
     sede = models.CharField(max_length=100, blank=True, null=True)
+    sede_b = models.CharField(max_length=100, blank=True, null=True)
     dko = models.CharField(max_length=100, blank=True, null=True)
     sw = models.CharField(max_length=100, blank=True, null=True)
     interface_sw = models.CharField(max_length=100, blank=True, null=True)

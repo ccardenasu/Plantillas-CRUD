@@ -5,6 +5,7 @@ Cliente: LIBERTY NETWORKS DE COLOMBIA S.A.S
 bundle_ether: Bundle-ether11
 bundle_ether_b: Bundle-ether11
 SEDE: CALI- SANTA MONICA
+SEDE_B: CALI- SANTA MONICA
 DKO: 8622447 (8622452)
 SW: CALICLAJNN002
 Interface SW: TenGigE0/0/0/3.905091100
@@ -16,7 +17,7 @@ Unit: 758
 Unit_b: 1142
 BW: 20
 WAN: 0.0.0.0/0
-Fecha de creación: 2024-09-10 01:04:27.681886+00:00
+Fecha de creación: 2024-09-10 12:27:39.966791+00:00
 set interfaces ae11 unit 758 family inet address 0.0.0.1/0
 set interfaces ae11 unit 758 disable
 deactivate interfaces ae11 unit 758

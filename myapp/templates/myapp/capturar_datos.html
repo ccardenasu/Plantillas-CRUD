@@ -65,13 +65,13 @@
                     var sw_bField = document.getElementById('id_sw_b');
                     var interfacesw_bField = document.getElementById('id_interface_sw_b');
                     var fieldsToShowVPN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
-                    var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
+                    var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
                     var allFields = document.querySelectorAll('.form-control');
-                
+
                     function updateFieldVisibility() {
                         var tipoConfiguracion = tipoConfiguracionField.value;
                         var tipoServicio = tipoServicioField.value;
-                
+
                         allFields.forEach(field => {
                             if (tipoConfiguracion === 'Ampliacion' && tipoServicio === "VPN") {
                                 if (fieldsToShowVPN.includes(field.id)) {

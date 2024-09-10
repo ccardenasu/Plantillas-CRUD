@@ -33,7 +33,6 @@
 {% if datos.bw %}BW: {{ datos.bw }}{% endif %}
 {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
 {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
-{% if datos.created_at %}Fecha de creación: {{ datos.created_at }}{% endif %}
                 </textarea>
                 <div class="button-container">
                     <button class="datos-button" onclick="copyToClipboard('dataTextArea')" aria-label="Copiar Datos">Copiar Datos</button>
