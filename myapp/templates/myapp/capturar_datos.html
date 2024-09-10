@@ -199,6 +199,7 @@
                                 resultDiv.innerHTML = `<p><strong>PE:</strong><br> ${data.value2}<br><br><strong>Interface PE:</strong><br> ${data.value1}</p>`;
                                 document.querySelector('[name="pe"]').value = data.value2;
                                 document.querySelector('[name="interface_pe"]').value = data.value1;
+                                 puertos_lag = data.value7; // Asignar el valor de la columna 7 a la variable global
                             } else {
                                 resultDiv.innerText = "No se encontraron resultados en el CSV.";
                             }
@@ -209,6 +210,8 @@
                             resultDiv.innerText = "Ocurrió un error al buscar en el CSV.";
                         });
                 }
+
+
                 function buscarEnCSV_b() {
                     var searchTerm = document.getElementById('search-term').value;
                     if (!searchTerm) {

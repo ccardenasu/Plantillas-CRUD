@@ -75,7 +75,16 @@ configure private
 show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
 show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
 
-            {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" %}
+            {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
+bash
+roci {{ datos.pe }}
+configure private
+
+
+show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
+
+            {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 bash
 roci {{ datos.pe }}
 configure private

@@ -15,7 +15,7 @@ Unit: 643
 CV: 1200
 BW: 256
 WAN: 0.0.0.0/0
-Fecha de creación: 2024-09-10 23:07:33.729402+00:00
+Fecha de creación: 2024-09-10 23:14:28.549772+00:00
 set interfaces ae-12 unit 643 family inet address 0.0.0.1/0
 set interfaces ae-12 unit 643 disable
 deactivate interfaces ae-12 unit 643
