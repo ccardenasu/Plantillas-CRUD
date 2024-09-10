@@ -29,15 +29,20 @@ def datos_view(request):
                     write_if_not_none('Tipo de configuración', datos.tipo_configuracion)  # Omitido
                     write_if_not_none('RFS-IP-PORT', datos.rfs_ip_port)
                     write_if_not_none('Cliente', datos.cliente)
+                    write_if_not_none('bundle_ether', datos.bundle_ether)
+                    write_if_not_none('bundle_ether_b', datos.bundle_ether_b)
                     write_if_not_none('SEDE', datos.sede)
                     write_if_not_none('DKO', datos.dko)
                     write_if_not_none('SW', datos.sw)
                     write_if_not_none('Interface SW', datos.interface_sw)
                     write_if_not_none('PE', datos.pe)
                     write_if_not_none('Interface PE', datos.interface_pe)
+                    write_if_not_none('PE_B', datos.pe_b)
+                    write_if_not_none('Interface PE_B', datos.interface_pe_b)
                     write_if_not_none('VRF', datos.vrf)
                     write_if_not_none('RD', datos.rd)
                     write_if_not_none('Unit', datos.unit)
+                    write_if_not_none('Unit_b', datos.unit_b)
                     write_if_not_none('VT', datos.vt)
                     write_if_not_none('SV', datos.sv)
                     write_if_not_none('CV', datos.cv)
@@ -100,6 +105,7 @@ def buscar_cfs(request):
                             'rfs_ip_port': dato.rfs_ip_port,
                             'cliente': dato.cliente,
                             'bundle_ether': dato.bundle_ether,
+                            'bundle_ether_b': dato.bundle_ether_b,
                             'sede': dato.sede,
                             'dko': dato.dko,
                             'sw': dato.sw,
@@ -108,9 +114,12 @@ def buscar_cfs(request):
                             'interface_swb': dato.interface_sw,
                             'pe': dato.pe,
                             'interface_pe': dato.interface_pe,
+                            'pe_b': dato.pe_b,
+                            'interface_pe_b': dato.interface_pe_b,
                             'vrf': dato.vrf,
                             'rd': dato.rd,
                             'unit': dato.unit,
+                            'unit_b': dato.unit,
                             'vt': dato.vt,
                             'sv': dato.sv,
                             'cv': dato.cv,

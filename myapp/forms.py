@@ -9,12 +9,13 @@ class DatosForm(forms.ModelForm):
     class Meta:
         model = Datos
         fields = [
-            'cfs', 'dko', 'tipo_configuracion', 'tipo_servicio', 'rfs_ip_port', 'cliente', 'sede', 'sw', 'interface_sw', 'swb', 'interface_swb', 'vrf', 'rd', 'unit', 
-            'vt', 'sv', 'cv', 'bw', 'wan', 'wanv6', 'asn', 'lan', 'lbcpe', 'lnnid', 'bundle_ether', 'pe', 'interface_pe'
+            'cfs', 'dko', 'tipo_configuracion', 'tipo_servicio', 'rfs_ip_port', 'cliente', 'sede', 'sw', 'interface_sw', 'swb', 'interface_swb', 'vrf', 'rd', 'unit', 'unit_b',
+            'vt', 'sv', 'cv', 'bw', 'wan', 'wanv6', 'asn', 'lan', 'lbcpe', 'lnnid', 'bundle_ether', 'pe', 'interface_pe', 'bundle_ether_b', 'pe_b', 'interface_pe_b'
         ]
         widgets = {
             'cfs': forms.TextInput(attrs={'class': 'form-control'}),
             'bundle_ether': forms.Select(attrs={'class': 'form-control'}),
+            'bundle_ether_b': forms.Select(attrs={'class': 'form-control'}),
             'tipo_configuracion': forms.Select(attrs={'class': 'form-control'}),
             'tipo_servicio': forms.Select(attrs={'class': 'form-control'}),
             'rfs_ip_port': forms.TextInput(attrs={'class': 'form-control'}),
@@ -27,9 +28,12 @@ class DatosForm(forms.ModelForm):
             'interface_swb': forms.TextInput(attrs={'class': 'form-control'}),
             'pe': forms.TextInput(attrs={'class': 'form-control'}),
             'interface_pe': forms.TextInput(attrs={'class': 'form-control'}),
+            'pe_b': forms.TextInput(attrs={'class': 'form-control'}),
+            'interface_pe_b': forms.TextInput(attrs={'class': 'form-control'}),
             'vrf': forms.TextInput(attrs={'class': 'form-control'}),
             'rd': forms.TextInput(attrs={'class': 'form-control'}),
             'unit': forms.TextInput(attrs={'class': 'form-control'}),
+            'unit_b': forms.TextInput(attrs={'class': 'form-control'}),
             'vt': forms.TextInput(attrs={'class': 'form-control'}),
             'sv': forms.TextInput(attrs={'class': 'form-control'}),
             'cv': forms.TextInput(attrs={'class': 'form-control'}),

@@ -24,7 +24,7 @@
                     <button type="button" onclick="buscarCfs()">Buscar</button>
                     <button type="button" onclick="limpiarCampos()">Limpiar</button>
                 </div>
-                
+
                 <div id="record-selection" style="display: none;">
                     <label for="record-select">Seleccione un registro:</label>
                     <select id="record-select" onchange="fillForm(this.value)">
@@ -35,8 +35,6 @@
                 <button type="button" onclick="concatenar()">Concatenar</button>
                 <input type="hidden" id="rs-sw-be" name="rs-sw-be" value="">
                 <button type="submit" aria-label="Enviar Formulario">Enviar</button>
-
-
 
             </form>
             <div id="search-result"></div>
@@ -58,12 +56,13 @@
             var tipoServicioField = document.getElementById('id_tipo_servicio');
             var tipoConfiguracionField = document.getElementById('id_tipo_configuracion');
             var bundleEtherField = document.getElementById('id_bundle_ether');
+            var bundleEther_bField = document.getElementById('id_bundle_ether_b');
             var vrfField = document.getElementById('id_vrf');
             var rdField = document.getElementById('id_rd');
             var swbField = document.getElementById('id_swb');
             var interfaceSwbField = document.getElementById('id_interface_swb');
             var fieldsToShowVPN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
-            var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_swb', 'id_interface_swb', 'id_unit', 'bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
+            var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_swb', 'id_interface_swb', 'id_unit', 'id_unit_b', 'id_bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
             var allFields = document.querySelectorAll('.form-control');
         
             function updateFieldVisibility() {
@@ -113,7 +112,24 @@
                         <option value="Bundle-ether32">Bundle-ether32</option>
                         <option value="Bundle-ether33">Bundle-ether33</option>                    `;
                 }
-                
+
+                    if (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') {
+                        bundleEther_bField.innerHTML = `
+                            <option value="N/A">N/A</option>
+                            <option value="Bundle-ether10">Bundle-ether10</option>
+                            <option value="Bundle-ether11">Bundle-ether11</option>
+                            <option value="Bundle-ether14">Bundle-ether14</option>
+                        `;
+                    } else {
+                        // Aquí puedes agregar las opciones por defecto o vaciar el campo
+                        bundleEther_bField.innerHTML = `
+                            <option value="N/A">N/A</option>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Bundle-ether12">Bundle-ether12</option>
+                            <option value="Bundle-ether13">Bundle-ether13</option>
+                            <option value="Bundle-ether32">Bundle-ether32</option>
+                            <option value="Bundle-ether33">Bundle-ether33</option>                    `;
+                    }
             });
         });
 
