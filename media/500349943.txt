@@ -10,12 +10,13 @@ SW: CALICLAJNN002
 Interface SW: TenGigE0/0/0/3.905091100
 PE: psr4.cal1
 Interface PE: ae11
-PE_B: ae11
+PE_B: psr3.bgo1
+Interface PE_B: ae11
 Unit: 758
 Unit_b: 1142
 BW: 20
 WAN: 0.0.0.0/0
-Fecha de creación: 2024-09-10 00:06:14.386849+00:00
+Fecha de creación: 2024-09-10 01:04:27.681886+00:00
 set interfaces ae11 unit 758 family inet address 0.0.0.1/0
 set interfaces ae11 unit 758 disable
 deactivate interfaces ae11 unit 758
