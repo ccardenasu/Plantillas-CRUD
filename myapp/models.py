@@ -8,6 +8,8 @@ class Datos(models.Model):
         ('Ampliacion', 'Ampliacion'),
         ('BGP', 'BGP'),
         ('Alta', 'Alta'),
+        ('Modificacion', 'Modificacion'),
+
     ]
 
     TIPO_SERVICIO_CHOICES = [
@@ -34,6 +36,7 @@ class Datos(models.Model):
     tipo_configuracion = models.CharField(max_length=100, choices=TIPO_CONFIGURACION_CHOICES, default='default_config')
     tipo_servicio = models.CharField(max_length=100, choices=TIPO_SERVICIO_CHOICES, default='')
     rfs_ip_port = models.CharField(max_length=100, blank=True, null=True)
+    rfs_ip_port_b = models.CharField(max_length=100, blank=True, null=True)
     cliente = models.CharField(max_length=100, blank=True, null=True)
     sede = models.CharField(max_length=100, blank=True, null=True)
     sede_b = models.CharField(max_length=100, blank=True, null=True)

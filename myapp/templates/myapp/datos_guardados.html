@@ -17,20 +17,29 @@
                 <div class="title">Datos del Cliente</div>
                 <textarea id="dataTextArea" class="datos-textarea" readonly>
 {% if datos.cfs %}CFS: {{ datos.cfs }}{% endif %}
+{% if datos.dko %}DKO: {{ datos.dko }}{% endif %}
+{% if datos.tipo_configuracion %}tipo_configuracion: {{ datos.tipo_configuracion }}{% endif %}
+{% if datos.tipo_servicio %}tipo_servicio: {{ datos.tipo_servicio }}{% endif %}
 {% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
+{% if datos.rfs_ip_port_b %}RFS-IP-PORT_B: {{ datos.rfs_ip_port_b }}{% endif %}
 {% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
 {% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
-{% if datos.dko %}DKO: {{ datos.dko }}{% endif %}
+{% if datos.sede_b %}SEDE_B: {{ datos.sede_b }}{% endif %}
 {% if datos.sw %}SW: {{ datos.sw }}{% endif %}
 {% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
 {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
 {% if datos.interface_pe %}Interface PE: {{ datos.interface_pe }}{% endif %}
+{% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
+{% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
+{% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
+{% if datos.interface_pe_b %}Interface PE_B: {{ datos.interface_pe_b }}{% endif %}
 {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
 {% if datos.rd %}RD: {{ datos.rd }}{% endif %}
 {% if datos.unit %}Unit: {{ datos.unit }}{% endif %}
+{% if datos.unit_b %}Unit_b: {{ datos.unit_b }}{% endif %}
 {% if datos.sv %}SV: {{ datos.sv }}{% endif %}
 {% if datos.cv %}CV: {{ datos.cv }}{% endif %}
-{% if datos.bw %}BW: {{ datos.bw }}{% endif %}
+{% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}{% endif %}
 {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
 {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
                 </textarea>
@@ -41,20 +50,23 @@
             <div class="copy-box">
                 <div class="title">Comandos Previos</div>
                 <textarea id="commandsTextArea" class="datos-textarea" readonly>
+{% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
 bash
 roci {{ datos.pe }}
 configure private
 
 
-show interfaces {{ datos.interface_pe }} | no | display set
 show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
-show routing-instances {{ datos.vrf }} | display set | match lo0
-show routing-instances {{ datos.vrf }} | display set | match vrf
-show | display set | match 16528:4800321
-show | display set | match {{ datos.interface_pe }}.{{ datos.unit }} | no
-run show route table {{ datos.vrf }} {{ datos.wan }}
 
-show interfaces {{ datos.interface_pe }} | no | display set
+==================================================================================
+bash
+roci {{ datos.pe_b }}
+configure private
+
+
+show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
+
+{% endif %}
                 </textarea>
                 <div class="button-container">
                     <button class="datos-button" onclick="copyToClipboard('commandsTextArea')" aria-label="Copiar Comandos">Copiar Comandos</button>
@@ -63,8 +75,19 @@ show interfaces {{ datos.interface_pe }} | no | display set
             <div class="copy-box">
                 <div class="title">Configuración de la Interfaz</div>
                 <textarea id="newCommandsTextArea" class="datos-textarea" readonly>
+
+                    {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+PE {{ datos.pe }}
 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
-                </textarea>
+
+==================================================================================
+
+PE {{ datos.pe_b }}
+set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
+
+                    {% endif %}
+                                </textarea>
                 <div class="button-container">
                     <button class="datos-button" onclick="copyToClipboard('newCommandsTextArea')" aria-label="Copiar Nuevos Comandos">Copiar Nuevos Comandos</button>
                 </div>
@@ -72,19 +95,17 @@ set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTO
             <div class="copy-box">
                 <div class="title">Policers</div>
                 <textarea id="policersTextArea" class="datos-textarea" readonly>
-set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
-set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
-set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
-set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
-set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} rewrite-rules ieee-802.1 XMR-I
-set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} rewrite-rules ieee-802.1 CUST-PSR->EX
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
-set routing-instances atento_ecopetrol interface {{ datos.interface_pe }}.{{ datos.unit }}
+                    {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+PE {{ datos.pe }}
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+
+==================================================================================
+
+PE {{ datos.pe_b }}
+set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
+
+{% endif %}
                 </textarea>
                 <div class="button-container">
                     <button class="datos-button" onclick="copyToClipboard('policersTextArea')" aria-label="Copiar Policers">Copiar Policers</button>

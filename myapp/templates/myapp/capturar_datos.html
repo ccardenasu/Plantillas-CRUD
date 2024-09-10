@@ -60,82 +60,58 @@
                     var tipoConfiguracionField = document.getElementById('id_tipo_configuracion');
                     var bundleEtherField = document.getElementById('id_bundle_ether');
                     var bundleEther_bField = document.getElementById('id_bundle_ether_b');
-                    var vrfField = document.getElementById('id_vrf');
-                    var rdField = document.getElementById('id_rd');
-                    var sw_bField = document.getElementById('id_sw_b');
-                    var interfacesw_bField = document.getElementById('id_interface_sw_b');
-                    var fieldsToShowVPN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
-                    var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
                     var allFields = document.querySelectorAll('.form-control');
-
+                
+                    var fieldsToShowVPN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
+                    var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_rfs_ip_port_b', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
+                    var fieldsToShowModificacionVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_rfs_ip_port_b', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
+                
                     function updateFieldVisibility() {
                         var tipoConfiguracion = tipoConfiguracionField.value;
                         var tipoServicio = tipoServicioField.value;
-
+                
                         allFields.forEach(field => {
                             if (tipoConfiguracion === 'Ampliacion' && tipoServicio === "VPN") {
-                                if (fieldsToShowVPN.includes(field.id)) {
-                                    field.style.display = 'block';
-                                } else {
-                                    field.style.display = 'none';
-                                }
+                                field.style.display = fieldsToShowVPN.includes(field.id) ? 'block' : 'none';
                             } else if (tipoConfiguracion === 'Ampliacion' && tipoServicio === "VPLS") {
-                                if (fieldsToShowVPLS.includes(field.id)) {
-                                    field.style.display = 'block';
-                                } else {
-                                    field.style.display = 'none';
-                                }
+                                field.style.display = fieldsToShowVPLS.includes(field.id) ? 'block' : 'none';
+                            } else if (tipoConfiguracion === 'Modificacion' && tipoServicio === "VPLS") {
+                                field.style.display = fieldsToShowModificacionVPLS.includes(field.id) ? 'block' : 'none';
                             } else {
                                 field.style.display = 'block';
                             }
                         });
                     }
                 
+                    function updateBundleOptions() {
+                        var optionsVPNVPLS = `
+                            <option value="N/A">N/A</option>
+                            <option value="Bundle-ether10">Bundle-ether10</option>
+                            <option value="Bundle-ether11">Bundle-ether11</option>
+                            <option value="Bundle-ether14">Bundle-ether14</option>
+                        `;
+                        var optionsDefault = `
+                            <option value="N/A">N/A</option>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Bundle-ether12">Bundle-ether12</option>
+                            <option value="Bundle-ether13">Bundle-ether13</option>
+                            <option value="Bundle-ether32">Bundle-ether32</option>
+                            <option value="Bundle-ether33">Bundle-ether33</option>
+                        `;
+                
+                        var options = (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') ? optionsVPNVPLS : optionsDefault;
+                        bundleEtherField.innerHTML = options;
+                        bundleEther_bField.innerHTML = options;
+                    }
+                
                     tipoConfiguracionField.addEventListener('change', updateFieldVisibility);
                     tipoServicioField.addEventListener('change', updateFieldVisibility);
+                    tipoServicioField.addEventListener('change', updateBundleOptions);
                 
-                    updateFieldVisibility(); // Para establecer el estado inicial
-                
-
-                    tipoServicioField.addEventListener('change', function() {
-                        if (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') {
-                            bundleEtherField.innerHTML = `
-                                <option value="N/A">N/A</option>
-                                <option value="Bundle-ether10">Bundle-ether10</option>
-                                <option value="Bundle-ether11">Bundle-ether11</option>
-                                <option value="Bundle-ether14">Bundle-ether14</option>
-                            `;
-                        } else {
-                            // Aquí puedes agregar las opciones por defecto o vaciar el campo
-                            bundleEtherField.innerHTML = `
-                                <option value="N/A">N/A</option>
-                                <option value="">Seleccione una opción</option>
-                                <option value="Bundle-ether12">Bundle-ether12</option>
-                                <option value="Bundle-ether13">Bundle-ether13</option>
-                                <option value="Bundle-ether32">Bundle-ether32</option>
-                                <option value="Bundle-ether33">Bundle-ether33</option>                    `;
-                        }
-
-                            if (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') {
-                                bundleEther_bField.innerHTML = `
-                                    <option value="N/A">N/A</option>
-                                    <option value="Bundle-ether10">Bundle-ether10</option>
-                                    <option value="Bundle-ether11">Bundle-ether11</option>
-                                    <option value="Bundle-ether14">Bundle-ether14</option>
-                                `;
-                            } else {
-                                // Aquí puedes agregar las opciones por defecto o vaciar el campo
-                                bundleEther_bField.innerHTML = `
-                                    <option value="N/A">N/A</option>
-                                    <option value="">Seleccione una opción</option>
-                                    <option value="Bundle-ether12">Bundle-ether12</option>
-                                    <option value="Bundle-ether13">Bundle-ether13</option>
-                                    <option value="Bundle-ether32">Bundle-ether32</option>
-                                    <option value="Bundle-ether33">Bundle-ether33</option>                    `;
-                            }
-                    });
+                    updateFieldVisibility(); // Set initial state
+                    updateBundleOptions(); // Set initial bundle options
                 });
-
+                
                 function buscarCfs() {
                     var cfs = document.getElementById('id_cfs').value;
                     console.log(`Buscando CFS: ${cfs}`);

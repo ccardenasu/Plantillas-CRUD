@@ -26,8 +26,9 @@ def datos_view(request):
                             file.write(f'{field_name}: {field_value}\n')
 
                     write_if_not_none('CFS', datos.cfs)
-                    write_if_not_none('Tipo de configuración', datos.tipo_configuracion)  # Omitido
+                    write_if_not_none('Tipo de configuración', datos.tipo_configuracion)
                     write_if_not_none('RFS-IP-PORT', datos.rfs_ip_port)
+                    write_if_not_none('RFS-IP-PORT_B', datos.rfs_ip_port_b)
                     write_if_not_none('Cliente', datos.cliente)
                     write_if_not_none('bundle_ether', datos.bundle_ether)
                     write_if_not_none('bundle_ether_b', datos.bundle_ether_b)
@@ -36,6 +37,8 @@ def datos_view(request):
                     write_if_not_none('DKO', datos.dko)
                     write_if_not_none('SW', datos.sw)
                     write_if_not_none('Interface SW', datos.interface_sw)
+                    write_if_not_none('SW_B', datos.sw_b)
+                    write_if_not_none('Interface SW_B', datos.interface_sw_b)
                     write_if_not_none('PE', datos.pe)
                     write_if_not_none('Interface PE', datos.interface_pe)
                     write_if_not_none('PE_B', datos.pe_b)
@@ -104,16 +107,17 @@ def buscar_cfs(request):
                             'tipo_servicio': dato.tipo_servicio,
                             'tipo_configuracion': dato.tipo_configuracion,
                             'rfs_ip_port': dato.rfs_ip_port,
+                            'rfs_ip_port_b': dato.rfs_ip_port_b,
                             'cliente': dato.cliente,
                             'bundle_ether': dato.bundle_ether,
                             'bundle_ether_b': dato.bundle_ether_b,
                             'sede': dato.sede,
-                            'sede_b': dato.sede,
+                            'sede_b': dato.sede_b,
                             'dko': dato.dko,
                             'sw': dato.sw,
                             'interface_sw': dato.interface_sw,
-                            'sw_b': dato.sw,
-                            'interface_sw_b': dato.interface_sw,
+                            'sw_b': dato.sw_b,
+                            'interface_sw_b': dato.interface_sw_b,
                             'pe': dato.pe,
                             'interface_pe': dato.interface_pe,
                             'pe_b': dato.pe_b,
@@ -121,7 +125,7 @@ def buscar_cfs(request):
                             'vrf': dato.vrf,
                             'rd': dato.rd,
                             'unit': dato.unit,
-                            'unit_b': dato.unit,
+                            'unit_b': dato.unit_b,
                             'vt': dato.vt,
                             'sv': dato.sv,
                             'cv': dato.cv,

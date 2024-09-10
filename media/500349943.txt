@@ -1,11 +1,12 @@
 CFS: 500349943
-Tipo de configuración: Ampliacion
+Tipo de configuración: Modificacion
 RFS-IP-PORT: 6000245132
+RFS-IP-PORT_B: 6000245133
 Cliente: LIBERTY NETWORKS DE COLOMBIA S.A.S
-bundle_ether: Bundle-ether11
-bundle_ether_b: Bundle-ether11
+bundle_ether: N/A
+bundle_ether_b: N/A
 SEDE: CALI- SANTA MONICA
-SEDE_B: CALI- SANTA MONICA
+SEDE_B: DATACENTER CXV
 DKO: 8622447 (8622452)
 SW: CALICLAJNN002
 Interface SW: TenGigE0/0/0/3.905091100
@@ -15,9 +16,9 @@ PE_B: psr3.bgo1
 Interface PE_B: ae11
 Unit: 758
 Unit_b: 1142
-BW: 20
+BW: 0
 WAN: 0.0.0.0/0
-Fecha de creación: 2024-09-10 12:27:39.966791+00:00
+Fecha de creación: 2024-09-10 15:10:04.424157+00:00
 set interfaces ae11 unit 758 family inet address 0.0.0.1/0
 set interfaces ae11 unit 758 disable
 deactivate interfaces ae11 unit 758
