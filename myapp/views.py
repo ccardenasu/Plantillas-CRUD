@@ -55,6 +55,7 @@ def datos_view(request):
                     write_if_not_none('SV', datos.sv)
                     write_if_not_none('CV', datos.cv)
                     write_if_not_none('BW', datos.bw)
+                    write_if_not_none('puertos_lag', datos.puertos_lag)
                     write_if_not_none('WAN', datos.wan)
                     write_if_not_none('WANv6', datos.wanv6)
                     write_if_not_none('ASN', datos.asn)
@@ -76,6 +77,7 @@ def datos_view(request):
             try:
                 bw = int(datos.bw)
                 bwx1024 = int(bw * 1024)
+                bw_lag_alcatel = int(datos.puertos_lag) * bw
                 delay_buffer_rate = bw * 1024 * 1000 * 4
                 shaping_rate = bw * 1024 * 1000
                 burst_size_limit =  int(bw * 1024 * 1000 * 0.15 / 4)
@@ -84,13 +86,15 @@ def datos_view(request):
                 delay_buffer_rate = None
                 shaping_rate = None
                 burst_size_limit = None
+                bw_lag_alcatel =  None
 
             return render(request, 'myapp/datos_guardados.html', {
                 'datos': datos,
                 'BWx1024': bwx1024,
                 'delay_buffer_rate': delay_buffer_rate,
                 'shaping_rate': shaping_rate,
-                'burst_size_limit': burst_size_limit
+                'burst_size_limit': burst_size_limit,
+                'bw_lag_alcatel' : bw_lag_alcatel
             })
     else:
         form = DatosForm()
