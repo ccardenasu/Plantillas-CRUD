@@ -54,6 +54,7 @@ class Datos(models.Model):
     interface_sw_b = models.CharField(max_length=100, blank=True, null=True)
     pe = models.CharField(max_length=100, blank=True, null=True)
     interface_pe = models.CharField(max_length=100, blank=True, null=True)
+    puertos_lag = models.CharField(max_length=100, blank=True, null=True)
     pe_b = models.CharField(max_length=100, blank=True, null=True)
     interface_pe_b = models.CharField(max_length=100, blank=True, null=True)
     vrf = models.CharField(max_length=100, blank=True, null=True)

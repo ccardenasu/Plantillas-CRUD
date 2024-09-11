@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var fieldsToShowVPN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
     var fieldsToShowVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_rfs_ip_port_b', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
     var fieldsToShowModificacionVPLS = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_rfs_ip_port_b', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
-    var fieldsToShowADIAMPALCATEL = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
+    var fieldsToShowADIAMPALCATEL = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
 
     function updateFieldVisibility() {
         var tipoConfiguracion = tipoConfiguracionField.value;
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     tipoConfiguracionField.addEventListener('change', updateFieldVisibility);
     tipoServicioField.addEventListener('change', updateFieldVisibility);
-    tipoServicioField.addEventListener('change', updateBundleOptions);
+    tipoEquipoField.addEventListener('change', updateBundleOptions);
 
     updateFieldVisibility(); // Set initial state
     updateBundleOptions(); // Set initial bundle options
@@ -142,7 +142,8 @@ function buscarEnCSV() {
                 resultDiv.innerHTML = `<p><strong>PE:</strong><br> ${data.value2}<br><br><strong>Interface PE:</strong><br> ${data.value1}</p>`;
                 document.querySelector('[name="pe"]').value = data.value2;
                 document.querySelector('[name="interface_pe"]').value = data.value1;
-                 puertos_lag = data.value7; // Asignar el valor de la columna 7 a la variable global
+                document.querySelector('[name="puertos_lag"]').value = data.value3;
+                puertos_lag = data.value3; // Asignar el valor de la columna 8 a la variable global
             } else {
                 resultDiv.innerText = "No se encontraron resultados en el CSV.";
             }

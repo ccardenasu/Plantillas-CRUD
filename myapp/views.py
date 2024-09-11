@@ -12,7 +12,10 @@ def datos_view(request):
     if request.method == 'POST':
         form = DatosForm(request.POST)
         if form.is_valid():
-            datos = form.save()
+            datos = form.save(commit=False)
+            num_puertos_lag = form.cleaned_data.get('num_puertos_lag')
+            # Puedes usar num_puertos_lag aquí según sea necesario
+            datos.save()
             # Asegurarse de que el directorio 'media' existe
             media_dir = os.path.join(os.path.dirname(__file__), '..', 'media')
             if not os.path.exists(media_dir):
@@ -24,7 +27,6 @@ def datos_view(request):
                     def write_if_not_none(field_name, field_value):
                         if field_value not in [None, '']:
                             file.write(f'{field_name}: {field_value}\n')
-
                     write_if_not_none('CFS', datos.cfs)
                     write_if_not_none('Tipo de configuración', datos.tipo_configuracion)
                     write_if_not_none('Tipo de equipo', datos.tipo_equipo)
@@ -42,6 +44,7 @@ def datos_view(request):
                     write_if_not_none('Interface SW_B', datos.interface_sw_b)
                     write_if_not_none('PE', datos.pe)
                     write_if_not_none('Interface PE', datos.interface_pe)
+                    write_if_not_none('puertos_lag', datos.puertos_lag)
                     write_if_not_none('PE_B', datos.pe_b)
                     write_if_not_none('Interface PE_B', datos.interface_pe_b)
                     write_if_not_none('VRF', datos.vrf)
@@ -91,7 +94,7 @@ def datos_view(request):
             })
     else:
         form = DatosForm()
-    
+
     return render(request, 'myapp/capturar_datos.html', {'form': form})
 
 def buscar_cfs(request):
@@ -122,6 +125,7 @@ def buscar_cfs(request):
                             'interface_sw_b': dato.interface_sw_b,
                             'pe': dato.pe,
                             'interface_pe': dato.interface_pe,
+                            'puertos_lag': dato.puertos_lag,
                             'pe_b': dato.pe_b,
                             'interface_pe_b': dato.interface_pe_b,
                             'vrf': dato.vrf,
@@ -159,7 +163,7 @@ def buscar_en_csv(request):
                 reader = csv.reader(csvfile, delimiter=';')
                 for row in reader:
                     if row[0] == term:
-                        return JsonResponse({'found': True, 'value1': row[7], 'value2': row[6]})
+                        return JsonResponse({'found': True, 'value1': row[7], 'value2': row[6], 'value3': row[8]})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
     return JsonResponse({'found': False})

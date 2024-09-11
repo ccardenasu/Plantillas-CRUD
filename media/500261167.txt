@@ -3,7 +3,7 @@ Tipo de configuración: Ampliacion
 Tipo de equipo: ALCATEL
 RFS-IP-PORT: 6000166326
 Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
-bundle_ether: Bundle-ether12
+bundle_ether: N/A
 bundle_ether_b: N/A
 SEDE: RISARALDA - PEREIRA PALACIO DE JUSTICIA
 DKO: 1938
@@ -11,11 +11,11 @@ SW: MDLNCLCOZG005
 Interface SW: GigabitEthernet0/0/13
 PE: AR3.MDC2
 Interface PE: ae-12
-Unit: 643
-CV: 1200
+puertos_lag: 4
+Unit: 376
 BW: 256
 WAN: 0.0.0.0/0
-Fecha de creación: 2024-09-11 01:15:56.878408+00:00
-set interfaces ae-12 unit 643 family inet address 0.0.0.1/0
-set interfaces ae-12 unit 643 disable
-deactivate interfaces ae-12 unit 643
+Fecha de creación: 2024-09-11 14:13:21.811783+00:00
+set interfaces ae-12 unit 376 family inet address 0.0.0.1/0
+set interfaces ae-12 unit 376 disable
+deactivate interfaces ae-12 unit 376
