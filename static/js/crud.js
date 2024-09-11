@@ -1,6 +1,3 @@
-// static/js/crud.js
-console.log("Archivo crud.js cargado correctamente");
-
 document.addEventListener('DOMContentLoaded', function() {
     var tipoServicioField = document.getElementById('id_tipo_servicio');
     var tipoEquipoField = document.getElementById('id_tipo_equipo');
@@ -155,5 +152,70 @@ function buscarEnCSV() {
             var resultDiv = document.getElementById('search-result');
             resultDiv.innerText = "Ocurrió un error al buscar en el CSV.";
         });
+}
+
+
+function buscarEnCSV_b() {
+    var searchTerm = document.getElementById('search-term').value;
+    if (!searchTerm) {
+        alert("Por favor, ingresa un término de búsqueda.");
+        return;
+    }
+    fetch(`/buscar_en_csv/?term=${searchTerm}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            var resultDiv = document.getElementById('search-result');
+            resultDiv.innerHTML = '';
+            if (data.found) {
+                console.log("PE_B:", data.value2);
+                console.log("Interface PE_B:", data.value2);
+                resultDiv.innerHTML = `<p><strong>PE_B:</strong><br> ${data.value2}<br><br><strong>Interface PE_B:</strong><br> ${data.value1}</p>`;
+                document.querySelector('[name="pe_b"]').value = data.value2;
+                document.querySelector('[name="interface_pe_b"]').value = data.value1;
+            } else {
+                resultDiv.innerText = "No se encontraron resultados en el CSV.";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            var resultDiv = document.getElementById('search-result');
+            resultDiv.innerText = "Ocurrió un error al buscar en el CSV.";
+        });
+}
+
+function concatenar() {
+    var tipo_servicio = document.querySelector('[name="tipo_servicio"]').value;
+    var sw = document.querySelector('[name="sw"]').value;
+    var bundle_ether = document.querySelector('[name="bundle_ether"]').value;
+    var rs_sw_be = `${tipo_servicio}${sw}${bundle_ether}`;
+    document.getElementById('rs-sw-be').value = rs_sw_be;
+    document.getElementById('search-term').value = rs_sw_be;
+    buscarEnCSV();  // Llamar a la función buscarEnCSV
+}
+function concatenar_b() {
+    var tipo_servicio = document.querySelector('[name="tipo_servicio"]').value;
+    var sw_b = document.querySelector('[name="sw_b"]').value;
+    var bundle_ether_b = document.querySelector('[name="bundle_ether_b"]').value;
+
+    console.log("tipo_servicio:", tipo_servicio);
+    console.log("sw_b:", sw_b);
+    console.log("bundle_ether_b:", bundle_ether_b);
+
+    if (!tipo_servicio || !sw_b || !bundle_ether_b) {
+        console.error("Uno o más campos están vacíos o no se encontraron.");
+        alert("Uno o más campos están vacíos o no se encontraron.");
+        return;
+    }
+
+    var rs_sw_be_b = `${tipo_servicio}${sw_b}${bundle_ether_b}`;
+    document.getElementById('rs-sw-be_b').value = rs_sw_be_b;
+    document.getElementById('search-term').value = rs_sw_be_b;
+
+    buscarEnCSV_b();
 }
 
