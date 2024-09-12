@@ -1,0 +1,24 @@
+CFS: 500395435
+Tipo de configuración: Alta
+Tipo de equipo: ALCATEL
+RFS-IP-PORT: 6000306326
+Cliente: CONELECTRICAS R.L
+bundle_ether: N/A
+bundle_ether_b: N/A
+SEDE: UFINET POP CRI
+DKO: 8610063 (8610084)
+SW: mgd1.xcr3
+Interface SW: xe-0/0/2
+PE: ear1.xcr3
+Interface PE: lag-3
+puertos_lag: 1
+SV: 2058
+BW: 10000
+puertos_lag: 1
+WAN: 8.243.244.104/30
+WANv6: 2001:13b2:c000::26
+ASN: 265636
+Fecha de creación: 2024-09-12 19:50:54.968605+00:00
+set interfaces lag-3 unit None family inet address 8.243.244.105/30
+set interfaces lag-3 unit None disable
+deactivate interfaces lag-3 unit None
