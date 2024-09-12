@@ -1,0 +1,22 @@
+CFS: 500293500
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000188349
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether10
+bundle_ether_b: N/A
+SEDE: VALLE - CARTAGO- DESPACHOS JUDICIALES
+DKO: 2129
+SW: CALICLAJNN002
+Interface SW: TenGigE0/0/0/2.921501300
+PE: psr3.cal1
+Interface PE: ae10
+puertos_lag: 1
+Unit: 1903
+BW: 64
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-12 13:55:42.763680+00:00
+set interfaces ae10 unit 1903 family inet address 0.0.0.1/0
+set interfaces ae10 unit 1903 disable
+deactivate interfaces ae10 unit 1903

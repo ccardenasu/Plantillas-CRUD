@@ -1,0 +1,22 @@
+CFS: 500260396
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000165084
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether10
+bundle_ether_b: N/A
+SEDE: MAGDALENA - EDIFICIO BENAVIDES
+DKO: 1804
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/0/1.917931300
+PE: psr1.sub1.bog
+Interface PE: ae10
+puertos_lag: 1
+Unit: 3249
+BW: 128
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-12 11:38:49.459613+00:00
+set interfaces ae10 unit 3249 family inet address 0.0.0.1/0
+set interfaces ae10 unit 3249 disable
+deactivate interfaces ae10 unit 3249

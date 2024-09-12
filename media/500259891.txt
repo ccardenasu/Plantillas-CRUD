@@ -1,0 +1,22 @@
+CFS: 500259891
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000165423
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: IBAGUE TOLIMA- PALACIO DE JUSTICIA
+DKO: 1809
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/1.922121301
+PE: psr2.bgo2
+Interface PE: ae11
+puertos_lag: 1
+Unit: 2068
+BW: 384
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-12 11:01:05.006476+00:00
+set interfaces ae11 unit 2068 family inet address 0.0.0.1/0
+set interfaces ae11 unit 2068 disable
+deactivate interfaces ae11 unit 2068

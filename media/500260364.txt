@@ -1,0 +1,22 @@
+CFS: 500260364
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000165108
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: MAGDALENA - JUZGADO DE RESTITUCIÓN DE TIERRAS EDIFICIO VIVES
+DKO: 1805
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/0/3.908541300
+PE: psr2.bgo2
+Interface PE: ae11
+puertos_lag: 1
+Unit: 2200
+BW: 128
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-12 11:47:18.299887+00:00
+set interfaces ae11 unit 2200 family inet address 0.0.0.1/0
+set interfaces ae11 unit 2200 disable
+deactivate interfaces ae11 unit 2200
