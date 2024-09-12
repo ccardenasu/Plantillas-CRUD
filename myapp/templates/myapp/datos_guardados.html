@@ -94,6 +94,18 @@ show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
             {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 bash
 roci {{ datos.pe }}
+            {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
+bash
+roci {{ datos.pe }}
+
+admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}{% if datos.cv %}ASN: {{ datos.asn }}{% endif %}  context all
+configure lag xxx
+info
+exit
+show qos sap-ingress | match CUSTOMER-xxx
+configure qos sap-ingress xxx
+info
+exit
 
                     {% else %}
                     <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
