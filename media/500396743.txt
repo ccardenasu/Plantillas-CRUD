@@ -24,9 +24,10 @@ BW: 300
 puertos_lag: 1
 WAN: 10.10.10.16/30
 WANv6: 0.0.0.0/0
+ASN: 65339
 LBCPE: 172.18.52.85
-LNNID: 172.18.52.85
-Fecha de creación: 2024-09-14 19:02:59.498028+00:00
+LNNID: 10.226.203.210
+Fecha de creación: 2024-09-14 19:25:36.558580+00:00
 set interfaces ae14 unit 3342 family inet address 10.10.10.17/30
 set interfaces ae14 unit 3342 disable
 deactivate interfaces ae14 unit 3342

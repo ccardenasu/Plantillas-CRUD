@@ -335,6 +335,74 @@
                         <button class="datos-button" onclick="copyToClipboard('BgpTextArea')" aria-label="Copiar Bgp">Copiar Bgp</button>
                     </div>
                 </div>
+                <div class="copy-box">
+                    <div class="title">VRF</div>
+                    <textarea id="VRFTextArea" class="datos-textarea" readonly>
+
+                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+                            PE {{ datos.pe }}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+
+                            ==================================================================================
+
+                            PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
+
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
+
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
+                            set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
+
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+
+                        show  routing-instances {{ datos.vrf }}  | display set | no
+
+                        set routing-instances {{ datos.vrf }} description {{datos.cliente}}
+                        set routing-instances {{ datos.vrf }} instance-type vrf
+                        set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
+                        set routing-instances {{ datos.vrf }} route-distinguisher {{ datos.rd }}
+                        set routing-instances {{ datos.vrf }} vrf-import {{ datos.vrf }}-import
+                        set routing-instances {{ datos.vrf }} vrf-export {{ datos.vrf }}-export
+                        set routing-instances {{ datos.vrf }} vrf-table-label
+                        set routing-instances {{ datos.vrf }} routing-options maximum-prefixes 5000
+                        set routing-instances {{ datos.vrf }} routing-options maximum-prefixes threshold 95
+                        set routing-instances {{ datos.vrf }} routing-options maximum-prefixes threshold 95
+                        set routing-instances {{ datos.vrf }} routing-options router-id {{ datos.wan|first_valid_ip }}
+                        set routing-instances {{ datos.vrf }} routing-options auto-export
+                        set policy-options policy-statement {{ datos.vrf }}-export term MON-MNG-Policy from protocol static
+                        set policy-options policy-statement {{ datos.vrf }}-export term MON-MNG-Policy from policy MON-MNG
+                        set policy-options policy-statement {{ datos.vrf }}-export term MON-MNG-Policy then accept
+                        set policy-options policy-statement {{ datos.vrf }}-export term bgp-static-direct-export-RT from protocol bgp
+                        set policy-options policy-statement {{ datos.vrf }}-export term bgp-static-direct-export-RT from protocol static
+                        set policy-options policy-statement {{ datos.vrf }}-export term bgp-static-direct-export-RT from protocol direct
+                        set policy-options policy-statement {{ datos.vrf }}-export term bgp-static-direct-export-RT then community add RT-{{ datos.vrf }}_export
+                        set policy-options policy-statement {{ datos.vrf }}-export term bgp-static-direct-export-RT then accept
+                        set policy-options policy-statement {{ datos.vrf }}-export term reject-all then reject
+                        set policy-options policy-statement {{ datos.vrf }}-import term import from community RT-{{ datos.vrf }}_import
+                        set policy-options policy-statement {{ datos.vrf }}-import term import from community RT-gestion_col
+                        set policy-options policy-statement {{ datos.vrf }}-import term import from community RT-gestion_ecu
+                        set policy-options policy-statement {{ datos.vrf }}-import term import then accept
+                        set policy-options policy-statement {{ datos.vrf }}-import term reject-all then reject
+                        set policy-options community RT-{{ datos.vrf }}_export members target:{{ datos.rd }}
+                        set policy-options community RT-{{ datos.vrf }}_import members target:{{ datos.rd }}
+                        
+                        {% else %}
+                                <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
+                                No se cumple ninguna condición.
+                        {% endif %}
+
+                    </textarea>
+                    <div class="button-container">
+                        <button class="datos-button" onclick="copyToClipboard('VRFTextArea')" aria-label="Copiar VRF">Copiar VRF</button>
+                    </div>
+                </div>
                 <div class="button-container">
                     <button class="datos-button" onclick="window.location.href='{% url 'datos' %}'" aria-label="Regresar">Regresar</button>
                 </div>
