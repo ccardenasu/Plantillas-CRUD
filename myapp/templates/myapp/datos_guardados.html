@@ -21,6 +21,7 @@
                 <h1 class="titulo">Datos Guardados</h1>
             </header>
             <main>
+                {% load network_filters %}
                 <div class="copy-box">
                     <div class="title">Datos del Cliente</div>
                     <textarea id="dataTextArea" class="datos-textarea" readonly>
@@ -50,6 +51,8 @@
                         {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}{% endif %}
                         {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
                         {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
+                        {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %}
+                        {% if datos.lnnid %}LB NID: {{ datos.lnnid }}{% endif %}
                     </textarea>
                     <div class="button-container">
                         <button class="datos-button" onclick="copyToClipboard('dataTextArea')" aria-label="Copiar Datos">Copiar Datos</button>
@@ -112,15 +115,17 @@
                             exit
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
-                        
+
                             bash
                             roci {{ datos.pe }}
                             configure private
 
-
+                            show  routing-instances {{ datos.vrf }}  | display set | match vrf  | no
                             show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
                             show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
-                        
+                            show  | display set | match {{ datos.rd }}
+                            run show route table  atento_ecopetrol  {{ datos.wan|first_valid_ip }}
+
                         {% else %}
                             <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
                             No se cumple ninguna condición.
@@ -135,27 +140,23 @@
                     <div class="title">Configuración de la Interfaz</div>
                     <textarea id="newCommandsTextArea" class="datos-textarea" readonly>
 
-                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
 
                             PE {{ datos.pe }}
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
-
-                                                ==================================================================================
-
+                            ==================================================================================
                             PE {{ datos.pe_b }}
                             set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
 
-                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
 
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
 
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
 
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
-
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input CUSTOMER-{{ datos.bw }}M
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{ datos.bw }}M
-
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-{{ datos.bw }}M
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-{{ datos.bw }}M
 
@@ -178,6 +179,16 @@
                             exit all
 
                             admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet mtu 1500
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input {{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter output {{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input {{ datos.interface_pe }}.{{ datos.unit }}-in
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}
 
                         {% else %}
                             <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
@@ -213,6 +224,54 @@
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
 
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
+                            set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
+                            set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} rewrite-rules ieee-802.1 XMR-I
+                            set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} rewrite-rules ieee-802.1 CUST-PSR->EX
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP from dscp 46
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then count EF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then loss-priority low
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then forwarding-class EF
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 34
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then count EF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then loss-priority high
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then forwarding-class EF-DE
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 26
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then loss-priority low
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then forwarding-class AF
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 18
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then loss-priority high
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then forwarding-class AF-DE
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term VPN-BE from dscp 10
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term VPN-BE then count VPN-BE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term VPN-BE then loss-priority high
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term VPN-BE then forwarding-class VPN-BE
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE then count BE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE then loss-priority high
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE then forwarding-class BE
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term EF_DSCP from dscp 46
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term EF_DSCP then count EF.tx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term EF-DE_DSCP from dscp 34
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term EF-DE_DSCP then count EF-DE.tx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term AF_DSCP then count AF-DE.tx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term AF-DE_DSCP from dscp 18
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term AF-DE_DSCP then count AF-DE.tx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term AF_DSCP from dscp 26
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term VPN-BE from dscp 10
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term VPN-BE then count VPN-BE.tx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-e term BE then count BE.tx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in logical-interface-policer
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+
+                            set routing-instances atento_ecopetrol interface {{ datos.interface_pe }}.{{ datos.unit }}
                         {% else %}
                                 <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
                                 No se cumple ninguna condición.
@@ -223,11 +282,65 @@
                         <button class="datos-button" onclick="copyToClipboard('policersTextArea')" aria-label="Copiar Policers">Copiar Policers</button>
                     </div>
                 </div>
+                <div class="copy-box">
+                    <div class="title">Bgp</div>
+                    <textarea id="BgpTextArea" class="datos-textarea" readonly>
+
+                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+                            PE {{ datos.pe }}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+
+                            ==================================================================================
+
+                            PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
+
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
+
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
+                            set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
+
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+
+                        show routing-instances {{ datos.vrf }} protocols bgp | display set  | match type
+                        #
+                        #
+                        set routing-instances {{ datos.vrf }} protocols bgp group external type external
+                        set routing-instances {{ datos.vrf }} protocols bgp group external family inet unicast
+                        set routing-instances {{ datos.vrf }} protocols bgp group external export bgp-export-policy
+                        #
+                        set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
+                        set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} as-override
+                        show routing-instances {{ datos.vrf }} protocols bgp group external neighbor  {{ datos.wan|second_valid_ip }} | display set
+                        #
+                        #
+                        set routing-instances {{ datos.vrf }} routing-options static route {{ datos.lbcpe }} next-hop {{ datos.wan|second_valid_ip }} tag 14
+                        show routing-instances  {{ datos.vrf }} | display set | match  {{ datos.wan|second_valid_ip }}
+
+                        
+                        {% else %}
+                                <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
+                                No se cumple ninguna condición.
+                        {% endif %}
+
+                    </textarea>
+                    <div class="button-container">
+                        <button class="datos-button" onclick="copyToClipboard('BgpTextArea')" aria-label="Copiar Bgp">Copiar Bgp</button>
+                    </div>
+                </div>
                 <div class="button-container">
                     <button class="datos-button" onclick="window.location.href='{% url 'datos' %}'" aria-label="Regresar">Regresar</button>
                 </div>
             </main>
         </div>
+        
         <script>
 
             document.addEventListener('DOMContentLoaded', function() {
