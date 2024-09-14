@@ -171,3 +171,22 @@ def buscar_en_csv(request):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
     return JsonResponse({'found': False})
+
+def buscar_vrf_rd(request):
+    vrf = request.GET.get('vrf', None)
+    print(f"VRF recibido: {vrf}")
+    if vrf:
+        csv_file_path = os.path.join(settings.BASE_DIR, 'myapp/vrf_rd.csv')
+        print(f"Ruta del archivo CSV: {csv_file_path}")
+        try:
+            with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
+                reader = csv.reader(csvfile, delimiter=';')
+                for row in reader:
+                    if row[0].strip() == vrf.strip():
+                        print(f"VRF encontrado: {vrf}, RD: {row[1]}")
+                        return JsonResponse({'found': True, 'rd': row[1]})
+        except Exception as e:
+            print(f"Error al leer el archivo CSV: {e}")
+            return JsonResponse({'error': str(e)}, status=500)
+        print("VRF no encontrado")
+    return JsonResponse({'found': False})

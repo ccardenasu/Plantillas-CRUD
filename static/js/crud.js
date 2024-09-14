@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var fieldsToShowADIALTALC = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_asn','lan,', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
     var fieldsToShowVPLSMODJUN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_rfs_ip_port_b', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
 
-    vrfField.addEventListener('change', function() {
+      // Agregar evento blur para vrfField
+    vrfField.addEventListener('blur', function() {
         var vrfValue = vrfField.value;
+        console.log('El campo VRF ha perdido el foco');
         if (vrfValue) {
             fetch(`/buscar_vrf_rd/?vrf=${vrfValue}`)
                 .then(response => response.json())
@@ -92,6 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
     tipoConfiguracionField.addEventListener('change', updateFieldVisibility);
     tipoServicioField.addEventListener('change', updateBundleOptions);
     tipoConfiguracionField.addEventListener('change', updateBundleOptions);
+
+    // Event listeners for blur
+    tipoServicioField.addEventListener('blur', updateFieldVisibility);
+    tipoEquipoField.addEventListener('blur', updateFieldVisibility);
+    tipoConfiguracionField.addEventListener('blur', updateFieldVisibility);
 
     // Initial call to set visibility and bundle options
     updateFieldVisibility();

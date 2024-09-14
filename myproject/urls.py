@@ -8,6 +8,8 @@ urlpatterns = [
     path('myapp/', include('myapp.urls')),
     path('buscar_cfs/', views.buscar_cfs, name='buscar_cfs'),
     path('buscar_en_csv/', views.buscar_en_csv, name='bbuscar_en_csv'),
+    path('buscar_vrf_rd/', views.buscar_vrf_rd, name='buscar_vrf_rd'),
+
 ]
 
 if settings.DEBUG:
