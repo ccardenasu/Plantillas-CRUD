@@ -1,0 +1,29 @@
+CFS: 500396743
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000308335
+Cliente: EMERGIA PIMSA
+bundle_ether: N/A
+bundle_ether_b: N/A
+SEDE: PIMSA KILÓMETRO 3 VÍA,MALAMBO, ATLÁNTICO
+SEDE_B: PIMSA KILÓMETRO 3 VÍA,MALAMBO, ATLÁNTICO
+DKO: 8624549 (8626967)
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/2/1.933421300
+SW_B: TenGigE0/0/2/1.933421300
+PE: ae14
+Interface PE: psr2.bgo2
+puertos_lag: ae14
+VRF: atento_ecopetrol
+Unit_b: 110
+SV: 3342
+CV: 110
+BW: 1300
+puertos_lag: ae14
+WAN: 10.10.10.16/30
+WANv6: 0.0.0.0/0
+LNNID: 172.18.52.85
+Fecha de creación: 2024-09-14 14:49:38.292586+00:00
+set interfaces psr2.bgo2 unit None family inet address 10.10.10.17/30
+set interfaces psr2.bgo2 unit None disable
+deactivate interfaces psr2.bgo2 unit None

@@ -1,0 +1,26 @@
+CFS: 500397809
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000308417
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: N/A
+bundle_ether_b: N/A
+SEDE: CUNDINAMARCA CHIA - CRA 12
+DKO: 8625154 (8626181)
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/3.919321200
+PE: ar1.sub1.bog
+Interface PE: ae6
+puertos_lag: 1
+Unit: 1529
+SV: 1529
+CV: 1200
+BW: 50
+puertos_lag: 1
+WAN: 8.242.120.144/30
+WANv6: 2001:13b0:a000:dd::/64
+LNNID: 10.226.203.209
+Fecha de creación: 2024-09-13 22:44:22.215773+00:00
+set interfaces ae6 unit 1529 family inet address 8.242.120.145/30
+set interfaces ae6 unit 1529 disable
+deactivate interfaces ae6 unit 1529
