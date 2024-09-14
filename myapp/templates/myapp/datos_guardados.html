@@ -1,234 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Datos Guardados</title>
-    <script>
-        function multiplicarValores() {
-            var shapingRate = {{ shaping_rate }};
-            var puertosLag = {{ datos.puertos_lag }};
-            var resultado = shapingRate * puertosLag;
-            document.getElementById("resultado").innerText = "El resultado es: " + resultado;
-        }
-    </script>
-    {% load static %}  <!-- Cargar la etiqueta static -->
-    <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1 class="titulo">Datos Guardados</h1>
-        </header>
-        <main>
-            <div class="copy-box">
-                <div class="title">Datos del Cliente</div>
-                <textarea id="dataTextArea" class="datos-textarea" readonly>
-{% if datos.cfs %}CFS: {{ datos.cfs }}{% endif %}
-{% if datos.dko %}DKO: {{ datos.dko }}{% endif %}
-{% if datos.tipo_configuracion %}tipo_configuracion: {{ datos.tipo_configuracion }}{% endif %}
-{% if datos.tipo_servicio %}tipo_servicio: {{ datos.tipo_servicio }}{% endif %}
-{% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
-{% if datos.rfs_ip_port_b %}RFS-IP-PORT_B: {{ datos.rfs_ip_port_b }}{% endif %}
-{% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
-{% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
-{% if datos.sede_b %}SEDE_B: {{ datos.sede_b }}{% endif %}
-{% if datos.sw %}SW: {{ datos.sw }}{% endif %}
-{% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
-{% if datos.pe %}PE: {{ datos.pe }}{% endif %}
-{% if datos.interface_pe %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
-{% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
-{% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
-{% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
-{% if datos.interface_pe_b %}Interface PE_B: {{ datos.interface_pe_b }}{% endif %}
-{% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
-{% if datos.rd %}RD: {{ datos.rd }}{% endif %}
-{% if datos.unit %}Unit: {{ datos.unit }}{% endif %}
-{% if datos.unit_b %}Unit_b: {{ datos.unit_b }}{% endif %}
-{% if datos.sv %}SV: {{ datos.sv }}{% endif %}
-{% if datos.cv %}CV: {{ datos.cv }}{% endif %}
-{% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}{% endif %}
-{% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
-{% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
-                </textarea>
-                <div class="button-container">
-                    <button class="datos-button" onclick="copyToClipboard('dataTextArea')" aria-label="Copiar Datos">Copiar Datos</button>
+    <head>
+        <meta charset="UTF-8">
+        <title>Datos Guardados</title>
+        <script>
+            function multiplicarValores() {
+                var shapingRate = {{ shaping_rate }};
+                var puertosLag = {{ datos.puertos_lag }};
+                var resultado = shapingRate * puertosLag;
+                document.getElementById("resultado").innerText = "El resultado es: " + resultado;
+            }
+        </script>
+        {% load static %}  <!-- Cargar la etiqueta static -->
+        <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lato:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1 class="titulo">Datos Guardados</h1>
+            </header>
+            <main>
+                <div class="copy-box">
+                    <div class="title">Datos del Cliente</div>
+                    <textarea id="dataTextArea" class="datos-textarea" readonly>
+                        {% if datos.cfs %}CFS: {{ datos.cfs }}{% endif %}
+                        {% if datos.dko %}DKO: {{ datos.dko }}{% endif %}
+                        {% if datos.tipo_configuracion %}tipo_configuracion: {{ datos.tipo_configuracion }}{% endif %}
+                        {% if datos.tipo_servicio %}tipo_servicio: {{ datos.tipo_servicio }}{% endif %}
+                        {% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
+                        {% if datos.rfs_ip_port_b %}RFS-IP-PORT_B: {{ datos.rfs_ip_port_b }}{% endif %}
+                        {% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
+                        {% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
+                        {% if datos.sede_b %}SEDE_B: {{ datos.sede_b }}{% endif %}
+                        {% if datos.sw %}SW: {{ datos.sw }}{% endif %}
+                        {% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
+                        {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
+                        {% if datos.interface_pe %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
+                        {% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
+                        {% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
+                        {% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
+                        {% if datos.interface_pe_b %}Interface PE_B: {{ datos.interface_pe_b }}{% endif %}
+                        {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
+                        {% if datos.rd %}RD: {{ datos.rd }}{% endif %}
+                        {% if datos.unit %}Unit: {{ datos.unit }}{% endif %}
+                        {% if datos.unit_b %}Unit_b: {{ datos.unit_b }}{% endif %}
+                        {% if datos.sv %}SV: {{ datos.sv }}{% endif %}
+                        {% if datos.cv %}CV: {{ datos.cv }}{% endif %}
+                        {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}{% endif %}
+                        {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
+                        {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
+                    </textarea>
+                    <div class="button-container">
+                        <button class="datos-button" onclick="copyToClipboard('dataTextArea')" aria-label="Copiar Datos">Copiar Datos</button>
+                    </div>
                 </div>
-            </div>
-            <div class="copy-box">
-                <div class="title">Comandos Previos</div>
-                <textarea id="commandsTextArea" class="datos-textarea" readonly>
-            {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
-bash
-roci {{ datos.pe }}
-configure private
+                <div class="copy-box">
+                    <div class="title">Comandos Previos</div>
+                    <textarea id="commandsTextArea" class="datos-textarea" readonly>
+
+                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+
+                            bash
+                            roci {{ datos.pe }}
+                            configure private
+
+                            show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+
+                            ==================================================================================
+                            bash
+                            roci {{ datos.pe_b }}
+                            configure private
+
+                            show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
+
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            bash
+                            roci {{ datos.pe }}
+                            configure private
 
 
-show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
-
-==================================================================================
-bash
-roci {{ datos.pe_b }}
-configure private
-
-
-show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
-
-            {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %} 
-bash
-roci {{ datos.pe }}
-configure private
+                            show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+                            show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
+                            
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
+                            bash
+                            roci {{ datos.pe }}
+                            configure private
 
 
-show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
-show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
+                            show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+                            show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
 
-            {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
-bash
-roci {{ datos.pe }}
-configure private
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
+
+                            bash
+                            roci {{ datos.pe }}
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
+
+                            bash
+                            roci {{ datos.pe }}
+
+                            admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}{% if datos.cv %}ASN: {{ datos.asn }}{% endif %}  context all
+                            configure lag xxx
+                            info
+                            exit
+                            show qos sap-ingress | match CUSTOMER-xxx
+                            configure qos sap-ingress xxx
+                            info
+                            exit
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                        
+                            bash
+                            roci {{ datos.pe }}
+                            configure private
 
 
-show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
-show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
-            {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
-bash
-roci {{ datos.pe }}
-            {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
-bash
-roci {{ datos.pe }}
+                            show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+                            show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
+                        
+                        {% else %}
+                            <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
+                            No se cumple ninguna condición.
 
-admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}{% if datos.cv %}ASN: {{ datos.asn }}{% endif %}  context all
-configure lag xxx
-info
-exit
-show qos sap-ingress | match CUSTOMER-xxx
-configure qos sap-ingress xxx
-info
-exit
-
-                    {% else %}
-                    <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
-                    No se cumple ninguna condición.
-                    {% endif %}
-
-                </textarea>
-                <div class="button-container">
-                    <button class="datos-button" onclick="copyToClipboard('commandsTextArea')" aria-label="Copiar Comandos">Copiar Comandos</button>
+                        {% endif %}
+                    </textarea>
+                    <div class="button-container">
+                        <button class="datos-button" onclick="copyToClipboard('commandsTextArea')" aria-label="Copiar Comandos">Copiar Comandos</button>
+                    </div>
                 </div>
-            </div>
-            <div class="copy-box">
-                <div class="title">Configuración de la Interfaz</div>
-                <textarea id="newCommandsTextArea" class="datos-textarea" readonly>
+                <div class="copy-box">
+                    <div class="title">Configuración de la Interfaz</div>
+                    <textarea id="newCommandsTextArea" class="datos-textarea" readonly>
 
-                    {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
-                    PE {{ datos.pe }}
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
 
-                    ==================================================================================
+                            PE {{ datos.pe }}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
 
-PE {{ datos.pe_b }}
-set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+                                                ==================================================================================
 
-                    {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
+                            PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
 
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
 
-                    {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
 
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
 
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input CUSTOMER-{{ datos.bw }}M
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{ datos.bw }}M
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
 
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-{{ datos.bw }}M
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-{{ datos.bw }}M
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input CUSTOMER-{{ datos.bw }}M
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{ datos.bw }}M
 
-                    {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-{{ datos.bw }}M
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-{{ datos.bw }}M
 
-admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
-configure lag xxx
-info
-exit
-show qos sap-ingress | match CUSTOMER-xxx
-configure qos sap-ingress xxx
-info
-exit
-configure service ies xxx
-interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
-description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }}"
-sap xxxx
-ingress qos 
-egress agg-rate rate  {{ bw_lag_alcatel }}
-exit all
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 
-admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
+                            admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
+                            configure lag xxx
+                            info
+                            exit
+                            show qos sap-ingress | match CUSTOMER-xxx
+                            configure qos sap-ingress xxx
+                            info
+                            exit
+                            configure service ies xxx
+                            interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
+                            description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }}"
+                            sap xxxx
+                            ingress qos 
+                            egress agg-rate rate  {{ bw_lag_alcatel }}
+                            exit all
 
+                            admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
 
-{% else %}
-<!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
-No se cumple ninguna condición.
-{% endif %}
-                                </textarea>
-                <div class="button-container">
-                    <button class="datos-button" onclick="copyToClipboard('newCommandsTextArea')" aria-label="Copiar Nuevos Comandos">Copiar Nuevos Comandos</button>
+                        {% else %}
+                            <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
+                            No se cumple ninguna condición.
+                        {% endif %}
+                    </textarea>
+                    <div class="button-container">
+                        <button class="datos-button" onclick="copyToClipboard('newCommandsTextArea')" aria-label="Copiar Nuevos Comandos">Copiar Nuevos Comandos</button>
+                    </div>
                 </div>
-            </div>
-            <div class="copy-box">
-                <div class="title">Policers</div>
-                <textarea id="policersTextArea" class="datos-textarea" readonly>
-                    {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
-PE {{ datos.pe }}
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                <div class="copy-box">
+                    <div class="title">Policers</div>
+                    <textarea id="policersTextArea" class="datos-textarea" readonly>
 
-==================================================================================
+                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+                            PE {{ datos.pe }}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
 
-PE {{ datos.pe_b }}
-set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+                            ==================================================================================
+
+                            PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
 
 
-            {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
+                        {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
 
-set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
-set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
-set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
-set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
+                            set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
 
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
-set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
 
-                    {% else %}
-                    <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
-                    No se cumple ninguna condición.
-                    {% endif %}                </textarea>
-                <div class="button-container">
-                    <button class="datos-button" onclick="copyToClipboard('policersTextArea')" aria-label="Copiar Policers">Copiar Policers</button>
+                        {% else %}
+                                <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
+                                No se cumple ninguna condición.
+                        {% endif %}
+
+                    </textarea>
+                    <div class="button-container">
+                        <button class="datos-button" onclick="copyToClipboard('policersTextArea')" aria-label="Copiar Policers">Copiar Policers</button>
+                    </div>
                 </div>
-            </div>
-            <div class="button-container">
-                <button class="datos-button" onclick="window.location.href='{% url 'datos' %}'" aria-label="Regresar">Regresar</button>
-            </div>
-        </main>
-    </div>
+                <div class="button-container">
+                    <button class="datos-button" onclick="window.location.href='{% url 'datos' %}'" aria-label="Regresar">Regresar</button>
+                </div>
+            </main>
+        </div>
+        <script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var dataTextArea = document.getElementById('dataTextArea');
-            var lines = dataTextArea.value.split('\n');
-            var filteredLines = lines.filter(function(line) {
-                return line.trim() !== '' && line.trim() !== 'WAN: 0.0.0.0/0';
+            document.addEventListener('DOMContentLoaded', function() {
+                var dataTextArea = document.getElementById('dataTextArea');
+                var lines = dataTextArea.value.split('\n');
+                var filteredLines = lines.filter(function(line) {
+                    return line.trim() !== '' && line.trim() !== 'WAN: 0.0.0.0/0';
+                });
+                dataTextArea.value = filteredLines.join('\n');
             });
-            dataTextArea.value = filteredLines.join('\n');
-        });
-
-        function copyToClipboard(elementId) {
-            var copyText = document.getElementById(elementId);
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // Para dispositivos móviles
-            document.execCommand("copy");
-            alert("Texto copiado: " + copyText.value);
-        }
-    </script>
-</body>
+            function copyToClipboard(elementId) {
+                var copyText = document.getElementById(elementId);
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // Para dispositivos móviles
+                document.execCommand("copy");
+                alert("Texto copiado: " + copyText.value);
+            }
+        </script>
+    </body>
 </html>

@@ -26,7 +26,7 @@ WAN: 10.10.10.16/30
 WANv6: 0.0.0.0/0
 LBCPE: 172.18.52.85
 LNNID: 10.226.203.210
-Fecha de creación: 2024-09-14 16:01:37.645698+00:00
+Fecha de creación: 2024-09-14 16:46:01.183639+00:00
 set interfaces ae14 unit 3342 family inet address 10.10.10.17/30
 set interfaces ae14 unit 3342 disable
 deactivate interfaces ae14 unit 3342
