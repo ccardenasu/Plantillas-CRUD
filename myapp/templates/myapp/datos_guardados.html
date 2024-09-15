@@ -124,7 +124,7 @@
                             show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
                             show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
                             show  | display set | match {{ datos.rd }}
-                            run show route table  atento_ecopetrol  {{ datos.wan|first_valid_ip }}
+                            run show route table  {{ datos.vrf }}  {{ datos.wan|first_valid_ip }}
 
                         {% else %}
                             <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
@@ -271,7 +271,7 @@
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
 
-                            set routing-instances atento_ecopetrol interface {{ datos.interface_pe }}.{{ datos.unit }}
+                            set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
                         {% else %}
                                 <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
                                 No se cumple ninguna condición.

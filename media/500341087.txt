@@ -1,0 +1,28 @@
+CFS: 500341087
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000231596
+Cliente: COLOMBINA S. A.
+bundle_ether: Bundle-ether10
+bundle_ether_b: N/A
+SEDE: Cota
+DKO: 8598294 (8627816)
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/3.926051300
+PE: psr1.sub1.bog
+Interface PE: ae10
+puertos_lag: 1
+VRF: colombina
+RD: 16528:100056
+Unit: 3842
+VT: 2605
+SV: 3842
+CV: 1300
+BW: 10
+puertos_lag: 1
+WAN: 172.19.1.196/30
+LNNID: 10.226.203.211
+Fecha de creación: 2024-09-15 15:36:27.266497+00:00
+set interfaces ae10 unit 3842 family inet address 172.19.1.197/30
+set interfaces ae10 unit 3842 disable
+deactivate interfaces ae10 unit 3842
