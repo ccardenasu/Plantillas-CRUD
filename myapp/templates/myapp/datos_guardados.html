@@ -50,6 +50,7 @@
                         {% if datos.cv %}CV: {{ datos.cv }}{% endif %}
                         {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}M{% endif %}
                         {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
+                        {% if datos.wanv6 and datos.wanv6 != '0.0.0.0/0' %}WANIPv6: {{ datos.wanv6 }}{% endif %}
                         {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
                         {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %}
                         {% if datos.lnnid %}LB NID: {{ datos.lnnid }}{% endif %}
@@ -105,11 +106,14 @@
                             bash
                             roci {{ datos.pe }}
 
-                            admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}{% if datos.cv %}ASN: {{ datos.asn }}{% endif %}  context all
                             configure lag xxx
                             info
                             exit
-                            show qos sap-ingress | match CUSTOMER-xxx
+                            admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }} context all
+                            admin display-config | match {{ datos.IES }} context all
+
+                            show qos sap-ingress | match CUSTOMER-{{ datos.bw }}
+                            run show route table  {{ datos.vrf }}  {{ datos.wan|first_valid_ip }}
                             configure qos sap-ingress xxx
                             info
                             exit
@@ -162,6 +166,9 @@
 
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 
+                        interface_pe= {{ datos.interface_pe }}
+                        numeros=$( "$interface_pe" | grep -o '[0-9]\+')
+
                             admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
                             configure lag xxx
                             info
@@ -189,6 +196,28 @@
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter output {{ datos.interface_pe }}.{{ datos.unit }}-inet-e
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input {{ datos.interface_pe }}.{{ datos.unit }}-in
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}
+                        
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
+                            /configure service customer {{ datos.IES }} create
+                            /configure service customer {{ datos.IES }} description "{{ datos.cliente }}"
+                            /configure service ies {{ datos.IES }} customer {{ datos.IES }} create
+                            /configure service ies {{ datos.IES }} no shutdown
+                            exit
+                            ###################################################################################
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  create
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{ datos.lag }}:{{ datos.sv }}.{{ datos.cv }} create
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{ datos.lag }}:{{ datos.sv }}.{{ datos.cv }} ingress qos XXXXXXXXXXXXXXXXXXXXX
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{ datos.lag }}:{{ datos.sv }}.{{ datos.cv }}   egress agg-rate rate {{ bw_lag_alcatel }}
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  address {{ datos.wan|first_valid_ip_with_mask }}
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  urpf-check mode loose
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ip-mtu 1500
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   cflowd-parameters sampling unicast type interface
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   tos-marking-state trusted
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ipv6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  enable-ingress-stats
+                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} no shutdown
+                            exit
 
                         {% else %}
                             <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
@@ -364,7 +393,7 @@
 
                         show  routing-instances {{ datos.vrf }}  | display set | no
 
-                        set routing-instances {{ datos.vrf }} description {{datos.cliente}}
+                        set routing-instances {{ datos.vrf }} description "{{datos.cliente}}"
                         set routing-instances {{ datos.vrf }} instance-type vrf
                         set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
                         set routing-instances {{ datos.vrf }} route-distinguisher {{ datos.rd }}

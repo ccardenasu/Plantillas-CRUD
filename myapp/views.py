@@ -38,6 +38,7 @@ def datos_view(request):
                     write_if_not_none('SEDE', datos.sede)
                     write_if_not_none('SEDE_B', datos.sede_b)
                     write_if_not_none('DKO', datos.dko)
+                    write_if_not_none('IES', datos.IES)
                     write_if_not_none('SW', datos.sw)
                     write_if_not_none('Interface SW', datos.interface_sw)
                     write_if_not_none('SW_B', datos.sw_b)
@@ -45,6 +46,7 @@ def datos_view(request):
                     write_if_not_none('PE', datos.pe)
                     write_if_not_none('Interface PE', datos.interface_pe)
                     write_if_not_none('puertos_lag', datos.puertos_lag)
+                    write_if_not_none('lag', datos.lag)
                     write_if_not_none('PE_B', datos.pe_b)
                     write_if_not_none('Interface PE_B', datos.interface_pe_b)
                     write_if_not_none('VRF', datos.vrf)
@@ -77,7 +79,7 @@ def datos_view(request):
             try:
                 bw = int(datos.bw)
                 bwx1024 = int(bw * 1024)
-                bw_lag_alcatel = int(datos.puertos_lag) * bw
+                bw_lag_alcatel = int(datos.puertos_lag) * bwx1024
                 delay_buffer_rate = bw * 1024 * 1000 * 4
                 shaping_rate = bw * 1024 * 1000
                 burst_size_limit =  int(bw * 1024 * 1000 * 0.15 / 4)
@@ -123,6 +125,7 @@ def buscar_cfs(request):
                             'sede': dato.sede,
                             'sede_b': dato.sede_b,
                             'dko': dato.dko,
+                            'dko': dato.IES,
                             'sw': dato.sw,
                             'interface_sw': dato.interface_sw,
                             'sw_b': dato.sw_b,
@@ -130,6 +133,7 @@ def buscar_cfs(request):
                             'pe': dato.pe,
                             'interface_pe': dato.interface_pe,
                             'puertos_lag': dato.puertos_lag,
+                            'lag' : dato.lag,
                             'pe_b': dato.pe_b,
                             'interface_pe_b': dato.interface_pe_b,
                             'vrf': dato.vrf,

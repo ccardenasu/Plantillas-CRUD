@@ -1,0 +1,30 @@
+CFS: 500396744
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000308332
+Cliente: EMERGIA CUSTOMER CARE COLOMBIA S.A.S.
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: ALTA SUIZA MANIZALES
+DKO: 8624533 (8627830)
+SW: MDLNCLAFNN002
+Interface SW: TenGigE0/0/2/3.926061300
+PE: psr1.mdc6
+Interface PE: ae11
+puertos_lag: 1
+VRF: emergia
+RD: 16528:1103451
+Unit: 389
+VT: 2606
+SV: 389
+CV: 1300
+BW: 300
+puertos_lag: 1
+WAN: 10.10.10.12/30
+ASN: 65339
+LBCPE: 172.18.54.254
+LNNID: 10.226.191.191
+Fecha de creación: 2024-09-15 17:04:10.789715+00:00
+set interfaces ae11 unit 389 family inet address 10.10.10.13/30
+set interfaces ae11 unit 389 disable
+deactivate interfaces ae11 unit 389

@@ -1,0 +1,27 @@
+CFS: 500396600
+Tipo de configuración: Alta
+Tipo de equipo: ALCATEL
+RFS-IP-PORT: 6000308551
+Cliente: EVOAGRO NUTRICION S.A.S.
+bundle_ether: N/A
+bundle_ether_b: N/A
+SEDE: BOGOTA CHAPINERO
+IES: 8626058
+SW: BOGTCLHAZG023
+Interface SW: GigabitEthernet0/0/0
+PE: ar2.bgo2
+Interface PE: ae-12
+puertos_lag: 5
+lag: 12
+Unit: 1306
+SV: 1306
+CV: 1200
+BW: 100
+puertos_lag: 5
+WAN: 8.242.126.128/29
+WANv6: 2001:13b0:a000:d7::/64
+LNNID: 10.226.206.88
+Fecha de creación: 2024-09-16 05:15:27.114956+00:00
+set interfaces ae-12 unit 1306 family inet address 8.242.126.129/29
+set interfaces ae-12 unit 1306 disable
+deactivate interfaces ae-12 unit 1306
