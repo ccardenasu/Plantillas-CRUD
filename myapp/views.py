@@ -79,12 +79,14 @@ def datos_view(request):
             try:
                 bw = int(datos.bw)
                 bwx1024 = int(bw * 1024)
+                bwjun = int(bw * 1000000)
                 bw_lag_alcatel = int(datos.puertos_lag) * bwx1024
                 delay_buffer_rate = bw * 1024 * 1000 * 4
                 shaping_rate = bw * 1024 * 1000
                 burst_size_limit =  int(bw * 1024 * 1000 * 0.15 / 4)
             except ValueError:
                 bwx1024 = None
+                bwjun = None
                 delay_buffer_rate = None
                 shaping_rate = None
                 burst_size_limit = None
@@ -92,6 +94,7 @@ def datos_view(request):
 
             return render(request, 'myapp/datos_guardados.html', {
                 'datos': datos,
+                'bwjun' : bwjun,
                 'BWx1024': bwx1024,
                 'delay_buffer_rate': delay_buffer_rate,
                 'shaping_rate': shaping_rate,

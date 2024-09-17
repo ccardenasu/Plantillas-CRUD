@@ -8,13 +8,19 @@ document.addEventListener('DOMContentLoaded', function() {
     var vrfField = document.getElementById('id_vrf');
     var rdField = document.getElementById('id_rd');
 
+    console.log('tipoConfiguracionField:', tipoConfiguracionField);
+    console.log('tipoServicioField:', tipoServicioField);
+    console.log('tipoEquipoField:', tipoEquipoField);
+    
+
     var fieldsToShowVPNAMPJUN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
     var fieldsToShowADIAMPJUN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
     var fieldsToShowVPLSAMPJUN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_rfs_ip_port_b', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bw', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
     var fieldsToShowADIAMPALC = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sv', 'id_cv', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
     var fieldsToShowVPNALTJUN = ['id_cfs', 'id_dko', 'id_vt', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw','id_vrf','id_rd', 'id_unit', 'id_sv', 'id_cv', 'id_bw','id_wan','id_asn','id_lbcpe','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
-    var fieldsToShowADIALTALC = ['id_cfs', 'id_dko', 'id_IES', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_asn','id_lan','id_lbcpe','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
+    var fieldsToShowADIALTALC = ['id_cfs', 'id_dko', 'id_IES', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_asn','id_lan','id_lbcpe','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag','id_lag'];
     var fieldsToShowVPLSMODJUN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_rfs_ip_port', 'id_rfs_ip_port_b', 'id_cliente', 'id_sede', 'id_sede_b', 'id_sw', 'id_interface_sw', 'id_sw_b', 'id_interface_sw_b', 'id_unit', 'id_unit_b', 'id_bundle_ether', 'id_pe', 'id_interface_pe', 'id_bundle_ether_b', 'id_pe_b', 'id_interface_pe_b'];
+    var fieldsToShowADIALTJUN = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
 
       // Agregar evento blur para vrfField
     vrfField.addEventListener('blur', function() {
@@ -44,6 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
         var tipoServicio = tipoServicioField.value;
         var tipoEquipo = tipoEquipoField.value;
 
+        console.log('tipoConfiguracion:', tipoConfiguracion);
+        console.log('tipoServicio:', tipoServicio);
+        console.log('tipoEquipo:', tipoEquipo);
+
         
 
         allFields.forEach(field => {
@@ -58,7 +68,10 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (tipoConfiguracion === 'Alta' && tipoServicio === "VPN" && tipoEquipo === "JUNIPER") {
                 field.style.display = fieldsToShowVPNALTJUN.includes(field.id) ? 'block' : 'none';
             } else if (tipoConfiguracion === 'Alta' && tipoServicio === "ADI" && tipoEquipo === "ALCATEL") {
+                console.log('Activando campos para Alta ADI ALCATEL');
                 field.style.display = fieldsToShowADIALTALC.includes(field.id) ? 'block' : 'none';
+            } else if (tipoConfiguracion === 'Alta' && tipoServicio === "ADI" && tipoEquipo === "JUNIPER") {
+                field.style.display = fieldsToShowADIALTJUN .includes(field.id) ? 'block' : 'none';
             } else if (tipoConfiguracion === 'Modificacion' && tipoServicio === "VPLS"&& tipoEquipo === "JUNIPER") {
                 field.style.display = fieldsToShowVPLSMODJUN.includes(field.id) ? 'block' : 'none';
             } else {
@@ -90,8 +103,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listeners for changes
     tipoServicioField.addEventListener('change', updateFieldVisibility);
+    console.log('tipoServicioField changed');
     tipoEquipoField.addEventListener('change', updateFieldVisibility);
+    console.log('tipoEquipoField changed');
     tipoConfiguracionField.addEventListener('change', updateFieldVisibility);
+    console.log('tipoConfiguracionField changed');
     tipoServicioField.addEventListener('change', updateBundleOptions);
     tipoConfiguracionField.addEventListener('change', updateBundleOptions);
 

@@ -1,0 +1,27 @@
+CFS: 500398166
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000309373
+Cliente: ATENTO COLOMBIA S.A.
+bundle_ether: N/A
+bundle_ether_b: N/A
+SEDE: COLOMBIA XV
+DKO: 8628273 (8630034)
+SW: BOGTCLFWYJ001
+Interface SW: Te0/0/0/26
+PE: psr3.bgo1
+Interface PE: ae14
+puertos_lag: 1
+VRF: atento_avaya
+RD: 16528:3201852
+Unit: 35
+SV: 35
+CV: 1302
+BW: 100
+puertos_lag: 1
+WAN: 172.17.220.20/30
+ASN: 65032
+Fecha de creación: 2024-09-16 17:06:08.175475+00:00
+set interfaces ae14 unit 35 family inet address 172.17.220.21/30
+set interfaces ae14 unit 35 disable
+deactivate interfaces ae14 unit 35
