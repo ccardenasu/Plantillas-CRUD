@@ -1,0 +1,20 @@
+CFS: 500342946
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether13
+bundle_ether_b: N/A
+DKO: 1944
+SW: BOGTCLHCZG021
+Interface SW: GigabitEthernet0/0/9
+PE: ar1.sub1.bog
+Interface PE: ae6
+puertos_lag: 1
+Unit: 960
+BW: 200
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-17 01:48:09.960687+00:00
+set interfaces ae6 unit 960 family inet address 0.0.0.1/0
+set interfaces ae6 unit 960 disable
+deactivate interfaces ae6 unit 960

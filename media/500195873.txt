@@ -1,0 +1,22 @@
+CFS: 500195873
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000111442
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: MAGDALENA NUEVA GRANADA - JUZGADO PROMISCUO MUNICIPAL - CALLE 3
+DKO: 1559
+SW: BOGTCLFWNN003
+Interface SW: TenGigE0/0/2/1.911331300
+PE: psr3.bgo1
+Interface PE: ae11
+puertos_lag: 1
+Unit: 90
+BW: 20
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-17 01:03:00.479270+00:00
+set interfaces ae11 unit 90 family inet address 0.0.0.1/0
+set interfaces ae11 unit 90 disable
+deactivate interfaces ae11 unit 90

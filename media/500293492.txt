@@ -1,0 +1,21 @@
+CFS: 500293492
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether13
+bundle_ether_b: N/A
+SEDE: CUNDINAMARCA BOGOTA EDIFICIO AKL
+DKO: 2168
+SW: BOGTCLHCZG019
+Interface SW: GigabitEthernet0/0/15
+PE: ar1.sub1.bog
+Interface PE: ae6
+puertos_lag: 1
+Unit: 747
+BW: 300
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-17 01:43:18.113396+00:00
+set interfaces ae6 unit 747 family inet address 0.0.0.1/0
+set interfaces ae6 unit 747 disable
+deactivate interfaces ae6 unit 747

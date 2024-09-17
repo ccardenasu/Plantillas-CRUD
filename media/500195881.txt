@@ -1,0 +1,20 @@
+CFS: 500195881
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+DKO: 1557
+SW: BOGTCLFWNN003
+Interface SW: TenGigE0/0/2/1.911351300
+PE: psr3.bgo1
+Interface PE: ae11
+puertos_lag: 1
+Unit: 92
+BW: 20
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-17 01:07:21.097712+00:00
+set interfaces ae11 unit 92 family inet address 0.0.0.1/0
+set interfaces ae11 unit 92 disable
+deactivate interfaces ae11 unit 92

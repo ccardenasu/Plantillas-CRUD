@@ -1,0 +1,22 @@
+CFS: 500377464
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: TenGigE0/0/2/1.932451300
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: VALLE BUGA CALLE 8
+DKO: 3491
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/2/1.912211300
+PE: psr2.bgo2
+Interface PE: ae11
+puertos_lag: 1
+Unit: 3038
+BW: 15
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-17 01:32:38.173003+00:00
+set interfaces ae11 unit 3038 family inet address 0.0.0.1/0
+set interfaces ae11 unit 3038 disable
+deactivate interfaces ae11 unit 3038

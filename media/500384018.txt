@@ -1,0 +1,21 @@
+CFS: 500384018
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: SANTA FE DE ANTIOQUIA CARRERA 9 - CC LA CONTADURÍA
+DKO: 3510
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/2/1.932871300
+PE: psr2.bgo2
+Interface PE: ae11
+puertos_lag: 1
+Unit: 3080
+BW: 20
+puertos_lag: 1
+WAN: 0.0.0.0/0
+Fecha de creación: 2024-09-17 01:37:33.302967+00:00
+set interfaces ae11 unit 3080 family inet address 0.0.0.1/0
+set interfaces ae11 unit 3080 disable
+deactivate interfaces ae11 unit 3080
