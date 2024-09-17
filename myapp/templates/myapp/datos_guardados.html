@@ -60,6 +60,8 @@
                         {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}M{% endif %}
                         {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
                         {% if datos.wanv6 and datos.wanv6 != '0.0.0.0/0' %}WANIPv6: {{ datos.wanv6 }}{% endif %}
+                        {% if datos.lan %}LANIPv4: {{ datos.lan }}{% endif %}
+                        {% if datos.lanv6 %}LANIPv6: {{ datos.lanv6 }}{% endif %}
                         {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
                         {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %}
                         {% if datos.lnnid %}LB NID: {{ datos.lnnid }}{% endif %}
@@ -117,7 +119,8 @@
                             configure private
 
                             show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more
-                            run show route  8.243.209.145 | no-more
+                            run show route  {{ datos.wan|first_valid_ip }} | no-more
+                            run show route  {{ datos.lan|first_valid_ip }} | no-more
 
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
@@ -221,14 +224,25 @@
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet rpf-check mode loose
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input customer-cflow
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter output voice-output
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input ratelimit-{{  bwjun }}
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output ratelimit-{{  bwjun }}
+                            {% if datos.puertos_lag == "Bundle-ether32"  or   datos.puertos_lag == "Bundle-ether33" %}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input ratelimit-{{  bwjun }}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output ratelimit-{{  bwjun }}
+                            {% else %}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input CUSTOMER-{{  datos.bw }}M
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{  datos.bw }}M
+                                {% endif %}
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }} preferred
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input ipv6-customer-cflow
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input ratelimit-{{  bwjun }}-IPV6
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output ratelimit-{{  bwjun }}-IPV6
-                            set interfaces ae30 unit 180 family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
+                            {% if datos.puertos_lag == "Bundle-ether32"  or   datos.puertos_lag == "Bundle-ether33" %}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input ratelimit-{{  bwjun }}-IPV6
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output ratelimit-{{  bwjun }}-IPV6
+                            {% else %}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-{{  datos.bw }}M
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-{{  datos.bw }}M
+                            {% endif %}
+
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 
@@ -337,15 +351,26 @@
                             set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
-
-                            set firewall policer ratelimit-{{  bwjun }} logical-interface-policer
-                            set firewall policer ratelimit-{{  bwjun }} if-exceeding bandwidth-limit {{  bwjun }}
-                            set firewall policer ratelimit-{{  bwjun }} if-exceeding burst-size-limit {{  burst_size_limit }}
-                            set firewall policer ratelimit-{{  bwjun }} then discard
-                            set firewall policer ratelimit-{{  bwjun }}-IPV6 logical-interface-policer
-                            set firewall policer ratelimit-{{  bwjun }}-IPV6 if-exceeding bandwidth-limit {{  bwjun }}
-                            set firewall policer ratelimit-{{  bwjun }}-IPV6 if-exceeding burst-size-limit {{  burst_size_limit }}
-                            set firewall policer ratelimit-{{  bwjun }}-IPV6 then discard
+                            {% if datos.puertos_lag == "Bundle-ether32"  or   datos.puertos_lag == "Bundle-ether33" %}
+                                set firewall policer ratelimit-{{  bwjun }} logical-interface-policer
+                                set firewall policer ratelimit-{{  bwjun }} if-exceeding bandwidth-limit {{  bwjun }}
+                                set firewall policer ratelimit-{{  bwjun }} if-exceeding burst-size-limit {{  burst_size_limit }}
+                                set firewall policer ratelimit-{{  bwjun }} then discard
+                                set firewall policer ratelimit-{{  bwjun }}-IPV6 logical-interface-policer
+                                set firewall policer ratelimit-{{  bwjun }}-IPV6 if-exceeding bandwidth-limit {{  bwjun }}
+                                set firewall policer ratelimit-{{  bwjun }}-IPV6 if-exceeding burst-size-limit {{  burst_size_limit }}
+                                set firewall policer ratelimit-{{  bwjun }}-IPV6 then discard
+                            {% else %}
+                                set firewall policer CUSTOMER-{{  datos.bw }}M logical-interface-policer
+                                set firewall policer CUSTOMER-{{  datos.bw }}M if-exceeding bandwidth-limit {{  bwjun }}
+                                set firewall policer CUSTOMER-{{  datos.bw }}M if-exceeding burst-size-limit {{  burst_size_limit }}
+                                set firewall policer CUSTOMER-{{  datos.bw }}M then discard
+                                set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M logical-interface-policer
+                                set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M if-exceeding bandwidth-limit {{  bwjun }}
+                                set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M if-exceeding burst-size-limit {{  burst_size_limit }}
+                                set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M then discard
+                            {% endif %}
+                            
 
                         {% else %}
                                 <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
@@ -399,7 +424,15 @@
                         set routing-instances {{ datos.vrf }} routing-options static route {{ datos.lbcpe }} next-hop {{ datos.wan|second_valid_ip }} tag 14
                         show routing-instances  {{ datos.vrf }} | display set | match  {{ datos.wan|second_valid_ip }}
 
-                        
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
+                            {% if datos.puertos_lag == "Bundle-ether32"  or   datos.puertos_lag == "Bundle-ether33" %}
+                                set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22
+                                set routing-options static route  {{ datos.lanv6 }} next-hop  {{ datos.wan|second_valid_ipv6 }} community 3356:123 community 3356:22
+                            {% else %}
+                                set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} 
+                                set routing-options static route  {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} 
+                            {% endif %}
+
                         {% else %}
                                 <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
                                 No se cumple ninguna condición.
@@ -467,6 +500,7 @@
                         set policy-options policy-statement {{ datos.vrf }}-import term reject-all then reject
                         set policy-options community RT-{{ datos.vrf }}_export members target:{{ datos.rd }}
                         set policy-options community RT-{{ datos.vrf }}_import members target:{{ datos.rd }}
+
                         
                         {% else %}
                                 <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->

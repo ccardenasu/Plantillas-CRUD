@@ -1,0 +1,29 @@
+CFS: 500397933
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000308539
+Cliente: SPORTY CITY S.A.S
+bundle_ether: Bundle-ether13
+bundle_ether_b: N/A
+SEDE: SMART FIT BOGOTA NUEVO KENEDY 81-5ME08B5
+DKO: 8625742 (8628734)
+SW: BOGTCLGWZG021
+Interface SW: GigabitEthernet0/0/1
+PE: ar1.sub1.bog
+Interface PE: ae6
+puertos_lag: 1
+Unit: 1533
+SV: 1533
+CV: 1200
+BW: 50
+puertos_lag: 1
+WAN: 8.242.124.164/30
+WANv6: 2001:13b0:8001:af03::40/126
+LAN: 8.242.125.112/29
+LANV6: 2001:13b0:a000:c7::/64
+LBCPE: 8.242.124.165
+LNNID: 10.235.89.46
+Fecha de creación: 2024-09-17 16:53:34.520978+00:00
+set interfaces ae6 unit 1533 family inet address 8.242.124.165/30
+set interfaces ae6 unit 1533 disable
+deactivate interfaces ae6 unit 1533

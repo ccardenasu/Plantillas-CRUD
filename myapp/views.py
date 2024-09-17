@@ -62,6 +62,7 @@ def datos_view(request):
                     write_if_not_none('WANv6', datos.wanv6)
                     write_if_not_none('ASN', datos.asn)
                     write_if_not_none('LAN', datos.lan)
+                    write_if_not_none('LANV6', datos.lanv6)
                     write_if_not_none('LBCPE', datos.lbcpe)
                     write_if_not_none('LNNID', datos.lnnid)
                     write_if_not_none('Fecha de creación', datos.created_at)
@@ -79,7 +80,7 @@ def datos_view(request):
             try:
                 bw = int(datos.bw)
                 bwx1024 = int(bw * 1024)
-                bwjun = int(bw * 1000000)
+                bwjun = int(bw * 1024 *1000)
                 bw_lag_alcatel = int(datos.puertos_lag) * bwx1024
                 delay_buffer_rate = bw * 1024 * 1000 * 4
                 shaping_rate = bw * 1024 * 1000
@@ -151,6 +152,7 @@ def buscar_cfs(request):
                             'wanv6': dato.wanv6,
                             'asn': dato.asn,
                             'lan': dato.lan,
+                            'lanv6': dato.lanv6,
                             'lbcpe': dato.lbcpe,
                             'lnnid': dato.lnnid,
                             'created_at': dato.created_at.strftime('%Y-%m-%d %H:%M:%S'),  # Incluir fecha de creación
