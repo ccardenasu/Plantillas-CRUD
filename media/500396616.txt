@@ -20,7 +20,7 @@ puertos_lag: 1
 WAN: 8.243.209.144/29
 WANv6: 2806:281:8000:1::c/126
 LNNID: 10.227.47.102
-Fecha de creación: 2024-09-16 20:14:43.579903+00:00
+Fecha de creación: 2024-09-17 21:02:20.269297+00:00
 set interfaces ae30 unit 180 family inet address 8.243.209.145/29
 set interfaces ae30 unit 180 disable
 deactivate interfaces ae30 unit 180

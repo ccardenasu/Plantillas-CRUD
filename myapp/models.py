@@ -70,7 +70,7 @@ class Datos(models.Model):
     wan = models.CharField(max_length=100, default='0.0.0.0/0')
     wanv6 = models.CharField(max_length=100, blank=True, null=True)
     asn = models.CharField(max_length=100, blank=True, null=True)
-    lan = models.CharField(max_length=100, blank=True, null=True)
+    lan = models.CharField(max_length=100, default='0.0.0.0/0')
     lanv6 = models.CharField(max_length=100, blank=True, null=True)
     lbcpe = models.CharField(max_length=100, blank=True, null=True)
     lnnid = models.CharField(max_length=100, blank=True, null=True)

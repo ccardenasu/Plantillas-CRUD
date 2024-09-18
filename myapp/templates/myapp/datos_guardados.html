@@ -60,7 +60,7 @@
                         {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}M{% endif %}
                         {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
                         {% if datos.wanv6 and datos.wanv6 != '0.0.0.0/0' %}WANIPv6: {{ datos.wanv6 }}{% endif %}
-                        {% if datos.lan %}LANIPv4: {{ datos.lan }}{% endif %}
+                        {% if datos.lan and datos.lan != '0.0.0.0/0' %}LANIPv4: {{ datos.lan }}{% endif %}
                         {% if datos.lanv6 %}LANIPv6: {{ datos.lanv6 }}{% endif %}
                         {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
                         {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %}
@@ -120,7 +120,9 @@
 
                             show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more
                             run show route  {{ datos.wan|first_valid_ip }} | no-more
-                            run show route  {{ datos.lan|first_valid_ip }} | no-more
+                            {% if datos.lan and datos.lan != '0.0.0.0/0' %}LANIPv4: run show route  {{ datos.lan|first_valid_ip }} | no-more{% endif %}
+
+                            
 
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
@@ -218,31 +220,34 @@
                         
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
 
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} bandwidth {{ bwjun }}
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer {{ datos.sv }} inner {{ datos.cv }}
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet rpf-check mode loose
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input customer-cflow
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter output voice-output
+                            
                             {% if datos.puertos_lag == "Bundle-ether32"  or   datos.puertos_lag == "Bundle-ether33" %}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input ratelimit-{{  bwjun }}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output ratelimit-{{  bwjun }}
-                            {% else %}
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input CUSTOMER-{{  datos.bw }}M
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{  datos.bw }}M
-                                {% endif %}
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }} preferred
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input ipv6-customer-cflow
-                            {% if datos.puertos_lag == "Bundle-ether32"  or   datos.puertos_lag == "Bundle-ether33" %}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input ratelimit-{{  bwjun }}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output ratelimit-{{  bwjun }}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input ratelimit-{{  bwjun }}-IPV6
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output ratelimit-{{  bwjun }}-IPV6
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }} preferred
                             {% else %}
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-{{  datos.bw }}M
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-{{  datos.bw }}M
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} bandwidth {{ bwjun }}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet rpf-check mode loose
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet mtu 1500
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet no-redirects
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input NETPROTECT-BE
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input CUSTOMER-{{  datos.bw }}M
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{  datos.bw }}M
+                                {% if datos.wan|mask == '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan}}{% endif %}
+                                {% if datos.wan|mask != '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 mtu 1500
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input NETPROTECT-BE-IPv6
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-IPV6-{{  datos.bw }}M
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-IPV6-{{  datos.bw }}M
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
                             {% endif %}
-
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 
@@ -347,7 +352,6 @@
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
-
                             set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
@@ -370,7 +374,7 @@
                                 set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M if-exceeding burst-size-limit {{  burst_size_limit }}
                                 set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M then discard
                             {% endif %}
-                            
+
 
                         {% else %}
                                 <!-- Aquí puedes agregar una condición por defecto o un mensaje de error -->
@@ -430,7 +434,7 @@
                                 set routing-options static route  {{ datos.lanv6 }} next-hop  {{ datos.wan|second_valid_ipv6 }} community 3356:123 community 3356:22
                             {% else %}
                                 set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} 
-                                set routing-options static route  {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} 
+                                set routing-options rib inet6.0 static route   {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} 
                             {% endif %}
 
                         {% else %}

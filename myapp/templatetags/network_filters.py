@@ -11,6 +11,11 @@ def first_valid_ip_with_mask(network):
     return f"{first_valid_ip}/{net.prefixlen}"
 
 @register.filter
+def mask(network):
+    net = ipaddress.IPv4Network(network, strict=False)
+    return f"{net.prefixlen}"
+
+@register.filter
 def first_valid_ip(network):
     net = ipaddress.IPv4Network(network, strict=False)
     first_valid_ip = net.network_address + 1

@@ -1,0 +1,29 @@
+CFS: 500398317
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000309730
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: CHOCÓ QUIBDÓ BARRIO EL SILENCIO
+DKO: 8630901 (8631148)
+SW: MDLNCLAFNN002
+Interface SW: TenGigE0/0/0/1.901181301
+PE: psr1.mdc6
+Interface PE: ae11
+puertos_lag: 1
+VRF: CSJ
+RD: 16528:1103520
+Unit: 390
+VT: 118
+SV: 390
+CV: 1301
+BW: 40
+puertos_lag: 1
+WAN: 10.101.57.204/30
+LBCPE: 172.18.20.226
+LNNID: 10.235.15.91
+Fecha de creación: 2024-09-17 21:17:54.279241+00:00
+set interfaces ae11 unit 390 family inet address 10.101.57.205/30
+set interfaces ae11 unit 390 disable
+deactivate interfaces ae11 unit 390
