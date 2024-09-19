@@ -1,0 +1,28 @@
+CFS: 500293220
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000309788
+Cliente: MAJOREL COLOMBIA SAS
+bundle_ether: Bundle-ether13
+bundle_ether_b: N/A
+SEDE: MAJOREL - CORE TRADE BANCOLOMBIA 81-3D73ZMS
+DKO: 8631750 (8632601)
+SW: BRQLCLAIYG001
+Interface SW: GigabitEthernet0/0/22
+PE: ar1.sub1.bog
+Interface PE: ae6
+puertos_lag: 1
+Unit: 1536
+SV: 1536
+CV: 1201
+BW: 400
+puertos_lag: 1
+WAN: 8.242.176.76/30
+WANv6: 2001:13b0:8001:c06f::5e2/127
+LAN: 8.242.176.88/29
+LANV6: 2001:13b0:8007:1db4::/64
+LNNID: 10.235.89.56
+Fecha de creación: 2024-09-19 16:47:00.911111+00:00
+set interfaces ae6 unit 1536 family inet address 8.242.176.77/30
+set interfaces ae6 unit 1536 disable
+deactivate interfaces ae6 unit 1536
