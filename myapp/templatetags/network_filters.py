@@ -27,6 +27,10 @@ def second_valid_ip(network):
     second_valid_ip = net.network_address + 2
     return str(second_valid_ip)
 
+@register.filter
+def maskv6(network):
+    net = ipaddress.IPv6Network(network, strict=False)
+    return f"{net.prefixlen}"
 
 @register.filter
 def first_valid_ipv6_with_mask(network):

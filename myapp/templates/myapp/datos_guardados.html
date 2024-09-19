@@ -120,7 +120,7 @@
 
                             show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more
                             run show route  {{ datos.wan|first_valid_ip }} | no-more
-                            {% if datos.lan and datos.lan != '0.0.0.0/0' %}LANIPv4: run show route  {{ datos.lan|first_valid_ip }} | no-more{% endif %}
+                            {% if datos.lan and datos.lan != '0.0.0.0/0' %}run show route  {{ datos.lan|first_valid_ip }} | no-more{% endif %}
 
                             
 
@@ -246,7 +246,8 @@
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input NETPROTECT-BE-IPv6
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-IPV6-{{  datos.bw }}M
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-IPV6-{{  datos.bw }}M
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
+                                {% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wanv6}}{% endif %}
+                                {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wanv6|first_valid_ip_with_mask }}{% endif %}
                             {% endif %}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
@@ -430,11 +431,15 @@
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
                             {% if datos.puertos_lag == "Bundle-ether32"  or   datos.puertos_lag == "Bundle-ether33" %}
-                                set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22
-                                set routing-options static route  {{ datos.lanv6 }} next-hop  {{ datos.wan|second_valid_ipv6 }} community 3356:123 community 3356:22
+                            {% if datos.wan|mask == '31' %}set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|first_valid_ip }} community 3356:123 community 3356:22{% endif %}
+                            {% if datos.wan|mask != '31' %}set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22{% endif %}
+                            {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
+                            {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
                             {% else %}
-                                set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} 
-                                set routing-options rib inet6.0 static route   {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} 
+                            {% if datos.wan|mask == '31' %}set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|first_valid_ip }} {% endif %}
+                            {% if datos.wan|mask != '31' %}set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} {% endif %}
+                            {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} {% endif %}
+                            {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} {% endif %}
                             {% endif %}
 
                         {% else %}

@@ -3,7 +3,7 @@ Tipo de configuración: Alta
 Tipo de equipo: JUNIPER
 RFS-IP-PORT: 6000309788
 Cliente: MAJOREL COLOMBIA SAS
-bundle_ether: Bundle-ether13
+bundle_ether: N/A
 bundle_ether_b: N/A
 SEDE: MAJOREL - CORE TRADE BANCOLOMBIA 81-3D73ZMS
 DKO: 8631750 (8632601)
@@ -22,7 +22,7 @@ WANv6: 2001:13b0:8001:c06f::5e2/127
 LAN: 8.242.176.88/29
 LANV6: 2001:13b0:8007:1db4::/64
 LNNID: 10.235.89.56
-Fecha de creación: 2024-09-19 16:47:00.911111+00:00
+Fecha de creación: 2024-09-19 17:11:36.846900+00:00
 set interfaces ae6 unit 1536 family inet address 8.242.176.77/30
 set interfaces ae6 unit 1536 disable
 deactivate interfaces ae6 unit 1536
