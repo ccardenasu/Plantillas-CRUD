@@ -1,0 +1,31 @@
+CFS: 500398210
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000309758
+Cliente: CREPES CARTAGENA S.A.
+bundle_ether: Bundle-ether14
+bundle_ether_b: N/A
+SEDE: CREPES & WAFFLES RESTAURANTE BUENAVISTA 81-5M8BBZU
+DKO: 8630981 (8633584)
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/0/3.910491300
+PE: psr2.bgo2
+Interface PE: ae14
+puertos_lag: 1
+VRF: crepeswaffles
+RD: 16528:1102680
+Unit: 127
+VT: 1049
+SV: 127
+CV: 1300
+BW: 10
+puertos_lag: 1
+WAN: 10.20.7.148/30
+ASN: 65304
+LAN: 0.0.0.0/0
+LBCPE: 172.18.55.91
+LNNID: 10.235.88.22
+Fecha de creación: 2024-09-19 22:17:46.606347+00:00
+set interfaces ae14 unit 127 family inet address 10.20.7.149/30
+set interfaces ae14 unit 127 disable
+deactivate interfaces ae14 unit 127

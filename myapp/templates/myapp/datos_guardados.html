@@ -39,39 +39,51 @@
                         {% if datos.tipo_configuracion %}tipo_configuracion: {{ datos.tipo_configuracion }}{% endif %}
                         {% if datos.tipo_servicio %}tipo_servicio: {{ datos.tipo_servicio }}{% endif %}
                         {% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
-                        {% if datos.rfs_ip_port_b %}RFS-IP-PORT_B: {{ datos.rfs_ip_port_b }}{% endif %}
                         {% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
                         {% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
-                        {% if datos.sede_b %}SEDE_B: {{ datos.sede_b }}{% endif %}
                         {% if datos.sw %}SW: {{ datos.sw }}{% endif %}
                         {% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
                         {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
-                        {% if datos.interface_pe %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
-                        {% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
-                        {% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
-                        {% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
-                        {% if datos.interface_pe_b %}Interface PE_B: {{ datos.interface_pe_b }}{% endif %}
+                        {% if datos.unit %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
+                        {% if datos.sv and  datos.tipo_equipo == 'ALCATEL' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}{% endif %}
                         {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
                         {% if datos.rd %}RD: {{ datos.rd }}{% endif %}
                         {% if datos.unit %}Unit: {{ datos.unit }}{% endif %}
-                        {% if datos.unit_b %}Unit_b: {{ datos.unit_b }}{% endif %}
                         {% if datos.sv %}SV: {{ datos.sv }}{% endif %}
                         {% if datos.cv %}CV: {{ datos.cv }}{% endif %}
                         {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}M{% endif %}
                         {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
-                        {% if datos.wanv6 and datos.wanv6 != '0.0.0.0/0' %}WANIPv6: {{ datos.wanv6 }}{% endif %}
+                        {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}WANIPv6: {{ datos.wanv6 }}{% endif %}
                         {% if datos.lan and datos.lan != '0.0.0.0/0' %}LANIPv4: {{ datos.lan }}{% endif %}
                         {% if datos.lanv6 %}LANIPv6: {{ datos.lanv6 }}{% endif %}
                         {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
                         {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %}
                         {% if datos.lnnid %}LB NID: {{ datos.lnnid }}{% endif %}
+
+                        ==================================================================================
+                        
+                        {% if datos.rfs_ip_port_b %}RFS-IP-PORT_B: {{ datos.rfs_ip_port_b }}{% endif %}
+                        {% if datos.sede_b %}SEDE_B: {{ datos.sede_b }}{% endif %}
+                        {% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
+                        {% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
+                        {% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
+                        {% if datos.interface_pe_b %}Interface PE_B: {{ datos.interface_pe_b }}{% endif %}
+                        {% if datos.unit_b %}Unit_b: {{ datos.unit_b }}{% endif %}
+
+
+
                     </textarea>
                     <div class="button-container">
                         <button class="datos-button" onclick="copyToClipboard('dataTextArea')" aria-label="Copiar Datos">Copiar Datos</button>
                     </div>
                 </div>
                 <div class="copy-box">
+                    ==================================================================================
+
                     <div class="title">Comandos Previos</div>
+
+                    ==================================================================================
+
                     <textarea id="commandsTextArea" class="datos-textarea" readonly>
 
                         {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
@@ -88,6 +100,22 @@
                             configure private
 
                             show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+
+                            bash
+                            roci {{ datos.pe }}
+                            configure private
+
+                            show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+
+                            ==================================================================================
+                            bash
+                            roci {{ datos.pe_b }}
+                            configure private
+
+                            show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
+
 
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
                             bash
@@ -176,6 +204,24 @@
                             PE {{ datos.pe_b }}
                             set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
 
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+
+                            PE {{ datos.pe }}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }} (CFS:{{ datos.cfs }}) (RFS:{{ datos.rfs_ip_port }})"
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} encapsulation vlan-vpls
+                            {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-id {{ datos.sv }} {% endif %}
+                            {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
+                            {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} input-vlan-map pop {% endif %}
+                            {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} input-vlan-map pop-pop{% endif %}
+                            {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-vlan-map push {% endif %}
+                            {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-vlan-map push-push{% endif %}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls filter input {{ datos.interface_pe }}.{{ datos.unit }}-cos-i
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls filter output {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls policer input {{ datos.interface_pe }}.{{ datos.unit }}-cir-in
+                            ==================================================================================
+                            PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
 
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
@@ -191,7 +237,7 @@
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 
                             admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
-                            configure lag xxx
+                            configure lag {{ datos.lag }}
                             info
                             exit
                             show qos sap-ingress | match CUSTOMER-{{ datos.bw }}
@@ -268,7 +314,7 @@
                             /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ip-mtu 1500
                             /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   cflowd-parameters sampling unicast type interface
                             /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   tos-marking-state trusted
-                            /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ipv6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
+                            {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ipv6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}
                             /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  enable-ingress-stats
                             /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} no shutdown
                             exit
@@ -287,8 +333,46 @@
                     <textarea id="policersTextArea" class="datos-textarea" readonly>
 
                         {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+
                             PE {{ datos.pe }}
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+
+                            ==================================================================================
+
+                            PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}--inet-i term EF_DSCP from dscp 46
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF_DSCP then count EF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-vpls-i
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF_DSCP then loss-priority low
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF_DSCP then forwarding-class EF
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF-DE_DSCP from dscp 34
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF_DE_DSCP then count EF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-vpls-e
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF-DE_DSCP then loss-priority high
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF-DE_DSCP then forwarding-class EF-DE
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF_DSCP from dscp 26
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-vpls-e
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF_DSCP then loss-priority low
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF_DSCP then forwarding-class AF
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF-DE_DSCP from dscp 18
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}4-vpls-e
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF-DE_DSCP then loss-priority high
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term AF-DE_DSCP then forwarding-class AF-DE
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term VPN-BE from dscp 10
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term VPN-BE then count VPN-BE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-vpls-e
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term VPN-BE then loss-priority high
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term VPN-BE then forwarding-class VPN-BE
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term BE then count BE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-vpls-e
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term BE then loss-priority high
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term BE then forwarding-class BE
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-cos-i term all then count EFlow.rx-{{ datos.interface_pe }}.{{ datos.unit }}-cos-i
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-cos-i term all then loss-priority high
+                        set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-cos-i term all then forwarding-class EF
+                        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in logical-interface-policer
+                        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
+                        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in then discard
 
                             ==================================================================================
 
@@ -400,6 +484,14 @@
                             PE {{ datos.pe_b }}
                             set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
 
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+                            
+                                
+                            ==================================================================================
+
+                            PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
 
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}
 
@@ -464,6 +556,22 @@
 
                             PE {{ datos.pe_b }}
                             set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+
+                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+
+                        set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
+                        set routing-instances {{ datos.vrf }} instance-type vpls
+                        set routing-instances {{ datos.vrf }} protocols vpls interface-mac-limit 150
+                        set routing-instances {{ datos.vrf }} protocols vpls no-mac-learning
+                        set routing-instances {{ datos.vrf }} protocols vpls no-tunnel-services
+                        set routing-instances {{ datos.vrf }} protocols vpls vpls-id {{ datos.cfs }}
+                        set routing-instances {{ datos.vrf }}  protocols vpls mtu 9000
+                        set routing-instances {{ datos.vrf }} protocols vpls neighbor
+
+                            ==================================================================================
+
+                            PE {{ datos.pe_b }}
+
 
 
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" %}

@@ -1,0 +1,23 @@
+CFS: 500395882
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000307349
+Cliente: COMISION NACIONAL DEL SERVICIO CIVIL
+bundle_ether: Bundle-ether13
+bundle_ether_b: N/A
+SEDE: CNSC - BOGOTA DATACENTER CXV 81-1JZ9ZVR
+DKO: 8628191 (8631614)
+SW: BOGTCLFWZG046
+Interface SW: GigabitEthernet0/0/8
+PE: ar1.cxv2.bog
+Interface PE: ae5
+puertos_lag: 1
+Unit: 1023
+BW: 1500
+puertos_lag: 1
+WAN: 0.0.0.0/0
+LAN: 0.0.0.0/0
+Fecha de creación: 2024-09-19 19:00:17.800106+00:00
+set interfaces ae5 unit 1023 family inet address 0.0.0.1/0
+set interfaces ae5 unit 1023 disable
+deactivate interfaces ae5 unit 1023

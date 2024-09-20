@@ -1,0 +1,23 @@
+CFS: 500246575
+Tipo de configuración: Ampliacion
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000162057
+Cliente: ENTIDAD PROMOTORA DE SALUD SERVICIO OCCIDENTAL DE SALUD S.A. SOS
+bundle_ether: Bundle-ether11
+bundle_ether_b: N/A
+SEDE: CALI AMERICAS BPS
+DKO: 8633143 (8633161)
+SW: CALICLALZG004
+Interface SW: GigabitEthernet0/0/8
+PE: psr4.cal1
+Interface PE: ae11
+puertos_lag: 1
+Unit: 416
+BW: 35
+puertos_lag: 1
+WAN: 0.0.0.0/0
+LAN: 0.0.0.0/0
+Fecha de creación: 2024-09-19 20:09:54.822370+00:00
+set interfaces ae11 unit 416 family inet address 0.0.0.1/0
+set interfaces ae11 unit 416 disable
+deactivate interfaces ae11 unit 416

@@ -1,0 +1,26 @@
+CFS: 500248251
+Tipo de configuración: Ampliacion
+Tipo de equipo: ALCATEL
+RFS-IP-PORT: 6000162103
+Cliente: ENTIDAD PROMOTORA DE SALUD SERVICIO OCCIDENTAL DE SALUD S.A. SOS
+bundle_ether: N/A
+bundle_ether_b: N/A
+SEDE: DC LUMEN SANTA MONICA
+DKO: 8633207 (8633214)
+SW: CALICLAJZG010
+Interface SW: GigabitEthernet0/0/4
+PE: ar4.cal1
+Interface PE: ae-13
+puertos_lag: 1
+lag: 13
+SV: 59
+CV: 1200
+BW: 350
+puertos_lag: 1
+WAN: 0.0.0.0/0
+WANv6: 2806:281::/32
+LAN: 0.0.0.0/0
+Fecha de creación: 2024-09-19 19:58:41.216041+00:00
+set interfaces ae-13 unit None family inet address 0.0.0.1/0
+set interfaces ae-13 unit None disable
+deactivate interfaces ae-13 unit None
