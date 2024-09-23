@@ -292,8 +292,8 @@
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input NETPROTECT-BE-IPv6
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-IPV6-{{  datos.bw }}M
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-IPV6-{{  datos.bw }}M
-                                {% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wanv6}}{% endif %}
-                                {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wanv6|first_valid_ip_with_mask }}{% endif %}
+                                {% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6}}{% endif %}
+                                {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}
                             {% endif %}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}

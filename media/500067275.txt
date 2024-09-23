@@ -1,0 +1,30 @@
+CFS: 500067275
+Tipo de configuración: Alta
+Tipo de equipo: JUNIPER
+RFS-IP-PORT: 6000309961
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+bundle_ether: Bundle-ether14
+bundle_ether_b: N/A
+SEDE: CSJ - ATLÁNTICO BARRANQUILLA - JUZGADOS DE PEQUEÑAS CAUSAS 81-2OY08IN
+DKO: 8632984 (8633720)
+SW: BOGTCLFWNN003
+Interface SW: TenGigE0/0/2/1.913021301
+PE: psr3.bgo1
+Interface PE: ae14
+puertos_lag: 1
+VRF: CSJ
+RD: 16528:1103520
+Unit: 38
+VT: 1302
+SV: 38
+CV: 1301
+BW: 40
+puertos_lag: 1
+WAN: 10.101.13.24/30
+LAN: 0.0.0.0/0
+LBCPE: 172.18.175.59
+LNNID: 10.226.205.221
+Fecha de creación: 2024-09-20 19:31:24.903421+00:00
+set interfaces ae14 unit 38 family inet address 10.101.13.25/30
+set interfaces ae14 unit 38 disable
+deactivate interfaces ae14 unit 38
