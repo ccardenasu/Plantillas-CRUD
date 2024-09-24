@@ -1,26 +1,25 @@
 CFS: 500395882
 Tipo de configuración: Alta
-Tipo de equipo: JUNIPER
+Tipo de equipo: ALCATEL
 RFS-IP-PORT: 6000307349
 Cliente: COMISION NACIONAL DEL SERVICIO CIVIL
 bundle_ether: N/A
 bundle_ether_b: N/A
 SEDE: CNSC - BOGOTA DATACENTER CXV 81-1JZ9ZVR
-DKO: 8628191 (8631614)
 SW: BOGTCLFW5M002
 Interface SW: TenGigE0/0/0/17
-PE: ar1.cxv2.bog
-Interface PE: ae5
-puertos_lag: 1
+PE: ar2.bgo1
+Interface PE: ae-12
+puertos_lag: 8
 Unit: 1030
 SV: 1030
 CV: 1200
 BW: 1500
-puertos_lag: 1
+puertos_lag: 8
 WAN: 8.242.121.52/31
 WANv6: 2001:13b0:8001:af03::4c/126
 LAN: 8.242.147.96/27
-Fecha de creación: 2024-09-20 17:53:46.106133+00:00
-set interfaces ae5 unit 1030 family inet address 8.242.121.53/31
-set interfaces ae5 unit 1030 disable
-deactivate interfaces ae5 unit 1030
+Fecha de creación: 2024-09-24 11:36:30.262216+00:00
+set interfaces ae-12 unit 1030 family inet address 8.242.121.53/31
+set interfaces ae-12 unit 1030 disable
+deactivate interfaces ae-12 unit 1030
