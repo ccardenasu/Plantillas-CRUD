@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Selección de País, Mercado y Nodo</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="titulo">Selección de País, Mercado y Nodo</h1>
+        </header>
+        <main>
+            <form method="post" action="{% url 'buscar_nodo' %}" onsubmit="return validateForm(event)">
+                {% csrf_token %}
+                <div>
+                    <label for="id_pais">País:</label>
+                    <select name="pais" id="id_pais" class="form-control" onchange="updateMercadoOptions()">
+                        <option value="Argentina">Argentina</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Peru">Peru</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="id_mercado">Mercado:</label>
+                    <select name="mercado" id="id_mercado" class="form-control" onchange="updateNodoOptions()">
+                        <!-- Opciones se llenarán dinámicamente -->
+                    </select>
+                </div>
+                <div>
+                    <label for="id_nodo">Nodo:</label>
+                    <select name="nodo" id="id_nodo" class="form-control">
+                        <!-- Opciones se llenarán dinámicamente -->
+                    </select>
+                </div>
+                <div>
+                    <label for="id_sfp">SFP:</label>
+                    <select name="sfp" id="id_sfp" class="form-control">
+                        <option value="1000SFPT-J">1000SFPT-J</option>
+                        <option value="SFP-GE-T">SFP-GE-T</option>
+                        <option value="1000SFP10">1000SFP10</option>
+                        <option value="1000SFP49B20L">1000SFP49B20L</option>
+                        <option value="10GSFP+E33B10L">10GSFP+E33B10L</option>
+                        <option value="10GSFP+E-LR">10GSFP+E-LR</option>
+                        <option value="10GSFP+E-SR">10GSFP+E-SR</option>
+                        <option value="10GXFP10">10GXFP10</option>
+                    </select>
+                </div>
+                <button type="submit">Buscar</button>
+            </form>
+            {% if resultados %}
+                <h2>Resultados de la búsqueda:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <!-- Encabezados de las columnas -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for fila in resultados %}
+                            <tr>
+                                {% for columna in fila %}
+                                    <td>{{ columna }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No se encontraron resultados.</p>
+            {% endif %}
+        </main>
+        <footer>
+            <p>© 2024 CECU</p>
+        </footer>
+    </div>
+    <script>
+        // Funciones JavaScript para actualizar opciones
+        function updateMercadoOptions() {
+            var pais = document.getElementById('id_pais').value;
+            var mercadoSelect = document.getElementById('id_mercado');
+            mercadoSelect.innerHTML = '';
+
+            var mercados = {
+                "Colombia": [
+                    "BGO1 / Colombia XV- Colombia",
+                    "BGO2 / Telepuerto Suba- Colombia",
+                    "CAL1 / Santa Monica- Colombia",
+                    "MDC4 / Santillana- Colombia"
+                ],
+                "Mexico": [
+                    "GUA1 / Guadalajara- Mexico",
+                    "MEX1 / Mexico Df- Mexico",
+                    "MRY1 / Monterrey- Mexico",
+                    "QUE2 / Queretaro- Mexico",
+                    "TIJ1 / Tijuana- Mexico"
+                ]
+            };
+
+            if (mercados[pais]) {
+                mercados[pais].forEach(function(mercado) {
+                    var option = document.createElement('option');
+                    option.value = mercado;
+                    option.text = mercado;
+                    mercadoSelect.appendChild(option);
+                });
+            }
+
+            // Actualizar las opciones de nodo cuando se cambia el mercado
+            updateNodoOptions();
+        }
+
+        function updateNodoOptions() {
+            var pais = document.getElementById('id_pais').value;
+            var mercado = document.getElementById('id_mercado').value;
+            var nodoSelect = document.getElementById('id_nodo');
+            nodoSelect.innerHTML = '';
+
+            var nodos = {
+                "Colombia": {
+                    "BGO1 / Colombia XV- Colombia": [
+                        "Datacenter Bt Naos",
+                        "Dc Equinix Bg2",
+                        "Gateway Colombia Xv",
+                        "Nodo Calle 100",
+                        "Nodo Centro Chia",
+                        "Nodo Country",
+                        "Nodo Ibm Calle 100",
+                        "Nodo Tocancipa",
+                        "Nodo Zona Franca (Equinix- Former Terremark)"
+                    ],
+                    "BGO2 / Telepuerto Suba- Colombia": [
+                        "Gateway Subachoque",
+                        "Ibm Celta Park",
+                        "Nodo Americas",
+                        "Nodo Calle 72",
+                        "Nodo Centro Chia",
+                        "Nodo Centro Historico",
+                        "Nodo Claro Triara",
+                        "Nodo Dc C&W Tocancipa",
+                        "Nodo Dc Odata Z.F Metropolitana Cota",
+                        "NODO DC TIVIT ZF",
+                        "Nodo Funza",
+                        "Nodo Ibague",
+                        "Nodo Manzanares",
+                        "Nodo Metrosur",
+                        "Nodo Movistar Celta Park",
+                        "Nodo Nimbus Bt Y Telefonica",
+                        "Nodo Palma Real",
+                        "Nodo Siberia",
+                        "Nodo Telefonica Dc Ii Zona Franca",
+                        "Nodo Tocancipa",
+                        "Nodo Wbp & Nodo Alianza Wbp",
+                        "Nodo Zona Franca (Equinix- Former Terremark)",
+                        "OTU - Nodo Centro Pereira (Diario del Otun)",
+                        "Telepuerto Suba"
+                    ],
+                    "CAL1 / Santa Monica- Colombia": [
+                        "Landing Station Punta Bazan",
+                        "Nodo Buenaventura",
+                        "Nodo Centro Buenaventura",
+                        "Nodo Centro Empresa",
+                        "Nodo Dc Etix Zonamerica",
+                        "Nodo Holguines Consulnetworks",
+                        "Nodo Plaza Caicedo",
+                        "Nodo Torre Cali",
+                        "Santa Monica"
+                    ],
+                    "MDC4 / Santillana- Colombia": [
+                        "Nodo Gtd Medellin",
+                        "Nodo Laureles",
+                        "Nodo Parque Berrio",
+                        "Nodo Santillana",
+                        "Nodo Univentas"
+                    ]
+                }
+            };
+
+            if (nodos[pais] && nodos[pais][mercado]) {
+                nodos[pais][mercado].forEach(function(nodo) {
+                    var option = document.createElement('option');
+                    option.value = nodo;
+                    option.text = nodo;
+                    nodoSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Llamar a la función al cargar la página para establecer las opciones iniciales
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMercadoOptions();
+        });
+
+        // Función de validación del formulario
+        function validateForm(event) {
+            var pais = document.getElementById('id_pais').value;
+            var mercado = document.getElementById('id_mercado').value;
+            var nodo = document.getElementById('id_nodo').value;
+            var sfp = document.getElementById('id_sfp').value;
+
+            if (!pais || !mercado || !nodo || !sfp) {
+                alert("Por favor, selecciona todas las opciones.");
+                event.preventDefault(); // Evita que el formulario se envíe
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

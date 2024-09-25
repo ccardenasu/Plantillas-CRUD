@@ -227,3 +227,41 @@ def buscar_vrf_rd(request):
             return JsonResponse({"error": str(e)}, status=500)
         print("VRF no encontrado")
     return JsonResponse({"found": False})
+
+def pais_mercado_nodo(request):
+    if request.method == "POST":
+        # Procesar el formulario si es necesario
+        pass
+    return render(request, 'myapp/pais_mercado_nodo.html')
+
+
+def buscar_nodo(request):
+    resultados = []  # Cambiar a una lista para almacenar todas las coincidencias
+    headers = []
+    if request.method == 'POST':
+        nodo_seleccionado = request.POST.get('nodo')
+        sfp_seleccionado = request.POST.get('sfp')
+        csv_file = 'myapp/Interface_Equipos.csv'
+
+        try:
+            with open(csv_file, mode='r', encoding='latin1') as file:
+                reader = csv.reader(file, delimiter=';')
+                headers = next(reader)  # Leer la primera fila como encabezados
+                for row in reader:
+                    row = [col.strip() for col in row]
+                    if len(row) > 11:  # Verificar que la fila tenga al menos 12 columnas
+                        try:
+                            # Verificar las condiciones de filtrado
+                            if (row[2] == nodo_seleccionado and 
+                                row[10].strip().lower() == 'fisica' and 
+                                row[11].strip().lower() == 'shutdown' and 
+                                row[9] == sfp_seleccionado):  # Suponiendo que la columna SFP es la 10
+                                resultados.append(row)
+                        except IndexError as e:
+                            print(f"Error de índice: {e} en la fila: {row}")
+        except FileNotFoundError:
+            print(f"Archivo no encontrado: {csv_file}")
+        except UnicodeDecodeError as e:
+            print(f"Error de decodificación: {e}")
+
+    return render(request, 'myapp/resultado.html', {'resultados': resultados, 'headers': headers})

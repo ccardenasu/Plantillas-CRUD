@@ -36,6 +36,18 @@ class Datos(models.Model):
         ("Bundle-ether33", "Bundle-ether33"),
     ]
 
+    PAIS_CHOICES = [
+        ("Argentina", "Argentina"),
+        ("Brazil", "Brazil"),
+        ("Chile", "Chile"),
+        ("Colombia", "Colombia"),
+        ("Ecuador", "Ecuador"),
+        ("Mexico", "Mexico"),
+        ("Peru", "Peru"),
+    ]
+    pais = models.CharField(max_length=100, choices=PAIS_CHOICES, default="Colombia")
+    mercado = models.CharField(max_length=100, blank=True, null=True)
+    
     bundle_ether = models.CharField(
         max_length=100, choices=BUNDLE_ETHER_CHOICES, default="N/A"
     )

@@ -10,6 +10,8 @@ urlpatterns = [
     path("buscar_cfs/", views.buscar_cfs, name="buscar_cfs"),
     path("buscar_en_csv/", views.buscar_en_csv, name="bbuscar_en_csv"),
     path("buscar_vrf_rd/", views.buscar_vrf_rd, name="buscar_vrf_rd"),
+    path('pais_mercado_nodo/', views.pais_mercado_nodo, name='pais_mercado_nodo'),
+    path('buscar_nodo/', views.buscar_nodo, name='buscar_nodo'),
 ]
 
 if settings.DEBUG:

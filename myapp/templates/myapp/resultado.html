@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de Búsqueda</title>
+</head>
+<body>
+    <h1>Resultado de Búsqueda</h1>
+    {% if resultados %}
+        <table border="1">
+            <tr>
+                {% for header in headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+            {% for resultado in resultados %}
+                <tr>
+                    {% for item in resultado %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+</body>
+</html>

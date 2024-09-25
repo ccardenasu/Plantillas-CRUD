@@ -48,6 +48,8 @@ class DatosForm(forms.ModelForm):
             "bundle_ether_b",
             "pe_b",
             "interface_pe_b",
+             "pais",
+            "mercado",
         ]
         widgets = {
             "cfs": forms.TextInput(attrs={"class": "form-control"}),
@@ -88,6 +90,8 @@ class DatosForm(forms.ModelForm):
             "lanv6": forms.TextInput(attrs={"class": "form-control"}),
             "lbcpe": forms.TextInput(attrs={"class": "form-control"}),
             "lnnid": forms.TextInput(attrs={"class": "form-control"}),
+            "pais": forms.Select(attrs={"class": "form-control"}),
+            "mercado": forms.Select(attrs={"class": "form-control"}),
         }
 
     def clean_cfs(self):
