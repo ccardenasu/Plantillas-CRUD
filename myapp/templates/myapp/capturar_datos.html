@@ -23,6 +23,7 @@
             <a href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a204.199.94.42&run=toolpage" target="_blank">Ir a blacklist2</a><br>
             <a href="https://www.spamrats.com/index.php" target="_blank">Ir a blacklist1</a><br>
             <a href="http://searchnodeslat.lat.intranet/" target="_blank">Ir a CLLI</a><br>
+            <a href="http://127.0.0.1:8000/pais_mercado_nodo/" target="_blank">Ir a P2P</a><br>
 
             <form method="post" onsubmit="return validateForm(event)">
                 {% csrf_token %}
@@ -40,12 +41,13 @@
                         <!-- Opciones se llenarán dinámicamente -->
                     </select>
                 </div>
+
                 {{ form.as_p }}
                 <button type="button" onclick="concatenar()">Concatenar</button><br>
                 <button type="button" onclick="concatenar_b()">Concatenar_b</button><br>
                 <input type="hidden" id="rs-sw-be" name="rs-sw-be" value=""><br>
                 <input type="hidden" id="rs-sw-be_b" name="rs-sw-be_b" value=""><br>
-
+                <input type="hidden" id="rs-tipo-servicio-sw" name="rs-tipo-servicio-sw" value="">
                 <button type="submit" aria-label="Enviar Formulario">Enviar</button>
 
             </form>
