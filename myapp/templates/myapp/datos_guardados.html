@@ -87,13 +87,14 @@
 
                     <textarea id="commandsTextArea" class="datos-textarea" readonly>
 
-                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" %}
 
                             bash
                             roci {{ datos.pe }}
                             configure private
 
                             show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+                            show | display set | match {{ datos.interface_pe }}.{{ datos.unit }} | no-more 
 
                             ==================================================================================
                             bash
@@ -101,6 +102,8 @@
                             configure private
 
                             show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
+                            show | display set | match {{ datos.interface_pe_b }}.{{ datos.unit_b }} | no-more 
+
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
 
@@ -197,13 +200,13 @@
                     <div class="title">Configuración de la Interfaz</div>
                     <textarea id="newCommandsTextArea" class="datos-textarea" readonly>
 
-                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
 
-                            PE {{ datos.pe }}
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER: {{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
-                            ==================================================================================
-                            PE {{ datos.pe_b }}
-                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+                            #PE {{ datos.pe }}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER: {{ datos.cliente }} (CFS:{{ datos.cfs }}) (RFS:{{ datos.rfs_ip_port }})"
+                            #==================================================================================
+                            #PE {{ datos.pe_b }}
+                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER: {{ datos.cliente }} (CFS:{{ datos.cfs }}) (RFS:{{ datos.rfs_ip_port_b }})"
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
 
@@ -349,15 +352,20 @@
                     <div class="title">Policers</div>
                     <textarea id="policersTextArea" class="datos-textarea" readonly>
 
-                        {% if datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPLS" %}
+                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" %}
 
-                            PE {{ datos.pe }}
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+                            #PE {{ datos.pe }}
 
-                            ==================================================================================
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in then discard
 
-                            PE {{ datos.pe_b }}
-                            set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
+                            #==================================================================================
+
+                            #PE {{ datos.pe_b }}
+                            set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in then discard
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
                         set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}--inet-i term EF_DSCP from dscp 46
@@ -502,8 +510,7 @@
                             set interfaces {{ datos.interface_pe_b }} unit {{ datos.unit_b }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_b }})"
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
-                            
-                                
+
                             ==================================================================================
 
                             PE {{ datos.pe_b }}
