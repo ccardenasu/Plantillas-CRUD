@@ -8,6 +8,7 @@
         var vrfField = document.getElementById('id_vrf');
         var rdField = document.getElementById('id_rd');
         var swField = document.getElementById('id_sw');
+        var svField = document.getElementById('id_sv');
 
         var fieldsToShowVPLSALTJUN = 	[ 'id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_cv','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_lnnid','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sv','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_vrf',];
         var fieldsToShowVPLSAMPJUN =    [ 'id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_wan'];    var fieldsToShowADIAMPALC = ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sv', 'id_cv', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag','id_lag'];
@@ -19,6 +20,12 @@
         var fieldsToShowADIALTJUN =     ['id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_vt',];
         var fieldsToShowADIAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_wan'];
         // Agregar evento blur para vrfField
+        swField.addEventListener('blur', function() {
+            if (swField.value === "mesc20.baq.baq") {
+                svField.value = "1900";
+            }
+        });
+
         vrfField.addEventListener('blur', function() {
             var vrfValue = vrfField.value;
             if (vrfValue) {

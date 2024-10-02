@@ -163,13 +163,13 @@
                             bash
                             roci {{ datos.pe }}
 
-                            configure lag {{ datos.lag }}
+                            configure lag {{num_puertos_lag}}
                             info
                             exit
                             admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }} context all
                             admin display-config | match {{ datos.IES }} context all
 
-                            show qos sap-ingress | match CUSTOMER-{{ datos.bw }}
+                            show qos sap-ingress | match CUSTOMER-{{ qos }}
                             show router route-table    {{ datos.wan|first_valid_ip }}
                             configure qos sap-ingress xxx
                             info
@@ -580,7 +580,9 @@
                         show routing-instances {{ datos.vrf }} protocols bgp group external neighbor  {{ datos.wan|second_valid_ip }} | display set
                         #
                         #
-                        set routing-instances {{ datos.vrf }} routing-options static route {{ datos.lbcpe }} next-hop {{ datos.wan|second_valid_ip }} tag 14
+                        {% if datos.lbcpe and datos.lbcpe != 'None' %}set routing-instances {{ datos.vrf }} routing-options static route {{ datos.lbcpe }} next-hop {{ datos.wan|second_valid_ip }} tag 14{% endif %}
+
+                        
                         show routing-instances  {{ datos.vrf }} | display set | match  {{ datos.wan|second_valid_ip }}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}

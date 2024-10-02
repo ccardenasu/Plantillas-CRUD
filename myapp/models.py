@@ -35,6 +35,7 @@ class Datos(models.Model):
         ("Bundle-ether32", "Bundle-ether32"),
         ("Bundle-ether33", "Bundle-ether33"),
         ("TE7/3", "TE7/3"),
+        ("GigabitEthernet0/11","GigabitEthernet0/11"),
     ]
 
     PAIS_CHOICES = [

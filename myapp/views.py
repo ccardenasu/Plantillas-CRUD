@@ -101,6 +101,8 @@ def datos_view(request):
 
                 bw_lag_alcatel = int(datos.puertos_lag) * bwx1024
                 print(f"bw_lag_alcatel {bw_lag_alcatel}")
+                qos = str(bw_lag_alcatel)[:1]  # Extrae los dos primeros dígitos
+                print(f"qos: {qos}")
             except ValueError:
                 bwx1024 = None
                 bwjun = None
@@ -108,6 +110,7 @@ def datos_view(request):
                 shaping_rate = None
                 burst_size_limit = None
                 bw_lag_alcatel = None
+                qos = None
             
             form.fields['lag'].initial = num_puertos_lag
             
@@ -124,6 +127,8 @@ def datos_view(request):
                     "shaping_rate": shaping_rate,
                     "burst_size_limit": burst_size_limit,
                     "bw_lag_alcatel": bw_lag_alcatel,
+                    "qos": qos,
+
                 },
             )
     else:
