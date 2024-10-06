@@ -36,6 +36,7 @@ class Datos(models.Model):
         ("Bundle-ether33", "Bundle-ether33"),
         ("TE7/3", "TE7/3"),
         ("GigabitEthernet0/11","GigabitEthernet0/11"),
+        ("ae1","ae1"),
     ]
 
     PAIS_CHOICES = [
@@ -68,9 +69,12 @@ class Datos(models.Model):
     )
     asn = models.CharField(max_length=100, blank=True, null=True)
     bw = models.CharField(max_length=100, default="0")
+    bw_plus = models.CharField(max_length=100, default="0")
+    bw_Exchange = models.CharField(max_length=100, default="0")
     be = models.CharField(max_length=100, default="0")
     cliente = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    cfs = models.CharField(max_length=100, blank=True, null=True)
     cv = models.CharField(max_length=100, blank=True, null=True)
     dko = models.CharField(max_length=100, blank=True, null=True)
     IES = models.CharField(max_length=100, blank=True, null=True)
@@ -89,12 +93,14 @@ class Datos(models.Model):
     rd = models.CharField(max_length=100, blank=True, null=True)
     rfs_ip_port = models.CharField(max_length=100, blank=True, null=True)
     rfs_ip_port_b = models.CharField(max_length=100, blank=True, null=True)
+    rfs_ip_port_nid = models.CharField(max_length=100, blank=True, null=True)
     sede = models.CharField(max_length=100, blank=True, null=True)
     sede_b = models.CharField(max_length=100, blank=True, null=True)
     sv = models.CharField(max_length=100, blank=True, null=True)
     sw = models.CharField(max_length=100, blank=True, null=True)
     sw_b = models.CharField(max_length=100, blank=True, null=True)
     unit = models.CharField(max_length=100, blank=True, null=True)
+    unit_nid = models.CharField(max_length=100, default="505")
     unit_b = models.CharField(max_length=100, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     vrf = models.CharField(max_length=100, blank=True, null=True)

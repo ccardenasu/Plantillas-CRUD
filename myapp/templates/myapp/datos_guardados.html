@@ -8,6 +8,7 @@
                 var shapingRate = {{ shaping_rate }};
                 var puertosLag = {{ datos.puertos_lag }};
                 var resultado = shapingRate * puertosLag;
+                var bw_plus_por = {{bw_plus_por}}
                 document.getElementById("resultado").innerText = "El resultado es: " + resultado;
             }
         </script>
@@ -23,14 +24,17 @@
             </header>
             <main>
                 <a href="http://deliveryconsole/pdetailsearch.asp" target="_blank">Ir a Delivery Console</a><br>
-                <a href="http://ximelat/" target="_blank">Ir a Xime Metro2</a><br>
-                <a href="http://4.74.133.173:8080/logon.aspx" target="_blank">Ir a Xime Metro3</a><br>
-                <a href="http://xicpe/select.aspx" target="_blank">Ir a CRUD xicpe</a><br>
-                <a href="https://myworkspace.ctlaccess.centurylink.com" target="_blank">Ir a  Level3</a><br>
-                <a href="https://netbox-cirex.ciriontechnologies.com/login/?next=/extras/changelog/" target="_blank">Ir a netbox</a><br>
-                <a href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a204.199.94.42&run=toolpage" target="_blank">Ir a blacklist2</a><br>
-                <a href="https://www.spamrats.com/index.php" target="_blank">Ir a blacklist1</a><br>
-                
+            <a href="http://ximelat/" target="_blank">Ir a Xime Metro2</a><br>
+            <a href="http://4.74.133.173:8080/logon.aspx" target="_blank">Ir a Xime Metro3</a><br>
+            <a href="http://xicpe/select.aspx" target="_blank">Ir a CRUD xicpe</a><br>
+            <a href="https://myworkspace.ctlaccess.centurylink.com" target="_blank">Ir a  Level3</a><br>
+            <a href="https://netbox-cirex.ciriontechnologies.com/login/?next=/extras/changelog/" target="_blank">Ir a netbox</a><br>
+            <a href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a204.199.94.42&run=toolpage" target="_blank">Ir a blacklist2</a><br>
+            <a href="https://www.spamrats.com/index.php" target="_blank">Ir a blacklist1</a><br>
+            <a href="http://searchnodeslat.lat.intranet/" target="_blank">Ir a CLLI</a><br>
+            <a href="http://127.0.0.1:8000/pais_mercado_nodo/" target="_blank">Ir a P2P</a><br>
+            <a href="https://rap.ciriontechnologies.com/Citrix/StoreWeb/#/home" target=_blank">Ir a Citrix Cirion</a><br>
+
                 {% load network_filters %}
                 <div class="copy-box">
                     <div class="title">Datos del Cliente</div>
@@ -40,17 +44,18 @@
                         {% if datos.tipo_configuracion %}tipo_configuracion: {{ datos.tipo_configuracion }}{% endif %}
                         {% if datos.tipo_servicio %}tipo_servicio: {{ datos.tipo_servicio }}{% endif %}
                         {% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
+                        {% if datos.rfs_ip_port_nid %}RFS-IP-PORT_NID: {{ datos.rfs_ip_port_nid }}{% endif %}
                         {% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
                         {% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
                         {% if datos.sw %}SW: {{ datos.sw }}{% endif %}
                         {% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
                         {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
                         {% if datos.unit %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
+                        {% if datos.unit_nid and datos.unit_nid != "505" %}Interface NID: {{ datos.interface_pe }}.{{ datos.unit_nid }}{% endif %}
                         {% if datos.sv and  datos.tipo_equipo == 'ALCATEL' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}{% endif %}
                         {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
                         {% if datos.vt %}Vlan Tercero: {{ datos.vt }}{% endif %}
                         {% if datos.rd %}RD: {{ datos.rd }}{% endif %}
-                        {% if datos.unit %}Unit: {{ datos.unit }}{% endif %}
                         {% if datos.sv %}SV: {{ datos.sv }}{% endif %}
                         {% if datos.cv %}CV: {{ datos.cv }}{% endif %}
                         {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}M{% endif %}
@@ -150,8 +155,8 @@
                             bash
                             roci {{ datos.pe }}
                             configure private
-
-                            show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more
+                            {% if datos.rfs_ip_port_nid != "" %}show  interfaces  {{ datos.interface_pe }}  | display set  | no-more{% endif %}
+                            {% if datos.rfs_ip_port_nid == "" %}show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more{% endif %}
                             run show route  {{ datos.wan|first_valid_ip }} | no-more
                             {% if datos.lan and datos.lan != '0.0.0.0/0' %}run show route  {{ datos.lan|first_valid_ip }} | no-more{% endif %}
 
@@ -279,9 +284,16 @@
 
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER: {{ datos.cliente }} (CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}
+                            {% if "-1-" in datos.vrf|strip %}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet no-redirects
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output {{ datos.interface_pe }}.{{ datos.unit }}-out
+
+                            {% else %}
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet mtu 1500
-                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input {{ datos.interface_pe }}.{{ datos.unit }}-inet-i
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter output {{ datos.interface_pe }}.{{ datos.unit }}-inet-e
+
+                            {% endif %}
+                            set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input {{ datos.interface_pe }}.{{ datos.unit }}-inet-i
                             set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input {{ datos.interface_pe }}.{{ datos.unit }}-in
                             {% if datos.wan|first_valid_ip_with_mask and datos.wan|first_valid_ip_with_mask != '0.0.0.1/0'%}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
 
@@ -289,6 +301,18 @@
                                 
                             {% if "edge" in datos.pe|strip %}
 
+                                {% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} description "CUSTOMER:{{ datos.cliente }}"{% endif %}
+                                {% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} vlan-tagging{% endif %}
+
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_nid }})"
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} bandwidth 10m
+                                {% if datos.sv  !=  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
+                                {% if datos.sv  ==  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-id {{ datos.unit_nid }} {% endif %}
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet rpf-check mode loose
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet filter input customer-cflow
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer input ratelimit-10000000
+                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer output ratelimit-10000000
+                                {% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet address {{ datos.lnnid}}/31{% endif %}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} bandwidth {{ bwjun }}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}
@@ -298,12 +322,12 @@
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output ratelimit-{{ bwjun }}
                                 {% if datos.wan|mask == '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan}}{% endif %}
                                 {% if datos.wan|mask != '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6  filter input ipv6-customer-cflow
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input ratelimit-{{ bwjun }}-IPV6
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output ratelimit-{{ bwjun }}-IPV6
-                                {% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6}}{% endif %}
-                                {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6  filter input ipv6-customer-cflow{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input ratelimit-{{ bwjun }}-IPV6{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output ratelimit-{{ bwjun }}-IPV6{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}{% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6}}{% endif %}{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}{% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
 
                             {% else %}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
@@ -317,13 +341,13 @@
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{  datos.bw }}M
                                 {% if datos.wan|mask == '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan}}{% endif %}
                                 {% if datos.wan|mask != '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 mtu 1500
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input NETPROTECT-BE-IPv6
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-IPV6-{{  datos.bw }}M
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-IPV6-{{  datos.bw }}M
-                                {% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6}}{% endif %}
-                                {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 mtu 1500{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input NETPROTECT-BE-IPv6{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-IPV6-{{  datos.bw }}M{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-IPV6-{{  datos.bw }}M{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}{% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6}}{% endif %}{% endif %}
+                                {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %} {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
                             {% endif %}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
@@ -455,7 +479,61 @@
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            {% if "-1-" in datos.vrf|strip %}
 
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-I
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ datos.bw }}m
+                            set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
+                            set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP from dscp 46
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then policer ae10.604.EF-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then count EF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then loss-priority low
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then forwarding-class EF
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 34
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i
+
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then count EF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then loss-priority high
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then forwarding-class EF
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 16
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 24
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 48
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then count AF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then loss-priority low
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then forwarding-class AF
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 18
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 26
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then loss-priority high
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then forwarding-class AF
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then count BE-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then loss-priority high
+                            set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then forwarding-class BE
+
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i filter-specific
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding bandwidth-limit {{bw_Exchange_por}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding burst-size-limit {{burst_size_limit_Exchange}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i then discard
+
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i filter-specific
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i if-exceeding bandwidth-limit {{bw_plus_por}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i if-exceeding burst-size-limit {{burst_size_limit_plus}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i then loss-priority high
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i forwarding-class VPN-BE
+
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in logical-interface-policer
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out logical-interface-policer
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding burst-size-limit {{burst_size_limit}}
+                            set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out then discard
+                            {% else %}
                             set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
                             set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
                             set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
@@ -501,6 +579,7 @@
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
                             set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
                             set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
+                            {% endif %}
 
                             {% elif datos.tipo_configuracion == "Alta" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "JUNIPER" %}
                                 {% if "edge" in datos.pe|strip %}
