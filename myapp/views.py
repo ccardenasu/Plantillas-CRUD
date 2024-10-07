@@ -15,6 +15,12 @@ def datos_view(request):
             datos = form.save(commit=False)
             num_puertos_lag = form.cleaned_data.get("num_puertos_lag")
             datos.save()
+
+            lan_ips = [ip.strip() for ip in datos.lan.split(',')]
+            lanv6_ips = [ip.strip() for ip in datos.lanv6.split(',')] if datos.lanv6 else []
+            lan_ips_with_masks = [(ip.strip(), ipaddress.ip_network(ip.strip(), strict=False).prefixlen) for ip in datos.lan.split(',')] if datos.lan else []
+            lanv6_ips_with_masks = [(ip.strip(), ipaddress.ip_network(ip.strip(), strict=False).prefixlen) for ip in datos.lanv6.split(',')] if datos.lanv6 else []
+
             # Asegurarse de que el directorio 'media' existe
             media_dir = os.path.join(os.path.dirname(__file__), "..", "media")
             if not os.path.exists(media_dir):
@@ -151,6 +157,10 @@ def datos_view(request):
                     "burst_size_limit_plus": burst_size_limit_plus,
                     "burst_size_limit_Exchange": burst_size_limit_Exchange,
                     "qos": qos,
+                    "lan_ips": lan_ips,  # Pasar las IPs procesadas a la plantilla
+                    "lanv6_ips": lanv6_ips,  # Pasar las IPs procesadas a la plantilla
+                    "lan_ips_with_masks": lan_ips_with_masks,  # Pasar las IPs y sus máscaras a la plantilla
+                    "lanv6_ips_with_masks": lanv6_ips_with_masks,  # Pasar las IPs y sus máscaras a la plantilla
 
                 },
             )
