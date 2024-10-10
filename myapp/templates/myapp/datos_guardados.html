@@ -51,7 +51,7 @@
                         {% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
                         {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
                         {% if datos.unit %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
-                        {% if datos.unit_nid and datos.unit_nid != "505" %}Interface NID: {{ datos.interface_pe }}.{{ datos.unit_nid }}{% endif %}
+                        {% if datos.unit_nid and datos.unit_nid != "" %}Interface NID: {{ datos.interface_pe }}.{{ datos.unit_nid }}{% endif %}
                         {% if datos.sv and  datos.tipo_equipo == 'ALCATEL' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}{% endif %}
                         {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
                         {% if datos.vt %}Vlan Tercero: {{ datos.vt }}{% endif %}
@@ -155,10 +155,13 @@
                             bash
                             roci {{ datos.pe }}
                             configure private
-                            {% if datos.rfs_ip_port_nid != "" %}show  interfaces  {{ datos.interface_pe }}  | display set  | no-more{% endif %}
-                            {% if datos.rfs_ip_port_nid == "" %}show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more{% endif %}
+                            {% if datos.rfs_ip_port_nid  %}show  interfaces  {{ datos.interface_pe }}  | display set  | no-more{% endif %}
+                            {% if datos.rfs_ip_port %}show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more{% endif %}
                             run show route  {{ datos.wan|first_valid_ip }} | no-more
-                            {% if datos.lan and datos.lan != '0.0.0.0/0' %}run show route  {{ datos.lan|first_valid_ip }} | no-more{% endif %}
+
+                            {% for lan_ip in lan_ips %}
+                                {% if datos.lan != '0.0.0.0/0' %}run show route   {{ lan_ip }} | no-more {% endif %}
+                            {% endfor %}
 
                             
 
@@ -303,19 +306,21 @@
 
                                 {% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} description "CUSTOMER:{{ datos.cliente }}"{% endif %}
                                 {% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} vlan-tagging{% endif %}
+                                {% if datos.rfs_ip_port_nid != "" %}del interfaces {{ datos.interface_pe }} disable{% endif %}
 
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_nid }})"
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} bandwidth 10m
-                                {% if datos.sv  !=  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
-                                {% if datos.sv  ==  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-id {{ datos.unit_nid }} {% endif %}
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet rpf-check mode loose
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet filter input customer-cflow
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer input ratelimit-10000000
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer output ratelimit-10000000
-                                {% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet address {{ datos.lnnid}}/31{% endif %}
+                                {% if datos.unit_nid %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_nid }})"{% endif %}
+                                {% if datos.unit_nid %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} bandwidth 10m{% endif %}
+                                {% if datos.unit_nid %}{% if datos.sv  !=  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}{% endif %}
+                                {% if datos.unit_nid %}{% if datos.sv  ==  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-id {{ datos.unit_nid }} {% endif %}{% endif %}
+                                {% if datos.unit_nid %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet rpf-check mode loose{% endif %}
+                                {% if datos.unit_nid %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet filter input customer-cflow{% endif %}
+                                {% if datos.unit_nid %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer input ratelimit-10000000{% endif %}
+                                {% if datos.unit_nid %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer output ratelimit-10000000{% endif %}
+                                {% if datos.unit_nid %}{% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet address {{ datos.lnnid}}/31{% endif %}{% endif %}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} bandwidth {{ bwjun }}
-                                set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}
+                                {% if datos.sv  !=  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
+                                {% if datos.sv  ==  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-id {{ datos.cv }}{% endif %}
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet rpf-check mode loose
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input customer-cflow
                                 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input ratelimit-{{ bwjun }}
@@ -671,14 +676,30 @@
                             {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
                             {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
                             {% else %}
-                            {% if datos.wan|mask == '31' %}set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|first_valid_ip }} {% endif %}
-                            {% if datos.wan|mask != '31' %}set routing-options static route  {{ datos.lan }} next-hop  {{ datos.wan|second_valid_ip }} {% endif %}
-                            {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} {% endif %}
-                            {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} {% endif %}
+                            
+                            
+                            {% if datos.wan|mask != '31' %}
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} passive
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} advertise-peer-as
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import transit-customer-map
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit maximum 4000
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit teardown idle-timeout 5
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} export default-originate
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} remove-private
+                            set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
+                            {% endif %}
+                            {% for lan_ip, mask in lan_ips_with_masks %}
+                            set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept from route-filter {{ lan_ip }} upto /{{ mask }}
+                            {% endfor %}
+                            set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then next policy
+                            set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then accept
+                            set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject from as-path all-routes
+                            set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject then reject
                             {% endif %}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
-                        
+
                         {% if datos.asn == '' %}
 
                         {% for lan_ip in lan_ips %}
@@ -694,19 +715,19 @@
                             /configure router policy-options begin
                             {% for lan_ip, mask in lan_ips_with_masks %}
                             /configure router policy-options prefix-list PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} prefix {{ lan_ip }} through {{ mask }}
-                        {% endfor %}
+                            {% endfor %}
                         /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 5 description AS{{datos.asn}}-PREFIXIES
                         /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 5 from prefix-list PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}
                         /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 5 action next-policy
                         /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 10 from as-path all-routes
                         /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 10 action reject
                         /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  default-action reject
-                        
+
                         /configure router policy-options commit
                         exit
-                        
+
                         /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} type external
-                        /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} peer-as 10753
+                        /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} peer-as {{ datos.asn }}
                         /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} description "{{ datos.cliente}}"
                         /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} remove-private
                         /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family ipv4
@@ -745,9 +766,8 @@
 
                         /configure filter match-list ipv6-prefix-list "cust-bgp-ipv6" prefix {{ datos.wanv6|second_valid_ipv6 }}/128
 
-                        admin display-config | match  ae-12:24.1200 context all
-                        admin display-config | match PEER-201.234.78.38 context all
-                        admin display-config | match PEER-2001:13b0:8001:b851::2 context all
+                        admin display-config | match {{ datos.wan|second_valid_ip }} context all
+                        admin display-config | match {{ datos.wanv6|second_valid_ipv6 }} context all
 
 
 
