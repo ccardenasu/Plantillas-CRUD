@@ -1,36 +1,54 @@
 from django import forms
+from django.utils.safestring import mark_safe
 from django.core.validators import validate_ipv4_address
 from django.core.exceptions import ValidationError
 from .models import Datos
 import re
 import ipaddress
 
+class LinkWidget(forms.TextInput):
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+        links = (
+            '<br><a href="http://ximelat/" target="_blank">Ir a Xime Metro2</a><br>'
+            '<a href="http://4.74.133.173:8080/logon.aspx" target="_blank">Ir a Xime Metro3</a><br>'
+        )
+        return mark_safe(f'{html}{links}')
+
+class LbcpeLinkWidget(forms.TextInput):
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+        link = '<br><a href="http://xicpe/select.aspx" target="_blank">Ir a CRUD xicpe</a><br>'
+        return mark_safe(f'{html}{link}')
 
 class DatosForm(forms.ModelForm):
     class Meta:
         model = Datos
         fields = [
+            
+            "tipo_configuracion",
+            "tipo_equipo",
+            "tipo_servicio",
             "dko",
             "cfs",
             "cliente",
             "sede",
             "rfs_ip_port",
-            "tipo_configuracion",
-            "tipo_equipo",
-            "tipo_servicio",
             "rfs_ip_port_nid",
             "vt",
+            "sw",
+            "interface_sw",
             "bw",
             "bw_plus",
             "bw_Exchange",
-            "sw",
-            "interface_sw",
             "sw_b",
             "interface_sw_b",
             "unit",
             "unit_nid",
             "sv",
             "cv",
+            "sv_b",
+            "cv_b",
             "vrf",
             "rd",
             "IES",
@@ -54,7 +72,6 @@ class DatosForm(forms.ModelForm):
             "interface_pe",
             "pe_b",
             "interface_pe_b",
-
         ]
         widgets = {
             "asn": forms.TextInput(attrs={"class": "form-control"}),
@@ -67,6 +84,7 @@ class DatosForm(forms.ModelForm):
             "cliente": forms.TextInput(attrs={"class": "form-control"}),
             "cfs": forms.TextInput(attrs={"class": "form-control"}),
             "cv": forms.TextInput(attrs={"class": "form-control"}),
+            "cv_b": forms.TextInput(attrs={"class": "form-control"}),
             "dko": forms.TextInput(attrs={"class": "form-control"}),
             "IES": forms.TextInput(attrs={"class": "form-control"}),
             "interface_pe": forms.TextInput(attrs={"class": "form-control"}),
@@ -76,7 +94,7 @@ class DatosForm(forms.ModelForm):
             "lag": forms.TextInput(attrs={"class": "form-control"}),
             "lan": forms.TextInput(attrs={"class": "form-control"}),
             "lanv6": forms.TextInput(attrs={"class": "form-control"}),
-            "lbcpe": forms.TextInput(attrs={"class": "form-control"}),
+            "lbcpe": LbcpeLinkWidget(attrs={"class": "form-control"}),
             "lnnid": forms.TextInput(attrs={"class": "form-control"}),
             "mercado": forms.Select(attrs={"class": "form-control"}),
             "pais": forms.Select(attrs={"class": "form-control"}),
@@ -90,7 +108,8 @@ class DatosForm(forms.ModelForm):
             "sede": forms.TextInput(attrs={"class": "form-control"}),
             "sede_b": forms.TextInput(attrs={"class": "form-control"}),
             "sv": forms.TextInput(attrs={"class": "form-control"}),
-            "sw": forms.TextInput(attrs={"class": "form-control"}),
+            "sv_b": forms.TextInput(attrs={"class": "form-control"}),
+            "sw": LinkWidget(attrs={"class": "form-control"}),
             "sw_b": forms.TextInput(attrs={"class": "form-control"}),
             "tipo_configuracion": forms.Select(attrs={"class": "form-control"}),
             "tipo_equipo": forms.Select(attrs={"class": "form-control"}),
@@ -102,7 +121,6 @@ class DatosForm(forms.ModelForm):
             "vt": forms.TextInput(attrs={"class": "form-control"}),
             "wan": forms.TextInput(attrs={"class": "form-control"}),
             "wanv6": forms.TextInput(attrs={"class": "form-control"})
-
         }
 
     def clean_cfs(self):

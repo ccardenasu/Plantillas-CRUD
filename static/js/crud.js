@@ -10,7 +10,7 @@
         var swField = document.getElementById('id_sw');
         var svField = document.getElementById('id_sv');
 
-        var fieldsToShowVPLSALTJUN = 	[ 'id_be','id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_cv','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_lnnid','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sv','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_vrf',];
+        var fieldsToShowVPLSALTJUN = 	[ 'id_be','id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_cv','id_cv_b','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_lnnid','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sv','id_sv_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_vrf',];
         var fieldsToShowVPLSAMPJUN =    [ 'id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_wan'];    
         var fieldsToShowVPLSMODJUN = 	[ 'id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_servicio','id_unit','id_unit_b'];
         var fieldsToShowVPNALTJUN =     [ 'id_asn','id_be','id_bw','id_bw_plus','id_bw_Exchange','id_bundle_ether','id_cfs','id_cliente','id_cv','id_dko','id_interface_pe','id_interface_sw','id_lbcpe','id_lnnid','id_pe','id_rd','id_rfs_ip_port','id_sede','id_sv','id_sw','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_vrf','id_vt','id_wan'];      
@@ -21,11 +21,25 @@
         var fieldsToShowADIAMPALC =     [ 'id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sv', 'id_cv', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag','id_lag'];
         var fieldsToShowADIAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_wan'];
         // Agregar evento blur para vrfField
+
+        
         swField.addEventListener('blur', function() {
+            console.log("Evento blur activado");
+            console.log("Valor de swField:", swField.value);
+            
             if (swField.value === "mesc20.baq.baq") {
+                console.log("Valor encontrado: mesc20.baq.baq");
                 svField.value = "1900";
+            } else if (swField.value === "mesb10.morato.telefonica.bog") {
+                console.log("Valor encontrado: mesb10.morato.telefonica.bog");
+                svField.value = "19xx, ADI 2411";            
+            } else {
+                console.log("Valor no encontrado");
             }
         });
+        
+        
+        
 
         vrfField.addEventListener('blur', function() {
             var vrfValue = vrfField.value;
@@ -107,11 +121,9 @@
         tipoServicioField.addEventListener('change', updateFieldVisibility);
         tipoServicioField.addEventListener('change', updateBundleOptions);
         tipoServicioField.addEventListener('blur', updateFieldVisibility);
-      //  console.log('tipoServicioField changed');
 
         tipoEquipoField.addEventListener('change', updateFieldVisibility);
         tipoEquipoField.addEventListener('blur', updateFieldVisibility);
-       //    console.log('tipoEquipoField changed');
 
         tipoConfiguracionField.addEventListener('change', updateFieldVisibility);
         tipoConfiguracionField.addEventListener('change', updateBundleOptions);
@@ -120,9 +132,7 @@
         if (swField) {
             swField.addEventListener('change', concatenar_tipo_servicio_sw);
             swField.addEventListener('blur', concatenar_tipo_servicio_sw);
-            console.log('swField events added');
         } else {
-            console.error('El elemento con ID "id_sw" no se encontró en el DOM.');
         }
         
         updateFieldVisibility();
@@ -131,11 +141,9 @@
 
     function buscarCfs() {
         var cfs = document.getElementById('id_cfs').value;
-        console.log(`Buscando CFS: ${cfs}`);
         fetch(`/buscar_cfs/?cfs=${cfs}`)
             .then(response => response.json())
             .then(data => {
-                console.log('Datos recibidos:', data);
                 var errorMessage = document.getElementById('error-message');
                 if (data.exists) {
                     errorMessage.innerText = "";
@@ -241,8 +249,6 @@
                 var resultDiv = document.getElementById('search-result');
                 resultDiv.innerHTML = '';
                 if (data.found) {
-                    console.log("PE_B:", data.value2);
-                    console.log("Interface PE_B:", data.value2);
                     resultDiv.innerHTML = `<p><strong>PE_B:</strong><br> ${data.value2}<br><br><strong>Interface PE_B:</strong><br> ${data.value1}</p>`;
                     document.querySelector('[name="pe_b"]').value = data.value2;
                     document.querySelector('[name="interface_pe_b"]').value = data.value1;
@@ -292,16 +298,13 @@
         document.getElementById('rs-tipo-servicio-sw').value = rs_tipo_servicio_sw;
         document.getElementById('search-term').value = rs_tipo_servicio_sw;
     
-        console.log(`Buscando: ${rs_tipo_servicio_sw}`);
         fetch(`/buscar_en_csv_tipo_servicio_sw/?term=${rs_tipo_servicio_sw}`)
             .then(response => response.json())
             .then(data => {
-                console.log('Datos recibidos:', data);
                 var errorMessage = document.getElementById('error-message');
                 if (data.found) {
                     errorMessage.innerText = "";
                     document.querySelector('[name="be"]').value = data.value5; // Asignar el valor de la columna 5
-                    console.log(`Valor encontrado en CSV: ${data.value5}`); // Mostrar el valor encontrado
     
                     // Actualizar los campos bundle_ether y bundle_ether_b
                     var bundleEtherField = document.getElementById('id_bundle_ether');

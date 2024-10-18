@@ -6,7 +6,61 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'myapp/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .fixed-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 300px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .floating-links {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .floating-links a {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
     <script src="{% static 'js/crud.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cfsInput = document.getElementById('id_cfs');
+            const dkoInput = document.getElementById('id_dko');
+            const clienteInput = document.getElementById('id_cliente');
+            const sedeInput = document.getElementById('id_sede');
+
+            const cfsDisplay = document.getElementById('cfs-display');
+            const dkoDisplay = document.getElementById('dko-display');
+            const clienteDisplay = document.getElementById('cliente-display');
+            const sedeDisplay = document.getElementById('sede-display');
+
+            function updateDisplay() {
+                cfsDisplay.textContent = cfsInput.value;
+                dkoDisplay.textContent = dkoInput.value;
+                clienteDisplay.textContent = clienteInput.value;
+                sedeDisplay.textContent = sedeInput.value;
+            }
+
+            cfsInput.addEventListener('input', updateDisplay);
+            dkoInput.addEventListener('input', updateDisplay);
+            clienteInput.addEventListener('input', updateDisplay);
+            sedeInput.addEventListener('input', updateDisplay);
+
+            updateDisplay(); // Initialize display with current values
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -14,35 +68,56 @@
             <h1 class="titulo">CRUD PE</h1>
         </header>
         <main>
-            <a href="http://deliveryconsole/pdetailsearch.asp" target="_blank">Ir a Delivery Console</a><br>
-            <a href="http://ximelat/" target="_blank">Ir a Xime Metro2</a><br>
-            <a href="http://4.74.133.173:8080/logon.aspx" target="_blank">Ir a Xime Metro3</a><br>
-            <a href="http://xicpe/select.aspx" target="_blank">Ir a CRUD xicpe</a><br>
-            <a href="https://myworkspace.ctlaccess.centurylink.com" target="_blank">Ir a  Level3</a><br>
-            <a href="https://netbox-cirex.ciriontechnologies.com/login/?next=/extras/changelog/" target="_blank">Ir a netbox</a><br>
-            <a href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a204.199.94.42&run=toolpage" target="_blank">Ir a blacklist2</a><br>
-            <a href="https://www.spamrats.com/index.php" target="_blank">Ir a blacklist1</a><br>
-            <a href="http://searchnodeslat.lat.intranet/" target="_blank">Ir a CLLI</a><br>
-            <a href="http://127.0.0.1:8000/pais_mercado_nodo/" target="_blank">Ir a P2P</a><br>
-            <a href="https://rap.ciriontechnologies.com/Citrix/StoreWeb/#/home" target=_blank">Ir a Citrix Cirion</a><br>
-
+            <div class="floating-links">
+                <a href="http://deliveryconsole/pdetailsearch.asp" target="_blank">Ir a Delivery Console</a>
+                <a href="http://ximelat/" target="_blank">Ir a Xime Metro2</a>
+                <a href="http://4.74.133.173:8080/logon.aspx" target="_blank">Ir a Xime Metro3</a>
+                <a href="http://xicpe/select.aspx" target="_blank">Ir a CRUD xicpe</a>
+                <a href="https://myworkspace.ctlaccess.centurylink.com" target="_blank">Ir a Level3</a>
+                <a href="https://netbox-cirex.ciriontechnologies.com/login/?next=/extras/changelog/" target="_blank">Ir a netbox</a>
+                <a href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a204.199.94.42&run=toolpage" target="_blank">Ir a blacklist2</a>
+                <a href="https://www.spamrats.com/index.php" target="_blank">Ir a blacklist1</a>
+                <a href="http://searchnodeslat.lat.intranet/" target="_blank">Ir a CLLI</a>
+                <a href="http://127.0.0.1:8000/pais_mercado_nodo/" target="_blank">Ir a P2P</a>
+                <a href="https://rap.ciriontechnologies.com/Citrix/StoreWeb/#/home" target="_blank">Ir a Citrix Cirion</a>
+            </div>
+            
+            <div class="fixed-info">
+                <h3>Información Fija</h3>
+                <div class="form-group">
+                    <label for="id_cfs">Cfs:</label>
+                    <span id="cfs-display"></span>
+                </div>
+                <div class="form-group">
+                    <label for="id_dko">DKO:</label>
+                    <span id="dko-display"></span>
+                </div>
+                <div class="form-group">
+                    <label for="id_cliente">Cliente:</label>
+                    <span id="cliente-display"></span>
+                </div>
+                <div class="form-group">
+                    <label for="id_sede">Sede:</label>
+                    <span id="sede-display"></span>
+                </div>
+            </div>
+            
             <form method="post" onsubmit="return validateForm(event)">
                 {% csrf_token %}
-                <div>
+                <div class="form-group">
                     <label for="id_cfs">Cfs:</label>
                     <input type="text" name="cfs" id="id_cfs" class="form-control">
                     <div id="error-message" aria-live="assertive"></div>
                     <button type="button" onclick="buscarCfs()">Buscar</button>
                     <button type="button" onclick="limpiarCampos()">Limpiar</button>
                 </div>
-
+                
                 <div id="record-selection" style="display: none;">
                     <label for="record-select">Seleccione un registro:</label>
                     <select id="record-select" onchange="fillForm(this.value)">
                         <!-- Opciones se llenarán dinámicamente -->
                     </select>
                 </div>
-
                 {{ form.as_p }}
                 <button type="button" onclick="concatenar()">Concatenar</button><br>
                 <button type="button" onclick="concatenar_b()">Concatenar_b</button><br>
@@ -50,9 +125,7 @@
                 <input type="hidden" id="rs-sw-be_b" name="rs-sw-be_b" value=""><br>
                 <input type="hidden" id="rs-tipo-servicio-sw" name="rs-tipo-servicio-sw" value="">
                 <button type="submit" aria-label="Enviar Formulario">Enviar</button>
-
             </form>
-           
             <div id="search-result"></div>
             <h2>Buscar en CSV</h2>
             <form id="csv-search-form">
@@ -60,7 +133,6 @@
                 <input type="text" id="search-term" name="search-term" class="form-control">
                 <button type="button" onclick="buscarEnCSV()">Buscar</button>
             </form>
-
         </main>
         <footer>
             <p>© 2024 CECU</p>

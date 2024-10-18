@@ -44,6 +44,7 @@ def datos_view(request):
                             write_if_not_none("CFS", datos.cfs)
                             write_if_not_none("Cliente", datos.cliente)
                             write_if_not_none("CV", datos.cv)
+                            write_if_not_none("CV_B", datos.cv_b)
                             write_if_not_none("DKO", datos.dko)
                             write_if_not_none("Fecha de creación", datos.created_at)
                             write_if_not_none("IES", datos.IES)
@@ -191,6 +192,7 @@ def buscar_cfs(request):
                             "cfs": dato.cfs,
                             "cliente": dato.cliente,
                             "cv": dato.cv,
+                            "cv_b": dato.cv,
                             "dko": dato.dko,
                             "id": dato.id,
                             "interface_pe": dato.interface_pe,
@@ -212,6 +214,7 @@ def buscar_cfs(request):
                             "sede": dato.sede,
                             "sede_b": dato.sede_b,
                             "sv": dato.sv,
+                            "sv_b": dato.sv,
                             "sw": dato.sw,
                             "sw_b": dato.sw_b,
                             "tipo_configuracion": dato.tipo_configuracion,
