@@ -180,7 +180,7 @@
                             configure lag {{num_puertos_lag}}
                             info
                             exit
-                            admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }} context all
+                            admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
                             admin display-config | match {{ datos.IES }} context all
 
                             show qos sap-ingress | match CUSTOMER-{{ qos }}
@@ -462,7 +462,7 @@
                             {% if datos.pe_b %} #################################################################{% endif %}
 
                             #PE {{ datos.pe_b }}
-                            set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                            set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}1
                             set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
                             set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in then discard
 
@@ -550,61 +550,123 @@
 
                             
 
-                        {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+
+                            #AVJ
                             {% if "-1-" in datos.vrf|strip %}
+                            #AVJ-1-
 
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-I{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ datos.bw }}m{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP from dscp 46{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then policer ae10.604.EF-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then count EF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then loss-priority low{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then forwarding-class EF{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 34{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then count EF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then loss-priority high{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then forwarding-class EF{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 16{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 24{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 48{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then count AF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then loss-priority low{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then forwarding-class AF{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 18{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 26{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then loss-priority high{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then forwarding-class AF{% endif %}
-                                set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then count BE-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
-                                set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then loss-priority high
-                                set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then forwarding-class BE
+                                {% if datos.bw_plus and datos.bw_plus != '0' %}
+                                #AVJ-1-QoS
 
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i filter-specific{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding bandwidth-limit {{bw_Exchange_por}}{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding burst-size-limit {{burst_size_limit_Exchange}}{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i then discard{% endif %}
+									set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-I
+									set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ datos.bw }}m
+									set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
+									set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP from dscp 46
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then count EF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then loss-priority low
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then forwarding-class EF
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 32
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 34
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 36
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 38
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 40
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then count EF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then loss-priority high
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then forwarding-class EF
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 16
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 24
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 26
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 28
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then count AF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then loss-priority low
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then forwarding-class AF
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 18
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 20
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 22
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 30
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then loss-priority high
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then forwarding-class AF
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then count BE-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then loss-priority high
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then forwarding-class BE
 
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i filter-specific{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i if-exceeding bandwidth-limit {{bw_plus_por}}{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i if-exceeding burst-size-limit {{burst_size_limit_plus}}{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i then loss-priority high{% endif %}
-                                {% if datos.bw_plus and datos.bw_plus != '0' %}set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i forwarding-class VPN-BE{% endif %}
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i filter-specific
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding bandwidth-limit {{bw_Exchange_por}}
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding burst-size-limit {{burst_size_limit_Exchange}}
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i then discard
 
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in logical-interface-policer
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i filter-specific
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i if-exceeding bandwidth-limit {{bw_plus_por}}
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i if-exceeding burst-size-limit {{burst_size_limit_plus}}
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i then loss-priority high
+									set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.AF-i then forwarding-class VPN-BE
 
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out logical-interface-policer
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding bandwidth-limit {{ shaping_rate }}
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding burst-size-limit {{burst_size_limit}}
-                                set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out then discard
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in logical-interface-policer
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out logical-interface-policer
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding bandwidth-limit {{ shaping_rate }}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding burst-size-limit {{burst_size_limit}}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out then discard
+                                    
+                                {% else %}
+                                #AVJ-1-No-QoS
+
+                                    set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-I
+									set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ datos.bw }}m
+									set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
+									set class-of-service interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-traffic-control-profile {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP from dscp 46
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then count EF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then loss-priority low
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF_DSCP then forwarding-class EF
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 32
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 34
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 36
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 38
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP from dscp 40
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then loss-priority high
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term EF-DE_DSCP then forwarding-class EF
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 16
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 24
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 26
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP from dscp 28
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then count AF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then loss-priority low
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF_DSCP then forwarding-class AF
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 18
+                                    set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 20
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 22
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP from dscp 30
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then loss-priority high
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term AF-DE_DSCP then forwarding-class AF
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then count BE-DE.rx-{{ datos.interface_pe }}.{{ datos.unit }}-inet-i
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then loss-priority high
+									set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then forwarding-class BE
+
+
+
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in logical-interface-policer
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding bandwidth-limit {{ shaping_rate }}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out logical-interface-policer
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding bandwidth-limit {{ shaping_rate }}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out if-exceeding burst-size-limit {{burst_size_limit}}
+                                    set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-out then discard
+                                {% endif %}
+
                             {% else %}
+   
                                 set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-6Q
                                 set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ shaping_rate }}
                                 set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}
@@ -650,7 +712,10 @@
                                 set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in if-exceeding burst-size-limit {{burst_size_limit}}
                                 set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-in then discard
                                 set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
-                            {% endif %}
+
+                                
+
+                        {% endif %}
 
                             
 
@@ -728,17 +793,38 @@
                             
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            {% if "-1-" in datos.vrf|strip %}
 
-                            show routing-instances {{ datos.vrf }} protocols bgp | display set  | match type
-                            #
-                            #
-                            set routing-instances {{ datos.vrf }} protocols bgp group external type external
-                            set routing-instances {{ datos.vrf }} protocols bgp group external family inet unicast
-                            set routing-instances {{ datos.vrf }} protocols bgp group external export bgp-export-policy
-                            #
-                            set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
-                            set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} as-override
-                            show routing-instances {{ datos.vrf }} protocols bgp group external neighbor  {{ datos.wan|second_valid_ip }} | display set
+                                set routing-instances {{ datos.vrf }} protocols bgp path-selection always-compare-med
+                                set routing-instances {{ datos.vrf }} protocols bgp family inet any
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} type external
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} log-updown
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} import BGP-import
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit maximum 5000
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit teardown 90
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit teardown idle-timeout 120
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export BGP-export
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export
+                                set policy-options "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export then accept 
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} peer-as {{ datos.asn }}
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} as-override
+                                set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }}
+
+
+                            {% else %}
+
+                                show routing-instances {{ datos.vrf }} protocols bgp | display set  | match type
+                                #
+                                #
+                                set routing-instances {{ datos.vrf }} protocols bgp group external type external
+                                set routing-instances {{ datos.vrf }} protocols bgp group external family inet unicast
+                                set routing-instances {{ datos.vrf }} protocols bgp group external export bgp-export-policy
+                                #
+                                set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
+                                set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} as-override
+                                show routing-instances {{ datos.vrf }} protocols bgp group external neighbor  {{ datos.wan|second_valid_ip }} | display set
+
+                            {% endif %}
                             #
                             #
                             {% if datos.lbcpe and datos.lbcpe != 'None' %}set routing-instances {{ datos.vrf }} routing-options static route {{ datos.lbcpe }} next-hop {{ datos.wan|second_valid_ip }} tag 14{% endif %}
@@ -771,18 +857,22 @@
 
                                 {% if "edge" in datos.pe|strip %}
 
-                                {% for lan_ip, mask in lan_ips_with_masks %}
-                                    {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} community 3356:123 community 3356:22{% endif %}
-                                    {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22{% endif %}
-                                    {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
-                                    {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
-                                {% endfor %}
-                                
-                                
-                            {% endif %}
-                        {% endif %}
+                                    {% for lan_ip, mask in lan_ips_with_masks %}
+                                        {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} community 3356:123 community 3356:22{% endif %}
+                                        {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22{% endif %}
+                                        {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
+                                        {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
+                                    {% endfor %}
+                                {% else %}
 
-                        
+                                    {% for lan_ip, mask in lan_ips_with_masks %}
+                                        {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} {% endif %}
+                                        {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} {% endif %}
+                                        {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} {% endif %}
+                                        {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endif %}
 
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "ADI" and datos.tipo_equipo == "ALCATEL" %}
 
@@ -934,6 +1024,31 @@
 
                             show  routing-instances {{ datos.vrf }}  | display set | no
 
+                            {% if "-1-" in datos.vrf|strip %}
+
+                            set policy-options policy-statement {{ datos.vrf }}-export term DEFAULT then default-action reject
+                            set policy-options policy-statement {{ datos.vrf }}-export term L3VPN then community add {{ datos.vrf }}-mesh
+                            set policy-options policy-statement {{ datos.vrf }}-export term L3VPN then default-action accept
+                            set policy-options policy-statement {{ datos.vrf }}-import term L3VPN from community {{ datos.vrf }}-mesh
+                            set policy-options policy-statement {{ datos.vrf }}-import term L3VPN then accept
+                            set policy-options policy-statement {{ datos.vrf }}-import term final then reject
+                            set policy-options community {{ datos.vrf }}-mesh members target:{{ datos.rd }}
+                            set routing-instances {{ datos.vrf }} instance-type vrf
+                            set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
+                            set routing-instances {{ datos.vrf }} route-distinguisher "LB_PE:Nuemeros iniciales de VRF AZUL"
+                            set routing-instances {{ datos.vrf }} vrf-import VPN-import
+                            set routing-instances {{ datos.vrf }} vrf-import {{ datos.vrf }}-import
+                            set routing-instances {{ datos.vrf }} vrf-export VPN-export
+                            set routing-instances {{ datos.vrf }} vrf-export {{ datos.vrf }}-export
+                            set routing-instances {{ datos.vrf }} vrf-table-label
+                            set routing-instances {{ datos.vrf }} routing-options router-id {{ datos.wan|first_valid_ip }}
+                            set routing-instances {{ datos.vrf }} routing-options auto-export
+
+
+                            {% else %}
+
+
+
                             set routing-instances {{ datos.vrf }} description "{{datos.cliente}}"
                             set routing-instances {{ datos.vrf }} instance-type vrf
                             set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
@@ -961,6 +1076,8 @@
                             set policy-options policy-statement {{ datos.vrf }}-import term reject-all then reject
                             set policy-options community RT-{{ datos.vrf }}_export members target:{{ datos.rd }}
                             set policy-options community RT-{{ datos.vrf }}_import members target:{{ datos.rd }}
+
+                            {% endif %}
 
                         
                         {% else %}

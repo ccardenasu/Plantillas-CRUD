@@ -1,28 +1,3 @@
-CFS: 500398221
-Tipo de configuración: Alta
-Tipo de equipo: ALCATEL
-RFS-IP-PORT: 6000309936
-Cliente: ALMACENES CORONA S.A.S.
-bundle_ether: N/A
-bundle_ether_b: N/A
-SEDE: ALMACENES CORONA-BAZAR DE LA CONSTRUCCION RIONEGRO 81-5L0YFRI
-DKO: 8632161 (8633577)
-IES: 444016
-SW: MDLNCLAFNN002
-Interface SW: TenGigE0/0/2/3.926091200
-PE: AR1.MDC6
-Interface PE: ae-13
-puertos_lag: 1
-VT: 2609
-SV: 393
-CV: 1200
-BW: 15
-puertos_lag: 1
-WAN: 8.242.121.54/31
-WANv6: 2001:13b0:a000:c2::/64
-LAN: 0.0.0.0/0
-LNNID: 10.235.89.58
-Fecha de creación: 2024-09-19 22:01:46.526527+00:00
 set interfaces ae-13 unit None family inet address 8.242.121.55/31
 set interfaces ae-13 unit None disable
 deactivate interfaces ae-13 unit None
