@@ -1,3 +1,0 @@
-set interfaces ae-13 unit None family inet address 8.242.121.55/31
-set interfaces ae-13 unit None disable
-deactivate interfaces ae-13 unit None

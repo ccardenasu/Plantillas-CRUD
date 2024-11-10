@@ -23,6 +23,7 @@ class Datos(models.Model):
         ("", ""),
         ("JUNIPER", "JUNIPER"),
         ("ALCATEL", "ALCATEL"),
+        ("ALCATEL_V", "ALCATEL_V"),
         ("CISCO", "CISCO"),
     ]
     BUNDLE_ETHER_CHOICES = [
@@ -37,6 +38,12 @@ class Datos(models.Model):
         ("TE7/3", "TE7/3"),
         ("GigabitEthernet0/11","GigabitEthernet0/11"),
         ("ae1","ae1"),
+    ]
+
+    TIPO_ENCAP_CHOICES = [
+            ("N/A", "N/A"),
+            ("dot1q", "dot1q"),
+            ("qinq", "qinq"),
     ]
 
     PAIS_CHOICES = [
@@ -67,6 +74,10 @@ class Datos(models.Model):
     tipo_equipo = models.CharField(
         max_length=100, choices=TIPO_EQUIPO_CHOICES, default=""
     )
+    encap_type= models.CharField(
+        max_length=100, choices=TIPO_ENCAP_CHOICES, default="N/A"
+    )
+
     asn = models.CharField(max_length=100, blank=True, null=True)
     bw = models.CharField(max_length=100, default="0")
     bw_plus = models.CharField(max_length=100, default="0")
@@ -109,7 +120,13 @@ class Datos(models.Model):
     vt = models.CharField(max_length=100, blank=True, null=True)
     wan = models.CharField(max_length=100, default="0.0.0.0/0")
     wanv6 = models.CharField(max_length=100, blank=True, null=True)
-    
+    port_breakout= models.CharField(max_length=100, blank=True, null=True)
+    root_port= models.CharField(max_length=100, blank=True, null=True)
+    child_port= models.CharField(max_length=100, blank=True, null=True)
+    mtu= models.CharField(max_length=100, blank=True, null=True)
+    lag_administrative_key= models.CharField(max_length=100, blank=True, null=True)
+
+        
 
     def save(self, *args, **kwargs):
         colombia_tz = pytz.timezone("America/Bogota")

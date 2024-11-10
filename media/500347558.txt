@@ -1,3 +1,0 @@
-set interfaces ae11 unit 2203 family inet address 0.0.0.1/0
-set interfaces ae11 unit 2203 disable
-deactivate interfaces ae11 unit 2203

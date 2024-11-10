@@ -1,3 +1,0 @@
-set interfaces ae-13 unit None family inet address 0.0.0.1/0
-set interfaces ae-13 unit None disable
-deactivate interfaces ae-13 unit None

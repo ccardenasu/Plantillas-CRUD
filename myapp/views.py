@@ -78,6 +78,11 @@ def datos_view(request):
                             write_if_not_none("VT", datos.vt)
                             write_if_not_none("WAN", datos.wan)
                             write_if_not_none("WANv6", datos.wanv6)
+                            write_if_not_none("port_breakout", datos.port_breakout)
+                            write_if_not_none("root_port", datos.root_port)
+                            write_if_not_none("child_port", datos.child_port)	
+                            write_if_not_none("encap_type", datos.encap_type)	
+                            write_if_not_none("mtu", datos.mtu)
 
 
                     # Comandos adicionales...
@@ -171,6 +176,8 @@ def datos_view(request):
     return render(request, "myapp/capturar_datos.html", {"form": form})
 
 
+from django.http import JsonResponse
+
 def buscar_cfs(request):
     cfs = request.GET.get("cfs", None)
     if cfs:
@@ -181,7 +188,6 @@ def buscar_cfs(request):
                     "exists": True,
                     "records": [
                         {
-
                             "asn": dato.asn,
                             "bundle_ether": dato.bundle_ether,
                             "bundle_ether_b": dato.bundle_ether_b,
@@ -192,9 +198,10 @@ def buscar_cfs(request):
                             "cfs": dato.cfs,
                             "cliente": dato.cliente,
                             "cv": dato.cv,
-                            "cv_b": dato.cv,
+                            "cv_b": dato.cv_b,
                             "dko": dato.dko,
                             "id": dato.id,
+                            "IES": dato.IES,
                             "interface_pe": dato.interface_pe,
                             "interface_pe_b": dato.interface_pe_b,
                             "interface_sw": dato.interface_sw,
@@ -214,7 +221,7 @@ def buscar_cfs(request):
                             "sede": dato.sede,
                             "sede_b": dato.sede_b,
                             "sv": dato.sv,
-                            "sv_b": dato.sv,
+                            "sv_b": dato.sv_b,
                             "sw": dato.sw,
                             "sw_b": dato.sw_b,
                             "tipo_configuracion": dato.tipo_configuracion,
@@ -227,10 +234,13 @@ def buscar_cfs(request):
                             "vt": dato.vt,
                             "wan": dato.wan,
                             "wanv6": dato.wanv6,
-
-                            "created_at": dato.created_at.strftime(
-                                "%Y-%m-%d %H:%M:%S"
-                            ),  # Incluir fecha de creación
+                            "port_breakout": dato.port_breakout,
+                            "root_port": dato.root_port,
+                            "child_port": dato.child_port,
+                            "encap_type": dato.encap_type,
+                            "mtu": dato.mtu,
+                            "lag_administrative_key": dato.lag_administrative_key,
+                            "created_at": dato.created_at.strftime("%Y-%m-%d %H:%M:%S"),  # Incluir fecha de creación
                         }
                         for dato in datos
                     ],
@@ -242,6 +252,7 @@ def buscar_cfs(request):
     else:
         data = {"exists": False}
     return JsonResponse(data)
+
 
 
 def buscar_en_csv(request):

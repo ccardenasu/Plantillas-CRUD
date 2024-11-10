@@ -10,16 +10,27 @@
         var swField = document.getElementById('id_sw');
         var svField = document.getElementById('id_sv');
 
-        var fieldsToShowVPLSALTJUN = 	[ 'id_be','id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_cv','id_cv_b','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_lnnid','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sv','id_sv_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_vrf',];
-        var fieldsToShowVPLSAMPJUN =    [ 'id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_wan'];    
-        var fieldsToShowVPLSMODJUN = 	[ 'id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_servicio','id_unit','id_unit_b'];
-        var fieldsToShowVPNALTJUN =     [ 'id_asn','id_be','id_bw','id_bw_plus','id_bw_Exchange','id_bundle_ether','id_cfs','id_cliente','id_cv','id_dko','id_interface_pe','id_interface_sw','id_lbcpe','id_lnnid','id_pe','id_rd','id_rfs_ip_port','id_sede','id_sv','id_sw','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_vrf','id_vt','id_wan'];      
-        var fieldsToShowVPNAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_wan'];
-        var fieldsToShowADIALTALC =     [ 'id_asn','id_cfs', 'id_dko', 'id_IES', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_vt', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
-        var fieldsToShowADIALTJUN =     [ 'id_asn','id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe'];
-        var fieldsToShowADIALTJUN =     [ 'id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_rfs_ip_port_nid', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_unit','id_unit_nid', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_vt',];
-        var fieldsToShowADIAMPALC =     [ 'id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 'id_sv', 'id_cv', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag','id_lag'];
-        var fieldsToShowADIAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_wan'];
+        var fieldsToShowVPLSALTJUN = 	[ 'id_be','id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_cv','id_cv_b','id_dko','id_interface_pe','id_interface_pe_b',
+            'id_interface_sw','id_interface_sw_b','id_lnnid','id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sv','id_sv_b','id_sw','id_sw_b','id_tipo_configuracion',
+            'id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_vrf',];
+        var fieldsToShowVPLSAMPJUN =    [ 'id_bw','id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b',
+            'id_pe','id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_unit_b','id_wan'];    
+        var fieldsToShowVPLSMODJUN = 	[ 'id_bundle_ether','id_bundle_ether_b','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_pe_b','id_interface_sw','id_interface_sw_b','id_pe',
+            'id_pe_b','id_rfs_ip_port','id_rfs_ip_port_b','id_sede','id_sede_b','id_sw','id_sw_b','id_tipo_configuracion','id_tipo_servicio','id_unit','id_unit_b'];
+        var fieldsToShowVPNALTJUN =     [ 'id_asn','id_be','id_bw','id_bw_plus','id_bw_Exchange','id_bundle_ether','id_cfs','id_cliente','id_cv','id_dko','id_interface_pe','id_interface_sw',
+            'id_lbcpe','id_lnnid','id_pe','id_rd','id_rfs_ip_port','id_sede','id_sv','id_sw','id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_vrf','id_vt','id_wan'];      
+        var fieldsToShowVPNAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw',
+            'id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_wan'];
+        var fieldsToShowADIALTALC =     [ 'id_asn','id_cfs', 'id_dko', 'id_IES', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 
+            'id_interface_sw', 'id_vt', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
+        var fieldsToShowADIALTALCV =     [ 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_dko','id_cfs','id_cliente', 'id_sede','id_rfs_ip_port','id_vt','id_sw','id_interface_sw',
+             'id_bw','id_sv', 'id_cv','id_IES','id_lag','id_puertos_lag','id_asn','id_wan','id_wanv6','id_lan','id_lanv6','id_be','id_bundle_ether', 'id_pe', 'id_interface_pe','id_encap_type',];
+        var fieldsToShowADIALTJUN =     [ 'id_asn','id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 
+            'id_interface_sw', 'id_unit', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid','id_be','id_bundle_ether', 'id_pe', 'id_interface_pe'];
+        var fieldsToShowADIAMPALC =     [ 'id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 
+            'id_sv', 'id_cv', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag','id_lag'];
+        var fieldsToShowADIAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw',
+            'id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_wan'];
         // Agregar evento blur para vrfField
 
         
@@ -81,6 +92,8 @@
                     field.style.display = fieldsToShowVPNALTJUN.includes(field.id) ? 'block' : 'none';
                 } else if (tipoConfiguracion === 'Alta' && tipoServicio === "ADI" && tipoEquipo === "ALCATEL") {
                     field.style.display = fieldsToShowADIALTALC.includes(field.id) ? 'block' : 'none';
+                } else if (tipoConfiguracion === 'Alta' && tipoServicio === "ADI" && tipoEquipo === "ALCATEL_V") {
+                    field.style.display = fieldsToShowADIALTALCV.includes(field.id) ? 'block' : 'none';    
                 } else if (tipoConfiguracion === 'Alta' && tipoServicio === "ADI" && tipoEquipo === "JUNIPER") {
                     field.style.display = fieldsToShowADIALTJUN .includes(field.id) ? 'block' : 'none';
                 } else if (tipoConfiguracion === 'Alta' && tipoServicio === "VPLS" && tipoEquipo === "JUNIPER") {
@@ -110,6 +123,7 @@
                 <option value="Bundle-ether13">Bundle-ether13</option>
                 <option value="Bundle-ether32">Bundle-ether32</option>
                 <option value="Bundle-ether33">Bundle-ether33</option>
+                <option value="ae1">ae1</option>
             `;
 
             var options = (tipoServicioField.value === 'VPN' || tipoServicioField.value === 'VPLS') ? optionsVPNVPLS : optionsDefault;
@@ -141,10 +155,14 @@
 
     function buscarCfs() {
         var cfs = document.getElementById('id_cfs').value;
+        console.log('CFS:', cfs);  // Verifica el valor de CFS
+    
         fetch(`/buscar_cfs/?cfs=${cfs}`)
             .then(response => response.json())
             .then(data => {
+                console.log('Data:', data);  // Verifica la respuesta del servidor
                 var errorMessage = document.getElementById('error-message');
+    
                 if (data.exists) {
                     errorMessage.innerText = "";
                     if (data.records.length > 1) {
@@ -162,13 +180,18 @@
                     }
                 } else {
                     errorMessage.innerText = "El CFS no existe.";
+                    errorMessage.style.color = 'red';  // Opcional: Cambia el color del mensaje de error
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                var errorMessage = document.getElementById('error-message');
+                errorMessage.innerText = "Ocurrió un error al buscar el CFS.";
+                errorMessage.style.color = 'red';  // Opcional: Cambia el color del mensaje de error
             });
     }
-
+    
+    
     function fillForm(record) {
         var data = JSON.parse(record);
         for (var key in data) {
