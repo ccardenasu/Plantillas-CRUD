@@ -1,0 +1,59 @@
+{% if "edge" in datos.pe|strip %}
+
+{% if datos.rfs_ip_port_nid  %}
+    set interfaces {{ datos.interface_pe }} description "CUSTOMER:{{ datos.cliente }}"
+    set interfaces {{ datos.interface_pe }} vlan-tagging
+    del interfaces {{ datos.interface_pe }} disable
+{% endif %}
+
+{% if datos.unit_nid %}
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port_nid }})"
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} bandwidth 10m
+    {% if datos.sv  !=  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
+    {% if datos.sv  ==  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} vlan-id {{ datos.unit_nid }} {% endif %}
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet rpf-check mode loose
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet filter input customer-cflow
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer input ratelimit-10000000
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet policer output ratelimit-10000000
+    {% if datos.rfs_ip_port_nid != "" %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit_nid }} family inet address {{ datos.lnnid}}{% endif %}
+
+{% endif %}
+
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} bandwidth {{ bwjun }}
+{% if datos.sv  !=  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
+{% if datos.sv  ==  datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-id {{ datos.cv }}{% endif %}
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet rpf-check mode loose
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input customer-cflow
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input ratelimit-{{ bwjun }}
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output ratelimit-{{ bwjun }}
+{% if datos.wan|mask == '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan}}{% endif %}
+{% if datos.wan|mask != '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6  filter input ipv6-customer-cflow{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input ratelimit-{{ bwjun }}-IPV6{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output ratelimit-{{ bwjun }}-IPV6{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}{% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6}}{% endif %}{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}{% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
+
+                            {% else %}d
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} bandwidth {{ bwjun }}
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet rpf-check mode loose
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet mtu 1500
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet no-redirects
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet filter input NETPROTECT-BE
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer input CUSTOMER-{{  datos.bw }}M
+set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet policer output CUSTOMER-{{  datos.bw }}M
+{% if datos.wan|mask == '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan}}{% endif %}
+{% if datos.wan|mask != '31' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 rpf-check mode loose{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 mtu 1500{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 filter input NETPROTECT-BE-IPv6{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer input CUSTOMER-IPV6-{{  datos.bw }}M{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 policer output CUSTOMER-IPV6-{{  datos.bw }}M{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}{% if datos.wanv6|maskv6 == '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6}}{% endif %}{% endif %}
+{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %} {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
+                            
+                            {% endif %}

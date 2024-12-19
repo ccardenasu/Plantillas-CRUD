@@ -1,0 +1,15 @@
+bash
+{% if datos.pe == "irs1.ccs1" %}ssh EA-CO11455@10.85.132.40{% endif %}
+
+admin show configuration configure full-context | match  {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
+admin show configuration configure full-context | match  :{{ datos.sv }}
+admin show configuration configure full-context | match   {{ datos.IES }}
+
+admin show configuration configure full-context | match  CUSTOMER-{{ qos }}
+show router route-table    {{ datos.wan|first_valid_ip }}
+{% for lan_ip in lan_ips %}
+show router route-table    {{ lan_ip|first_valid_ip }}
+##
+{% endfor %}
+
+admin show configuration configure full-context | match queue | match sap-ingress | match xxx

@@ -1,0 +1,36 @@
+bash
+roci {{ datos.pe }}
+
+configure lag {{num_puertos_lag}}
+info
+exit
+
+admin display-config | match {{ datos.IES }} context all
+admin display-config | match {{ datos.interface_pe }}:{{ datos.cv }} context all
+show qos sap-ingress | match CUSTOMER-{{ qos }}
+show router route-table    {{ datos.wan|first_valid_ip }}
+configure qos sap-ingress xxx
+info
+exit
+##
+##
+
+{% if "SUBA" in datos.bundle_ether|strip or "CXV" in datos.bundle_ether|strip %}
+    bash
+    roci {{ datos.pe_vpls_a }}
+    configure private
+    
+    show interfaces {{ datos.interface_pe_vpls_a }}| display set | no
+    show interfaces {{ datos.interface_pe_vpls_a  }}.{{ datos.cv }} | display set | no
+    show | display set | match {{ datos.interface_pe_vpls_a }}.{{ datos.cv }} | display set | no
+    ##
+    ##
+    
+    bash
+    roci {{ datos.pe_vpls_b }}
+    configure private
+    
+    show interfaces {{ datos.interface_pe_vpls_b }} | display set | no
+    show interfaces {{ datos.interface_pe_vpls_b }}.{{ datos.cv }} | display set | no
+    show | display set | match {{ datos.interface_pe_vpls_b }}.{{ datos.cv }} | display set | no
+{% endif %}

@@ -1,0 +1,70 @@
+{% if "SUBA" in datos.bundle_ether|strip or "CXV" in datos.bundle_ether|strip %}
+
+    PE {{ datos.pe_vpls_a }}
+
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}--inet-i term EF_DSCP from dscp 46
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term EF_DSCP then count EF.rx-{{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-i
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term EF_DSCP then loss-priority low
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term EF_DSCP then forwarding-class EF
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term EF-DE_DSCP from dscp 34
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term EF_DE_DSCP then count EF-DE.rx-{{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term EF-DE_DSCP then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term EF-DE_DSCP then forwarding-class EF-DE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF_DSCP from dscp 26
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF_DSCP then count AF-DE.rx-{{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF_DSCP then loss-priority low
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF_DSCP then forwarding-class AF
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP from dscp 18
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe_vpls_a }}.{{ datos.cv }}4-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP then forwarding-class AF-DE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term VPN-BE from dscp 10
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term VPN-BE then count VPN-BE.rx-{{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term VPN-BE then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term VPN-BE then forwarding-class VPN-BE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term BE then count BE.rx-{{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term BE then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-vpls-e term BE then forwarding-class BE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cos-i term all then count EFlow.rx-{{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cos-i
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cos-i term all then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cos-i term all then forwarding-class EF
+    set firewall policer {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cir-in logical-interface-policer
+    set firewall policer {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
+    set firewall policer {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
+    set firewall policer {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}-cir-in then discard
+
+
+    PE {{ datos.pe_vpls_b }}
+
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}--inet-i term EF_DSCP from dscp 46
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term EF_DSCP then count EF.rx-{{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-i
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term EF_DSCP then loss-priority low
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term EF_DSCP then forwarding-class EF
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term EF-DE_DSCP from dscp 34
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term EF_DE_DSCP then count EF-DE.rx-{{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term EF-DE_DSCP then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term EF-DE_DSCP then forwarding-class EF-DE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF_DSCP from dscp 26
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF_DSCP then count AF-DE.rx-{{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF_DSCP then loss-priority low
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF_DSCP then forwarding-class AF
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP from dscp 18
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP then count AF-DE.rx-{{ datos.interface_pe_vpls_b }}.{{ datos.cv }}4-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term AF-DE_DSCP then forwarding-class AF-DE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term VPN-BE from dscp 10
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term VPN-BE then count VPN-BE.rx-{{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term VPN-BE then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term VPN-BE then forwarding-class VPN-BE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term BE then count BE.rx-{{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term BE then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-vpls-e term BE then forwarding-class BE
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cos-i term all then count EFlow.rx-{{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cos-i
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cos-i term all then loss-priority high
+    set firewall family vpls filter {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cos-i term all then forwarding-class EF
+    set firewall policer {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cir-in logical-interface-policer
+    set firewall policer {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
+    set firewall policer {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
+    set firewall policer {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}-cir-in then discard
+
+{% endif %} 

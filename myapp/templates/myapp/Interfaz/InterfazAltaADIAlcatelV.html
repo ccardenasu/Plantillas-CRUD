@@ -1,0 +1,215 @@
+{% if datos.sw  == '' %}
+
+Configuación del breackout sobre el root port.
+/configure port {{root_port}} admin-state enable
+/configure port {{root_port}} description "$descripcion"
+/configure port {{root_port}} connector { }
+/configure port {{root_port}} connector { breakout $port_breakout }
+Configuracion de los childs port asociados al root port
+Esta configuración se debe aplicar, por cada child miembro del lag que se desea asociar, ejemplo si se necesita un LAG de 2x10G o 2x100G, se debe configurar cada child port con este template.
+/configure port {{child_port}} admin-state enable
+/configure port {{child_port}} description "$descripcion"
+/configure port {{child_port}} ethernet { }
+/configure port {{child_port}} ethernet { mode access }
+/configure port {{child_port}} ethernet { encap-type $encap-type }
+/configure port {{child_port}} ethernet { mtu {{mtu}} }
+/configure port {{child_port}} ethernet { crc-monitor }
+/configure port {{child_port}} ethernet { crc-monitor signal-degrade }
+/configure port {{child_port}} ethernet { crc-monitor signal-degrade threshold 5 }
+/configure port {{child_port}} ethernet { crc-monitor signal-degrade multiplier 2 }
+/configure port {{child_port}} ethernet { egress }
+/configure port {{child_port}} ethernet { egress port-scheduler-policy }
+/configure port {{child_port}} ethernet { egress port-scheduler-policy policy-name "$bandwidth_access_scheduler" }
+                            
+                            {% elif datos.encap_type  == 'N/A' %}
+
+{% if datos.cv %}
+
+    #para un LAG con doble tag de Vlan
+
+    #Limitacion de Rate
+
+    #Para QoS
+
+    /configure { service ies "{{ datos.cliente }}" interface {{datos.interface_pe}}:{{ datos.sv }}.{{ datos.cv }} sap lag-{{ datos.lag}}:{{ datos.sv }}.{{ datos.cv }} ingress qos sap-ingress policy-name xxxxx
+
+    #Para agg-rate
+
+    /configure { service ies "{{ datos.cliente }}"  interface {{datos.interface_pe}}:{{ datos.sv }}.{{ datos.cv }} sap lag-{{ datos.lag}}:{{ datos.sv }}.{{ datos.cv }} egress agg-rate rate {{shaping_rate}}
+    #Customer
+    /configure { service customer "{{ datos.cliente }}" }
+    /configure { service customer "{{ datos.cliente }}" customer-id {{ datos.IES }} }
+        
+    #Service
+
+    /configure { service ies "{{ datos.cliente }}" }
+    /configure { service ies "{{ datos.cliente }}" admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" service-id {{ datos.IES }} }
+    /configure { service ies "{{ datos.cliente }}" customer "{{ datos.cliente }}" }
+
+
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})" }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ingress-stats true }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" cflowd-parameters }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" cflowd-parameters sampling unicast }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" cflowd-parameters sampling unicast type interface }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" sap lag-{{ datos.lag}}:{{ datos.sv }}.{{ datos.cv }} }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" sap lag-{{ datos.lag}}:{{ datos.sv }}.{{ datos.cv }} admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 urpf-check }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 urpf-check mode loose }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 bfd }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 bfd admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 bfd receive 2000 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 bfd multiplier 3 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 primary }
+    {% if datos.wan|mask == '31' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 primary address {{ datos.wan|first_ip_no_mask }} } {% endif %}
+    {% if datos.wan|mask != '31' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 primary address {{ datos.wan|first_valid_ip }} } {% endif %}
+
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv4 primary prefix-length {{ datos.wan|mask }} }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 urpf-check }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 urpf-check mode loose }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 bfd }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 bfd receive 500 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 bfd multiplier 3 }
+
+
+    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 address {{ datos.wanv6|first_ipv6_no_mask}} } {% endif %}{% endif %}
+    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 address {{ datos.wanv6|first_ipv6_no_mask}} prefix-length {{ datos.wanv6|maskv6 }}} {% endif %}{% endif %}
+    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 address {{ datos.wanv6|first_valid_ipv6 }} } {% endif %}{% endif %}            
+    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}" ipv6 address {{ datos.wanv6|first_valid_ipv6 }} prefix-length {{ datos.wanv6|maskv6 }}} {% endif %}{% endif %}
+    
+{% elif datos.sv %}
+
+#para un LAG con un tag de Vlan
+
+    #Limitacion de Rate
+
+    #Para QoS
+
+    service ies {{datos.IES}} interface {{datos.interface_pe}}:{{ datos.sv }} sap lag-{{ datos.lag}}:{{ datos.sv }} ingress qos sap-ingress policy-name 	xxxxx
+    
+    #Para agg-rate
+
+    service ies {{datos.IES}} interface {{datos.interface_pe}}:{{ datos.sv }} sap lag-{{ datos.lag}}:{{ datos.sv }} egress agg-rate rate {{shaping_rate}}
+    #Customer
+    /configure { service customer "{{ datos.cliente }}" }
+    /configure { service customer "{{ datos.cliente }}" customer-id {{ datos.IES }} }
+        
+    #Service
+
+    /configure { service ies "{{ datos.cliente }}" }
+    /configure { service ies "{{ datos.cliente }}" admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" service-id {{ datos.IES }} }
+    /configure { service ies "{{ datos.cliente }}" customer "{{ datos.cliente }}" }
+
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})" }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ingress-stats true }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" cflowd-parameters }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" cflowd-parameters sampling unicast }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" cflowd-parameters sampling unicast type interface }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" sap lag-{{ datos.lag}}:{{ datos.sv }} }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" sap lag-{{ datos.lag}}:{{ datos.sv }} admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 urpf-check }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 urpf-check mode loose }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 bfd }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 bfd admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 bfd receive 2000 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 bfd multiplier 3 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 primary }
+    {% if datos.wan|mask == '31' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 primary address {{ datos.wan }} } {% endif %}
+    {% if datos.wan|mask != '31' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 primary address {{ datos.wan|first_valid_ip }} } {% endif %}
+
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv4 primary prefix-length {{ datos.wan|mask }} }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 urpf-check }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 urpf-check mode loose }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 bfd }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 bfd receive 500 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 bfd multiplier 3 }
+
+
+    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 address {{ datos.wanv6|first_ipv6_no_mask}} } {% endif %}{% endif %}
+    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 address {{ datos.wanv6|first_valid_ipv6 }} } {% endif %}{% endif %}
+            
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:{{ datos.sv }}" ipv6 address {{ datos.wanv6|first_ipv6_no_mask}} prefix-length {{ datos.wanv6|maskv6 }} }
+
+{% else %}
+
+    #Configuración para un LAG Untagged
+
+    #Limitacion de Rate
+
+    #Para QoS
+
+    service ies {{datos.IES}} interface {{datos.interface_pe}}:0 sap lag-{{ datos.lag}}:0 ingress qos sap-ingress policy-name 	xxxxx
+
+    #Para agg-rate
+
+    service ies {{datos.IES}} interface {{datos.interface_pe}}:0 sap lag-{{ datos.lag}}:0 egress agg-rate rate {{shaping_rate}}
+    #Customer
+    /configure { service customer "{{ datos.cliente }}" }
+    /configure { service customer "{{ datos.cliente }}" customer-id {{ datos.IES }} }
+        
+    #Service
+
+    /configure { service ies "{{ datos.cliente }}" }
+    /configure { service ies "{{ datos.cliente }}" admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" service-id {{ datos.IES }} }
+    /configure { service ies "{{ datos.cliente }}" customer "{{ datos.cliente }}" }
+
+
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})" }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ingress-stats true }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" cflowd-parameters }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" cflowd-parameters sampling unicast }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" cflowd-parameters sampling unicast type interface }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" sap lag-{{ datos.lag}}:0 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" sap lag-{{ datos.lag}}:0 admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 urpf-check }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 urpf-check mode loose }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 bfd }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 bfd admin-state enable }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 bfd receive 2000 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 bfd multiplier 3 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 primary }
+    {% if datos.wan|mask == '31' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 primary address {{ datos.wan }} } {% endif %}
+    {% if datos.wan|mask != '31' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 primary address {{ datos.wan|first_valid_ip }} } {% endif %}
+
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv4 primary prefix-length {{ datos.wan|mask }} }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 urpf-check }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 urpf-check mode loose }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 bfd }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 bfd receive 500 }
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 bfd multiplier 3 }
+
+
+    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 address {{ datos.wanv6|first_ipv6_no_mask}} } {% endif %}{% endif %}
+    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 address {{ datos.wanv6|first_valid_ipv6 }} } {% endif %}{% endif %}
+            
+    /configure { service ies "{{ datos.cliente }}" interface "{{ datos.interface_pe }}:0" ipv6 address {{ datos.wanv6|first_ipv6_no_mask}} prefix-length {{ datos.wanv6|maskv6 }} }
+
+{% endif %}
+                            {% else %}
+
+/configure lag "lag-{{num_puertos_lag}}" { }
+/configure lag "lag-{{num_puertos_lag}}" { admin-state enable }
+/configure lag "lag-{{num_puertos_lag}}" { description "{{ datos.cliente }}" }
+/configure lag "lag-{{num_puertos_lag}}" { encap-type {{ datos.encap_type }} }
+/configure lag "lag-{{num_puertos_lag}}" { mode access }
+/configure lag "lag-{{num_puertos_lag}}" { max-ports 64 }
+/configure lag "lag-{{num_puertos_lag}}" { lacp }
+/configure lag "lag-{{num_puertos_lag}}" { lacp mode active }
+/configure lag "lag-{{num_puertos_lag}}" { lacp administrative-key {{datos.lag_administrative_key}} }
+
+                            {% endif %}

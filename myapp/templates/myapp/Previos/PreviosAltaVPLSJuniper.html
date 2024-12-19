@@ -1,0 +1,13 @@
+bash
+roci {{ datos.pe }}
+configure private
+
+show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+
+{% if datos.rfs_ip_port_b %}
+    bash
+    roci {{ datos.pe_b }}
+    configure private
+
+    show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
+{% endif %}

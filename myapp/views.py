@@ -49,6 +49,10 @@ def datos_view(request):
                             write_if_not_none("Fecha de creación", datos.created_at)
                             write_if_not_none("IES", datos.IES)
                             write_if_not_none("Interface PE", datos.interface_pe)
+                            write_if_not_none("Interface PE_VPLS_A", datos.interface_pe_vpls_a)
+                            write_if_not_none("Interface PE_VPLS_B", datos.interface_pe_vpls_b)
+                            write_if_not_none("LB PE_VPLS_A", datos.lb_pe_vpls_a)
+                            write_if_not_none("LB PE_VPLS_B", datos.lb_pe_vpls_b)
                             write_if_not_none("Interface PE_B", datos.interface_pe_b)
                             write_if_not_none("Interface SW", datos.interface_sw)
                             write_if_not_none("Interface SW_B", datos.interface_sw_b)
@@ -58,6 +62,8 @@ def datos_view(request):
                             write_if_not_none("LNNID", datos.lnnid)
                             write_if_not_none("Lag", datos.lag)
                             write_if_not_none("PE", datos.pe)
+                            write_if_not_none("PE_VPLS_A", datos.pe_vpls_a)
+                            write_if_not_none("PE_VPLS_B", datos.pe_vpls_b)
                             write_if_not_none("PE_B", datos.pe_b)
                             write_if_not_none("Puertos_lag", datos.puertos_lag)
                             write_if_not_none("RFS-IP-PORT", datos.rfs_ip_port)
@@ -203,6 +209,8 @@ def buscar_cfs(request):
                             "id": dato.id,
                             "IES": dato.IES,
                             "interface_pe": dato.interface_pe,
+                            "interface_pe_vpls_a": dato.interface_pe_vpls_a,
+                            "interface_pe_vpls_b": dato.interface_pe_vpls_b,
                             "interface_pe_b": dato.interface_pe_b,
                             "interface_sw": dato.interface_sw,
                             "interface_sw_b": dato.interface_sw_b,
@@ -212,6 +220,10 @@ def buscar_cfs(request):
                             "lbcpe": dato.lbcpe,
                             "lnnid": dato.lnnid,
                             "pe": dato.pe,
+                            "pe_vpls_a": dato.pe_vpls_a,
+                            "pe_vpls_b": dato.pe_vpls_b,
+                            "lb_pe_vpls_a": dato.lb_pe_vpls_a,
+                            "lb_pe_vpls_b": dato.lb_pe_vpls_b,
                             "pe_b": dato.pe_b,
                             "puertos_lag": dato.puertos_lag,
                             "rd": dato.rd,
@@ -270,6 +282,12 @@ def buscar_en_csv(request):
                                 "value1": row[7],
                                 "value2": row[6],
                                 "value3": row[8],
+                                "value4": row[9],
+                                "value5": row[10],
+                                "value6": row[12],
+                                "value7": row[13],
+                                "value8": row[11],
+                                "value9": row[14],
                             }
                         )
         except Exception as e:

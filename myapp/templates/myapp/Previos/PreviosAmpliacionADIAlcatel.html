@@ -1,0 +1,49 @@
+bash
+roci {{ datos.pe }}
+
+
+
+{% if "SUBA" in datos.bundle_ether|strip or "CXV" in datos.bundle_ether|strip %}
+
+    admin display-config | match {{ datos.interface_pe }}:{{ datos.cv }} context all
+    configure lag {{ datos.lag }}
+    info
+    exit
+    show qos sap-ingress | match CUSTOMER-{{ datos.bw }}
+    configure qos sap-ingress xxx
+    info
+    exit
+
+    ##
+    bash
+    roci {{ datos.pe_vpls_a }}
+    configure private
+    
+    show interfaces {{ datos.interface_pe_vpls_a }}| display set | no
+    show interfaces {{ datos.interface_pe_vpls_a  }}.{{ datos.cv }} | display set | no
+    show | display set | match {{ datos.interface_pe_vpls_a }}.{{ datos.cv }} | display set | no
+    ##
+    ##
+    
+    bash
+    roci {{ datos.pe_vpls_b }}
+    configure private
+    
+    show interfaces {{ datos.interface_pe_vpls_b }} | display set | no
+    show interfaces {{ datos.interface_pe_vpls_b }}.{{ datos.cv }} | display set | no
+    show | display set | match {{ datos.interface_pe_vpls_b }}.{{ datos.cv }} | display set | no
+
+    admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} context all
+
+{% else %}
+
+    configure lag {{ datos.lag }}
+    info
+    exit
+    admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }} context all
+    show qos sap-ingress | match CUSTOMER-{{ datos.bw }}
+    configure qos sap-ingress xxx
+    info
+    exit
+{% endif %}
+                        

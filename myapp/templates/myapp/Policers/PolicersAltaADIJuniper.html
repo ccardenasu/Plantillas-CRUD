@@ -1,0 +1,22 @@
+{% if "edge" in datos.pe|strip %}
+    set firewall policer ratelimit-{{  bwjun }} logical-interface-policer
+    set firewall policer ratelimit-{{  bwjun }} if-exceeding bandwidth-limit {{  bwjun }}
+    set firewall policer ratelimit-{{  bwjun }} if-exceeding burst-size-limit {{  burst_size_limit }}
+    set firewall policer ratelimit-{{  bwjun }} then discard
+    set firewall policer ratelimit-{{  bwjun }}-IPV6 logical-interface-policer
+    set firewall policer ratelimit-{{  bwjun }}-IPV6 if-exceeding bandwidth-limit {{  bwjun }}
+    set firewall policer ratelimit-{{  bwjun }}-IPV6 if-exceeding burst-size-limit {{  burst_size_limit }}
+    set firewall policer ratelimit-{{  bwjun }}-IPV6 then discard
+
+    
+{% else %}
+    set firewall policer CUSTOMER-{{  datos.bw }}M logical-interface-policer
+    set firewall policer CUSTOMER-{{  datos.bw }}M if-exceeding bandwidth-limit {{  bwjun }}
+    set firewall policer CUSTOMER-{{  datos.bw }}M if-exceeding burst-size-limit {{  burst_size_limit }}
+    set firewall policer CUSTOMER-{{  datos.bw }}M then discard
+    set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M logical-interface-policer
+    set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M if-exceeding bandwidth-limit {{  bwjun }}
+    set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M if-exceeding burst-size-limit {{  burst_size_limit }}
+    set firewall policer CUSTOMER-IPV6-{{  datos.bw }}M then discard
+                            
+{% endif %}

@@ -1,0 +1,10 @@
+bash
+roci {{ datos.pe }}
+configure private
+{% if datos.rfs_ip_port_nid  %}show  interfaces  {{ datos.interface_pe }}  | display set  | no-more{% endif %}
+{% if datos.rfs_ip_port %}show  interfaces  {{ datos.interface_pe }}.{{ datos.unit }}  | display set  | no-more{% endif %}
+run show route  {{ datos.wan|first_valid_ip }} | no-more
+
+{% for lan_ip in lan_ips %}
+    {% if datos.lan != '0.0.0.0/0' %}run show route   {{ lan_ip }} | no-more {% endif %}
+{% endfor %}

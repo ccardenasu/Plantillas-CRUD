@@ -1,0 +1,14 @@
+#PE {{ datos.pe }}
+
+set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
+set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
+set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in then discard
+
+{% if datos.pe_b %} 
+
+    #PE {{ datos.pe_b }}
+    set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}1
+    set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}
+    set firewall policer {{ datos.interface_pe_b }}.{{ datos.unit_b }}-cir-in then discard
+
+{% endif %}

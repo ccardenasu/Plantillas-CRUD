@@ -38,6 +38,8 @@ class Datos(models.Model):
         ("TE7/3", "TE7/3"),
         ("GigabitEthernet0/11","GigabitEthernet0/11"),
         ("ae1","ae1"),
+        ("SUBA","SUBA"),
+        ("CXV","CXV"),
     ]
 
     TIPO_ENCAP_CHOICES = [
@@ -91,6 +93,10 @@ class Datos(models.Model):
     dko = models.CharField(max_length=100, blank=True, null=True)
     IES = models.CharField(max_length=100, blank=True, null=True)
     interface_pe = models.CharField(max_length=100, blank=True, null=True)
+    interface_pe_vpls_a = models.CharField(max_length=100, blank=True, null=True)
+    interface_pe_vpls_b = models.CharField(max_length=100, blank=True, null=True)
+    lb_pe_vpls_a = models.CharField(max_length=100, blank=True, null=True)
+    lb_pe_vpls_b = models.CharField(max_length=100, blank=True, null=True)
     interface_pe_b = models.CharField(max_length=100, blank=True, null=True)
     interface_sw = models.CharField(max_length=100, blank=True, null=True)
     interface_sw_b = models.CharField(max_length=100, blank=True, null=True)
@@ -100,6 +106,8 @@ class Datos(models.Model):
     lbcpe = models.CharField(max_length=100, blank=True, null=True)
     lnnid = models.CharField(max_length=100, blank=True, null=True)
     pe = models.CharField(max_length=100, blank=True, null=True)
+    pe_vpls_a = models.CharField(max_length=100, blank=True, null=True)
+    pe_vpls_b = models.CharField(max_length=100, blank=True, null=True)
     pe_b = models.CharField(max_length=100, blank=True, null=True)
     puertos_lag = models.CharField(max_length=100, default="1")
     rd = models.CharField(max_length=100, blank=True, null=True)

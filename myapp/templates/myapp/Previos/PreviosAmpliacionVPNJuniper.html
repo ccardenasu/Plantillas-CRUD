@@ -1,0 +1,6 @@
+bash
+                            roci {{ datos.pe }}
+                            configure private
+                            
+                            show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+                            show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }}- | no
