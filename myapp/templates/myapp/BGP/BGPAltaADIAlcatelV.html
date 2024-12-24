@@ -1,0 +1,96 @@
+{% if datos.asn %}                        
+                                
+ /configure router policy-options begin
+ {% for lan_ip, mask in lan_ips_with_masks %}
+ /configure router policy-options prefix-list PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} prefix {{ lan_ip }} through {{ mask }}
+ {% endfor %}
+ /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 5 description AS{{datos.asn}}-PREFIXIES
+ /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 5 from prefix-list PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}
+ /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 5 action next-policy
+ /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 10 from as-path all-routes
+ /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  entry 10 action reject
+ /configure router policy-options policy-statement PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}  default-action reject
+
+ /configure router policy-options commit
+ exit
+
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} type external
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} peer-as {{ datos.asn }}
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} description "{{ datos.cliente}}"
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} remove-private
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family ipv4
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }}
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} export "send-default" "none"
+ /configure router bgp group PEER-{{ datos.wan|second_valid_ip }}_{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} prefix-limit ipv4 2000 threshold 90 idle-timeout 5
+
+ /configure filter match-list ip-prefix-list "cust-bgp" prefix {{ datos.wan|second_valid_ip }}/32
+
+ /configure router policy-options abort
+ /configure router policy-options begin
+ /configure router policy-options policy-statement "PEER-{{ datos.wanv6|second_valid_ipv6 }}" entry 10 description "PEER-{{ datos.wanv6|second_valid_ipv6 }}_{{ datos.cfs }}-PREFIXIES"
+ /configure router policy-options policy-statement "PEER-{{ datos.wanv6|second_valid_ipv6 }}" entry 10 from prefix-list "PEER-{{ datos.wanv6|second_valid_ipv6 }}"
+ /configure router policy-options policy-statement "PEER-{{ datos.wanv6|second_valid_ipv6 }}" entry 10 action next-policy
+ /configure router policy-options policy-statement "PEER-{{ datos.wanv6|second_valid_ipv6 }}" entry 20 from as-path "all-routes"
+ /configure router policy-options policy-statement "PEER-{{ datos.wanv6|second_valid_ipv6 }}" entry 20 action reject
+ /configure router policy-options policy-statement "PEER-{{ datos.wanv6|second_valid_ipv6 }}"  default-action reject
+
+ {% for lanv6_ip, mask in lanv6_ips_with_masks %}
+     /configure router policy-options prefix-list "PEER-{{ datos.wanv6|second_valid_ipv6 }}" prefix {{ lanv6_ip }} through {{ mask }}
+ {% endfor %}
+
+ /configure router policy-options commit
+ exit
+
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" family ipv6
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" type external
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" peer-as {{ datos.asn }}
+
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} description "{{ datos.cliente }}"
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} remove-private
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} family ipv6
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}_500017457" neighbor {{ datos.wanv6|second_valid_ipv6 }} import "PEER-{{ datos.wanv6|second_valid_ipv6 }}_{{ datos.cfs }}"
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} export "ipv6-send-default" "none"
+ /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} prefix-limit ipv6 2000 threshold 90 idle-timeout 5
+
+ /configure filter match-list ipv6-prefix-list "cust-bgp-ipv6" prefix {{ datos.wanv6|second_valid_ipv6 }}/128
+
+ admin display-config | match {{ datos.wan|second_valid_ip }} context all
+ admin display-config | match {{ datos.wanv6|second_valid_ipv6 }} context all
+ admin display-config | match {{ datos.interface_pe }}:{{ datos.cv }} context all
+
+
+                                {% else %}
+
+ {% for lan_ip in lan_ips %}
+
+     {% if datos.wan|mask == '31' %}
+         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { }
+         /configure { router "Base" static-routes route {{ lan_ip }} route-type unicast  tag 4100 }
+         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|first_valid_ip }}" }
+         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|first_valid_ip }}" admin-state enable }
+         ##
+     {% endif %}
+        
+
+     {% if datos.wan|mask != '31' %}
+         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { }
+         /configure { router "Base" static-routes route {{ lan_ip }} route-type unicast  tag 4100 }
+         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|second_valid_ip }}" }
+         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|second_valid_ip }}" admin-state enable }
+         ##
+     {% endif %}
+
+ {% endfor %}
+
+ {% for lanv6_ip in lanv6_ips %}
+     {% if datos.wanv6|maskv6 == '127' %}/configure router static-route-entry {{ lanv6_ip }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} no shutdown {% endif %}
+     {% if datos.wanv6|maskv6 != '127' %}/configure router static-route-entry {{ lanv6_ip }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} shutdown {% endif %}
+ {% endfor %}
+
+                                {% endif %} 
+
+                                {% if datos.wan|mask == '31' %}admin display-config | match {{ datos.wan|first_valid_ip }} context all{% endif %}
+                                {% if datos.wan|mask != '31' %}admin display-config | match {{ datos.wan|second_valid_ip }} context all{% endif %}
+
+                                {% if datos.wanv6|maskv6 == '127' %}admin display-config | match {{ datos.wanv6|first_valid_ipv6 }} context all{% endif %}
+                                {% if datos.wanv6|maskv6 != '127' %}admin display-config | match {{ datos.wanv6|second_valid_ipv6 }} context all{% endif %}

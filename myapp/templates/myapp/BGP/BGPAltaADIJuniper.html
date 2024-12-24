@@ -1,0 +1,54 @@
+{% if datos.asn %}
+{% if datos.wan|mask != '31' %}
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} passive
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} advertise-peer-as
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import transit-customer-map
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit maximum 4000
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit teardown idle-timeout 5
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} export default-originate
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} remove-private
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
+    
+    {% else %}
+
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} passive
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} advertise-peer-as
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} import transit-customer-map
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} family inet any prefix-limit maximum 4000
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} family inet any prefix-limit teardown idle-timeout 5
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} export default-originate
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} remove-private
+    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} peer-as {{ datos.asn }}
+
+    {% endif %}
+{% for lan_ip, mask in lan_ips_with_masks %}
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept from route-filter {{ lan_ip }} upto /{{ mask }}
+{% endfor %}
+set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then next policy
+set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then accept
+set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject from as-path all-routes
+set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject then reject
+                            
+
+                            {% else %}
+
+{% if "edge" in datos.pe|strip %}
+
+    {% for lan_ip, mask in lan_ips_with_masks %}
+        {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} community 3356:123 community 3356:22{% endif %}
+        {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22{% endif %}
+        {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
+        {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
+    {% endfor %}
+{% else %}
+
+    {% for lan_ip, mask in lan_ips_with_masks %}
+        {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} {% endif %}
+        {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} {% endif %}
+        {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} {% endif %}
+        {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} {% endif %}
+    {% endfor %}
+{% endif %}
+{% endif %}

@@ -1,0 +1,97 @@
+#BGP_AltaVPNJun_ALL
+
+{% if "00/" in datos.vrf|strip %}
+
+    #BGP_AltaVPNJun_Naranja
+
+    set routing-instances {{ datos.vrf }} protocols bgp path-selection always-compare-med
+    set routing-instances {{ datos.vrf }} protocols bgp family inet any
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} type external
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} log-updown
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} import BGP-import
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit maximum 5000
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit teardown 90
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit teardown idle-timeout 120
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export BGP-export
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export
+    set policy-options policy-statement "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export then accept 
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} peer-as {{ datos.asn }}
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} as-override
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }}
+
+    {% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}
+
+        ##
+        #BGP_AltaVPNJun_Naranja_IPV6
+        ##
+
+
+        et routing-instances {{ datos.vrf }} protocols bgp path-selection always-compare-med
+        set routing-instances {{ datos.vrf }} protocols bgp family inet any
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 type external
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 log-updown
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 import BGP-import
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 family inet6 any prefix-limit maximum 5000
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 family inet6 any prefix-limit teardown 90
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 family inet6 any prefix-limit teardown idle-timeout 120
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 export BGP-export
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 peer-as {{ datos.asn }}
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 as-override
+        set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }}-IPV6 neighbor {{ datos.wanv6|second_valid_ipv6 }}
+
+    {% endif %}
+
+{% elif "-1-" in datos.vrf|strip %}
+
+    #BGP_AltaVPNJun_Azul
+
+    set routing-instances {{ datos.vrf }} protocols bgp path-selection always-compare-med
+    set routing-instances {{ datos.vrf }} protocols bgp family inet any
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} type external
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} log-updown
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} import BGP-import
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit maximum 5000
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit teardown 90
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit teardown idle-timeout 120
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export BGP-export
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export
+    set policy-options policy-statement "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export then accept 
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} peer-as {{ datos.asn }}
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} as-override
+    set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }}
+
+
+{% else %}
+
+    #BGP_AltaVPNJun
+
+
+    show routing-instances {{ datos.vrf }} protocols bgp | display set  | match type
+    #
+    #
+    set routing-instances {{ datos.vrf }} protocols bgp group external type external
+    set routing-instances {{ datos.vrf }} protocols bgp group external family inet unicast
+    set routing-instances {{ datos.vrf }} protocols bgp group external export bgp-export-policy
+    #
+    set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
+    set routing-instances {{ datos.vrf }} protocols bgp group external neighbor {{ datos.wan|second_valid_ip }} as-override
+    show routing-instances {{ datos.vrf }} protocols bgp group external neighbor  {{ datos.wan|second_valid_ip }} | display set
+
+{% endif %}
+
+{% if datos.lbcpe %}
+
+
+    ##
+    #LoopBack Gestion
+    ##
+
+    set routing-instances {{ datos.vrf }} routing-options static route {{ datos.lbcpe }} next-hop {{ datos.wan|second_valid_ip }} tag 14
+    
+{% endif %}
+
+##
+
+show routing-instances  {{ datos.vrf }} | display set | match  {{ datos.wan|second_valid_ip }}
+
+##

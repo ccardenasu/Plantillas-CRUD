@@ -1,0 +1,25 @@
+PE {{ datos.pe }}
+
+set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
+set routing-instances {{ datos.vrf }} instance-type vpls
+set routing-instances {{ datos.vrf }} protocols vpls interface-mac-limit 150
+set routing-instances {{ datos.vrf }} protocols vpls no-mac-learning
+set routing-instances {{ datos.vrf }} protocols vpls no-tunnel-services
+set routing-instances {{ datos.vrf }} protocols vpls vpls-id {{ datos.cfs }}
+set routing-instances {{ datos.vrf }}  protocols vpls mtu 9000
+set routing-instances {{ datos.vrf }} protocols vpls neighbor
+
+{% if datos.pe_b %}
+
+    PE {{ datos.pe_b }}
+
+    set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe_b }}.{{ datos.unit_b }}
+    set routing-instances {{ datos.vrf }} instance-type vpls
+    set routing-instances {{ datos.vrf }} protocols vpls interface-mac-limit 150
+    set routing-instances {{ datos.vrf }} protocols vpls no-mac-learning
+    set routing-instances {{ datos.vrf }} protocols vpls no-tunnel-services
+    set routing-instances {{ datos.vrf }} protocols vpls vpls-id {{ datos.cfs }}
+    set routing-instances {{ datos.vrf }}  protocols vpls mtu 9000
+    set routing-instances {{ datos.vrf }} protocols vpls neighbor
+
+{% endif %}
