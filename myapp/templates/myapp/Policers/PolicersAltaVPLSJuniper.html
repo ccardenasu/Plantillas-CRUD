@@ -1,3 +1,6 @@
+{% load custom_filters %}
+{% load network_filters %}
+
 set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}--inet-i term EF_DSCP from dscp 46
 set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF_DSCP then count EF.rx-{{ datos.interface_pe }}.{{ datos.unit }}-vpls-i
 set firewall family vpls filter {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e term EF_DSCP then loss-priority low

@@ -2,6 +2,7 @@
 {% load network_filters %}
 
 #interface_AltaVPNJun
+set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
 
 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER: {{ datos.cliente }} (CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
 set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}
@@ -54,5 +55,8 @@ set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet police
         {% if datos.wanv6|maskv6 != '127' %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family inet6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}
     
     {% endif %}
+
+    set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
+
 
 {% endif %}

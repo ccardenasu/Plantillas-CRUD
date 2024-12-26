@@ -1,3 +1,6 @@
+{% load custom_filters %}
+{% load network_filters %}
+
 /configure service customer {{ datos.IES }} create
 /configure service customer {{ datos.IES }} description "{{ datos.cliente }}"
 /configure service ies {{ datos.IES }} customer {{ datos.IES }} create

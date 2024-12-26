@@ -1,4 +1,9 @@
+{% load custom_filters %}
+{% load network_filters %}
+
 #PE {{ datos.pe }}
+
+
 
 set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding bandwidth-limit {{ shaping_rate }}
 set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}-cir-in if-exceeding burst-size-limit {{burst_size_limit}}

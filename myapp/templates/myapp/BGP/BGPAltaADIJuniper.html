@@ -1,3 +1,7 @@
+{% load custom_filters %}
+{% load network_filters %}
+
+
 {% if datos.asn %}
 {% if datos.wan|mask != '31' %}
     set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} passive
