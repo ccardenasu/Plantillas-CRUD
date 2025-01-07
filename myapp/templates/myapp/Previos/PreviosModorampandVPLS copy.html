@@ -1,0 +1,19 @@
+{% load custom_filters %}
+{% load network_filters %}
+
+bash
+roci {{ datos.pe }}
+configure private
+
+show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+
+show | display set | match {{ datos.interface_pe }}.{{ datos.unit }} | no-more 
+
+{% if datos.pe_b %}
+    bash
+    roci {{ datos.pe_b }}
+    configure private
+
+    show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no
+    show | display set | match {{ datos.interface_pe_b }}.{{ datos.unit_b }} | no-more 
+{% endif %}
