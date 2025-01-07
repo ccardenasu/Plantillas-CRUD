@@ -38,6 +38,7 @@ class Datos(models.Model):
         ("TE7/3", "TE7/3"),
         ("GigabitEthernet0/11","GigabitEthernet0/11"),
         ("ae1","ae1"),
+        ("ae2","ae2"),
         ("SUBA","SUBA"),
         ("CXV","CXV"),
     ]

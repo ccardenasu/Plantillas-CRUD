@@ -10,7 +10,8 @@
     {% if datos.bw_plus and datos.bw_plus != '0' %}
 
         #Policers_AltaVPNJun-AZUL-QoS
-
+        {{delay_buffer_rate}}
+      
         set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o scheduler-map GX-CUST-SCHEDULER-MAP-I
         set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o shaping-rate {{ datos.bw }}m
         set class-of-service traffic-control-profiles {{ datos.interface_pe }}.{{ datos.unit }}-{{ BWx1024 }}-o delay-buffer-rate {{delay_buffer_rate}}

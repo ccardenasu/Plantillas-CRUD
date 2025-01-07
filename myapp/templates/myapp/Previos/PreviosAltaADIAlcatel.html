@@ -9,7 +9,7 @@ info
 exit
 
 admin display-config | match {{ datos.IES }} context all
-admin display-config | match {{ datos.interface_pe }}:{{ datos.cv }} context all
+admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }} context all
 show qos sap-ingress | match CUSTOMER-{{ qos }}
 show router route-table    {{ datos.wan|first_valid_ip }}
 configure qos sap-ingress xxx

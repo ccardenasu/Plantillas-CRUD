@@ -31,7 +31,8 @@
         <div class="container">
             <header>
                 <h1 class="titulo">Datos Guardados</h1>
-                <p>El valor de num_puertos_lag es: {{ form.lag.value }}</p>
+                <p>El valor de num_puertos_lag es: {{ form.lag.value }} </p>
+                <p>El nuero del puerto lag es: {{num_puertos_lag}}</p>
             </header>
             <main>
                 <a href="http://deliveryconsole/pdetailsearch.asp" target="_blank">Ir a Delivery Console</a><br>
@@ -108,8 +109,10 @@
                 <div class="copy-box">                
                     <div class="title">Comandos Previos</div>
                     <textarea id="commandsTextArea" class="datos-textarea" readonly>
-                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" %}
-                            {% include 'myapp/Previos/PreviosModorampandVPLS.html' %}
+                        {% if datos.tipo_configuracion  == "Ampliacion" and datos.tipo_servicio == "VPLS" %}
+                            {% include 'myapp/Previos/PreviosModampandVPLS.html' %}
+                        {% elif datos.tipo_configuracion == "Modificacion"  and datos.tipo_servicio == "VPN" %}
+                            {% include 'myapp/Previos/PreviosModandVPN.html' %}
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
                             {% include 'myapp/Previos/PreviosAltaVPLSJuniper.html' %}
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
@@ -162,8 +165,10 @@
                     <div class="title">Configuración de la Interfaz</div>
                     <textarea id="newCommandsTextArea" class="datos-textarea" readonly>
                         
-                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
-                            {% include 'myapp/Interfaz/InterfazModorampandVPLS.html' %}
+                        {% if datos.tipo_configuracion ==  "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+                            {% include 'myapp/Interfaz/InterfazampandVPLS.html' %}
+                        {% elif datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            {% include 'myapp/Interfaz/InterfazModandVPN.html' %}
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
                             {% include 'myapp/Interfaz/InterfazAltaVPLSJuniper.html' %}
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
@@ -196,8 +201,10 @@
                     <div class="title">Policers</div>
                     <textarea id="policersTextArea" class="datos-textarea" readonly>
                         
-                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+                        {% if datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
                             {% include 'myapp/Policers/PolicersModorampandVPLS.html' %}
+                        {% elif datos.tipo_configuracion == "Modificacion"  and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            {% include 'myapp/Policers/PolicersModandVPN.html' %}
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
                             {% include 'myapp/Policers/PolicersAltaVPLSJuniper.html' %}
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
@@ -231,8 +238,10 @@
                     <div class="title">Bgp</div>
                     <textarea id="BgpTextArea" class="datos-textarea" readonly>
 
-                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
-                            {% include 'myapp/BGP/BGPModorampandVPLS.html' %}
+                        {% if datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+                            {% include 'myapp/BGP/BGPampandVPLS.html' %}
+                        {% elif datos.tipo_configuracion == "Modificacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            {% include 'myapp/BGP/BGPModandVPN.html' %}
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
                             {% include 'myapp/BGP/BGPAltaVPLSJuniper.html' %}
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
@@ -265,8 +274,10 @@
                     <div class="title">VRF</div>
                     <textarea id="VRFTextArea" class="datos-textarea" readonly>
 
-                        {% if datos.tipo_configuracion == "Modificacion" or datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
-                            {% include 'myapp/VRF/VRFModorampandVPLS.html' %}
+                        {% if datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
+                            {% include 'myapp/VRF/VRFampandVPLS.html' %}
+                        {% elif datos.tipo_configuracion == "Modificacion"  and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
+                            {% include 'myapp/VRF/VRFModandVPN.html' %}
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
                             {% include 'myapp/VRF/VRFAltaVPLSJuniper.html' %}
                         {% elif datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}

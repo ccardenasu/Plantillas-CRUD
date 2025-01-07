@@ -95,7 +95,7 @@ class DatosForm(forms.ModelForm):
     def clean_cfs(self):
         cfs = self.cleaned_data.get("cfs")
         if not cfs.isdigit():
-            raise forms.ValidationError("El campo CFS debe contener solo números.")
+            raise forms.ValidationError("El campo CFS debe contener solo números###.")
         return cfs
 
     def clean_wan(self):
