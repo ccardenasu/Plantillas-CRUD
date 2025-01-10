@@ -1,9 +1,26 @@
 {% load custom_filters %}
 {% load network_filters %}
 
-bash
-roci {{ datos.pe }}
-configure private
 
-show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
-show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }}- | no
+{% if "edge" in datos.pe|strip %}
+
+   
+    bash
+    roci {{ datos.pe }}
+    configure private
+
+    show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+    show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }}- | no
+
+{% else %}
+
+    ssh -l EA-CO11455 {{ datos.pe }}
+
+    eE_46381815
+    
+    configure private
+
+    show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+    show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }}- | no
+
+{% endif %}

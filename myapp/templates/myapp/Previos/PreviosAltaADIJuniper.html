@@ -9,5 +9,6 @@ configure private
 run show route  {{ datos.wan|first_valid_ip }} | no-more
 
 {% for lan_ip in lan_ips %}
-    {% if datos.lan != '0.0.0.0/0' %}run show route   {{ lan_ip }} | no-more {% endif %}
+    {% if datos.lan != '0.0.0.0/0' %}run show route   {{ datos.lan|first_valid_ip }} | no-more {% endif %}
 {% endfor %}
+

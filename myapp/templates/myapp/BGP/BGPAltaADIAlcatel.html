@@ -52,7 +52,7 @@
     /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} description "{{ datos.cliente }}"
     /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} remove-private
     /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} family ipv6
-    /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}_500017457" neighbor {{ datos.wanv6|second_valid_ipv6 }} import "PEER-{{ datos.wanv6|second_valid_ipv6 }}_{{ datos.cfs }}"" "transit-customer-map"
+    /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} import "PEER-{{ datos.wanv6|second_valid_ipv6 }}" "transit-customer-map"
     /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} export "ipv6-send-default" "none"
     /configure router bgp group "PEER-{{ datos.wanv6|second_valid_ipv6 }}" neighbor {{ datos.wanv6|second_valid_ipv6 }} prefix-limit ipv6 2000 threshold 90 idle-timeout 5
 

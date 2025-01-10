@@ -2,12 +2,31 @@
 {% load custom_filters %}
 {% load network_filters %}
 
-bash
-roci {{ datos.pe }}
-configure private
 
-show  routing-instances {{ datos.vrf }}  | display set | match vrf  | no
-show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
-show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
-show  | display set | match {{ datos.rd }}
-run show route table  {{ datos.vrf }}  {{ datos.wan|first_valid_ip }}
+{% if "edge" in datos.pe|strip %}
+
+    bash
+    roci {{ datos.pe }}
+    configure private
+
+    show  routing-instances {{ datos.vrf }}  | display set | match vrf  | no
+    show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+    show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
+    show  | display set | match {{ datos.rd }}
+    run show route table  {{ datos.vrf }}  {{ datos.wan|first_valid_ip }}
+
+{% else %}
+
+    ssh -l EA-CO11455 {{ datos.pe }}
+    #
+    #
+    #
+    configure private
+
+    show  routing-instances {{ datos.vrf }}  | display set | match vrf  | no
+    show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+    show | display set | match  {{ datos.interface_pe }}.{{ datos.unit }} | no
+    show  | display set | match {{ datos.rd }}
+    run show route table  {{ datos.vrf }}  {{ datos.wan|first_valid_ip }}
+
+    {% endif %}

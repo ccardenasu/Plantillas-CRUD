@@ -1,5 +1,6 @@
 {% load custom_filters %}
 {% load network_filters %}
+{% load static %}
 
 bash
 roci {{ datos.pe }}
@@ -9,7 +10,7 @@ roci {{ datos.pe }}
 {% if "SUBA" in datos.bundle_ether|strip or "CXV" in datos.bundle_ether|strip %}
 
     admin display-config | match {{ datos.interface_pe }}:{{ datos.cv }} context all
-    configure lag {{ datos.lag }}
+    configure lag {{ num_puertos_lag }}
     info
     exit
     show qos sap-ingress | match CUSTOMER-{{ datos.bw }}
@@ -40,7 +41,7 @@ roci {{ datos.pe }}
 
 {% else %}
 
-    configure lag {{ datos.lag }}
+    configure lag {{ num_puertos_lag }}
     info
     exit
     admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }} context all
