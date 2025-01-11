@@ -440,6 +440,13 @@
             function generateAllTxt() {
                 var textareas = document.querySelectorAll('.datos-textarea');
                 var allText = '';
+
+                // Obtener la fecha actual y formatearla
+                var today = new Date();
+                var formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
+                
+                var cfs = {{datos.cfs}} + "_" + formattedDate + ".txt";// Define el nombre del archivo aquí
+
                 textareas.forEach(function(textarea) {
                     // Eliminar espacios al inicio de cada línea
                     var trimmedText = textarea.value.split('\n').map(line => line.trimStart()).join('\n');
@@ -450,7 +457,7 @@
                 var blob = new Blob([allText], { type: "text/plain;charset=utf-8" });
                 var link = document.createElement("a");
                 link.href = URL.createObjectURL(blob);
-                link.download = "all_textareas.txt";
+                link.download = cfs;
                 link.click();
             }
             </script>
