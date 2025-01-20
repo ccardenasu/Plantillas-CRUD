@@ -1,17 +1,18 @@
 {% load custom_filters %}
 {% load network_filters %}
 
-bash
-roci {{ datos.pe }}
+ssh -l EA-CO11455 {{ datos.pe }}
+
+####
 configure private
 
 show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
-
 show | display set | match {{ datos.interface_pe }}.{{ datos.unit }} | no-more 
-
-{% if datos.pe_b %}
-    
+{% if datos.rfs_ip_port_b %}
 ssh -l EA-CO11455 {{ datos.pe_b }}
+
+##
+##
     configure private
 
     show interfaces {{ datos.interface_pe_b }}.{{ datos.unit_b }} | display set | no

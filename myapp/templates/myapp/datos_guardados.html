@@ -110,7 +110,7 @@
                     <div class="title">Comandos Previos</div>
                     <textarea id="commandsTextArea" class="datos-textarea" readonly>
                         {% if datos.tipo_configuracion  == "Ampliacion" and datos.tipo_servicio == "VPLS" %}
-                            {% include 'myapp/Previos/PreviosModampandVPLS.html' %}
+                            {% include 'myapp/Previos/PreviosampandVPLS.html' %}
                         {% elif datos.tipo_configuracion == "Modificacion"  and datos.tipo_servicio == "VPN" %}
                             {% include 'myapp/Previos/PreviosModandVPN.html' %}
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
@@ -202,7 +202,7 @@
                     <textarea id="policersTextArea" class="datos-textarea" readonly>
                         
                         {% if datos.tipo_configuracion == "Ampliacion" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}
-                            {% include 'myapp/Policers/PolicersModorampandVPLS.html' %}
+                            {% include 'myapp/Policers/PolicersampandVPLS.html' %}
                         {% elif datos.tipo_configuracion == "Modificacion"  and datos.tipo_servicio == "VPN" and datos.tipo_equipo == "JUNIPER" %}
                             {% include 'myapp/Policers/PolicersModandVPN.html' %}
                         {% elif datos.tipo_configuracion == "Alta" and datos.tipo_servicio == "VPLS" and datos.tipo_equipo == "JUNIPER" %}

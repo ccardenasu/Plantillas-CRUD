@@ -3,40 +3,78 @@
 
 
 {% if datos.asn %}
-{% if datos.wan|mask != '31' %}
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} passive
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} advertise-peer-as
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import transit-customer-map
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit maximum 4000
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit teardown idle-timeout 5
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} export default-originate
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} remove-private
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
-    
+    {% if datos.wan|mask != '31' %}
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} passive
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} advertise-peer-as
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import transit-customer-map
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit maximum 4000
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} family inet any prefix-limit teardown idle-timeout 5
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} export default-originate
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} remove-private
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }} peer-as {{ datos.asn }}
+        
     {% else %}
 
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} passive
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} advertise-peer-as
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} import transit-customer-map
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} family inet any prefix-limit maximum 4000
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} family inet any prefix-limit teardown idle-timeout 5
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} export default-originate
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} remove-private
-    set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} peer-as {{ datos.asn }}
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} passive
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} advertise-peer-as
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} import transit-customer-map
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} family inet any prefix-limit maximum 4000
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} family inet any prefix-limit teardown idle-timeout 5
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} export default-originate
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} remove-private
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wan|first_valid_ip }} peer-as {{ datos.asn }}
 
     {% endif %}
-{% for lan_ip, mask in lan_ips_with_masks %}
-    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept from route-filter {{ lan_ip }} upto /{{ mask }}
-{% endfor %}
-set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then next policy
-set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then accept
-set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject from as-path all-routes
-set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject then reject
-                            
 
-                            {% else %}
+    {% if datos.wan|mask != '127' %}
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} passive
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} advertise-peer-as
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} import transit-customer-map
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} family  inet6 any prefix-limit maximum 4000
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} family  inet6 any prefix-limit teardown idle-timeout 5
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} export default-originate
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} remove-private
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|second_valid_ipv6 }} peer-as {{ datos.asn }}
+        
+    {% else %}
+
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} passive
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} advertise-peer-as
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} import transit-customer-map
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} import CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}-IPv6
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} family inet6 any prefix-limit maximum 4000
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} family inet6 any prefix-limit teardown idle-timeout 5
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} export default-originate 
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} export  rfc1918
+
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} remove-private
+        set protocols bgp group AS{{ datos.asn }}-{{ datos.cfs }} neighbor {{ datos.wanv6|first_valid_ipv6 }} peer-as {{ datos.asn }}
+
+    {% endif %}
+
+    {% for lan_ip, mask in lan_ips_with_masks %}
+        set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept from route-filter {{ lan_ip }} upto /{{ mask }}
+    {% endfor %}
+
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then next policy
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term accept then accept
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject from as-path all-routes
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }} term reject then reject
+
+    {% for lanv6_ip, mask in lanv6_ips_with_masks %}
+        set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}-IPv6 term accept from route-filter {{ lanv6_ip }} upto /{{ mask }}
+    {% endfor %}
+    
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}-IPv6 term accept then next policy
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}-IPv6 term accept then accept
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}-IPv6 term reject from as-path all-routes
+    set policy-options policy-statement CUSTOMER:AS{{ datos.asn }}-{{ datos.cfs }}-IPv6 term reject then reject
+                                
+
+{% else %}
 
 {% if "edge" in datos.pe|strip %}
 
