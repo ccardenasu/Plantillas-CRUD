@@ -16,14 +16,13 @@ admin display-config | match {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv
     ##                           
     PE {{ datos.pe_vpls_a }}
     ##
-    bash
-    r {{ datos.pe_vpls_a }}
+    ssh -l EA-CO11455  {{ datos.pe_vpls_a }}
     configure private
 
     set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} description "CUSTOMER:{{ datos.cliente }} (CFS:{{ datos.cfs }}) (RFS:{{ datos.rfs_ip_port }})"
     set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} encapsulation vlan-vpls
     {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} vlan-id {{ datos.cv }} {% endif %}
-    {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} vlan-tags outer 0x8100.{{ datos.cv }} inner 0x8100.{{ datos.cv }}{% endif %}
+    {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.sv }}{% endif %}
     {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} input-vlan-map pop {% endif %}
     {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} input-vlan-map pop-pop{% endif %}
     {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.cv }} output-vlan-map push {% endif %}

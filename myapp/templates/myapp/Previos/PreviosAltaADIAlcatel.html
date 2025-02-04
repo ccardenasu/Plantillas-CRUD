@@ -1,8 +1,7 @@
 {% load custom_filters %}
 {% load network_filters %}
 
-bash
-roci {{ datos.pe }}
+ssh -l EA-CO11455   {{ datos.pe }}
 
 configure lag {{num_puertos_lag}}
 info
@@ -19,13 +18,12 @@ exit
 ##
 
 {% if "SUBA" in datos.bundle_ether|strip or "CXV" in datos.bundle_ether|strip %}
-    bash
-    roci {{ datos.pe_vpls_a }}
+    ssh -l EA-CO11455  {{ datos.pe_vpls_a }}
     configure private
     
     show interfaces {{ datos.interface_pe_vpls_a }}| display set | no
-    show interfaces {{ datos.interface_pe_vpls_a  }}.{{ datos.cv }} | display set | no
-    show | display set | match {{ datos.interface_pe_vpls_a }}.{{ datos.cv }} | display set | no
+    show interfaces {{ datos.interface_pe_vpls_a  }}.{{ datos.sv }} | display set | no
+    show | display set | match {{ datos.interface_pe_vpls_a }}.{{ datos.sv }} | display set | no
     ##
     ##
     
@@ -34,6 +32,6 @@ exit
     configure private
     
     show interfaces {{ datos.interface_pe_vpls_b }} | display set | no
-    show interfaces {{ datos.interface_pe_vpls_b }}.{{ datos.cv }} | display set | no
-    show | display set | match {{ datos.interface_pe_vpls_b }}.{{ datos.cv }} | display set | no
+    show interfaces {{ datos.interface_pe_vpls_b }}.{{ datos.sv }} | display set | no
+    show | display set | match {{ datos.interface_pe_vpls_b }}.{{ datos.sv }} | display set | no
 {% endif %}

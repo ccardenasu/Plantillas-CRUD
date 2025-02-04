@@ -71,9 +71,12 @@
                         {% if "mesc20.baq.baq" in datos.sw|strip %}Interface PE: {{ datos.interface_pe }}:{{ datos.cv }}.{{ datos.cv }}
                         Interface PE_VPLS_A: {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}
                         Interface PE_VPLS_B: {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}
-                        {% elif datos.sv and  datos.tipo_equipo == 'ALCATEL' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
+                        {% elif datos.sv and  datos.tipo_equipo == 'ALCATEL' or datos.tipo_equipo == 'ALCATEL_V' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
                         {% else %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
-                        {% if datos.unit_nid and datos.unit_nid != "" %}Interface NID: {{ datos.interface_pe }}.{{ datos.unit_nid }}{% endif %}
+                        {% if datos.unit_nid and  datos.tipo_equipo == 'ALCATEL' or datos.tipo_equipo == 'ALCATEL_V' %}Interface NID: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.unit_nid }}
+                        {% else %}
+                        {% if datos.unit_nid and datos.unit_nid != "" %}Interface NID: {{ datos.interface_pe }}.{{ datos.unit_nid }} {% endif %}
+                        {% endif %}
                         {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
                         {% if datos.vt %}Vlan Tercero: {{ datos.vt }}{% endif %}
                         {% if datos.rd %}RD: {{ datos.rd }}{% endif %}

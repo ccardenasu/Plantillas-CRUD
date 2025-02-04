@@ -25,11 +25,13 @@
         var fieldsToShowVPNAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw',
             'id_tipo_configuracion','id_tipo_equipo','id_tipo_servicio','id_unit','id_wan'];
         var fieldsToShowADIALTALC =     [ 'id_asn','id_cfs', 'id_dko', 'id_IES', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 
-            'id_interface_sw', 'id_vt', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
-        var fieldsToShowADIALTALCV =     [ 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_dko','id_cfs','id_cliente', 'id_sede','id_rfs_ip_port','id_vt','id_sw','id_interface_sw',
-             'id_bw','id_sv', 'id_cv','id_IES','id_lag','id_puertos_lag','id_asn','id_wan','id_wanv6','id_lan','id_lanv6','id_be','id_bundle_ether', 'id_pe', 'id_interface_pe','id_encap_type',];
-        var fieldsToShowADIALTJUN =     [ 'id_asn','id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port','id_rfs_ip_port_nid', 'id_cliente', 'id_sede', 'id_vt','id_sw', 
-            'id_interface_sw', 'id_unit', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid','id_be','id_bundle_ether', 'id_pe', 'id_interface_pe','id_unit_nid'];
+            'id_interface_sw', 'id_vt', 'id_sv', 'id_cv', 'id_bw' ,'id_wan', 'id_wanv6', 'id_lan', 'id_lanv6', 'id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag'];
+        var fieldsToShowADIALTALCV =    [ 'id_asn','id_cfs', 'id_dko', 'id_IES', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw',
+            'id_interface_sw', 'id_vt', 'id_sv', 'id_cv', 'id_bw', 'id_wan', 'id_wanv6', 'id_lan', 'id_lanv6', 'id_lnnid', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag', 'id_lag',
+            'id_be','id_encap_type',];
+        var fieldsToShowADIALTJUN =     [ 'id_asn','id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port','id_rfs_ip_port_nid', 'id_cliente', 'id_sede',
+             'id_vt','id_sw', 'id_interface_sw', 'id_unit', 'id_sv', 'id_cv', 'id_bw','id_wan','id_wanv6','id_lan','id_lanv6','id_lnnid','id_be','id_bundle_ether', 'id_pe', 'id_interface_pe',
+             'id_unit_nid'];
         var fieldsToShowADIAMPALC =     [ 'id_cfs', 'id_dko', 'id_tipo_configuracion', 'id_tipo_servicio', 'id_tipo_equipo', 'id_rfs_ip_port', 'id_cliente', 'id_sede', 'id_sw', 'id_interface_sw', 
             'id_sv', 'id_cv', 'id_bw','id_wan', 'id_bundle_ether', 'id_pe', 'id_interface_pe','id_puertos_lag','id_lag'];
         var fieldsToShowADIAMPJUN =     [ 'id_bw','id_bundle_ether','id_cfs','id_cliente','id_dko','id_interface_pe','id_interface_sw','id_pe','id_rfs_ip_port','id_sede','id_sw',

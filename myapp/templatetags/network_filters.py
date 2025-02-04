@@ -71,3 +71,13 @@ def calculate_previous_ip(ip_without_prefix):
     new_ip = ip - 1
     new_ip_with_prefix = f"{new_ip}/31"    
     return new_ip_with_prefix
+
+@register.filter
+def calculate_previous_ip_no_mask_filter(ip_without_prefix):
+    return calculate_previous_ip_no_mask(ip_without_prefix)
+
+def calculate_previous_ip_no_mask(ip_without_prefix):
+    ip = ipaddress.ip_address(ip_without_prefix)
+    new_ip = ip - 1
+    new_ip_with_no_mask_prefix = f"{new_ip}"    
+    return new_ip_with_no_mask_prefix

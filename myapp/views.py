@@ -112,7 +112,7 @@ def datos_view(request):
                 print(f"bw {bw}")
                 bwx1024 = int(bw * 1024)
                 print(f"bwx1024 {bwx1024}")
-                bwjun = int(bw * 1024 * 1000)
+                bwjun = int(bw * 1000 * 1000)
                 print(f"bwjun {bwjun}")
                 delay_buffer_rate = bw * 1024 * 1000 * 4
                 print(f"delay_buffer_rate {delay_buffer_rate}")

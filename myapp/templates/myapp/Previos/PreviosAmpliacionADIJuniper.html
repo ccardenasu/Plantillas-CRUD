@@ -3,7 +3,7 @@
 
 
 bash
-roci {{ datos.pe }}
+ssh -l EA-CO11455  {{ datos.pe }}
 configure private
 
 show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no

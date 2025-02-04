@@ -77,18 +77,21 @@
         
 
      {% if datos.wan|mask != '31' %}
-         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { }
-         /configure { router "Base" static-routes route {{ lan_ip }} route-type unicast  tag 4100 }
-         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|second_valid_ip }}" }
-         /configure router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|second_valid_ip }}" admin-state enable }
+         /configure {router "Base" static-routes route {{ lan_ip }} route-type unicast { }
+         /configure { router "Base" static-routes route {{ lan_ip }} route-type unicast  tag 4100 
+         /configure { router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|second_valid_ip }}" 
+         /configure {   router "Base" static-routes route {{ lan_ip }} route-type unicast { next-hop "{{ datos.wan|second_valid_ip }}" admin-state enable 
          ##
      {% endif %}
 
  {% endfor %}
 
  {% for lanv6_ip in lanv6_ips %}
-     {% if datos.wanv6|maskv6 == '127' %}/configure router static-route-entry {{ lanv6_ip }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} no shutdown {% endif %}
-     {% if datos.wanv6|maskv6 != '127' %}/configure router static-route-entry {{ lanv6_ip }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} shutdown {% endif %}
+     {% if datos.wanv6|maskv6 == '127' %}/configure { router "Base" static-routes route  {{ lanv6_ip }} route-type unicast   {% endif %}
+     {% if datos.wanv6|maskv6 == '127' %}/configure { router "Base" static-routes route  {{ lanv6_ip }} route-type unicast next-hop  {{ datos.wanv6|first_valid_ipv6 }}  {% endif %}
+     {% if datos.wanv6|maskv6 == '127' %}/configure { router "Base" static-routes route  {{ lanv6_ip }} route-type unicast next-hop  {{ datos.wanv6|first_valid_ipv6 }}  admin-state enable {% endif %}
+
+     {% if datos.wanv6|maskv6 != '127' %}/configure { router "Base" static-routes route  {{ lanv6_ip }} route-type unicast next-hop {% endif %}
  {% endfor %}
 
                                 {% endif %} 
