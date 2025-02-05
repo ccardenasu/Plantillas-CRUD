@@ -6,7 +6,23 @@ from .models import Datos
 import os
 import ipaddress
 import csv
+import subprocess
+import json  # Asegúrate de importar el módulo json
 
+
+def ejecutar_ipsa(request):
+    cfs = request.GET.get('cfs', '')
+    try:
+        # Actualiza la ruta al archivo IPSA.py
+        result = subprocess.run(['python', '/home/carlos/githut/Plantillas-CRUD/myapp/templates/myapp/IPSA.py', cfs], capture_output=True, text=True)
+        if result.returncode == 0:
+            output = result.stdout.strip()
+            data = json.loads(output)
+            return JsonResponse({'success': True, 'data': data})
+        else:
+            return JsonResponse({'success': False, 'error': result.stderr})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
 
 def datos_view(request):
     if request.method == "POST":

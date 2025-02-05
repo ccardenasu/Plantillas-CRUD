@@ -1,0 +1,218 @@
+Comments: (Rojas, Carlos) 31/10/24 18:12 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar Alta de servicio EVPL a 200Mbps entre DC STA MONICA y DC COLXV
+
+>> LADO A:  COLUMBUS - DATACENTER CXV	
+>> LADO Z:  COLUMBUS CALI- SANTA MONICA	
+
+Cliente: LIBERTY NETWORKS DE COLOMBIA S.A.S 	
+Sede:    COLUMBUS CALI- SANTA MONICA	
+DirecciÃ³n: AVENIDA 6B NORTE 25A-19, CALI, VAL-Valle del Cauca, Colombia Latitud 3.4713607 Longitud -76.5298464
+Design ID:  A0K2_VN_81-1R6J9OG	
+
+SE: Utria Perez, Marvin 
+CCM: Paola Abella
+
+Nombre del contacto:  Eduardo Espinel  
+Email del contacto: eespinel@columbus-networks.com 		
+Telefono de contacto: +57 3124348559 
+
+Project ID (XML): 8714419
+Service Instance:  Private LAN P2P (EVPL)	
+CFS-CID: 500403824
+
+>>> RFS LADO COLXV (LADO A):
+RFS IP Port: 6000317100
+RFS ISP: 600020877
+
+>>> RFS LADO STA MONICA (LADO Z):
+RFS IP Port: 6000317095
+
+=============== SOLICITUD DE EQUIPOS ===============
+No se requiere envio de equipos
+
+======================= IP SA =======================
+1. Realizar alta del servicio EVPL a 200Mbps sobre red Metro 2.0 entre las siguientes puntas:
+
+SOLUCION NIDLESS EN AMBOS EXTREMOS
+
+>>> PUNTA A - COLXV
+SW Metro: BOGTCLFWZG007
+Int: TenGi0/0/24
+VLAN 2817
+
+>>> PUNTA B - STA MONICA
+Switch: Pendiente por asignar con esta DKO
+Int: Pendiente por asignar con esta DKO
+VLAN 2817
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos en BBIP y red Metro a 200Mbps realizada por parte de IPSA y compartir con el cliente la ubicaciÃ³n de los recursos asignados por IPSA en el lado de DC SANTA MONICA para que de su parte contrate con el Datacenter la correspondiente crossconexion hacia sus equipos
+2. Programar con el cliente ventana de trabajo para alta del servicio
+3. Realizar prueba de esfuerzo del canal para garantizar la capacidad contratada
+4. Entregar enlace a satisfacciÃ³n del cliente.
+5. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8724788
+Datos - EVPL Add   **8724788*$*
+
+Workflow Initialization
+Comments: (William Huertas Rodriguez) 05/11/24 13:48
+De: Huertas Rodriguez, William 
+Enviado el: martes, 5 de noviembre de 2024 11:47 a. m.
+Para: DL-NP&I-IP-Latam <DL-NP-I-IP-Latam@ciriontechnologies.com>
+CC: Puentes, Rafael Mauricio <rafael.puentes@ciriontechnologies.com>
+Asunto: FALTA MODULO OPTICO RED METRO SANTA MONICA
+
+Buenas tardes
+Se realiza el siguiente escalamiento:
+Asunto: Se requiere un Módulo Óptico en el Nodo Santa Monica , equipo  la red Metro 2.0 o 3.0
+Por favor asignar un módulo óptico 1G Monomodo Dúplex ( 2 HILOS)  tipo LX.  
+Parte Numero: EX-SFP-1GE-LX
+JEOP  8724788 (8724836) LIBERTY NETWORKS DE COLOMBIA S.A.S
+Solicitud: Favor realizar las labores necesarias para dar disponibilidad del puerto pendiente e indicar fecha estimada de entrega.
+
+Cordialmente,
+William Huertas
+Comments: (Arciniegas, Viviana) 18/11/24 17:07
+En comunicación con Edgar Munar via teams, indica que se está trabajando en la instalación del módulo. Se verifica caso el 22/11
+Comments: (Arciniegas, Viviana) 21/11/24 17:23
+Se verifica caso cerrado por NPI. Se finaliza seguimientoComments from Subprocess 8744114
+
+
+Workflow InitializationComments from Subprocess 8744118
+
+
+Workflow InitializationComments from Subprocess 8744157
+
+
+Workflow Initialization
+Comments: (Rafael Puentes) 07/11/24 13:02
+Finished Step: Requirement Validation
+
+Comments: (Rafael Puentes) 07/11/24 16:12
+Buen dia señores deployment
+
+Para atender este Jeop favor realizar la siguientes labores:
+
+0. DCD 14 nov 2024 o antes, dar prioridad.
+
+1. Solicitar a bodega:
+Item		Numero de parte			Cantidad		Planta		Subinv
+1082088		1000SFP10			    3				9037		1000
+
+2. Instalar en CALICLAJYG002 Gi0/0/21 a 23, verificar que sea reconocida e informar.
+
+Gracias
+
+Comments: (Rafael Puentes) 07/11/24 16:12
+Finished Step: Set DCD / NCD·
+
+Comments: (Rafael Puentes) 08/11/24 11:09
+Finished Step: Work Package & Order Material
+Network Change Request·
+Comments from Subprocess 8756797
+
+
+Workflow Initialization
+Comments: (Munar Gonzalez, Edgar) 08/11/24 12:23
+Finished Step: Requirement Validation·
+
+Comments: (Munar Gonzalez, Edgar) 19/11/24 19:04
+******************************************************************************************
+
+DO FSO: 8800095
+SFP En bodega
+
+*************************************************************************************************
+Comments: (Munar Gonzalez, Edgar) 21/11/24 17:10
+*******************************************************************************************
+NAME: "subslot 0/0 transceiver 21", DESCR: "GE LX"
+PID: 1000SFP10         , VID: 1.0  , SN: 9401862218      
+
+NAME: "subslot 0/0 transceiver 22", DESCR: "GE LX"
+PID: 1000SFP10         , VID: 1.0  , SN: 9381450219      
+
+NAME: "subslot 0/0 transceiver 23", DESCR: "GE LX"
+PID: 1000SFP10         , VID: 1.0  , SN: 9401862212  
+
+**************************************************************************************************
+Comments: (Munar Gonzalez, Edgar) 21/11/24 17:10
+Finished Step: Gestion Deployment
+MARGARITA
+
+Comments: (William Huertas Rodriguez) 22/11/24 16:22
+=============[CONFIGURACION EN IPSA]================
+
+CALICLAJYG002#sh run int g0/0/21
+Building configuration...
+
+Current configuration : 635 bytes
+!
+interface GigabitEthernet0/0/21
+ description XP202926 - LIBERTY NETWORKS DE COLOMBIA S.A.S # 1-19YEO0 [GigabitEthernet0/0/21]
+ mtu 9216
+ bandwidth 200000
+ no ip address
+ no negotiation auto
+ storm-control broadcast level 5.00
+ spanning-tree portfast trunk
+ spanning-tree bpdufilter enable
+ service-policy output DEFAULT-OUTPUT
+ service instance 1 ethernet
+  description 6000319514 - LIBERTY NETWORKS DE COLOMBIA S.A.S # 1-19YEO0 [(500403824) COLUMBUS CALI- SANTA MONICA]
+  encapsulation dot1q 2817
+  service-policy input 6000319514
+  xconnect 10.226.168.64 200003785 encapsulation mpls
+   backup peer 10.226.168.65 200003785
+ !
+end
+
+roci@psr3.cal1# show| compare 
+[edit interfaces ae10]
++    unit 2068 {
++        description "CUSTOMER: LIBERTY NETWORKS DE COLOMBIA S.A.S  (CFS:500403824) (RFS:600020877)";
++        encapsulation vlan-vpls;
++        vlan-tags outer 0x8100.2068 inner 0x8100.2817;
++        input-vlan-map pop-pop;
++        output-vlan-map push-push;
++        family vpls {
++            filter {
++                input ae10.2068-cos-i;
++                output ae10.2068-vpls-e;
++            }
++            policer {
++                input ae10.2068-cir-in;
++            }
+[edit routing-instances]
++   LIBERTY-500403824 {
++       instance-type vpls;
++       interface ae10.2068;
+
+roci@psr3.bgo1# show| compare 
+[edit interfaces ae14]
++    unit 134 {
++        description "CUSTOMER: LIBERTY NETWORKS DE COLOMBIA S.A.S  (CFS:500403824) (RFS:6000317100)";
++        encapsulation vlan-vpls;
++        vlan-tags outer 0x8100.134 inner 0x8100.2817;
++        input-vlan-map pop-pop;
++        output-vlan-map push-push;
+
+BOGTCLFWZG007#sh run interface TenGigabitEthernet 0/0/24 | s  service instance 21
+ service instance 21 ethernet
+  description 12/LATAM/0319667/PATH - COLUMBUS NETWORKS DE COLOMBIA LTDA # 1-19YEO0 [(500403824) COLUMBUS-CXV]
+  encapsulation dot1q 2817
+  l2protocol tunnel cdp stp vtp
+  service-policy input 6000319667
+  bridge-domain 413
+  mac security maximum addresses 150
+  mac security violation restrict
+  mac security
+  
+Saludos,
+William Huertas
+Comments: (William Huertas Rodriguez) 22/11/24 16:22
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?

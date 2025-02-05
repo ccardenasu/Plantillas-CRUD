@@ -1,0 +1,89 @@
+Comments: (Ariza, Jorge) 24/12/24 12:14 Start DokuFlow.
+----------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Alta de Hybrid WAN Broadband Internet vía Starlink e integrar con CPE ISR4321
+
+CUSTOMER TECHNICAL CONTACT:
+Jhon Ospino / jhon.ospino@soe360grados.com.co / 3126255844
+Hybrid WAN Broadband Internet @2Tb
+XML 8845098
+CFS 500408841
+
+CLIENT: SOLUCIONES EMPRESARIALES 360 ° S.A.S.
+SITE: SOE 360° - CERREJON 1
+ADDRESS: CERREJON NORTE GUAGIRA SEDE INTERCOR MINA, RIOHACHA, LA GUAJIRA, COLOMBIA [LATITUD 11.035463 LONGITUD -72.650037]
+
+RFS:
+*:RFS 6000323543 ( 3rd Party )
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+El objetivo del proyecto es implementar Starlink como respaldo del enlace terrestre en El Cerrejón y configurar una VPN Site-to-Site con COLXV para acceso remoto seguro a sus aplicaciones
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Contratar el siguiente circuito:
+Plan de Internet Satelital Banda Ancha Starlink
+QUOTING: TDG-152019461
+Handoff interface: Electrical, RJ45
+BW: 2Tb ( Plan / Rate Limit: 50Mb )
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+No requiere
+----------------------------------------------------------------------------------
+SDM
+
+1. Es necesario realizar un relevamiento inicial en el sitio para definir la ubicación exacta de la instalación. Es importante tener en cuenta que la distancia máxima del cable propietario de OFFNET es de 25 metros para la conectividad WAN y de 5 metros para la conectividad LAN
+2. Se deberá llevar un herraje adecuado para la instalación de la estación en la pared o en la superficie definida. Este herraje será proporcionado por Cirion junto con la EAIM
+3. Agendar ventana con el cliente para dar de alta de Hybrid WAN Broadband Internet vía Starlink e integrar con CPE ISR4321
+4. Solicitar kit completo de montaje propiedad de Cirion; OFFNET se encargará de la instalación y puesta en marcha con Starlink
+5. El servicio se asignará por DHCP (sin IP fija)
+6. El canal será entregado una vez haya navegación, sin pruebas de saturación ni calidad de canal
+7. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+El Kit Starlink a ser utilizado en esta ubicación es asignado exclusivamente por OFFNET. Es importante no utilizar un kit diferente al asignado, por lo que la solicitud deberá realizarse posteriormente a la asignación de recursos por parte de OFFNET
+----------------------------------------------------------------------------------
+SA
+
+1. Establecer una VPN Site-to-Site con el firewall 1000D del cliente en COLXV para poder acceder a los aplicativos que se manejan en ese sitio ( Demo XML 8451217 )
+2. Realizar pruebas con el cliente y entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+
+Relaciono licencia Cisco Securityk9
+CER016255#show license | begin securityk9
+Index 3 Feature: securityk9 
+Period left: Life time
+License Type: Permanent
+License State: Active, In Use
+License Count: Non-Counted
+License Priority: Medium
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT
+
+Configurar NM Advanced Management
+LB Asignada OFFNET
+----------------------------------------------------------------------------------
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 27/12/24 11:54
+Finished Step: Solicitud de alta de circuito de Terceros·
+
+
+This Order was automatically initiated by Order NO:8850060
+Datos - ADI Add   **8850060*$*
+
+Workflow Initialization
+Comments: (Alberto Quesada) 03/01/25 13:15
+Finished Step: Alta Tercero
+Se envía la solicitud administrativa de instalacion a Speedcast. El SDM debe pedir la asignación del KIT, realizar la instalación de la estación y solicitar a Speedcat la activación.
+Colombia Plan Fixed 1TB - NRC USD $50 - MRC USD $277
+
+This Order was automatically initiated by Order NO:8851913
+Activación Terceros   **8851913*$*
+
+Workflow Initialization

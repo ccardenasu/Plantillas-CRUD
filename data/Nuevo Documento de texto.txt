@@ -1,0 +1,94 @@
+Comments: (Ramirez Sanchez, Tania) 22/01/25 21:01 Start DokuFlow.
+Actividad: Se requiere traslado de sede/Alta enlace VPN @100Mb
+Technical Contact: JOSE GOMEZ - Phone: 3167506004 - Email: wilson.perez@levapan.com 
+
+CLIENTE: COMPAÑIA NACIONAL DE LEVADURAS S.A.
+SEDE: LEVAPAN RIONEGRO PANAMERICANA DE ALIMENTOS 
+Dirección actual: Planta-Panamericana de Alimentos PANAL S.A.S, Km 35.4 Autopista Medellin - Bogotá Vereda La Laja,Rionegro -Antioquia.
+Dirección nueva: AUTOPISTA MEDELLÍN-BOGOTÁ , 054047,  Rionegro, Antioquia.
+ Latitud 6.1985525 Longitud -75.3824977
+VPN @100Mb
+XML 8866868
+CFS 500011159
+RFS:
+RFS IP PORT: 6000314119
+RFS NID: 6000314120
+RFS 3ER PARTY: 6000003234
+RFS CPE: 6000008893 
+--------------------------
+Description of Service: ||
+--------------------------
+Se requiere el traslado del canal MPLS:
+Dirección actual: Carrera 14 Bis # 10-47 Of.902 Edf.Alpess10 en Pereira
+Dirección nueva: https://maps.app.goo.gl/vpEY9ZVdPE4nXqN47 (Las coordenadas no coinciden porque en Wazi no fue posible asignar las coordenadas exactas al PL)
+Operador: UNE- TIGO
+Router: Cambiar equipo por C11118P
+Sede a Trasladar: LEVAPAN - RIO NEGRO(DesignID: LEVA_VN_81-1FJHD9)
+Sede nueva:  LEVAPAN RIONEGRO PANAMERICANA DE ALIMENTOS  (DesignID: LEVA_VN_81-5RWITI2)
+ ======================
+ ==============OFFNET===============
+Favor contratar el traslado del siguiente enlace TIGO UNE, ID: ACCESO-13765:
+Tipo: Capa 2 (L2)
+INTERFACE: ELECTRICA RJ45
+Proveedor: TIGO-UNE
+DK-SURVEY-TDG-152062883-8859189
+Handoff interface: Eletrical
+Connector: RJ45
+BW:100M
+============= PROVISIONING IPSA =============
+Es un traslado de sede, la UM actual es TIGO UNE.
+Se deben conservar todos los parámetros particularmente se debe conservar el mismo direccionamiento IP.
+1.  Asignar LB NID dar de Alta RFS.
+2.Trasladar el servicio que actualmente está :
+Type: VPN
+PE:psr1.mdc6
+Interface: ae11.406
+ IP WAN: 172.7.40.5/30
+VRF: Levapan
+Loopback: 172.18.53.161
+::: UM :::
+NE	MDLNCLAFNN002
+INTERFACE NAME	TenGigabitEthernet0/0/2/3
+============= SDM  =============
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Garantizar que el NID quede en gestión y con acceso remoto.
+3.Agendar con el cliente ventana para instalación de enlace y traslado de equipos.
+Design ID:  LEVA_VN_81-1FJHD9
+IP Gestión CPE: Loopback: 172.18.53.161
+Hostname: CER039512N
+Model: srx300
+Junos: 20.2R3-S2.5
+3.Realizar prueba de saturación del canal.
+4. Documentar ingeniería.
+Request equipment: 
+|1|1466410|F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA|ADVA|
+============= SA =============
+1. Realizar prueba de esfuerzo del canal. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+2.Entregar enlace al cliente.
+=========== NETWORK MANAGMENT  ==========
+SET UP NETWORK MANAGMENT TYPE: Advanced Management 	
+IP Gestión CPE:  172.18.53.161
+
+============
+
+
+Workflow Initialization
+Comments: (Ramirez Sanchez, Tania) 31/01/25 14:09
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8870245
+Datos - IP VPN Mod   **8870245*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 03/02/25 18:40
+Finished Step: Modificación Tercero
+
+Se solicita a UNE traslado externo para el canal en mención.
+
+
+
+This Order was automatically initiated by Order NO:8880122
+Activación Terceros ICT   **8880122*$*
+
+Workflow Initialization

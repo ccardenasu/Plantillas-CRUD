@@ -1,0 +1,94 @@
+Comments: (Vallejo Caguenas, Sergio) 10/12/24 00:55 Start DokuFlow.
+Actividad: Se requiere dar de Alta enlace ADI @80Mb vía Tercero.
+
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+Sede: LUMEN-ULINE-COLONIA ISIDRO FABELA-MEX
+Dirección: INDEPENDENCIA 54, 52004 LERMA DE VILLADA, MEXICO NA, Lerma de Villada, CMX-Estado de México, Mexico
+
+Technical Contact:
+Gustavo Jimenez / M: gustavo.jiminez@uline.com  / P: 52 8122001795
+
+CCM: Moreira, Jose
+
+XML 8830910
+CFS 500407087
+*:RFS6000321848 ( NID )
+*:RFS ---- ICT  ( 3rd Party )
+*:RFS6000321847 ( IP Port )
+
+=========== SOLICITUD DE EQUIPOS ===========
+
+1 x 1466410
+1078904720-02
+F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA
+
+1 x 1384891
+1013904010
+F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+
+ITEM: 1082088
+Descripcion: SMALL FORM FACTOR PLUGGABLE SINGLEMODE 10KM 1000SFP10 CHAMPION
+Parte numero: CHAMPION OPTICAL NETWORK
+Cantidad: 1
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: Vivaro Telecom (Marcatel)
+Tipo: Capa 2 [L2]
+BW: 100Mb
+Handoff interface: Eletrical, RJ45
+DK-SURVEY-TDG-152037127-8829477
+
+Se contratan 100 Mbps ya que por medio de QinQ como Cirion troncalizaremos un ADI 80 Mbps + VPN 20Mbps, esto es transparente para el convenio solo se documenta como informacion.
+
+============= IPSA =============
+
+Asignar recurso IP y Metro para dar de Alta el siguiente enlace, según el Nodo que confirme Offnet:
+tener presente que sobre esta vlan asignada por Offnet se troncalizara por QinQ este Servicio ADI con la Cvlan ADI=[99] en otra DKO se solicita el VPN debe quedar con Cvlan VPN=[159]
+
+Tipo: ADI
+PE: Por Asignar
+Int. Por Asignar
+IPv4 WAN: Asignar /29
+IPv4 LAN: Not aply to Lumen Links
+BW: 80Mb
+Enrutamiento: Estático
+
+*:Asignar LB NID, dar de Alta RFS.
+
+============= SDM / SA =============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar ventana con el cliente para dar de Alta enlace ADI @80Mb:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Tener presente que se debe entregar en la Interface indicada. 1GE, SMF, 2-Fiber, 1310nm
+- tener presente que por este Pto Optico se troncalizara ADI 80 Mbps + VPN 20Mbps favor asegurar Cvlan ADI=[99] Cvlan VPN=[159]
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 30/12/24 17:47
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8837556
+Datos - ADI Add   **8837556*$*
+
+Workflow Initialization
+Comments: (Hernandez, Erik) 02/01/25 15:30
+IPSA 
+
+Configurar de favor VLAN 1073, DEVICE:CDMYDFMPNN001 Te0/0/1/3, CID VENDOR:NNI-LV3-MDF-0002, CID LMN:CFS 700001542
+
+Comments: (Hernandez, Erik) 02/01/25 15:32
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8854236
+Activación Terceros ICT   **8854236*$*
+
+Workflow Initialization

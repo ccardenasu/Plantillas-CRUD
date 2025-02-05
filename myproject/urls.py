@@ -14,6 +14,8 @@ urlpatterns = [
     path("buscar_vrf_rd/", views.buscar_vrf_rd, name="buscar_vrf_rd"),
     path('pais_mercado_nodo/', views.pais_mercado_nodo, name='pais_mercado_nodo'),
     path('buscar_nodo/', views.buscar_nodo, name='buscar_nodo'),
+    path("ejecutar_ipsa/", views.ejecutar_ipsa, name="ejecutar_ipsa"),  # Nueva ruta
+
 ]
 
 if settings.DEBUG:

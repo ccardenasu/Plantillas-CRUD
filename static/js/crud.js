@@ -1,4 +1,6 @@
     document.addEventListener('DOMContentLoaded', function() {
+        console.log("La consola está funcionando correctamente"); // Mensaje de consola
+
         var tipoServicioField = document.getElementById('id_tipo_servicio');
         var tipoEquipoField = document.getElementById('id_tipo_equipo');
         var tipoConfiguracionField = document.getElementById('id_tipo_configuracion');
@@ -77,6 +79,7 @@
             }
         });
 
+        
 
         function updateFieldVisibility() {
             var tipoConfiguracion = tipoConfiguracionField.value;

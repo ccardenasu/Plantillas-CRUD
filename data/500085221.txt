@@ -1,0 +1,19 @@
+Comments: (Zuniga, Nogald) 05/01/25 19:23 Start DokuFlow.
+ALTA (PAP) @400M xFOP2P CID500410016
+================================
+4100 ADI MIRANDA CID500410016
+
+Asunto: ALTA acceso Servicio: Internet– FO - CIRION a 400 Mbps
+Cliente: COMUNICACIONES MIGTEL C.A. 
+Sede: COMUNICACIONES MIGTEL C.A. - ADI (EDIFICIO VEROES - AVDA. URDANETA)
+Ubicación: AVENIDA URDANETA TORRE SUNACRIP, CARACAS, DT-Distrito Federal, Venezuela Latitud 10.50789 Longitud -66.913521
+Vista en DokuViz: FD0D_VN_81-5RSYDEN
+ID Services : Internet  
+Service ID : 81-5S8SY47
+CID-CFS: 500410016	
+6000324564 IP Port	
+6000324565 Fiber Chain
+Project ID: 8855748
+SO: 81-5S8SY4R
+BW: 400 Mbps
+NODO: TLH

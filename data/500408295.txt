@@ -1,0 +1,85 @@
+Comments: (Vallejo Caguenas, Sergio) 19/12/24 13:30 Start DokuFlow.
+Scope: Alta Broadband PROYECTO BANCOLOMBIA - UNDERLAY NEW RFP_2025-2027
+
+Tecnical Contact:
+Sergio Martínez Serna / Tel: 4-4042736  / Cel: 3113800392 / Email: sergmart@bancolombia.com.co
+
+Sede: BANCOLOMBIA-CAJUDL2-5902-OLIIMPICA SAN CRISTOBAL
+Dirección/Ciudad:  CL 63 N° 128-63 / MEDELLIN / ANTIOQUIA
+
+XML  8841645
+CID-CFS :  500408295	
+RFS:
+RFS 3rd :  6000322992
+--------------------------
+Description of Service: ||
+--------------------------
+
+Este nuevo enlace se entrega al cliente como Broadband Internet.
+La orden para esta estación incluye un kit completo de elementos como modem wifi, antenas, potencia y convertidor ethernet.
+
+=========== SOLICITUD DE EQUIPOS ===========
+
+Solicitar los siguientes equipos, Los equipos son de Cirion.
+Lo catalogado como partes del KIT son:
+P/N: STLXX01017 
+DESCRIPTION: HIGH PERFORMANCE KIT STARLINK ANTENNA BASE POWER SUPPLY 1,8M
+AC CABLE FOR POWER SUPPLY 25M POE CABLE
+SAP: 1491967
+
+P/N:STLXX01013
+DESCRIPTION: ETHERNET ADAPTER COMPATIBLE WITH HIGH PERFORMANCE ANTENNA AND
+MARITIME FLAT HIGH PERFORMANCE ANTENNA
+SAP: 1491966
+
+1492390 - Starlink Long Wall Mount (Cantidad 1)
+La unidad debe venir con un Flat HP 25m Starlink Cable Sell incluida (Cantidad 1).
+
+=========== LAST MILE  ===========
+
+Se solicita instalación convenio Speedcast (Solución Internet Satelital Banda Ancha Starlink) a 1TB.
+
+Handoff interface: [Electrical]
+Connector: [RJ45/1G]
+
+============= PROVISIONING TX =============
+
+No requiere recursos por ser un Internet Satelital Banda Ancha.
+
+============= SDM =============
+
+El KIT starlink a utilizar en esta ubicación es asignado por OFFNET no se debe tomar un KIT diferente al asignado por OFFNET por lo cual se debe hacer la solicitud posterior a la asignación de recursos por parte de OFFNET.
+
+Se requiere de un relevamiento previo para indicarle a Speedcast donde deberá quedar la instalación. Tener en cuenta que la distancia del cable propietario de Starlink es de 25 metros para la conectividad WAN y de 5 metros para la conectividad LAN.
+
+La estación es un plato plano de aprox. 45x45x15 cms, se deberá llevar un herraje para instalarla adecuadamente a la pared o la superficie que se defina. Este herraje lo suministra Cirion en conjunto con la EAIM.
+
+Coordinar ventana con el cliente para la instalación del convenio.
+
+Al ser un servicio tipo Banda Ancha no tendra IP FIJA con lo cual la configuracion de la parte de Wan debe ser DHCP o Similar. El cliente instalará esta antena a un Firewall para navegación.
+Por favor tener en cuenta que los equipos son de Cirion y en esta etapa directamente Speedcast los llevara desde su Bodega y lo entregara instalado y comisionado.  
+
+Realizar pruebas de conectividad.
+El metodo de integracion entre la estacion starlink y el Fortigate del cliente sera que luego de la configuracion del servicio que debe hacer Speedcast se retira el AP de la estación y con el cable de Starlink a Ethernet se hace la conexion hasta el CPE(Fortigate) del cliente.
+Importante Indicarle al cliente que la estacíon a implementar es una estación Enterprise muy diferente a la de hogar, la diferencia básica es que la estación tiene mucha mayor tecnología para permitir mejores SLA y la prioridad del tráfico de hastra 1 Tera Byte en el tráfico satelital. El Round Trip Time esperado en promedio de 100ms. Un caso ejemple es de 65ms para llegar a Google. El delay puede aumentar y estar vaiando dependiendo de las condiciones climáticas y la distancia satelital.
+
+
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 03/01/25 14:38
+Finished Step: Solicitud de alta de circuito de Terceros·
+
+
+This Order was automatically initiated by Order NO:8846103
+Datos - ADI Add   **8846103*$*
+
+Workflow Initialization
+Comments: (Alberto Quesada) 07/01/25 18:19
+Finished Step: Alta Tercero·
+Se envía la solicitud administrativa de instalacion a Speedcast. El SDM debe pedir la asignación del KIT, realizar la instalación de la estación y solicitar a Speedcat la activación.
+Colombia Plan Fixed 1TB - NRC USD $50 - MRC USD $277
+
+This Order was automatically initiated by Order NO:8856192
+Activación Terceros   **8856192*$*
+
+Workflow Initialization

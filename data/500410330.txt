@@ -1,0 +1,111 @@
+DKO:8874067 (8883290)
+Comments: (Palmera Aguilera, Viviana) 27/01/25 19:35 Start DokuFlow.
+Nota!! Esta dko se genera fuera de tiempo, mientras se cerraba el TDG.
+Scope: Se requiere dar de Alta enlace VPN @10Mb vía Tercero AXTEL; NM Application
+Cliente:FEDERAL EXPRESS CORPORATION
+Sede:MX_HMOA - HERMOSILLO - SONORA 81-5OLY9VF 
+ 
+Technical Contact:
+Jamie Earnest / M: jearnest@fedex.com / P: 9083340746
+ 
+Dirección: MX_HMOA - HERMOSILLO - SONORA, BLVD. JESÚS GARCÍA MORALES 257, PARQUE INDUSTRIAL LABOR, 83210 HERMOSILLO, SON., MEXICO NA, Hermosillo, SR-Sonora, Mexico Latitud 29.0975605 Longitud -111.0070137
+
+ VPN@10M
+XML 8860215
+CFS 500410330 
+
+RFS:
+ NID : 6000327602
+ 3rd Party : --
+IP Port : 6000327601
+CPE : 6000327603
+
+======================
+Descripción del Trabajo: 
+Se requiere Instalación Acceso vpn 
+Tipo de Enlace: Convenio
+======================
+
+Actividades solicitadas:
+ 
+=========== Request Equipment ===========
+ 
+Descripción: NID ADVA FSP 150CC-GE101Pro MicroNID, C-Temp, F150/ADV/GE101PRO, HW Rel 1.01
+Item SAP: 1469560
+Parte numero: 1078904820-01
+Cantidad: 1
+ 
+Descripción: Power Supply Unit, for FSP 150CC-GE101Pro MicroNID, 240 VAC Input, +12 VDC Output, F150/ADV/GE/ADAPT/240V/12V, HW Rel 1.01
+Item SAP: 1469561
+Parte numero: 1013904027
+Cantidad: 1
+  
+SAP: 1343900
+DESCRIP: SRX300 with 8GE (w 2x SFP), 4G RAM, 8G Flash. Includes external power supply and cable. RMK not included
+CANT: 1
+ 
+=========== OFFNET ===========
+ 
+Contratar el siguiente circuito:
+ 
+Proveedor: AXTEL
+Tipo: Capa 2 [L2]
+BW: 10Mb
+Handoff interface: Eletrical, RJ45
+DK-SURVEY-TDG-151999827-8859792
+ 
+========== IPSA=========
+1. Asignar VLAN en Interconexión indicada por OFFNET y dirección IP de monitoreo para NID,
+2. Crear subinterface en PE asignado con un BW @10Mbps y Routing:
+ 
+RECURSO:
+---------------------
+PE: ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 10.41.67.241/30
+VRF: 6516-1-GCAMERICASSOLUTIONS-2006739936-L3VPN 
+ 
+Enrutamiento: BGP; # AS_BGP: 64517
+QoS: -- DSCP
+23% B 
+36% E 
+41% P 
+ 
+3. Asignar ip de monitoreo para NID, CPE y Dar de Alta RFS 
+ 
+============= SDM / SA =============
+ 
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar ventana con el cliente para dar de Alta enlace VPN @10Mb:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+3. Confirmar con cliente VRF dado que se uso la VRF General, si es una especifica diferente de debe montar soporte a IPSA para el cambio. Al momento de generar la DKO Cliente no confirma.
+4. configuracion de CPE y dejar en Gestion.
+5. Realizar prueba de esfuerzo del canal. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+6. Entregar enlace al cliente.
+7. Documentar ingeniería.
+ 
+=========== NETWORK MANAGMENT  ==========
+Configurar NETWORK MANAGMENT Application
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 29/01/25 17:27
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8874067
+Datos - IP VPN Add   **8874067*$*
+
+Workflow Initialization
+Comments: (Hernandez, Erik) 04/02/25 21:07
+IPSA
+
+VLAN 1551, DEVICE:   MNTRXLFXNN001 Te0/0/1/1,  CID CTL: CFS 700001094, CID VENDOR: IPC_MNTRXLPOPAB_MNTRXLPOPAB_00000
+Comments: (Hernandez, Erik) 04/02/25 21:08
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8876701
+Activación Terceros ICT   **8876701*$*
+
+Workflow Initialization

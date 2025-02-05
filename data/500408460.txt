@@ -1,0 +1,79 @@
+Comments: (Ramirez Sanchez, Tania) 31/12/24 16:41 Start DokuFlow.
+ACTIVIDAD: se requiere alta VPN  a 5Mb/s vía  FO PAP+CPE 
+VPN @5 Mb/s
+Technical Contact: 
+KATHERYNE DAZA - Katheryne.Daza@grupocnet.com - 3128969107
+CLIENTE: COMPUNET S.A.
+SEDE: COMPUNET - OLEOFLORES BARRANQUILLA
+DIRECCIÓN: Carrera 58 No. 64 - 82 Barranquilla, Atlántico
+Design ID: B90A_VN_81-5PBI93W
+XML: 8843113
+CID-CFS: 500408460
+RFS :
+6000324091	CPE 
+6000324093	NID 
+6000324094	Fiber Chain 
+6000324095	IP Port
+--------------------------
+Description of Service: ||
+--------------------------
+Instalación de 14 accesos MPLS entre sedes remotas y el sitio central de Compunet en DC ETIX y 2 accesos de Internet.
+----------------------------------------------
+================ PLEX ===============
+1. Realizar relevamiento Fibra PAP e informar costos al SA y CCM para su aprobación.
+2. Asignar Vías, Tender Fibra y dejar Enlace Fibra PAP en punta Cliente.
+Client: COMPUNET S.A.
+Site: COMPUNET - OLEOFLORES BARRANQUILLA
+Address: Carrera 58 No. 64 - 82 Barranquilla, Atlántico
+============= PROVISIONING IPSA =============
+1. Asignar VLAN en Interconexión MetroPlan y dirección IP de monitoreo para MetroNID,
+2. Asignar LB CPE y NID, dar de Alta RFS.
+3. Crear subinterface en PE asignado con un BW @5Mbps y Routing:
+Type: VPN
+PE: Asignar/xxxx
+Int. Asignar/xxxx
+IPv4 WAN:  	10.2.38.72/30
+VRF nueva: 	compu_oleoflores_baq
+Enrutamiento: BGP; # AS_BGP: 65043
+BW: 5Mbps
+============= SDM  =============
+1. Validar asignación de recursos por parte de IPSA y PLEX.
+2. Agendar ventana con el cliente para dar de Alta enlace VPN @5Mbps
+3. Garantizar que el CPE y el NID quede en gestión y con acceso remoto.
+4. Este servicio VPN es redundante en UM y en CPE, se debe configurar HSRP contra un enlace del proveedor CLARO.
+5. Validar Routing , Conectividad WAN, LAN y Funcionalidad de Aplicaciones Cliente
+6. Documentar ingeniería.
+Handoff interface POP: NNI
+Handoff interface CLIENT: 1GE/Electrico/RJ 45
+
+Request equipment: SI NO HAY DISPONIBILIDAD DE C1111-8P ENVIAR SRX300 JPNW
+|1|1469560|FSP 150CC-GE101PRO MICRONID C TEMP F150/ADV/GE101PRO 1078904820-01 ADVA|ADVA|
+|1|1384891|F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO|ADVA|
+|1|1082088|SMALL FORM FACTOR PLUGGABLE SINGLEMODE 10KM 1000SFP10 CHAMPION|SFP|
+|1|1463297|ISR 1100 8 PORTS DUAL GE WAN ETHERNET ROUTER C1111-8P CSCO|CISCO|
+|1|1453279|CISCO 1100 SERIES ROUTER RACKMOUNT WALLMOUNT KIT ACS-1100-RM-19|CISCO|
+============= SA =============
+1. Realizar prueba de esfuerzo del canal. Programar ventana de Activación conjunta con cliente y Claro, garantizando que el servicio quede operativo.
+2.Realizar pruebas de conectividad contra la sede principal del cliente compunet, Compunet DC Etix (dokuviz: B90A_VN_81-35ZS1TY) 
+3.Entregar enlace al cliente.
+=========== NETWORK MANAGMENT  ==========
+SET UP NETWORK MANAGMENT TYPE Application
+Loopback: Asignada IPSA
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8854905
+Datos - IP VPN Add   **8854905*$*
+
+Workflow Initialization
+Comments: (Gutierrez Ospina, Javier) 07/01/25 12:14
+SE ASIGNA NODO MANZANARES
+Comments: (Gutierrez Ospina, Javier) 07/01/25 12:16
+Finished Step: Análisis y Validación de la Información
+
+
+This Order was automatically initiated by Order NO:8854907
+Ingeniería de acceso Fibra Optica (1)   **8854907*$*
+
+Workflow Initialization

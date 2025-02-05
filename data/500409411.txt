@@ -1,0 +1,59 @@
+Comments: (Ever Contreras) 07/01/25 18:21 Start DokuFlow.
+##
+Esta DKO se generó tras confirmar con el área de Ventas si el servicio debía configurarse con BURST o únicamente con COMMIT.
+##
+
+Actividad: Se requiere dar de alta enlace IPT @3Gb vía red local en proceso de despliegue.
+
+CONVERGIA, INC.
+ NAP MIAMI
+ADDRESS: NAP de Las Américas 50 Nrotheast 9th, MIAMI, 3RD FLOOR, FL-Florida, USA Latitud 25.782703 Longitud -80.193082
+
+Technical Contact:
+Chris Palladini / M: chris.palladini@convergia.com / P: 15146936300 ext 4375
+Validar datos adicionales del LCON con el CCM.
+
+CCM: Bononi, Paulo
+
+XML 8852166
+CFS 500409411
+*:RFS6000324029 ( IP Port )
+
+========= IPSA =========
+
+1. Asignar recurso IP para dar de alta el siguiente enlace vía tercero:
+
+CLLI: MIAUFLWS | Nap Of The Americas	
+
+Tipo: Internet | IPT
+PE: Por Asignar | NCD 8854177
+- Derivar JEOP a NPI para confirmar fecha de disponibilidad de este nuevo equipo en el NAP MIAMI - 3RD FLOOR.
+Int. Por Asignar [10GE, Optical, SMF, LC, 2-Fiber, 1310NM, 10KM]
+IPv4 WAN: Asignar /30
+IPv4 LAN: None
+BW: 3Gb
+Routing: BGP | Pendiente formulario por cliente.
+
+- Solución NIDLESS.
+- CPE del cliente.
+
+========= SDM / SA =========
+
+1. Validar asignación de recursos por parte de IPSA.
+2. Agendar actividades para dar de alta enlace de Internet @3Gb vía red:
+- Customer Handoff Interface: 10GE, Optical, SMF, LC, 2-Fiber, 1310NM
+- Solución NIDLESS.
+- CPE del cliente.
+3. Generar LOA y compartir con el cliente para que este contrate la XC hasta su equipo final.
+4. Realizar prueba de esfuerzo del enlace.
+5. Agendar PEM con el cliente, garantizando correcta navegación hacia Internet.
+6. Entregar enlace al cliente.
+7. Documentar ingeniería.
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8858162
+Datos - ADI Add   **8858162*$*
+
+Workflow Initialization

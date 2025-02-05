@@ -1,0 +1,89 @@
+Comments: (Rojas, Carlos) 04/01/25 14:08 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar ampliaciÃ³n de servicio de INTERNET via Fibra Optica PaP sobre red Metro 2.0 y BBIP a 300Mbps
+ 
+Cliente: 	FIDUCIARIA SURA S.A. 	
+Sede:    GESFIDUCIA - 	SURA IM - SANTA MONICA		
+DirecciÃ³n: AV 6B NORTE. #25A-19, CALI, VAL-Valle del Cauca, Colombia Latitud 3.46858 Longitud -76.53111
+Design ID:  G0A3_VN_81-32DX3B9	
+
+SE: Rafael Roman 
+CCM: Lopez Rodriguez, Ingrid Liliana	
+
+Nombre del contacto:  Luis Fernando Quiceno 
+Email del contacto: luis.quiceno@sura-im.com 	
+
+Project ID (XML): 8854414
+Service Instance: INTERNET
+CFS-CID: 500246546
+
+RFS IP Port: 6000154157
+RFS Ethernet: 6000154865	
+RFS Crossconection: 6000154156
+RFS CPE: 6000154155
+
+=============== SOLICITUD DE EQUIPOS ===============
+EN CASO DE NO TENER DISPONIBILIDAD DE ISR4431 Y LICENCIA ENTONCES INSTALAR EL JUNIPER 
+Descripcion: Juniper SRX340
+Material: 1344082
+Cantidad: 1
+
+
+DescripciÃ³n: CISCO ISR 4431 AX BUNDLE WITH APP AND SEC LICENSE ISR4431-AX/K9 CSCO
+Item SAP: 1378166
+Parte numero: ISR4431-AX/K9
+Cantidad: 1
+
+DescripciÃ³n: 19IN RACK MOUNT KIT FOR CISCO ISR 4330 ACS-4430-RM-19= CSCO
+Item SAP: 1381245
+Parte numero: ACS-4430-RM-19=
+Cantidad: 1
+
+LICENCIA HASTA 500Mbps
+DescripciÃ³n: PERFORMANCE ON DEMAND LICENSE FOR 4400 SERIES FL-44-PERF-K9= CSCO
+Item SAP: 1372151
+Parte numero: FL-44-PERF-K9=
+Cantidad: 1
+
+======================= IP SA =======================
+1. Realizar ampliaciÃ³n del servicio de INTERNET a 300Mbps en BBIP y red Metro 2.0.
+
+RECURSOS ACTUALES EN BBIP DEL ENLACE:
+PE: ar3.cal1
+Interface: ae-12:290.1200
+WAN IPv4: 204.199.119.144/30
+LAN IPv4: 204.199.119.152/29
+2001:13b0:8001:c06f::da/127
+2001:13b0:8005:c254::/64
+AS BGP: 10753
+
+RECURSOS ACTUALES  EN RED METRO DEL ENLACE:
+SW: CALICLAJZG009
+Interface Giga0/0/23
+VLAN 1200
+
+===================== SDM/SA ======================
+1. Validar ampliaciÃ³n de recursos en BBIP y red Metro a 300Mbps realizada por parte de IPSA 
+2. Programar con el cliente ventana de trabajo para ampliaciÃ³n del servicio
+3. Cambiar router en sede y Configurar Router a nueva capacidad contratada.
+
+ROUTER ACTUAL:
+CISCO C1111-8P
+SN: FGL2437L0XN
+
+4. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (Router)
+5. Realizar prueba de esfuerzo del canal con el cliente y garantizar correcta navegaciÃ³n a Internet
+6. Entregar enlace a satisfacciÃ³n del cliente.
+7. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Application 
+IP WAN CPE:  204.199.119.146
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8856681
+Datos - ADI Mod   **8856681*$*
+
+Workflow Initialization

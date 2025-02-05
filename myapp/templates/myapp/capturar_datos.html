@@ -60,6 +60,35 @@
 
             updateDisplay(); // Initialize display with current values
         });
+
+        function ejecutarIPSA() {
+            console.log("Evento blur activado en CFS"); // Mensaje de consola
+            var cfsValue = document.getElementById('id_cfs').value;
+            console.log("Ejecutando IPSA.py con CFS:", cfsValue); // Mensaje de consola
+            fetch(`/ejecutar_ipsa/?cfs=${cfsValue}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("IPSA.py ejecutado correctamente"); // Mensaje de éxito
+                        console.log("Salida del script:", data.data); // Mostrar la salida del script
+                        // Actualizar los campos de texto "Cliente", "Sede" y "RFS IP Port"
+                        document.getElementById('id_dko').value = data.data.dko;
+                        document.getElementById('id_cfs').value = data.data.cfs;
+                        document.getElementById('id_cliente').value = data.data.cliente;
+                        document.getElementById('id_sede').value = data.data.sede;
+                        document.getElementById('id_rfs_ip_port').value = data.data.rfs_ip_port;
+                        document.getElementById('id_vt').value = data.data.vlan;
+                        document.getElementById('id_sw').value = data.data.sw;
+
+                    } else {
+                        console.error("Error al ejecutar IPSA.py:", data.error); // Mensaje de error
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error); // Mensaje de error
+                });
+        }
+
     </script>
 </head>
 <body>
@@ -106,7 +135,7 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="id_cfs">Cfs:</label>
-                    <input type="text" name="cfs" id="id_cfs" class="form-control">
+                    <input type="text" name="cfs" id="id_cfs" class="form-control" onblur="ejecutarIPSA()">
                     <div id="error-message" aria-live="assertive"></div>
                     <button type="button" onclick="buscarCfs()">Buscar</button>
                     <button type="button" onclick="limpiarCampos()">Limpiar</button>

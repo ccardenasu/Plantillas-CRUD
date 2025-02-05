@@ -1,0 +1,161 @@
+Comments: (Zuniga, Nogald) 05/01/25 19:23 Start DokuFlow.
+ALTA (PAP) @400M xFOP2P CID500410016
+================================
+4100 ADI MIRANDA CID500410016
+
+Asunto: ALTA acceso Servicio: Internet– FO - CIRION a 400 Mbps
+Cliente: COMUNICACIONES MIGTEL C.A. 
+Sede: COMUNICACIONES MIGTEL C.A. - ADI (EDIFICIO VEROES - AVDA. URDANETA)
+Ubicación: AVENIDA URDANETA TORRE SUNACRIP, CARACAS, DT-Distrito Federal, Venezuela Latitud 10.50789 Longitud -66.913521
+Vista en DokuViz: FD0D_VN_81-5RSYDEN
+ID Services : Internet  
+Service ID : 81-5S8SY47
+CID-CFS: 500410016	
+6000324564 IP Port	
+6000324565 Fiber Chain
+Project ID: 8855748
+SO: 81-5S8SY4R
+BW: 400 Mbps
+NODO: TLH
+======================
+Descripción del Trabajo: 
+ALTA acceso Servicio: Internet – FO - CIRION a 400 Mbps
+======================
+Persona Contacto:
+
+MIGUEL ENRIQUEPORRO AVILA 
+584242534877
+mporro@migtel.net.ve 
+
+Referencia:
+
+AM: Garcia, Jose Emilio 
+SE: Eduardo Pastuszak 
+CCM: Graterol, Zulay
+
+Recursos Asignar
+
+--- [PLANTA EXTERNA] ---
+
+Factibilidad: Positiva (DO: n/a) 
+
+IMPORTANTE: Esta ALTA de servicio es debido a una desconexion del cliente SUNACRIP que va en paralelo por lo que se deben asumir los mismos recursos ya instalados.
+
+Aztualizar documentacion nuevo 6000324565 Fiber Chain
+
+--- [ IP SERVICE ACTIVATION ] ---- 
+
+Factibilidad: Positiva (DO:N/A). Comentarios de la factibilidad: "N/D" 
+
+IMPORTANTE: Esta ALTA de servicio es debido a una desconexion del cliente SUNACRIP que va en paralelo por lo que se deben asumir los mismos recursos ya instalados.
+
+1. CPE del cliente
+2. Actualmente 1G se debe colocar BW de 400M por nueva contratacion
+
+Este servicio no pasa por red metro:
+
+Configuracion actual:
+CUSTOMER:SUPERINTENDENCIA NACIONAL DE CRIPTOACTIVOS Y ACTIVIDADES CONEXAS (SUNACRIP) [ (CFSID:500085221) AV.URDANETA.EDF.VEROES]
+PE: ar2.ccs1
+Int: xe-1/1/6:0
+IPV4WAN:190.216.231.136/30
+IPV4LAN: 190.217.12.0/24
+IPV6WAN: 2001:13B0:8001:B84A::44/127
+
+3. El direccionamiento IPv4 /24 (190.217.12.0/24) se mantiene con la misma facturacion actual de USD 2.500
+También deben registrar ante LACNIC las IP a nombre de COMUNICACIONES MIGTEL, C.A.
+
+Es necesario cambiar la description de la interface y actualizar con nueva razon social, nuevo CID-CFS: 500410016 y RFS 6000324564 IP Port	
+
+--- [INFRAESTRUCTURA] ---
+
+IMPORTANTE: Esta ALTA de servicio es debido a una desconexion del cliente SUNACRIP que va en paralelo por lo que se deben asumir los mismos recursos ya instalados.
+
+PUNTO DESTINO: TLH/RR010104.12/AR2.CCS1/SLOT #1/MODULO 1/PUERTO 6 (1/1/6)
+PUNTO INTERMEDIO: TLH/RR010104.12/OC.01/PUERTOS 19-20
+PUNTO INTERMEDIO: TLH/RR010107.04/OC.04/AR2-OC1/PUERTOS 19-20
+PUNTO INTERMEDIO: TLH/ RR010107.04/OC.02/MMRO-R/PUERTO 13-14
+PUNTO INTERMEDIO: MMRO/06.04/OC.09/PUERTO 13-14 
+
+actualiza la documentacion con nuevo CID-CFS: 500410016 y razon soacil
+
+--- [SDM&ACTIVATION] ---
+POR FAVOR LEER TODA LA DO Y SI HAY ALGUNA AMBIGUEDAD O DUDA VALIDARLO CON EL CD.
+
+IMPORTANTE: Esta ALTA de servicio es debido a una desconexion del cliente SUNACRIP que va en paralelo por lo que se deben asumir los mismos recursos ya instalados.
+1. CPE del cliente 
+2. Cliente recibirá en puerto ELECTRICO
+3. No pasa por RED METRO.
+4. Certifica que IPSA Cambien la description de la interface con nueva razon social, nuevo CID-CFS: 500410016 y RFS 6000324564 IP Port
+5. Certificar que IPSA El direccionamiento IPv4 /24 (190.217.12.0/24) También deben registrar ante LACNIC las IP a nombre de COMUNICACIONES MIGTEL, C.A.
+6. En cuanto planta externa / interna es solo documentacion con nueva razon social, nuevo CID-CFS
+7. IMPORTANTE: Actualmente 1G se debe colocar BW de 400M por nueva contratacion
+8. Realizar prueba de saturación del canal y confirmar que el enlace alcance el BW contratado.
+9. Realizar pruebas de navegación en conjunto con el contacto.
+10. Actualizar ingeniería.
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8856732
+Datos - ADI Add   **8856732*$*
+
+Workflow Initialization
+Comments: (Gomez, Hermes) 07/01/25 16:57
+
+>><<>><>><<><<><<><>><><>><><<>><>((( OSP )))>>><<>>><><<<>><><<>><>><>><<>><
+
+    Se valida la información de la orden , y se da inicio a los trabajos para para la instalación del servicios ADI 400 Mbps vía fibra óptica On Net en Nodo TLH La Urbina, por Planta Externalos recursos designados son los siguientes;
+
+POP:  TLH
+Sala: TLH
+Rack: 06.03
+Cable: F-144 
+ODF: OC.03
+Puertos: 33 - 34 (3º columna (C) Posiciones C-9 y C10)
+Longitud:  16.150 metros Certificados
+
+  Extremos cliente
+Igualmente se mantienen los recursos
+ODF RMS-12-ST/UPC
+Puerto 1 - 2
+
+Comments: (Gomez, Hermes) 07/01/25 16:58
+Finished Step: Análisis y Validación de la Información·
+
+
+This Order was automatically initiated by Order NO:8856733
+Ingeniería de acceso Fibra Optica (1)   **8856733*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 07/01/25 20:00
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+*A:ar2.ccs1#  admin display-config | match xe-1/1/6:0 context all 
+#--------------------------------------------------
+    service
+        ies 26638 customer 2968 create
+            interface "xe-1/1/6:0" create
+        ies 26638 customer 2968 create
+            interface "xe-1/1/6:0" create
+                description "CUSTOMER:SUPERINTENDENCIA NACIONAL DE CRIPTOACTIVOS Y ACTIVIDADES CONEXAS (SUNACRIP) (CFS:500085221)  (RFS:6000324564)"
+                enable-ingress-stats
+                address 190.216.231.137/30
+                tos-marking-state trusted
+                ip-mtu 1500
+                ipv6
+                    address 2001:13b0:8001:b84a::44/127 
+                exit
+                sap 1/1/6:0 create
+                    ingress
+                        qos 131
+                    exit
+                    egress
+                        agg-rate
+                            rate 400000
+                        exit
+                    exit
+                exit
+                urpf-check
+                    mode loose
+                exit
+*A:ar2.ccs1# 

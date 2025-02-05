@@ -1,0 +1,104 @@
+Comments: (Vallejo Caguenas, Sergio) 02/01/25 18:46 Start DokuFlow.
+******* SE REALIZA DKO FUERA DE LOS KPI POR DEMORAS EN COTIZACION Y APROBACION DE PRESUPUESTO PILOTO SITE SURVEY MEXICO *******
+
+Scope: Se requiere realizar ALTA canal VPN @500Mbps Convenio BESTEL
+
+Customer Technical Contact:
+Joe Jaszkowiak / M: joe.jaszkowiak@doosan.com /P: (1701) 799-9851	
+
+VPN @500Mb
+XML 8794160
+CFS 500405490
+
+Address: AV. INTERNACIONAL NUMBER 305, FRACCIONAMIENTO INDUSTRIAL N/A, Nuevo Leon, NL-Nuevo Leon, Mexico
+
+RFS: 
+*:RFS6000324288 ( IP Port )
+*:RFS --- ICT   ( 3rd Party )
+*:RFS6000324289 ( NID )
+--------------------------
+Description of Service: ||
+--------------------------
+Se requiere realizar ALTA canal VPN @500Mbps Convenio BESTEL
+======================
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+Proveedor: BESTEL
+Tipo: Capa 2 [L2]
+BW: 500Mb
+
+quoting: DK-SURVEY-TDG-152010105-8768492
+Handoff interface: Eletrical, RJ45
+
+============= IPSA =============
+
+1. Asignar VLAN en Interconexión indicada por PLEX y dirección IP de monitoreo para NID,
+2. Crear subinterface en PE asignado con un BW @500Mbps y Routing:
+3. Asignar ip de monitoreo para NID, y Dar de Alta RFS  
+
+RECURSO:
+---------------------
+PE:  ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 	100.123.0.176 /30
+VRF: 346437339 -> confirmada por LUMEN 
+Target: 209:10014881
+
+Enrutamiento: BGP; # AS_BGP: 65342
+QoS: -- DSCP
+25% B -- 1-15,17,19,21,23,25,27,29,31,33,35,37,39,41-45,47,49-55,57-63					
+25% E -- 16,18,20,22,24,26,28,30,48,56
+50% P -- 32,34,36,38,46,48
+
+============= SDM =============
+
+1. Validar asignación de recursos por parte de IPSA y Offnet
+2. Agendar ventana con Lumen y  el cliente para dar de Alta enlace VPN @500Mb:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Tener en cuenta que la interface de entrega a nivel LAN sera Eletrical, RJ45
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+============= SA =============
+
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+
+
+
+Workflow Initialization
+Comments: (Fernando de Almeida Anderson) 03/01/25 08:24
+Finished Step: Asignación de CCM·
+
+Comments: (Vallejo Caguenas, Sergio) 03/01/25 12:29
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8855666
+Datos - IP VPN Add   **8855666*$*
+
+Workflow Initialization
+Comments: (Bravomalo, María Elena) 06/01/25 16:24
+POP	                                Gateway México DF (MEX - CDMYDFMP)
+COUNTRY                 	MEX
+VENDOR:                   	BESTEL
+CAPACITY:                       	10GB
+DEVICE:                        	CDMYDFMPNN002 - Te0/0/0/0
+CID Cirion:                           	6000294173
+CID VENDOR:      	               28123-CFO-300
+
+VLAN ASIGNADA:                  4
+
+
+Comments: (Bravomalo, María Elena) 06/01/25 16:56
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8856027
+Activación Terceros ICT   **8856027*$*
+
+Workflow Initialization

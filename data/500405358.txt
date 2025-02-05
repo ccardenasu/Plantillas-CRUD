@@ -1,0 +1,117 @@
+Comments: (Vallejo Caguenas, Sergio) 25/11/24 23:24 Start DokuFlow.
+********* Se realiza fuera de los KPI por falta informacion Technical Sheet Se realiza apenas se obtiene la informacion ********* 
+
+Actividad:  Se requiere realizar la instalación y puesta en marcha de un canal  VPN @100Mbps por Fibra propia PAP;
+
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+Sede: LUMEN-RXO MANAGED-MEXICO
+Dirección: 130 BOULEVARD DÍAZ ORDAZ NA, MONTERREY, NL-Nuevo Leon, Mexico
+
+CONTACTO CLIENTE:
+Nombre: alonso urbina
+Correo: Jesus.Urbina@rxo.com
+Tel: (52811) 037-9539
+
+CCM: Bononi, Paulo
+
+REFERENCIAS:
+Vista en DokuViz: MD3F_VN_81-5R6JYHS
+XML: 8784612
+CFS: 500405358
+RFS:
+RFS IP PORT: 6000319878
+RFS Fiber Chain: 6000319879
+RFS NID: 6000319880
+=========== SOLICITUD DE EQUIPOS ===========
+
+ ITEM: 370169, (SAP: 1384691).
+Descripción: F150/ADV/GE114PRO/AC/811.
+Cantidad: 1.
+
+-ITEM: 363313, (N/P: 1013904011).
+Descripción: F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN.
+Cantidad: 1.
+
+-ITEM: 2362-24, (N/P: 1036000632).
+Descripción: AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT.
+Cantidad: 1.
+
+Modulo SFP WAN para ADVA:
+Descripción: 20KM SINGLE FIBER SFP 1310NM TX SMF LC -5 TO 75 C TX PWR -7 TO 1000SFP31B20L CHAMPION ONE
+Item SAP: 1248720
+Parte numero: 1000SFP31B20L
+Cantidad: 1
+
+ITEM: 1082088 -> SFP LAN NID Hacia el Cliente
+Descripcion: SMALL FORM FACTOR PLUGGABLE SINGLEMODE 10KM 1000SFP10 CHAMPION
+Parte numero: CHAMPION OPTICAL NETWORK
+Cantidad: 1 
+
+========= PLANTA EXTERNA  ==========
+
+Por favor habilitar 1 hilo de fibra para um enlace F.O PaP en la sede del cliente.
+ 
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+Sede: LUMEN-RXO MANAGED-MEXICO
+Dirección: 130 BOULEVARD DÍAZ ORDAZ NA, MONTERREY, NL-Nuevo Leon, Mexico
+
+========== IPSA=========
+1. Asignar VLAN en Interconexión indicada por PLEX y dirección IP de monitoreo para NID,
+2. Crear subinterface en PE asignado con un BW @100Mbps y Routing:
+
+RECURSO:
+---------------------
+PE:  ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 	100.65.5.40/30
+VRF: 32703-1-XPOLOGISTICSLLC-2005781838-L3VPN -> confirmada por LUMEN
+Target: 6745:110032703
+
+Enrutamiento: BGP; # AS_BGP: 65342
+QoS: -- DSCP
+25% B -- 1-15,17,19,21,23,25,27,29,31,33,35,37,39,41-45,47,49-55,57-63					
+25% E -- 16,18,20,22,24,26,28,30,48,56
+50% P -- 32,34,36,38,40,46
+
+3. Asignar ip de monitoreo para NID, y Dar de Alta RFS  
+
+============= SDM / SA =============
+
+1. Validar asignación de recursos por parte de IPSA y PLEX
+2. Agendar ventana con Lumen y  el cliente para dar de Alta enlace VPN @100Mb:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Tener en cuenta que la interface de entrega a nivel LAN sera 1G, SMF, 2-Fiber.
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+POR FAVOR LEER TODA LA DOCUMENTACION Y SI HAY ALGUNA NOVEDAD O DUDA VALIDARLO CON EL CD.
+Circuit Designer : Sergio Vallejo
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8824673
+Datos - IP VPN Add   **8824673*$*
+
+Workflow Initialization
+Comments: (Hipolito, Carlos) 26/11/24 21:38
+************************** PLANTA EXTERNA OSP *************************
+Se asigna proveedor  para el seguimiento de visita a sitio cliente. y determiar plan de trabajo de instalacion de enlace  
+Comments: (Hipolito, Carlos) 26/11/24 21:38
+Empalme de Red
+NODO: HUMBOLDT
+FILA: 005
+RACK: 004
+EQUIPO SUGERIDO:MNTRXLFXZG004
+MNTRXLFXZG005
+MNTRXLFXZG006
+
+Comments: (Hipolito, Carlos) 06/01/25 21:05
+Finished Step: Análisis y Validación de la Información
+
+
+This Order was automatically initiated by Order NO:8824674
+Ingeniería de acceso Fibra Optica (1)   **8824674*$*
+
+Workflow Initialization

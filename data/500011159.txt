@@ -1,0 +1,88 @@
+Comments: (Vallejo Caguenas, Sergio) 23/12/24 18:23 Start DokuFlow.
+Actividad: Se requiere hacer traslado interno de enlace VPN @10Mb; NM Availability
+
+FERROCARRIL MEXICANO S.A DE C.V.
+FERROMEX-TORREON
+ADDRESS: C. DECIMA OCTAVA, BRAULIO FERNANDEZ AGUIRRE, TORREON, COAH., MEXICO N/A, TORREON, COA-Coahuila, Mexico
+
+Technical Contact:
+Oscar Salcedo / M: oscar.salcedo@ferromex.mx / P: 5543605752 
+
+CCM: Romero Castillo, Diana
+
+DESING ID: E230_VN_81-4X9SXPU	
+XML 8632583
+CFS 500344166
+RFS IP Port #1: 6000234290
+RFS IP Port #2: 6000291024
+RFS 3rd Party: 6000268242
+
+RFS NID: 6000234288
+RFS CPE: 6000234289
+--------------------
+DATOS DEL ENLACE: ||
+--------------------
+Tipo de Enlace: VPN
+BW: 10 Mbps.
+Se requiere hacer traslado interno de enlace VPN @10Mb
+
+============ OFFNET ============
+
+Solicitar Traslado  INTERNO del siguiente circuito:
+
+Proveedor: METROCARRIER
+Tipo: Capa 2 [L2]
+BW: 10Mb
+VENDOR ID: 29465982
+ICT ID: 448738
+DK-SURVEY-TDG-152055294-8844849
+
+============ IPSA ============
+	
+NO SE REQUIEREN MODIFICACIONES DE LABORES IPSA:
+
+RECURSO INFORMATIVO:
+PE: psr2.gua1
+INT: ae10.60
+WAN: 10.10.3.1/30
+VRF: 5070-1-FLORIDAEASTCOASTRAILWAYLLC-2006420398-L3VPN
+::: UM :::
+EQUIPO: L5843422NN001
+INT: GigabitEthernet0/0/0/0
+
+============ SDM / SA ============
+
+1. Agendar ventana con el cliente y el tercero para realizar traslado interno de enlace VPN @10Mbps via METROCARRIER
+2. Mover los equipos de CIRION y del tercero, esta última con el apoyo del tercero METROCARRIER El cliente deberá confirmar la nueva ubicación final de los equipos.
+3. Realizar pruebas de conectividad y saturación a nivel WAN, validar que no se presenten errores sobre todas las Interfaces, restablecimiento del servicio luego del traslado interno
+4. Entregar enlace al cliente.
+5. Entregar Informe de la actividad y actualizar ingenieria.
+
+=========== NETWORK MANAGMENT  ==========
+Mantener NETWORK MANAGMENT Availability
+
+NID: 10.227.55.47
+CPE: 172.24.128.77
+
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 26/12/24 19:24
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8849689
+Datos - IP VPN Mod   **8849689*$*
+
+Workflow Initialization
+Comments: (Hernandez, Erik) 03/01/25 16:03
+IPSA
+
+Al ser reubicación interna no cambia la VLAN actual.
+Comments: (Hernandez, Erik) 03/01/25 16:05
+Finished Step: Modificación Tercero·
+
+
+This Order was automatically initiated by Order NO:8851341
+Activación Terceros ICT   **8851341*$*
+
+Workflow Initialization

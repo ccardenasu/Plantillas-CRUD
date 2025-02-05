@@ -1,0 +1,41 @@
+Comments: (Palmera Aguilera, Viviana) 03/01/25 15:56 Start DokuFlow.
+Scope:  ALTA DE INSTANCIAS DE MANERA ADMINISTRATIVA. ACTUALIZACION DOCUMENTACION nuevo CFS ID 
+Contacto técnico:
+Oscar Andres Arroyo Romero - oscar.arroyo@justiciamilitar.gov.co
+VPN SDWAN  PPAL @1200M
+UNIDAD ADMINISTRATIVA ESPECIAL DE LA JUSTICIA PENAL MILITAR Y POLICIAL 
+sede: OFICINA CANTON MILITAR
+Dirección: Carrera 46 No. 20 C - 1 Cantón Militar Occidental "coronel Francisco José de Caldas"
+BOGOTA
+XML : 8851943
+CFS  ID:  500409341
+CFS ID SDWAN Services: 500409345
+RFS:
+RFS IP PORT: 
+RFS NID: 6000227533 (shared)
+RFS Fiber chain: 6000227530 (shared)
+RFS SDWAN CPE: 6000228531
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN SDWAN   ON NET PPAL  BW: 1200Mbps.
+
+=========== IPSA  ===============
+Se requiere documentar el servicio actualmente operativo con el nuevo CFS ID y RFS IP PORT, por reactivación de las instancias que se dieron de baja administrativamente:
+CFS VPN SDWAN  ACTUAL: 500338020 ----> NEW CFS ID: 500409341
+Subinterface:
+psr1.sub1.bog: ae10.3349
+BBIP WAN : 192.168.51.5/30
+vrf: jpm_sdwan
+BW: 1,2G
+**************** S&A ****************
+Solo se requiere documentar el cambio de CFS ID del servicio de acuerdo al indicado en esta dko:
+CFS ID Antiguo: 500338020
+CFS ID Nuevo:  500409341
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8856255
+Datos - IP VPN Add   **8856255*$*
+
+Workflow Initialization

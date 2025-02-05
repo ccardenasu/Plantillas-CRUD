@@ -1,0 +1,115 @@
+Comments: (Ramirez Sanchez, Tania) 19/12/24 21:42 Start DokuFlow.
+Asunto: Ampliar Acceso BBIP - Servicio: VPN, Enlace  FO METRO CIRION 120Mbps.
+Cliente: 	COMPUNET S.A.
+Sede: COMPUNET - BT NAOS ZONA CARRIERS
+Dirección: Zona Franca Tocancipá Km 1.5 Vía Briceño-Zipaquirá
+Vista en DokuViz: B90A_VN_81-5Q0VYDJ
+Project ID: 8841496
+Technical Contact: Katheryne Daza - Email: katheryne.daza@grupocnet.com
+
+CID-CFS: 500404183
+RFS: 
+6000318304	CPE 	
+6000318305	ISP 	
+6000318306	IP Port
+======================
+Descripción del Trabajo: 
+Se requiere ampliar de 100M a 120M el servicio VPN que se esta configurando con el XML 8725471. Nutresa - Compunet
+=====================
+Actividades solicitadas:
+
+--- [IP SERVICE ACTIVATION ] ---- Configurar Subinterface
+
+1.  Configurar Subinterface en BBIP con Policy Rate a 120Mbps y Routing.
+Se esta dando de alta con DKO: 8759454 
+DATOS SUBINTERFACE 
+------------------------------
+PE: psr3.bgo1
+Interface: ae14.124
+IP BBIP: 192.168.66.93/30
+VRF: 9985-1-COMPUNET-NUTRESA-9000003198-L3VPN
+Tipo de Equipo: Router
+Alias: CER139243
+Address IP: 172.18.8.7
+BW:12OM
+========UM============
+CNRCCLABZG001#
+ interface GigabitEthernet0/0/9
+
+============= SDM  =============
+1. Seguimiento a la modificacion del canal VPN en la ubicación indicada
+2. realizar cambio de CPE y reintegral el Actual a Stock Cirion.
+3. Verificar que se haya realizado la configuración solicitada a BBIP.
+
+============= SA =============
+
+Realizar pruebas de conectividad y saturación a nivel WAN y LAN, Verificar que alcance el BW solicitado, validar que no se presenten errores sobre todas las Interfaces.
+
+=========== NETWORK MANAGMENT  ==========
+Configurar NETWORK MANAGMENT Application
+ lb: 172.18.8.7
+
+
+Workflow Initialization
+Comments: (Herrera Morales, Eliana) 31/12/24 21:25
+==========================================================
+SEÑORES IP-SA
+Por favor asignar recursos de acuerdo a la DKO
+1.  Configurar Subinterface en BBIP con Policy Rate a 120Mbps y Routing.
+Se esta dando de alta con DKO: 8759454 
+DATOS SUBINTERFACE 
+------------------------------
+PE: psr3.bgo1
+Interface: ae14.124
+IP BBIP: 192.168.66.93/30
+VRF: 9985-1-COMPUNET-NUTRESA-9000003198-L3VPN
+Tipo de Equipo: Router
+Alias: CER139243
+Address IP: 172.18.8.7
+BW:12OM
+Comments: (Herrera Morales, Eliana) 07/01/25 11:22
+==========================================================
+SEÑORES IP-SA
+Por favor asignar recursos de acuerdo a la DKO
+1.  Configurar Subinterface en BBIP con Policy Rate a 120Mbps y Routing.
+Se esta dando de alta con DKO: 8759454 
+DATOS SUBINTERFACE 
+------------------------------
+PE: psr3.bgo1
+Interface: ae14.124
+IP BBIP: 192.168.66.93/30
+VRF: 9985-1-COMPUNET-NUTRESA-9000003198-L3VPN
+Tipo de Equipo: Router
+Alias: CER139243
+Address IP: 172.18.8.7
+BW:12OM
+
+This Order was automatically initiated by Order NO:8846965
+Datos - IP VPN Mod   **8846965*$*
+
+Workflow Initialization
+Comments: (Herrera Morales, Eliana) 07/01/25 17:21
+==========================================================
+SEÑORES IP-SA
+Por favor asignar recursos de acuerdo a la DKO
+1.  Configurar Subinterface en BBIP con Policy Rate a 120Mbps y Routing.
+Se esta dando de alta con DKO: 8759454 
+DATOS SUBINTERFACE 
+------------------------------
+PE: psr3.bgo1
+Interface: ae14.124
+IP BBIP: 192.168.66.93/30
+VRF: 9985-1-COMPUNET-NUTRESA-9000003198-L3VPN
+Tipo de Equipo: Router
+Alias: CER139243
+Address IP: 172.18.8.7
+BW:12OM
+========UM============
+CNRCCLABZG001#
+ interface GigabitEthernet0/0/9
+
+
+This Order was automatically initiated by Order NO:8857590
+Instalación complementaria   **8857590*$*
+
+Workflow Initialization

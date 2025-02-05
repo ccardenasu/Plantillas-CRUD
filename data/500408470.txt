@@ -1,0 +1,86 @@
+Comments: (Ramirez Sanchez, Tania) 02/01/25 11:37 Start DokuFlow.
+ACTIVIDAD: se requiere alta VPN  a 5Mb/s vía  Netbeam+CPE 
+VPN @5 Mb/s
+Technical Contact: 
+KATHERYNE DAZA - Katheryne.Daza@grupocnet.com - 3128969107
+CLIENTE: COMPUNET S.A.
+SEDE: COMPUNET - ING RISARALDA
+DIRECCIÓN: Km 2 Vía La Virginia (4.906959, -75.896759) - Balboa
+Design ID: B90A_VN_81-5M4CCX6
+XML: 8843113
+CID-CFS: 500408470
+RFS :
+6000324123	CPE 
+6000324124	NID 
+6000324125	IP Port
+--------------------------
+Description of Service: ||
+--------------------------
+Instalación de 14 accesos MPLS entre sedes remotas y el sitio central de Compunet en DC ETIX y 2 accesos de Internet.
+----------------------------------------------
+=========== OFFNET ===========
+Favor contratar el siguiente enlace:
+Tipo: Capa 2 (L2)
+INTERFACE: ELECTRICA RJ45
+Proveedor: Netbeam
+DK-SURVEY- TDG-152043704
+Handoff interface: Eletrical
+Connector: RJ45
+============= PROVISIONING IPSA =============
+1. Asignar VLAN en Interconexión indicada por Offnet y dirección IP de monitoreo para MetroNID.
+2. Asignar LB CPE y NID, dar de Alta RFS.
+3. Crear subinterface en PE asignado con un BW @5Mbps y Routing:
+Type: VPN
+PE: Asignar/xxxx
+Int. Asignar/xxxx
+IPv4 WAN:  	10.2.38.88/30
+VRF: compu_ing_risaralda
+Enrutamiento: BGP 
+AS: 65047 6504765047
+65047
+BW: 5Mbps
+============= SDM  =============
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar ventana con el cliente para dar de Alta enlace VPN@5Mbps
+3. Garantizar que el CPE y el NID quede en gestión y con acceso remoto.
+4. Este servicio VPN es redundante en UM y en CPE, se debe configurar HSRP contra un enlace del proveedor CLARO.
+5. Validar Routing , Conectividad WAN, LAN y Funcionalidad de Aplicaciones Cliente
+6. Documentar ingeniería.
+Handoff interface POP: NNI
+Handoff interface CLIENT: 1GE/Electrico/RJ 45
+
+Request equipment: SI NO HAY DISPONIBILIDAD DE C1111-8P ENVIAR SRX300 JPNW
+|1|1469560|FSP 150CC-GE101PRO MICRONID C TEMP F150/ADV/GE101PRO 1078904820-01 ADVA|ADVA|
+|1|1384891|F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO|ADVA|
+|1|1463297|ISR 1100 8 PORTS DUAL GE WAN ETHERNET ROUTER C1111-8P CSCO|CISCO|
+|1|1453279|CISCO 1100 SERIES ROUTER RACKMOUNT WALLMOUNT KIT ACS-1100-RM-19|CISCO|
+============= SA =============
+1. Realizar prueba de esfuerzo del canal. Programar ventana de Activación conjunta con cliente y Claro, garantizando que el servicio quede operativo.
+2.Realizar pruebas de conectividad contra la sede principal del cliente compunet, Compunet DC Etix (dokuviz: B90A_VN_81-35ZS1TY) 
+3.Entregar enlace al cliente.
+=========== NETWORK MANAGMENT  ==========
+SET UP NETWORK MANAGMENT TYPE Application
+Loopback: Asignada IPSA
+
+
+Workflow Initialization
+Comments: (Ramirez Sanchez, Tania) 02/01/25 13:42
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8855144
+Datos - IP VPN Add   **8855144*$*
+
+Workflow Initialization
+Comments: (Castaneda, Steven) 07/01/25 16:34
+Se solicita a NETBEAM realizar la instalación a 5 MB del canal en mención.
+
+Se asigna VLAN 1377 en la NNI MEDELLIN MDLNCLAF - SW1.MDC4 GIGA 0/0/1
+Comments: (Castaneda, Steven) 07/01/25 16:35
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8855370
+Activación Terceros ICT   **8855370*$*
+
+Workflow Initialization
