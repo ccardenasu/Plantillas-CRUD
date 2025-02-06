@@ -58,7 +58,7 @@
     set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} family inet any prefix-limit teardown idle-timeout 120
     set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export BGP-export
     set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} export "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export
-    set policy-options policy-statement "numeros iniciales de VRF Azul"-1-{{ datos.sede }}7{{ datos.cfs }}-export then accept 
+    set policy-options policy-statement {{ rd }}-1-{{ datos.sede }}-7{{ datos.cfs }}-export then accept 
     set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} peer-as {{ datos.asn }}
     set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} as-override
     set routing-instances {{ datos.vrf }} protocols bgp group {{ datos.sede }}-7{{ datos.cfs }} neighbor {{ datos.wan|second_valid_ip }}

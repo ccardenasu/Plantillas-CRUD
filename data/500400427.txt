@@ -1,0 +1,279 @@
+DKO:8648110 (8694551)
+Comments: (Ariza, Jorge) 07/10/24 03:42 Start DokuFlow.
+ACTIVIDAD: se requiere alta SD WAN Internet a 30Mb/s e integrar en doble CPE Sd Wan C8200-1N-4T en HA
+
+IMPORTANTE: Este proceso obedece a la dinámica de cambio tecnológico de Sd Wan Versa hacia Sd Wan Cisco para reforzar el nivel de servicio del cliente. Se solicita alta SD WAN Internet para complementar la DO 8582444
+
+CLIENTE: EMPRESA DE MEDICINA INTEGRAL EMI S.A.S. SERVICIO DE AMBULANCIA PREPAGADA
+DIRECCIÓN: DATACENTER COLOMBIA XV, BOGOTA, COLOMBIA
+SEDE: GRUPO EMI S.A. -BOGOTA-DAT. CENT. COLOMB XV
+CIUDAD: BOGOTA
+
+CONTACTO: Pablo Gomez / Cel: 3163289708 / E: pablo.gomez@grupoemi.com
+Otro posible contacto validar con CCM
+CCM: Ingrid Lopez
+SE: Rita Forero
+AM: Jorge Ochoa
+Sd Wan TDE: Francisco Estrada
+
+XML: 8645785
+CID-CFS: 500400427
+RFS IP Port: 6000312640
+NID:6000329033
+SOF/TDG Detail: 180914
+----------------------------------------------------------------------------------
+SOLICITUD DE EQUIPOS:
+IMPORTANTE: en la DO 8582444 se encuentra documentada la PO del SE para la solicitud de los equipos y licencias
+----------------------------------------------------------------------------------
+IPSA:
+1. Asignar recursos de BBIP y red Metro Sala 1 Data Center Colombia XV para el siguiente servicio:
+TYPE: SD WAN Internet
+PE: Por Asignar
+INT: Por Asignar
+Cantidad de IP (WAN) IPv4: /31
+Cantidad de IP (WAN) IPv6: /64
+Cantidad de IP (LAN) IPv4/IPv6: No Asignar Solución Sd Wan
+ME: Por Asignar
+INT: Por Asignar, diferente a la interfaz asignada en la DO 8648109 (Ppal)
+Ruteo: Estatico
+BW: 30Mb/s
+SLA: 99.5%
+2. Registrar los RFS:
+CID-CFS: 500400427
+RFS IP Port: 6000312640
+----------------------------------------------------------------------------------
+SDM/SA:
+IMPORTANTE: En los Hub Medellín y Colombia XV el nuevo Sd Wan Cisco va a coexistir con el actual Sd Wan Versa hasta que se realice la migración completa hacia Sd Wan Cisco en los Spokes
+
+1. Validar asignación de recursos por parte de IPSA y DATACENTER
+ - Con CD Germán Gutiérrez de DATACENTER validar asignación de espacio para la instalación de los equipos
+ - DATACENTER es responsable de las crossconexiones, para que las soliciten se le debe indicar la interfaz asignada por IPSA
+2. Agendar ventana con el cliente para realizar alta SD WAN Internet a 30Mb/s e integrar en doble CPE Sd Wan C8200-1N-4T en HA:
+ - El Sd Wan TDE asignado realizará la definición del diseño Sd Wan
+ - Establecer HA integrado al Sd Wan IP VPN (Ppal) que se solicitó configurar en la DO 8648109
+ - Garantizar que los equipos queden en gestión y con acceso remoto
+ - Ajustar Sd Wan CPE con el nuevo BW
+ - Correr pruebas de esfuerzo de canal
+ - Al finalizar la actividad confirmar que todo el proyecto se haya ejecutado con éxito
+3. Realizar pruebas en compañía del cliente (Datos, Aplicativos, Navegación, etc), validando que el servicio Sd Wan funcione correctamente según las políticas definidas en la plantilla, LLD del proyecto y entregar la solución al cliente a total satisfacción
+4. Actualizar la ingeniería
+
+DATOS SD WAN:
+HOSTNAME DEVICE 1: FALK_CXV_BOG_M_--81-2F4PQ20
+SITE ID: 57011001
+SYSTEM IP: 10.57.1.1
+ORGANIZATION NAME: Por Asignar
+VBOND SERVER: Por Asignar
+DIRECCIONAMIENTO TLOC:
+RED TLOC PRIVATE 1: 10.20.200.8/30
+RED TLOC PRIVATE 2: 10.20.201.8/30
+
+HOSTNAME DEVICE 2: FALK_CXV_BOG_S_--81-2F4PQ24
+SITE ID: 57011002
+SYSTEM IP: 10.57.1.2
+ORGANIZATION NAME: Por Asignar
+VBOND SERVER: Por Asignar
+DIRECCIONAMIENTO TLOC:
+RED TLOC PRIVATE 1: 10.20.200.8/30
+RED TLOC PRIVATE 2: 10.20.201.8/30
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT:
+Garantizar NM Type: Advanced Management
+Garantizar en las herramientas de gestión este nuevo servicio
+IP WAN: la que asigne IPSA
+----------------------------------------------------------------------------------
+
+Workflow Initialization
+Comments: (Gabriel Ernesto Cardenas) 09/10/24 08:17
+Finished Step: Asignación de SDM·
+
+
+This Order was automatically initiated by Order NO:8648110
+Datos - IP VPN Add   **8648110*$*
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 25/10/24 10:38
+Luego de reunión con Sd Wan TDE se añade lo siguiente a la solicitud de IPSA:
+----------------------------------------------------------------------------------
+IPSA:
+Asignar IP pública para la gestión del FortiSwitch
+----------------------------------------------------------------------------------
+Comments: (Alarcon Perez, Jhon) 25/10/24 11:54
+----------------------------------------------------------------------------------
+Comments: (Ariza, Jorge) 25/10/24 11:51
+Nota: favor solicitar cambio IPSA con el SD WAN Internet asignando una IP (WAN) IPv4: /29 que nos sirve para la salida a Internet y también para la administración del Switch que se necesita
+----------------------------------------------------------------------------------
+Comments: (Carlos Cardenas) 28/10/24 18:22
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+                        CFS: 500400427
+                        DKO: 8648110 (8694551)
+                        tipo_configuracion: Alta
+                        tipo_servicio: ADI
+                        RFS-IP-PORT: 6000312640
+                        Cliente: GRUPO EMI S.A.
+                        SEDE: DATACENTER COLOMBIA XV 1-10BX9L
+                        SW: BOGTCLFWZG041
+                        Interface SW: GigabitEthernet0/0/5
+                        PE: ar1.cxv2.bog
+                        Interface PE: ae5.1040
+                        SV: 1040
+                        CV: 1200
+                        BW: 30M
+                        WAN: 8.242.148.144/29
+                        WANIPv6: 2001:13b0:a000:7e::/64
+
+
+
+Usuario: Cardenas Urrea, Carl
+Cliente: GRUPO EMI
+Sucursal: CXV
+Design ID: RFS:6000316211
+Tipo de Equipo: Router
+Alias: CER138377
+Snmp Version: 2c
+Address IP: 8.242.148.150
+Comunidad: $Lev3L3
+Eq Id: No EQID
+Vendedor: Cisco
+Mascara Formato Largo:  0
+Gateway:  0
+Vlan Dominio:  0
+RFS_CFS:  RFS:6000316211
+
+
+
+Iniciando búsqueda en /data/net-tools/gblx/gblx/configs/...
+grep -r 8.242.148.144 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.145 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.146 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.147 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.148 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.149 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.150 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.151 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.148.144 /data/net-tools/gblx/gblx/configs
+Búsqueda en /data/net-tools/gblx/gblx/configs/ completada.
+---------------------------------------------
+Iniciando validación de listas negras...
+Ninguna de las IPs está en listas negras en ninguno de los sitios buscados (MXToolbox, Spamhaus, Barracuda).
+Validación de listas negras completada.
+---------------------------------------------
+La IP 8.242.148.144 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.145 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.146 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.147 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.148 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.149 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.150 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.151 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.148.144 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+
+Checking AS3549 route table for 8.242.148.144...
+show router route-table 8.242.148.144 
+8.242.144.0/20                                Blackh* BGP       96d05h57m  200
+
+
+Checking AS3356 route table for 8.242.148.144...
+show router route-table 8.242.148.144 
+8.242.144.0/20                                Remote  BGP       18d23h39m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Checking AS3549 route table for 8.242.148.144/28...
+
+show router route-table 8.242.148.144/28 
+8.242.144.0/20                                Blackh* BGP       96d05h57m  200
+
+
+Checking AS3356 route table for 8.242.148.144/28...
+show router route-table 8.242.148.144/28 
+8.242.144.0/20                                Remote  BGP       18d23h39m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Search complete.
+
+
+roci@ar1.cxv2.bog# show | compare | no-more 
+comm
+[edit interfaces ae5]
++    unit 1040 {
++        description "CUSTOMER:GRUPO EMI S.A.(CFS:500400427)(RFS:6000312640)";
++        bandwidth 30720000;
++        vlan-tags outer 0x8100.1040 inner 0x8100.1200;
++        family inet {
++            rpf-check {
++                mode loose;
++            }
++            mtu 1500;
++            no-redirects;
++            filter {
++                input NETPROTECT-BE;
++            }
++            policer {
++                input CUSTOMER-30M;
++                output CUSTOMER-30M;
++            }
++            address 8.242.148.145/29;
++        }
++        family inet6 {
++            rpf-check {
++                mode loose;
++            }
++            mtu 1500;
++            filter {
++                input NETPROTECT-BE-IPv6;
++            }
++            policer {
++                input CUSTOMER-IPV6-30M;
++                output CUSTOMER-IPV6-30M;
++            }
++            address 2001:13b0:a000:7e::1/64;
++        }
++    }
+[edit firewall policer CUSTOMER-30M if-exceeding]
+-    bandwidth-limit 30m;
+-    burst-size-limit 1125000;
++    bandwidth-limit 30720000;
++    burst-size-limit 1152000;
+[edit firewall]
+    policer CUSTOMER-IPV6-300M { ... }
++   policer CUSTOMER-IPV6-30M {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 30720000;
++           burst-size-limit 1152000;
++       }
++       then discard;
++   }
+
+[edit]
+roci@ar1.cxv2.bog# commit 
+                            run show route  8.242.148.145 | no-more
+re0: 
+configuration check succeeds
+re1: 
+commit complete
+re0: 
+commit complete
+
+[edit]
+roci@ar1.cxv2.bog# run show route 8.242.148.145 | no-more 
+
+inet.0: 1015088 destinations, 2984479 routes (1015044 active, 17 holddown, 71 hidden)
+@ = Routing Use Only, # = Forwarding Use Only
++ = Active Route, - = Last Active, * = Both
+
+8.242.148.145/32   *[Local/0] 00:00:01
+                      Local via ae5.1040
+
+inet.2: 25566 destinations, 58429 routes (25565 active, 0 holddown, 1 hidden)
++ = Active Route, - = Last Active, * = Both
+
+8.242.148.145/32   *[Local/0] 00:00:01
+                      Local via ae5.1040
+
+[edit]
+roci@ar1.cxv2.bog# 
+
+

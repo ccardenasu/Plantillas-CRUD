@@ -1,0 +1,224 @@
+DKO:8680833 (8883800)
+
+Comments: (Ariza, Jorge) 21/10/24 13:41 Start DokuFlow.
+----------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar por falta de definición de la solución Sd Wan, que al final quedo definida como Hub and Spoke
+----------------------------------------------------------------------------------
+ACTIVIDAD: se requiere alta SD WAN Internet a 30Mb/s vía tercero e integrar en doble CPE Sd Wan FG-80F en HA
+
+CLIENTE: COMERCIALIZADORA INTERNACIONAL FLORES DE FUNZA S.A.S
+DIRECCIÓN: AVENIDA CALLE 72 # 10 - 07, BOGOTA, COLOMBIA [LATITUD 4.6562245 LONGITUD -74.0582536]
+SEDE: FLORES DE FUNZA - OFICINA PRINCIPAL
+CIUDAD: BOGOTA
+
+CONTACTO: Sandra Maldonado / Cel: 3143307405 / E: smaldonado@floresfunza.com
+Otro posible contacto validar con CCM
+CCM: Alirio Perez
+SE: Julio Peña
+AM: Diego Moreno
+Sd Wan TDE: Matias Hernan Caro
+
+XML: 8640573
+CID-CFS: 500399473
+RFS IP Port: 6000314815
+RFS 3rd Party: 6000022773
+RFS NID: 6000022777 [SHARE]
+RFS SDWAN CPE: 6000314738
+SOF/TDG Detail: TDG-151986497
+----------------------------------------------------------------------------------
+SOLICITUD DE EQUIPOS:
+No se requiere
+----------------------------------------------------------------------------------
+OFFNET:
+1. Solicitar cambio de Datos a Internet para el siguiente servicio:
+PROVIDER: CABLE & WIRELESS
+TYPE: Layer 3 [L3]
+ID: CI1002539
+Cantidad de IP (WAN) IPv4: /30
+BW: 30Mb/s
+SLA: 99.5%
+CID-CFS: 500399473
+RFS 3rd Party: 6000022773
+DK-SURVEY-TDG-151986497-8647541
+----------------------------------------------------------------------------------
+IPSA:
+No se requiere, con este cambio no pasa por red Cirion
+----------------------------------------------------------------------------------
+SDM/SA:
+Este proceso obedece a la dinámica de cambio tecnológico de Legacy hacia Sd Wan Fortinet y se debe ejecutar de manera controlada con aprobación del cliente. No cerrar orden hasta que el Sd Wan TDE defina completamente la solución en este hub
+
+1. Validar asignación de recursos por parte de OFFNET
+2. Agendar ventana con el cliente para realizar alta SD WAN Internet a 30Mb/s vía tercero e integrar en doble CPE Sd Wan FG-80F en HA:
+ - Los dobles CPE Sd Wan FG-80F en HA fueron solicitados en la DO 8671812
+ - Conectar el nuevo Sd Wan Internet hacia el Sd Wan CPE y establecer HA en hardware switch
+ - Realizar la migración según la definición del archivo LLD dado por el Sd Wan TDE y con la asignación de un ingeniero especialista de Cirion o en su defecto un contratista, validar esta asignación con CCM
+ - Garantizar que los equipos continuen en gestión y con acceso remoto
+ - Ajustar Sd Wan CPE con el nuevo BW
+ - Correr pruebas de esfuerzo de canal
+ - Al finalizar la actividad confirmar que todo el proyecto se haya ejecutado con éxito
+3. Realizar pruebas en compañía del cliente (Datos, Aplicativos, Navegación, etc), validando que el servicio Sd Wan funcione correctamente según las políticas definidas en la plantilla, LLD del proyecto y entregar la solución al cliente a total satisfacción
+4. Actualizar la ingeniería
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT:
+Garantizar NM Type: Advanced Management
+Garantizar en las herramientas de gestión este nuevo servicio
+IP WAN: la que asigne IPSA
+----------------------------------------------------------------------------------
+CIRCUIT DESIGNER:
+Liberar los siguientes recursos al finalizar esta orden:
+TYPE: VPN
+CID-CFS: 500048218
+PE: PSR1.SUB1.BOG
+INT: ae10.2836
+IP: 192.168.100.61/30
+DES: CUSTOMER: FLORES DE FUNZA, OFICINA PRINCIPAL (CFS:500048218) (RFS:6000179927)	COMERCIALIZADORA INTERNACIONAL FLORES DE FUNZA S.A.S
+ME: BOGTCLFXNN001
+INT: TenGigabitEthernet0/0/2/3
+DES: 12/LATAM/6000179927/SVC ENNI # LAZUS 81-ENNI (500048218) FLORES DE FUNZA, OFICINA PRINCIPAL
+----------------------------------------------------------------------------------
+
+Workflow Initialization
+Comments: (Gabriel Ernesto Cardenas) 21/10/24 15:42
+Finished Step: Asignación de SDM·
+
+Comments: (Ariza, Jorge) 23/10/24 18:08
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+Comments from Subprocess 8690082
+
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 28/10/24 17:44
+Finished Step: Modificación Tercero·
+
+Se solicita a LIBERTY migración de IPVPN a Internet corporativo, asignando y configurando un  direccionamiento WAN /30 publico.
+Comments from Subprocess 8710325
+
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 29/10/24 09:58
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+----------------------------------------------------------------------------------
+IPSA:
+No se requiere, con este cambio no pasa por red Cirion
+----------------------------------------------------------------------------------
+
+Comments: (Valbuena, Andrea) 30/10/24 12:47
+Finished Step: Entrega MOD UM·
+
+ LIBERTY confirma los recursos asignados para la migración de IPVPN a internet corporativo, se anexa correo a la DKO y se avanza la tarea.
+
+NOTA: Se solicita a SDM el favor de confirmar con 2 días de antelación, la fecha/hora autorizada por el cliente para realizar los cambios en conjunto (SDM-LIBERTY), con el fin de agendar el soporte remoto.
+
+Comments: (Ariza, Jorge) 03/12/24 13:20
+Por actualización de la solución se necesita el siguiente equipo:
+----------------------------------------------------------------------------------
+SOLICITUD DE EQUIPOS:
+1 x 1385451
+A920-BUN-4S-A
+ASR920 BUNDLE FOR ASR-920-4SZ-A CISCO ASR920 SERIES- 2GE AND 4-10GE AC MODEL A920-BUN-4S-A CSCO
+
+1 x 1387196
+A920-RCKMT-19
+EIA 19IN RACK MOUNT OPTION FOR THE CISCO ASR 920 A920-RCKMT-19 CSCO
+----------------------------------------------------------------------------------
+Comments: (Ariza, Jorge) 18/12/24 14:10
+----------------------------------------------------------------------------------
+IPSA:
+
+Como solución temporal se solicita la gestión de un NID por una nueva LB a través del acceso VPN
+1. Asignar LB NID y dar de Alta RFS NID a través de este acceso VPN
+*:RFS 6000322886 ( NID )
+TYPE: VPN
+CID-CFS: 500048218
+PE: PSR1.SUB1.BOG
+INT: ae10.2836
+IP: 192.168.100.61/30
+DES: CUSTOMER: FLORES DE FUNZA, OFICINA PRINCIPAL (CFS:500048218) (RFS:6000179927)
+ME: BOGTCLFXNN001
+INT: TenGigE0/0/2/3.914791300
+DES: 12/LATAM/6000179927/SVC ENNI # LAZUS 81-ENNI (500048218) FLORES DE FUNZA, OFICINA PRINCIPAL
+----------------------------------------------------------------------------------
+Comments: (Carlos Cardenas) 19/12/24 11:10
+Usuario: Cardenas Urrea, Carl
+Cliente: COMERCIALIZADORA INTERNACIONAL FLORES DE FUNZA S.A
+Sucursal: FLORES-DE-FUNZA---OFICINA-PRINCIPAL-81-197DA7W
+Design ID: 
+Tipo de Equipo: NID
+Alias: NID140536
+Snmp Version: 2c
+Address IP: 10.226.202.12
+Comunidad: $Lev3L3
+Eq Id: No EQID
+Vendedor: Adva
+Mascara Formato Largo:  255.255.255.0
+Gateway:  10.226.202.1
+Vlan Dominio:  505
+RFS_CFS:  RFS:6000022777
+
+Comments: (Ariza, Jorge) 04/02/25 18:01
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Asignar recurso IP y Metro para
+TYPE: SD WAN Internet 1
+PE: Asignar
+INT: Asignar
+IP: /31
+ME: BOGTCLFXNN001
+INT: TenGigabitEthernet0/0/2/3
+BW: 30Mb
+
+TYPE: SD WAN Internet 2
+PE: Asignar
+INT: Asignar
+IP: /31
+ME: BOGTCLFXNN001
+INT: TenGigabitEthernet0/0/2/3
+BW: 30Mb
+----------------------------------------------------------------------------------
+SDM
+
+1. Desagregar en NID los dos Internet
+----------------------------------------------------------------------------------
+
+Comments: (Ariza, Jorge) 04/02/25 18:12
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+*:RFS 6000329013 ( IP Port )
+*:RFS 6000329014 ( IP Port )
+----------------------------------------------------------------------------------
+
+Comments: (Herrera Morales, Eliana) 05/02/25 14:45
+=====================================================
+******** SOLICITUD IPSA ********
+=====================================================
+ 
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio
+TYPE: SD WAN Internet 1
+PE: Por Asignar
+INT: Por Asignar
+IP: /31
+ME: BOGTCLFXNN001
+INT: TenGigabitEthernet0/0/2/3
+BW: 30Mb
+ 
+2. Asignar y configurar segmento publico adicional (IP Secuandaria), sobre la Interfaz de PE asignada en el punto 1.
+TYPE: SD WAN Internet 2
+PE: Asignado en el punto 1
+INT: Asignado en el punto 1
+IP: /31
+ME: BOGTCLFXNN001
+INT: TenGigabitEthernet0/0/2/3
+BW: 30Mb
+ 
+*:RFS 6000329013 ( IP Port )
+*:RFS 6000329014 ( IP Port )
+CID-CFS: 500399473
+=====================================================
+=====================================================
+
+This Order was automatically initiated by Order NO:8680833
+Datos - ADI Mod   **8680833*$*
+
+Workflow Initialization

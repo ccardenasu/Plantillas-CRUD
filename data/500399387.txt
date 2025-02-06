@@ -1,0 +1,445 @@
+DKO:8646953 (8883696)
+Comments: (Vallejo Caguenas, Sergio) 03/10/24 19:22 Start DokuFlow.
+Actividad:  Se requiere realizar la instalación y puesta en marcha de un canal  VPN @300Mbps por Medio Propio fibra PaP, NM Monitor/ Notify
+ 
+Cliente: COBRANZA NACIONAL DE CREDITOS S.A.S.
+Sede:  CONALCREDITOS ISERRA
+Dirección:  60-59 CALLE 99 N/A, BOGOTÁ, DC-Distrito Capital De Bogota, Colombia
+ 
+CONTACTO CLIENTE:
+N: JorgeRobledo /M: jrobledo@emergiacc.com 
+ 
+CCM: Zambrano, Laura
+ 
+REFERENCIAS:
+Vista en DokuViz: H18C_VN_81-5N3HQTP
+XML: 8639353
+CFS : 500399387
+RFS:
+RFS IP PORT: 6000312356
+RFS NID : 6000312359
+RFS FIBER CHAIN: 6000312358
+RFS CPE: 6000312360 
+--------------------
+DATOS DEL ENLACE: ||
+--------------------
+Tipo de Enlace: VPN
+BW: 300 Mbps.
+====================== 
+Actividades solicitadas: 
+========= SOLICITUD EQUIPOS =============
+ 
+SAP: 1384691
+Descripción: F150/ADV/GE114PRO/AC/811.
+Cantidad: 1.
+ 
+SAP: 1362830
+Descripción: F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN.
+Cantidad: 1.
+ 
+SAP: 1429801
+Descripción: AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT.
+Cantidad: 1.
+ 
+Modulo SFP WAN para ADVA:
+Descripción: 20KM SINGLE FIBER SFP 1310NM TX SMF LC -5 TO 75 C TX PWR -7 TO 1000SFP31B20L CHAMPION ONE
+Item SAP: 1248720
+Parte numero: 1000SFP31B20L
+Cantidad: 1
+
+ITEM: 1376614
+Descripcion: CISCO ASR920 SERIES 12GE AND 2-10GE AC MODEL ASR-920-12CZ-A CSCO
+Parte numero: ASR-920-12CZ-A
+Cantidad: 1
+ 
+ITEM: 1387196
+Descripcion: EIA 19IN RACK MOUNT OPTION FOR THE CISCO ASR 920 A920-RCKMT-19 CSCO
+Parte numero: A920-RCKMT-19
+Cantidad: 1
+ 
+ITEM: 1387115
+Descripcion: ASR 920 METRO ACCESS SERVICES E-DELIVERY PAK L-ASR920-S-M= CSCO
+Parte numero: L-ASR920-S-M=
+Cantidad: 1
+
+========= PLANTA EXTERNA  ==========
+ 
+Por favor habilitar 1 hilo de fibra para UM enlace F.O PaP en la sede del cliente.
+ 
+Cliente: COBRANZA NACIONAL DE CREDITOS S.A.S.
+Sede:  CONALCREDITOS ISERRA
+Dirección:  60-59 CALLE 99 N/A, BOGOTÁ, DC-Distrito Capital De Bogota, Colombia
+ 
+========== IPSA=========
+ 
+1. Para un nuevo enlace mpls, se solicita se asigne puerto Red Metro Solución F:O Pto - Pto  en nodo  según asignación de Planta Externa y asignar Vlan de la interfaz configurada..
+ 2. Configurar en BBIP el BW @300Mbps y Routing bajo los siguientes recursos:
+ 
+RECURSO:
+---------------------
+PE:  ASIGNAR
+Interface: ASIGNAR
+IP_WAN:  100.65.12.9/30
+VRF: Al momento de hacer esta DKO no se tiene, se actualizara tan pronto sea informada por el SE
+QoS; default
+LBK_Gestión: ASIGNAR
+Enrutamiento: BGP; # AS_BGP:65002- overwrite
+ 
+3. Asignar ip de monitoreo para NID, para CPE y Dar de Alta RFS CPE
+ 
+========== SDM/S&A ==========
+ 
+1. Seguimiento a la instalación y puesta en marcha del canal VPN por FO Pto a Pto en la ubicación indicada y NID
+2. Dejar NID en gestión.
+3. Solicitar, Despachar e Integrar CPE Al medio.
+4. Verificar que se haya realizado la configuración solicitada a BBIP.
+5. Configurar CPE y Poner en Gestión CIRION el CPE.
+6. Comunicarle al cliente el segmento WAN asignado y confirmar que no se traslape con un segmento usado en su red.
+7. Realizar pruebas de conectividad y saturación a nivel WAN, Verificar que alcance el BW solicitado, validar que no se presenten errores sobre todas las Interfaces.
+8. Validar Routing , Conectividad WAN, LAN y Funcionalidad de Aplicaciones Cliente.
+9. Entregar Informe de la actividad y actualizar ingenieria.
+ 
+=========== NETWORK MANAGMENT  ==========
+Configurar NETWORK MANAGMENT Monitor/ Notify
+
+LP: Asignada IPSA
+ 
+POR FAVOR LEER TODA LA DOCUMENTACION Y SI HAY ALGUNA NOVEDAD O DUDA VALIDARLO CON EL CD.
+Circuit Designer : Sergio Vallejo
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 04/10/24 00:35
+************** ACTUALIZACION DKO **************
+
+Se confirma VRF por parte del SE 
+
+VRF: emergiacol
+RD: target:16528:1203451
+Comments: (Gabriel Ernesto Cardenas) 04/10/24 19:29
+Finished Step: Asignación de SDM·
+
+Comments: (Diego Rubiano) 06/10/24 22:02
+Finished Step: Asignación de CCM·
+Comments from Subprocess 8646960
+
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 04/10/24 00:35
+************** ACTUALIZACION DKO **************
+
+Se confirma VRF por parte del SE 
+
+VRF: emergiacol
+RD: target:16528:1203451
+Comments: (Cely Corredor, Jenny) 08/10/24 15:12
+Favor asignar recursos IPSA al nodo CALLE 100
+Comments: (Cely Corredor, Jenny) 08/10/24 15:13
+Finished Step: Análisis y Validación de la Información·
+Comments from Subprocess 8649782
+
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 08/10/24 18:57
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+                        CFS: 500399387
+                        DKO: 8646953 (8649782)
+                        tipo_configuracion: Alta
+                        tipo_servicio: VPN
+                        RFS-IP-PORT: 6000312356
+                        Cliente: COBRANZA NACIONAL DE CREDITOS S.A.S.
+                        SEDE: CONALCREDITOS ISERRA 81-5N3HQTP
+                        SW: BOGTCLBLZG023
+                        Interface SW: GigabitEthernet0/0/21
+                        PE: psr3.bgo1
+                        Interface PE: ae14.46
+                        VRF: emergiacol
+                        RD: 16528:1203451
+                        SV: 46
+                        CV: 1300
+                        BW: 300M
+                        WAN: 100.65.12.8/30
+                        ASN: 65002
+                        LB CPE: 172.18.64.52
+                        LB NID: 10.226.205.223
+                        ==================================================================================
+
+
+BOGTCLBLZG023#sh run interface GigabitEthernet0/0/21
+Building configuration...
+
+Current configuration : 968 bytes
+!
+interface GigabitEthernet0/0/21
+ description XP018672 - COBRANZA NACIONAL DE CREDITOS S.A.S. # 1-4J6ZCW [CONALCREDITOS ISERRA 81-5N3HQTP]
+ mtu 9216
+ bandwidth 300000
+ no ip address
+ no negotiation auto
+ storm-control broadcast level 5.00
+ spanning-tree portfast trunk
+ spanning-tree bpdufilter enable
+ service-policy output DEFAULT-OUTPUT
+ service instance 2 ethernet
+  description 12/LATAM/6000313108/PATH - COBRANZA NACIONAL DE CREDITOS S.A.S. # 1-4J6ZCW [(500399387) CONALCREDITOS ISERRA 81-5N3HQTP ]
+  encapsulation dot1q 1300
+  service-policy input RFS6000313108
+  bridge-domain 326
+  mac security maximum addresses 150
+  mac security violation restrict
+  mac security
+ !
+ service instance 505 ethernet
+  description NID_MGMT
+  encapsulation dot1q 505
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 505
+ !
+ service instance 506 ethernet
+  description NID_Y.1731
+  encapsulation dot1q 506
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 506
+ !
+end
+
+BOGTCLBLZG023#wr
+Building configuration...
+
+
+roci@psr3.bgo1# show | compare | no-more 
+[edit interfaces ae14]
++    unit 46 {
++        description "CUSTOMER: COBRANZA NACIONAL DE CREDITOS S.A.S. (CFS:500399387)(RFS:6000312356)";
++        vlan-tags outer 0x8100.46 inner 0x8100.1300;
++        family inet {
++            mtu 1500;
++            filter {
++                input ae14.46-inet-i;
++                output ae14.46-inet-e;
++            }
++            policer {
++                input ae14.46-in;
++            }
++            address 100.65.12.9/30;
++        }
++    }
+[edit class-of-service traffic-control-profiles]
+    ae14.45-10240-o { ... }
++   ae14.46-307200-o {
++       scheduler-map GX-CUST-SCHEDULER-MAP-6Q;
++       shaping-rate 307200000;
++       delay-buffer-rate 1228800000;
++   }
+[edit class-of-service interfaces ae14]
++     unit 46 {
++         output-traffic-control-profile ae14.46-307200-o;
++         rewrite-rules {
++             ieee-802.1 CUST-PSR->EX;
++         }
++     }
+[edit firewall family inet]
+      filter ae14.45-inet-e { ... }
++     filter ae14.46-inet-i {
++         term EF_DSCP {
++             from {
++                 dscp 46;
++             }
++             then {
++                 count EF.rx-ae14.46-inet-i;
++                 loss-priority low;
++                 forwarding-class EF;
++             }
++         }
++         term EF-DE_DSCP {
++             from {
++                 dscp 34;
++             }
++             then {
++                 count EF-DE.rx-ae14.46-inet-i;
++                 loss-priority high;
++                 forwarding-class EF-DE;
++             }
++         }
++         term AF_DSCP {
++             from {
++                 dscp 26;
++             }
++             then {
++                 count AF-DE.rx-ae14.46-inet-i;
++                 loss-priority low;
++                 forwarding-class AF;
++             }
++         }
++         term AF-DE_DSCP {
++             from {
++                 dscp 18;
++             }
++             then {
++                 count AF-DE.rx-ae14.46-inet-i;
++                 loss-priority high;
++                 forwarding-class AF-DE;
++             }
++         }
++         term VPN-BE {
++             from {
++                 dscp 10;
++             }
++             then {
++                 count VPN-BE.rx-ae14.46-inet-i;
++                 loss-priority high;
++                 forwarding-class VPN-BE;
++             }
++         }
++         term BE {
++             then {
++                 count BE.rx-ae14.46-inet-i;
++                 loss-priority high;
++                 forwarding-class BE;
++             }
++         }
++     }
++     filter ae14.46-inet-e {
++         term EF_DSCP {
++             from {
++                 dscp 46;
++             }
++             then count EF.tx-ae14.46-inet-e;
++         }
++         term EF-DE_DSCP {
++             from {
++                 dscp 34;
++             }
++             then count EF-DE.tx-ae14.46-inet-e;
++         }
++         term AF_DSCP {
++             from {
++                 dscp 26;
++             }
++             then count AF-DE.tx-ae14.46-inet-e;
++         }
++         term AF-DE_DSCP {
++             from {
++                 dscp 18;
++             }
++             then count AF-DE.tx-ae14.46-inet-e;
++         }
++         term VPN-BE {
++             from {
++                 dscp 10;
++             }
++             then count VPN-BE.tx-ae14.46-inet-e;
++         }
++         term BE {
++             then count BE.tx-ae14.46-inet-e;
++         }
++     }
+[edit firewall]
+    policer ae14.45-in { ... }
++   policer ae14.46-in {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 307200000;
++           burst-size-limit 11520000;
++       }
++       then discard;
++   }
+[edit routing-instances emergiacol]
++    interface ae14.46;
+[edit routing-instances emergiacol routing-options static]
+       route 172.19.0.47/32 { ... }
++      route 172.18.64.52/32 {
++          next-hop 100.65.12.10;
++          tag 14;
++      }
+[edit routing-instances emergiacol protocols bgp group external]
+        neighbor 10.85.100.6 { ... }
++       neighbor 100.65.12.10 {
++           peer-as 65002;
++           as-override;
++       }
+
+[edit]
+roci@psr3.bgo1
+
+Comments from Subprocess 8649786
+
+
+Workflow Initialization
+Comments: (Cely Corredor, Jenny) 17/10/24 19:36
+Finished Step: Proyecto Externo·
+
+Comments: (Cely Corredor, Jenny) 23/10/24 12:08
+Finished Step: Gestión de Permisos Civil·
+
+Comments: (Cely Corredor, Jenny) 28/10/24 12:56
+Finished Step: Tendido de Red·
+
+Comments: (Cely Corredor, Jenny) 28/10/24 13:13
+                                              
+CLIENTE : COBRANZA NACIONAL DE CREDITO                                                                                                                     DIRECCION:Calle 99 N. 60 - 59
+DKO :   8646953                                                                                                                                                                        
+
+PLANTA EXTERNA
+PISO UBICACION DE LA TP: 1°
+TP: 12844
+No DE RACK: UNICO Y SIN ESPACIO LIBRE
+POSICION DE RACK TP: COSTADOLATERAL  DERECHO DEL RACK
+
+NODO: CALLE  100
+RACK: 0630
+GCO: ISERRA 100
+FIBER TRAY : 163
+HILO: 42
+POSICION: 18
+                                                                    
+PLANTA INTERNA
+RACK: 0630
+FIBER TRAY: 113
+EQUIPO: BOGTCLBLZG023
+PUERTO: 0/0/21
+POSICION: 22
+
+OBSERVACIONES : SE INSTALA PACHCORD DE 5 MTS
+TÉCNICO :  GERARDO PINILLA
+
+Comments: (Cely Corredor, Jenny) 28/10/24 13:13
+Finished Step: Empalmes de red·
+
+Comments: (Cortes, Orlando) 07/11/24 17:55
+Finished Step: Gestión de provisión del servicio. Follow Up
+
+
+This Order was automatically initiated by Order NO:8646953
+Datos - IP VPN Add   **8646953*$*
+
+Workflow Initialization
+Comments: (Zambrano, Laura) 04/02/25 14:07
+Finished Step: Generar ventana de Activación·
+
+Comments: (Silva, Laura) 04/02/25 15:55
+Finished Step: Reservar agenda para activación·
+
+Comments: (Perez Garzon, Julian) 05/02/25 13:27
+**************************************
+********* COMPLEMENTO DKO ************
+**************************************
+ 
+Para la implementación de un nuevo acceso por una nueva vrf, se requiere cambios lógicos:
+ 
+*********** IPSA *********************
+ 
+Se requiere cambiar la vrf del acceso por la nueva vrf  creada en la dko 8857753:
+ 
+PE: psr3.bgo1
+Interface PE: ae14.46
+IP_WAN:  100.65.12.9/30
+VRF Actual: emergiacol
+VRF nueva: 9707-1-EMERGIA-9000003451-L3VPN
+Enrutamiento: BGP; # AS_BGP:65002- overwrite
+BW: 300M 
+
+
+This Order was automatically initiated by Order NO:8754100
+Activación del servicio (Flujos por servicio)   **8754100*$*
+
+Workflow Initialization

@@ -35,6 +35,7 @@
     </style>
     <script src="{% static 'js/crud.js' %}"></script>
     <script>
+
         document.addEventListener('DOMContentLoaded', function() {
             const cfsInput = document.getElementById('id_cfs');
             const dkoInput = document.getElementById('id_dko');
@@ -79,6 +80,13 @@
                         document.getElementById('id_rfs_ip_port').value = data.data.rfs_ip_port;
                         document.getElementById('id_vt').value = data.data.vlan;
                         document.getElementById('id_sw').value = data.data.sw;
+                        document.getElementById('id_rfs_ip_port_nid').value = data.data.rfs_ip_port_nid;
+                        document.getElementById('id_interface_sw').value = data.data.interface_sw;
+                        document.getElementById('id_bw').value = data.data.bw;
+                        document.getElementById('id_asn').value = data.data.asn;
+                        document.getElementById('id_wan').value = data.data.wan;
+                        document.getElementById('id_lbcpe').value = data.data.lbcpe;
+                        document.getElementById('id_lnnid').value = data.data.lnnid;
 
                     } else {
                         console.error("Error al ejecutar IPSA.py:", data.error); // Mensaje de error
@@ -133,10 +141,12 @@
             
             <form method="post" onsubmit="return validateForm(event)">
                 {% csrf_token %}
+                
                 <div class="form-group">
                     <label for="id_cfs">Cfs:</label>
-                    <input type="text" name="cfs" id="id_cfs" class="form-control" onblur="ejecutarIPSA()">
+                    <input type="text" name="cfs" id="id_cfs" class="form-control">
                     <div id="error-message" aria-live="assertive"></div>
+                    <button type="button" onclick="ejecutarIPSA()">Buscar en DKO</button>
                     <button type="button" onclick="buscarCfs()">Buscar</button>
                     <button type="button" onclick="limpiarCampos()">Limpiar</button>
                     <button class="datos-button" onclick="window.location.href='{% url 'datos' %}'" aria-label="Regresar">Limpiar</button>

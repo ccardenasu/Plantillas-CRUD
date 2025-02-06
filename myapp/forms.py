@@ -26,7 +26,7 @@ class DatosForm(forms.ModelForm):
         model = Datos
         fields = [
             "tipo_configuracion","tipo_equipo","tipo_servicio","dko","cfs","cliente","sede","rfs_ip_port","rfs_ip_port_nid","vt","sw","interface_sw","bw","bw_plus","bw_Exchange","sw_b",
-            "interface_sw_b","unit","unit_nid","sv","cv","unit_b","sv_b","cv_b","vrf","rd","IES","lag","asn","wan","wanv6","lan","lanv6","lbcpe","lnnid","mercado","puertos_lag","rfs_ip_port_b",
+            "interface_sw_b","unit","unit_nid","sv","cv","unit_b","sv_b","cv_b","vrf","vrf_init","rd","IES","lag","asn","wan","wanv6","lan","lanv6","lbcpe","lnnid","mercado","puertos_lag","rfs_ip_port_b",
             "sede_b","be","bundle_ether","bundle_ether_b","pe","pe_vpls_a","pe_vpls_b","interface_pe","interface_pe_vpls_a","interface_pe_vpls_b","lb_pe_vpls_a","lb_pe_vpls_b","pe_b",
             "interface_pe_b",'port_breakout','root_port','child_port','encap_type','mtu','lag_administrative_key',
             ]

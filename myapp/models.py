@@ -126,6 +126,7 @@ class Datos(models.Model):
     unit_b = models.CharField(max_length=100, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     vrf = models.CharField(max_length=100, blank=True, null=True)
+    vrf_init = models.CharField(max_length=100, blank=True, null=True)
     vt = models.CharField(max_length=100, blank=True, null=True)
     wan = models.CharField(max_length=100, default="0.0.0.0/0")
     wanv6 = models.CharField(max_length=100, blank=True, null=True)

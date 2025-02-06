@@ -1,0 +1,325 @@
+DKO:8648109 (8694533)
+Comments: (Ariza, Jorge) 07/10/24 03:21 Start DokuFlow.
+ACTIVIDAD: se requiere alta SD WAN IP VPN a 30Mb/s e integrar en doble CPE Sd Wan C8200-1N-4T en HA
+
+IMPORTANTE: Este proceso obedece a la dinámica de cambio tecnológico de Sd Wan Versa hacia Sd Wan Cisco para reforzar el nivel de servicio del cliente. Se solicita alta SD WAN IP VPN para complementar la DO 8582444
+
+CLIENTE: EMPRESA DE MEDICINA INTEGRAL EMI S.A.S. SERVICIO DE AMBULANCIA PREPAGADA
+DIRECCIÓN: DATACENTER COLOMBIA XV, BOGOTA, COLOMBIA
+SEDE: GRUPO EMI S.A. -BOGOTA-DAT. CENT. COLOMB XV
+CIUDAD: BOGOTA
+
+CONTACTO: Pablo Gomez / Cel: 3163289708 / E: pablo.gomez@grupoemi.com
+Otro posible contacto validar con CCM
+CCM: Ingrid Lopez
+SE: Rita Forero
+AM: Jorge Ochoa
+Sd Wan TDE: Francisco Estrada
+
+XML: 8645785
+CID-CFS: 500400425
+NID:6000329032
+RFS IP Port: 6000312639
+SOF/TDG Detail: 180913
+----------------------------------------------------------------------------------
+SOLICITUD DE EQUIPOS:
+IMPORTANTE: en la DO 8582444 se encuentra documentada la PO del SE para la solicitud de los equipos y licencias
+----------------------------------------------------------------------------------
+IPSA:
+1. Asignar recursos de BBIP y red Metro Sala 1 Data Center Colombia XV para el siguiente servicio:
+TYPE: SD WAN IP VPN
+PE: Por Asignar
+INT: Por Asignar
+IP: 10.10.100.8/29
+VRF: emi_sdwan
+Ruteo: Estático
+BW: 30Mb/s
+SLA: 99.5%
+2. Registrar los RFS:
+CID-CFS: 500400425
+RFS IP Port: 6000312639
+----------------------------------------------------------------------------------
+SDM/SA:
+IMPORTANTE: En los Hub Medellín y Colombia XV el nuevo Sd Wan Cisco va a coexistir con el actual Sd Wan Versa hasta que se realice la migración completa hacia Sd Wan Cisco en los Spokes
+
+1. Validar asignación de recursos por parte de IPSA y DATACENTER
+ - Con CD Germán Gutiérrez de DATACENTER validar asignación de espacio para la instalación de los equipos
+ - DATACENTER es responsable de las crossconexiones, para que las soliciten se le debe indicar la interfaz asignada por IPSA
+2. Agendar ventana con el cliente para realizar alta SD WAN IP VPN a 30Mb/s e integrar en doble CPE Sd Wan C8200-1N-4T en HA:
+ - El Sd Wan TDE asignado realizará la definición del diseño Sd Wan
+ - Establecer HA integrado a una segunda capa de transporte Sd Wan Internet que se solicitará configurar en otra DO
+ - Garantizar que los equipos queden en gestión y con acceso remoto
+ - Ajustar Sd Wan CPE con el nuevo BW
+ - Correr pruebas de esfuerzo de canal
+ - Al finalizar la actividad confirmar que todo el proyecto se haya ejecutado con éxito
+3. Realizar pruebas en compañía del cliente (Datos, Aplicativos, Navegación, etc), validando que el servicio Sd Wan funcione correctamente según las políticas definidas en la plantilla, LLD del proyecto y entregar la solución al cliente a total satisfacción
+4. Actualizar la ingeniería
+
+DATOS SD WAN:
+HOSTNAME DEVICE 1: FALK_CXV_BOG_M_--81-2F4PQ20
+SITE ID: 57011001
+SYSTEM IP: 10.57.1.1
+ORGANIZATION NAME: Por Asignar
+VBOND SERVER: Por Asignar
+DIRECCIONAMIENTO TLOC:
+RED TLOC PRIVATE 1: 10.20.200.8/30
+RED TLOC PRIVATE 2: 10.20.201.8/30
+
+HOSTNAME DEVICE 2: FALK_CXV_BOG_S_--81-2F4PQ24
+SITE ID: 57011002
+SYSTEM IP: 10.57.1.2
+ORGANIZATION NAME: Por Asignar
+VBOND SERVER: Por Asignar
+DIRECCIONAMIENTO TLOC:
+RED TLOC PRIVATE 1: 10.20.200.8/30
+RED TLOC PRIVATE 2: 10.20.201.8/30
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT:
+Garantizar NM Type: Advanced Management
+Garantizar en las herramientas de gestión este nuevo servicio
+IP WAN: la que asigne IPSA
+----------------------------------------------------------------------------------
+
+Workflow Initialization
+Comments: (Gabriel Ernesto Cardenas) 09/10/24 08:18
+Finished Step: Asignación de SDM·
+
+
+This Order was automatically initiated by Order NO:8648109
+Datos - IP VPN Add   **8648109*$*
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 25/10/24 10:38
+Luego de reunión con Sd Wan TDE se añade lo siguiente a la solicitud de IPSA:
+----------------------------------------------------------------------------------
+IPSA:
+Asignar LB para administrar el equipo FortiSwitch
+----------------------------------------------------------------------------------
+Comments: (Alarcon Perez, Jhon) 25/10/24 11:54
+----------------------------------------------------------------------------------
+Comments: (Ariza, Jorge) 25/10/24 11:32
+La máscara de la LB de administración del Switch será: /32
+
+Comments: (Carlos Cardenas) 28/10/24 17:35
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+                        CFS: 500400425
+                        DKO: 8648109 (8694533)
+                        tipo_configuracion: Alta
+                        tipo_servicio: VPN
+                        RFS-IP-PORT: 6000312639
+                        Cliente: GRUPO EMI S.A.
+                        SEDE: DATACENTER COLOMBIA XV 1-10BX9L
+                        SW: BOGTCLFWZG049
+                        Interface SW: GigabitEthernet0/0/3
+                        PE: psr3.bgo1
+                        Interface PE: ae14.80
+                        VRF: 9958-1-emi_sdwan-9000002069-L3VPN
+                        RD: 6745:11009958
+                        SV: 80
+                        CV: 1300
+                        BW: 30M
+                        WAN: 10.10.100.8/29
+                        LB CPE: 172.18.75.25
+
+roci@psr3.bgo1# show | compare 
+[edit interfaces ae14]
++    unit 80 {
++        description "CUSTOMER: GRUPO EMI S.A. (CFS:500400425)(RFS:6000312639)";
++        vlan-tags outer 0x8100.80 inner 0x8100.1300;
++        family inet {
++            no-redirects;
++            filter {
++                input ae14.80-inet-i;
++            }
++            policer {
++                input ae14.80-in;
++                output ae14.80-out;
++            }
++            address 10.10.100.9/29;
++        }
++    }
+[edit policy-options]
++   policy-statement 9958-1-emi_sdwan-9000002069-L3VPN-export {
++       term DEFAULT {
++           then default-action reject;
++       }
++       term L3VPN {
++           then {
++               community add 9958-1-emi_sdwan-9000002069-L3VPN-mesh;
++               default-action accept;
++           }
++       }
++   }
++   policy-statement 9958-1-emi_sdwan-9000002069-L3VPN-import {
++       term L3VPN {
++           from community 9958-1-emi_sdwan-9000002069-L3VPN-mesh;
++           then accept;
++       }
++       term final {
++           then reject;
++       }
++   }
+[edit policy-options]
++   community 9958-1-emi_sdwan-9000002069-L3VPN-mesh members target:6745:11009958;
+[edit class-of-service traffic-control-profiles]
+    ae11.125-40960-o { ... }
++   ae14.80-30720-o {
++       scheduler-map GX-CUST-SCHEDULER-MAP-I;
++       shaping-rate 30m;
++       delay-buffer-rate 122880000;
++   }
+[edit class-of-service interfaces ae14] 
++     unit 80 {
++         output-traffic-control-profile ae14.80-30720-o;
++     }
+[edit firewall family inet]
+      filter ae14.79-inet-e { ... }
++     filter ae14.80-inet-i {
++         term EF_DSCP {
++             from {
++                 dscp 46;
++             }
++             then {
++                 count EF.rx-ae14.80-inet-i;
++                 loss-priority low;
++                 forwarding-class EF;
++             }
++         }
++         term EF-DE_DSCP {
++             from {
++                 dscp [ 32 34 36 38 40 ];
++             }
++             then {
++                 loss-priority high;
++                 forwarding-class EF;  
++             }
++         }
++         term AF_DSCP {
++             from {
++                 dscp [ 16 24 26 28 ];
++             }
++             then {
++                 count AF.rx-ae14.80-inet-i;
++                 loss-priority low;
++                 forwarding-class AF;
++             }
++         }
++         term AF-DE_DSCP {
++             from {
++                 dscp [ 18 20 22 30 ];
++             }
++             then {
++                 count AF-DE.rx-ae14.80-inet-i;
++                 loss-priority high;
++                 forwarding-class AF;
++             }
++         }
++         term BE-DE {                  
++             then {
++                 count BE-DE.rx-ae14.80-inet-i;
++                 loss-priority high;
++                 forwarding-class BE;
++             }
++         }
++     }
+[edit firewall]
+    policer ae11.125-in { ... }
++   policer ae14.80-in {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 30720000;
++           burst-size-limit 1152000;
++       }
++       then discard;
++   }
++   policer ae14.80-out {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 30720000;
++           burst-size-limit 1152000;
++       }                               
++       then discard;
++   }
+[edit routing-instances]
++   9958-1-emi_sdwan-9000002069-L3VPN {
++       instance-type vrf;
++       interface ae14.80;
++       route-distinguisher 200.186.24.222:9958;
++       vrf-import [ VPN-import 9958-1-emi_sdwan-9000002069-L3VPN-import ];
++       vrf-export [ VPN-export 9958-1-emi_sdwan-9000002069-L3VPN-export ];
++       vrf-table-label;
++       routing-options {
++           router-id 10.10.100.9;
++           auto-export;
++       }
++   }
+
+[edit]
+roci@psr3.bgo1# commit 
+                            run show route table  9958-1-emi_sdwan-9000002069-L3VPN  10.10.100.9re0: 
+
+configuration check succeeds
+re1: 
+commit complete
+re0: 
+commit complete
+
+[edit]
+roci@psr3.bgo1# run show route table 9958-1-emi_sdwan-9000002069-L3VPN 10.10.100.9 
+
+9958-1-emi_sdwan-9000002069-L3VPN.inet.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+10.10.100.9/32     *[Local/0] 00:00:03
+                       Local via ae14.80
+
+[edit]
+roci@psr3.bgo1# 
+
+
+
+BOGTCLFWZG049#sh run interface GigabitEthernet0/0/3
+Building configuration...
+
+Current configuration : 933 bytes
+!
+interface GigabitEthernet0/0/3
+ description XP032189 - GRUPO EMI S.A. # 1-107T4D [DATACENTER COLOMBIA XV 1-10BX9L]
+ mtu 9216
+ bandwidth 30000
+ no ip address
+ speed 1000
+ no negotiation auto
+ storm-control broadcast level 5.00
+ spanning-tree portfast trunk
+ spanning-tree bpdufilter enable
+ service-policy output DEFAULT-OUTPUT
+ service instance 2 ethernet
+  description 12/LATAM/6000316188/PATH - GRUPO EMI S.A. # 1-107T4D [(500400425) DATACENTER COLOMBIA XV 1-10BX9L]
+  encapsulation dot1q 1300
+  service-policy input RFS6000316188
+  bridge-domain 623
+  mac security maximum addresses 150
+  mac security violation restrict
+  mac security
+ !
+ service instance 505 ethernet
+  description NID_MGMT
+  encapsulation dot1q 505
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 505
+ !
+ service instance 506 ethernet
+  description NID_Y.1731
+  encapsulation dot1q 506
+  rewrite ingress tag pop 1 symmetric
+  bridge-domain 506
+ !
+end
+
+BOGTCLFWZG049#wr
+Building configuration...
+
+
+
+

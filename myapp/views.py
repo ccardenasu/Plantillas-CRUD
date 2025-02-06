@@ -97,6 +97,7 @@ def datos_view(request):
                             write_if_not_none("Unit_nid", datos.unit_nid)
                             write_if_not_none("Unit_b", datos.unit_b)
                             write_if_not_none("VRF", datos.vrf)
+                            write_if_not_none("VRF_INIT", datos.vrf_init)
                             write_if_not_none("VT", datos.vt)
                             write_if_not_none("WAN", datos.wan)
                             write_if_not_none("WANv6", datos.wanv6)

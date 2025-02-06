@@ -1,0 +1,101 @@
+DKO:8883257 (8883980)
+Comments: (Ever Contreras) 04/02/25 20:01 Start DokuFlow.
+
+Actividad: Se requiere dar de Alta enlace de Internet @1Gb vía Tercero.
+
+Cliente:FESOGO MEXICO, SA DE CV
+Sede:FESOGO - TEPEJI DEL RIO
+ADDRESS: DE LA SALUD , 42855 TEPEJI DEL RÍO DE OCAMPO, MEXICO NA, Tepeji del Río de Ocampo, HI-Hidalgo, Mexico Latitud 19.9214447 Longitud -99.3420369
+
+Technical Contact:
+Dafne Celis / M: dafne.celis@fesogo.mx / P: +52 5554 335613
+Osbaldo Reyes / M: osbaldo.reyes@fesogo.com / P: N/D
+Datos adicional del LCON, validar con CCM.
+
+CCM: Moreno, Maria Elida
+
+XML 8871377
+CFS 500411356
+*:6000329044 (NID)
+*:6000329045 (IP Port)
+
+============ SOLICITUD DE EQUIPOS ============
+
+1 x 1466410
+1078904720-02
+F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA
+
+1 x 1384891
+1013904010
+F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+
+2 x 1082088
+1000SFP10
+SMALL FORM FACTOR PLUGGABLE SINGLEMODE 10KM 1000SFP10 CHAMPION
+
+============ OFFNET ============
+
+Contratar el siguiente circuito:
+
+Proveedor: TOTAL PLAY
+Tipo: Capa 2 [L2]
+BW: 1Gb
+Customer Handoff Interface: Giga, Optical, SMF, LC, 2-Fiber, 10KM
+DK-SURVEY-TDG-152063940-8871327
+
+============ IPSA ============
+
+- Asignar recursos IP y Metro para dar de alta del siguiente enlace vía Offnet:
+
+Tipo: Internet
+PE: Por Asignar
+Int. Por Asignar
+IPv4 WAN: Asignar /29
+IPv4 LAN: None
+BW: 1Gb
+BGP: Directly Connected.
+
+- Asignar LB NID y dar de alta RFS.
+- CPE del cliente.
+
+============ SDM / SA ============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar ventana con el cliente para dar de Alta enlace de Internet @1Gb vía tercero:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- CPE del cliente.
+- Customer Handoff Interface: Giga, Optical, SMF, LC, 2-Fiber, 10KM
+3. Programar PEM con el cliente, garantizando navegación hacia Internet.
+4. Entregar enlace al cliente.
+5. Documentar ingeniería.
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 04/02/25 20:12
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8883257
+Datos - ADI Add   **8883257*$*
+
+Workflow Initialization
+Comments: (Bravomalo, María Elena) 05/02/25 16:48
+***IPSA***
+
+VLAN ASIGNADA:      74
+NNI TOTALPLAY DF 10 Giga Metro 2.0
+POP                            DF
+DEVICE:                     CDMYDFMPNN001 Te0/0/2/3
+EON:                           1181131/1
+CID CTL:                     RFS 6000194621
+CID VENDOR:            TFE-D-L2L80882
+
+
+Comments: (Bravomalo, María Elena) 05/02/25 16:59
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8883270
+Activación Terceros ICT   **8883270*$*
+
+Workflow Initialization

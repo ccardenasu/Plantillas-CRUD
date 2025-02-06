@@ -8,6 +8,7 @@
         var bundleEther_bField = document.getElementById('id_bundle_ether_b');
         var allFields = document.querySelectorAll('.form-control');
         var vrfField = document.getElementById('id_vrf');
+        var vrfField = document.getElementById('id_vrf_init');
         var rdField = document.getElementById('id_rd');
         var swField = document.getElementById('id_sw');
         var svField = document.getElementById('id_sv');

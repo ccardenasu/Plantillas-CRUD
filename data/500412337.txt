@@ -1,0 +1,49 @@
+DOK:8884257 (8884258)
+Comments: (Ramirez Sanchez, Tania) 05/02/25 22:10 Start DokuFlow.
+Actividad:  Se requiere  Implementación SIEM en DC COLXV
+Technical Contact: GUILLERMO PENAGOS - Phone: 6337070ext1304 - Email: guillermo.penagos@base-bot.com 
+Managed Security Services
+
+XML: 8881552
+
+Cliente: BACK OFFICE AND TECHNOLOGY S. A. 
+Sede: BACK OFFICE AND TECHNOLOGY- I
+Direccion: CALLE 1 70 64-31, BOGOTA, D.C., CUN-CUNDINAMARCA
+ Latitud 4.628485 Longitud -74.07945
+Design ID: M42D_VN_1-2XOEFL
+CFS : 500412337
+--------------------
+Description of Service:
+Implementación SIEM en DC COLXV
+El servicio se realizará con FW ingenieria. 
+--------------------
+======================
+ ========== SECURITY-SOC ==========
+Implementación SIEM en DC COLXV
+El servicio se realizará con FW ingenieria. 
+
+El alcance es el siguiente:
+Tiempo de contrato 12 meses
+Colección y correlación de eventos (SIEM):3
+Monitoreo de disponibilidad y rendimiento (NOC) Hasta 10 fuentes de información
+ Eventos por segundo (EPS) 300 
+Monitoreo 24x7x365 
+Alertamiento de incidentes 24x7x365 
+Gestión de incidentes / recomendaciones de mitigación 24x7x365 
+Generación, socialización y envío de informes MENSUAL 
+Casos de uso 25 
+Agentes avanzados para servidores Windows 1 
+Monitoreo de integridad de archivos críticos (FIM) 1 
+Monitoreo Sintético de Transacciones (STM) 5 
+Reuniones de seguimiento del servicio MENSUAL 
+Retención de logs (Online / Offline) 60 / 90 
+Informes de gestión Mensual
+============
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8884257
+Datos - ADI Add   **8884257*$*
+
+Workflow Initialization
