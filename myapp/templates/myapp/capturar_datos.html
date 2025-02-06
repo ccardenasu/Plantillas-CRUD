@@ -87,7 +87,11 @@
                         document.getElementById('id_wan').value = data.data.wan;
                         document.getElementById('id_lbcpe').value = data.data.lbcpe;
                         document.getElementById('id_lnnid').value = data.data.lnnid;
-
+                        document.getElementById('id_tipo_servicio').value = data.data.tipo_servicio;
+                        document.getElementById('id_tipo_equipo').value = data.data.tipo_equipo;
+                        document.getElementById('id_tipo_configuracion').value = data.data.tipo_configuracion;
+                        
+                        
                     } else {
                         console.error("Error al ejecutar IPSA.py:", data.error); // Mensaje de error
                     }
