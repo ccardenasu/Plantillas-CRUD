@@ -1,0 +1,113 @@
+CFS: 500340581
+DKO: 8883659
+tipo_configuracion: Ampliacion
+tipo_servicio: VPN
+RFS-IP-PORT: 6000229231
+RFS-IP-PORT_NID: 6000229232
+Cliente: UNIDAD ADMINISTRATIVA ESPECIAL DE LA JUSTICIA PENAL MILITAR Y POLICIAL
+SEDE: JPM - JUZGADO 35 INSTRUCCIÓN
+SW: CALICLAJNN001
+Interface SW: TenGigaE0/0/2/1
+PE: psr4.cal1
+Interface PE: ae11.693
+BW: 20M
+
+
+DKO:8883659 (8884758)
+Comments: (Ariza, Jorge) 05/02/25 13:07 Start DokuFlow.
+----------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere ampliación de SD WAN IP VPN a 20Mb vía Media Commerce en actual NID y CPE SD-WAN
+
+CUSTOMER TECHNICAL CONTACT:
+Freddy Romero / fredy.romero@justiciamilitar.gov.co / 3172896312
+SD WAN IP VPN @20Mb
+XML 8877907
+CFS 500340581
+
+CLIENT: UNIDAD ADMINISTRATIVA ESPECIAL DE LA JUSTICIA PENAL MILITAR Y POLICIAL
+SITE: JPM - JUZGADO 35 DE INSTRUCCIÓN PENAL MILITAR
+ADDRESS: CR 15 # 11 NORTE - 149, POPAYAN, CAUCA, COLOMBIA [LATITUD 2.457976 LONGITUD -76.606163]
+
+RFS:
+*:RFS 6000229231 ( IP Port )
+*:RFS 6000229233 ( 3rd Party )
+*:RFS 6000229232 ( NID )
+*:RFS 6000229234 ( SDWAN CPE )
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere ampliación de SD WAN IP VPN a 20Mb vía Media Commerce en actual NID y CPE SD-WAN, asegurando que el tráfico alcance la nueva velocidad contratada y cumpla con los estándares de rendimiento, estabilidad y calidad del servicio
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Realizar ampliación para
+PROVIDER: Media Commerce
+TYPE: Layer 2, QinQ
+ID: 2718
+BW: 20Mb
+QUOTING: DK-SURVEY-TDG-152076740-8877699
+Handoff interface: Electrical, RJ45
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Realizar ampliación para
+TYPE: SD WAN IP VPN
+PE: PSR4.CAL1
+INT: ae11.693
+IP: 192.168.51.109/30
+DES: CUSTOMER: UNIDAD ADMINISTRATIVA ESPECIAL DE LA JUSTICIA PENAL MILITAR Y POLICIAL (CFS:500340581) (RFS:6000229231)
+ME: CALICLAJNN001
+Interface SW: TenGigaE0/0/2/1
+DES: 12/LATAM/6000234523/SVC ENNI # MEDIA COMMERCE 81-ENNI (500340581) JPM - JUZGADO 35 DE INSTRUCCIÓN PENAL MILITAR - VPN
+S-VLAN: 799
+BW: 20Mb
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar ampliación de recursos por parte de IPSA y OFFNET
+2. Agendar ventana con el cliente para realizar ampliación de SD WAN IP VPN a 20Mb vía Media Commerce en actual NID y CPE SD-WAN
+3. Garantizar que los equipos continúen en gestión y con acceso remoto
+4. Realizar prueba de esfuerzo del canal
+5. Documentar ingeniería
+
+Handoff interface POP: NNI
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT
+
+CPE NM Advanced Management
+LB Asignada IPSA ( Nuevo BW )
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 05/02/25 13:31
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8883659
+Datos - IP VPN Mod   **8883659*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 06/02/25 14:23
+
+Se solicita a MC aumento a 20M del canal en mención. 
+Comments: (Wilches Rivera, Lesly Tatiana) 06/02/25 14:29
+Finished Step: Modificación Tercero·
+
+
+This Order was automatically initiated by Order NO:8883702
+Activación Terceros ICT   **8883702*$*
+
+Workflow Initialization

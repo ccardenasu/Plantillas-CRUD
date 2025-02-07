@@ -1,0 +1,114 @@
+DKO:8833060 (8884681)
+
+Comments: (Zuniga, Nogald) 04/12/24 11:01 Start DokuFlow.
+**** RETRASO POR ERROR EN LAS INSTANCIAS INC0180482 ****
+
+ALTA (PAP) DARK FIBER CID500406520	
+================================
+970 DARK FIBER MIRANDA CID500406520
+===========
+Do: 8833035
+
+Asunto: ALTA acceso Servicio: DARK FIBER – FO - CIRION Instalación en el anillo Metropolitano
+Cliente: GALANET SOLUTION C.A.  
+Sede A: TORRE BANCO LARA
+Sede Z: CENTRO LETONIA.
+Ubicación A: EUGENIO MENDOZA N/A, CARACAS, MR-Miranda, Venezuela Latitud 10.496183 Longitud -66.850947
+Ubicación Z: AV EUGENIO MENDOZA URB LA CASTELLANA NA, CARACAS, MR-Miranda, Venezuela Latitud 10.497138 Longitud -66.851141
+Vista en DokuViz A: A0GG_VN_81-5R5GDJF
+Vista en DokuViz Z: A0GG_VN_81-5R9Q4JW
+Services : DARK FIBER
+Service ID : 81-5RDIAX9 / Z81-5RDIAX9
+CID-CFS: 500406520	
+6000320780 Fiber Chain
+Project ID: 8825850
+SO: 81-5RDIB29 / Z81-5RDIB29  
+======================
+Descripción del Trabajo: 
+ALTA acceso Servicio: Dark Fiber  – FO - CIRION Instalación en el anillo Metropolitano
+La asignación de esta oferta es de 1 solo hilo, por lo que el cliente debe colocar Módulos Bidireccionales.
+Cirion no colocará equipos activos en este servicio, el cliente se encargará de iluminar la fibra. 
+El anillo de fibra es redundante y cierra en datacenter. 
+======================
+Persona Contacto:
+
+MANUEL SAN MARTIN
++584141070756 
+msmartin@galanet.com.ve 
+
+Referencia:
+
+AM: Garcia, Carlos 
+SE: Pimentel, Francis 
+CCM: Graterol, Zulay
+
+Recursos Asignar
+
+--- [PLANTA EXTERNA] ---
+
+La asignación de esta oferta es de 1 solo hilo, por lo que el cliente debe colocar Módulos Bidireccionales.
+Cirion no colocará equipos activos en este servicio, el cliente se encargará de iluminar la fibra
+
+Factibilidad: Positiva (DO: N/A) No se maneja bajo factibilidad.
+ 
+1. Según relevamiento realizar asignación de recursos en planta externa para ejecutar actividad. 
+2. Coordinar Eaim y realizar tendido de la FO según asignación realizada en el punto anterior.
+3. Confirmar al SDM la fecha de entrega del tendido de la FO para que puedan coordinar la instalación de los equipos.
+4. Indicar donde se entregará el servicio (MMR / Rack / ODF / Puerto).
+
+--- [ IP SERVICE ACTIVATION ] ---- 
+
+Por favor avanzar la orden, no se requiere recursos de IP.
+
+--- [INFRAESTRUCTURA] ---
+
+Por favor avanzar la orden, no se requiere recursos de planta interna.
+
+--- [SDM&ACTIVATION] ---
+POR FAVOR LEER TODA LA DO Y SI HAY ALGUNA AMBIGUEDAD O DUDA VALIDARLO CON EL CD.
+1. Cirion no colocará equipos activos en este servicio, el cliente se encargará de iluminar la fibra
+2. Proyecto de fibra oscura en el anillo Metropolitano fase I
+3. El cliente debe colocar Módulos Bidireccionales.
+4. La asignación de esta oferta es de 1 solo hilo
+5. Actualizar ingeniería.
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8833060
+Datos - Dark Fiber Add   **8833060*$*
+
+Workflow InitializationComments from Subprocess 8833071
+
+
+Workflow InitializationComments from Subprocess 8833090
+
+
+Workflow Initialization
+Comments: (Gomez, Hermes) 04/12/24 16:18
+
+>><<>><>><<><<><<><>><><>><><<>><>((( OSP )))>>><<>>><><<<>><><<>><>><>><<>><
+  
+   Proyecto bajo auto financiación mediante la preventa, se inicia proceso de Sourcing Request con Procurement para designar contratista y realizar la habilitación de la red de fibra oscura estimada para entregar a inicios del tercer trimestre del año 2.025
+
+Comments: (Gomez, Hermes) 04/12/24 16:19
+Finished Step: Requirement Validation·
+
+Comments: (Gomez, Hermes) 09/12/24 10:47
+Finished Step: Set DCD / NCD·
+
+Comments: (Gomez, Hermes) 10/12/24 10:42
+Finished Step: Work Package & Order Material
+Network Change Request·
+
+Comments: (Gomez, Hermes) 10/12/24 10:43
+Finished Step: PE Deployment·
+
+Comments: (Gomez, Hermes) 06/02/25 13:53
+Finished Step: Análisis y Validación de la Información·
+Finished Step: Análisis y Validación de la Información·
+
+
+This Order was automatically initiated by Order NO:8833064
+Ingeniería de acceso Fibra Optica (3)   **8833064*$*
+
+Workflow Initialization

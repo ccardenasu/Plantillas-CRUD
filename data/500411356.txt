@@ -1,3 +1,22 @@
+CFS: 500411356
+DKO: 8883257
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000329045
+RFS-IP-PORT_NID: 6000329044
+Cliente: FESOGO MEXICO, SA DE CV
+SEDE: TEPEJI DEL RIO
+SW: CDMYDFMPNN001
+Interface SW: TenGigE0/0/2/3.900741200
+PE: edge2.mex1
+Interface PE: ae33.38
+Vlan Tercero: 74
+Svlan: 38
+Cvlan: 1200
+BW: 1000M
+WAN: 8.242.245.224/29
+LB NID: 10.227.31.243  
+
 DKO:8883257 (8883980)
 Comments: (Ever Contreras) 04/02/25 20:01 Start DokuFlow.
 

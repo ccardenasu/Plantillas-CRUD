@@ -1,0 +1,133 @@
+CFS: 500412338
+DKO: 8883054
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000328912
+RFS-IP-PORT_NID: 6000328911
+Cliente: COFORGE
+SEDE: MEXICO
+SW: CDMYDFMPNN001
+Interface SW: TenGigE0/0/1/3.910751200
+PE: edge2.mex1
+Interface PE: ae33.39
+VRF: No encontrado
+Vlan Tercero: 1075
+Svlan: 39
+Cvlan: 1200
+BW: 250M
+WAN: 8.242.245.148/31
+WANIPv6: ::/0
+LANIPv4: 8.242.70.80/29
+LB NID: 10.235.56.15                      
+
+DKO:8883054 (8884524)
+
+Comments: (Ever Contreras) 04/02/25 17:26 Start DokuFlow.
+
+Actividad: Se requiere dar de alta enlace de Internet @250Mb w/Access @300Mb vía tercero.
+
+Cliente: COFORGE
+ Sede: MEXICO
+ADDRESS: AV. P.º DE LA REFORMA 243, COL. RENACIMIENTO, CUAUHTÉMOC, 06500 CIUDAD DE MÉXICO, CDMX, MEXICO NA, Ciudad de México, CMX-Ciudad de México, Mexico Latitud 19.429488 Longitud -99.1635086
+
+Technical Contact:
+Carlos EnriqueEscalante Ramirez / M: carlos.ramirez@coforge.com / P: 3325486560
+Validar datos adicionales del LCON con el CCM.
+
+CCM: TBD
+
+XML 8881555
+CFS 500412338
+*:6000328910 (CPE)
+*:6000328911 (NID)
+*:6000328912 (IP Port)
+
+========= SOLICITUD DE EQUIPOS =========
+
+1 x 1466410
+1078904720-02
+F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA
+
+1 x 1384891
+1013904010
+F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+
+1 x 1344082
+SRX340
+HARDWARE ONLY REQUIRE SRX340-JSB OR SRX3
+
+========= OFFNET =========
+
+Contratar el siguiente enlace:
+
+Proveedor: Vivaro Telecom (Marcatel)
+Tipo: Capa 2 [L2]
+BW: 300Mb
+Handoff Interface: Copper | RJ45
+DK-SURVEY-TDG-152057529-8857934
+
+========= IPSA =========
+
+Asignar recursos IP y Metro para dar de alta el siguiente enlace vía Offnet:
+
+Tipo: Internet
+PE: Por Asignar
+Int. Por Asignar
+IPv4 WAN: Asignar /31
+IPv4 LAN: Asignar /29
+BW: 250Mb
+Routing: Static
+
+*: Asignar LB NID y dar de alta RFS.
+*: Dar de alta RFS CPE.
+
+========= SDM / SA =========
+
+1. Validar asignación de recursos por parte de IPSA y Offnet.
+2. Agendar actividades para dar de alta enlace de Internet @250Mb w/Access @300Mb vía tercero:
+- Garantizar que el NID y el CPE queden en gestión y con acceso remoto.
+- Handoff Interface: Copper | RJ45
+3. Realizar prueba de esfuerzo del enlace.
+4. Programar PEM con el cliente garantizando correcta navegación hacia Internet.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+========= NETWORK MANAGEMENT =========
+
+Configurar NM Monitor/ Notify
+WAN CPE: La que asigne IPSA.
+
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 04/02/25 18:10
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8883054
+Datos - ADI Add   **8883054*$*
+
+Workflow Initialization
+Comments: (Bravomalo, María Elena) 06/02/25 11:30
+***IPSA***
+VLAN ASIGNADA:                1075
+
+NNI DF- MARCATEL METRO 2.0
+DEVICE:                                 CDMYDFMPNN001 Te0/0/1/3
+EON:                                      1133274/15
+DO:                                        7650594
+FRO:                                       2007175551
+CID LMN:                               CFS 700001542
+CID VENDOR:                       NNI-LV3-MDF-0002
+
+
+
+
+Comments: (Bravomalo, María Elena) 06/02/25 11:55
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8883161
+Activación Terceros ICT   **8883161*$*
+
+Workflow Initialization

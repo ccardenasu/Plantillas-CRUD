@@ -1,0 +1,96 @@
+DKO:8882305 (8884941)
+Comments: (Gino Rodriguez) 03/02/25 20:34 Start DokuFlow.
+La sede de Colsubsidio Bog Santa Librada tiene un enlace ETB en falla. 				
+Debido a la baja capacidad operativa de ETB es preciso reemplazarlo por otro tercero.				
+Se evaluó positivamente con Telefónica y se instalará un enlace de este LEC.				
+
+Design id:	COLS_VN_1-47ZEE0			
+Cliente:	Colsubsidio			
+Sede:	Bogotá Santa Librada			
+Dirección:	AV.CARRERA 1 No. 76 A- 04 SUR			
+
+Contactos:				
+1. Illias Christopulos - Coordinador de comunicaciones				
+Illias.Christopulos@colsubsidio.com				
+Tel 601 742 0100 EXT 73490, Bogotá				
+cel 310-334 4075				
+
+2. Javier Suarez 				
+javier.suarez@colsubsidio.com				
+Tel 601 742 0100 EXT 76129, Bogotá				
+cel 310-222 6919				
+
+LEC actual:	ETB ID: ID: CAV30486170			
+Nuevo LEC: 	Telefónica			z
+BW:	10M			
+
+				
+Actividades solicitadas:				
+
+1. Con base en la factibilidad positiva de Telefónica, instalar un enlace Telefónica de 10M,		
+como se solicita en la Xi.				
+Factib positiva: DokuOrder ID: 8861926				
+Se ajdunta correo del SE, Camilo Romero, autorizando la contratación				
+				
+La contratación debe ser a 12 meses, como indicó el SE:				
+NRC: COP$700.000				
+MRC: COP$467.775				
+				
+RFS 3rd party = 	CFS:500040117     |      RFS:6000328736			
+				
+
+3. Configurar una VLAN de acceso sobre el backbone ME @ 10M para este nuevo enlace, sobre la interconexión que corresponda,				
+				
+
+4. Hacer corresponder esta VLAN  con el path IP VPN:				
+PE:psr2.cxv1.bog				
+int:ae10.2519				
+IP PE: 10.30.14.1/30				
+VRF: colsubsi				
+BW: 10M				
+				
+
+5. Conectar el puerto Network del NID (1-1-1-1)  que está conectado al modem ETB al nuevo enlace Telefónica, que se está instalando con este DKO,				
+				
+
+6.a. Verificar alcanzabilidad por ping desde BBIP hasta CPE Cirion de casa del cliente,  10.30.14.2				
+				
+
+6.b. Verificar alcanzabilidad en gestión del NID, 10.226.143.127				
+				
+
+7. Estressar el enlace a su velocidad nominal,				
+				
+
+8. Asistir al cliente en sus pruebas aplicativas y obtener su conformidad,				
+				
+
+9.  Actualizar la ing de dokuviz.				
+				
+Gracias.				
+
+
+Workflow Initialization
+Comments: (Gino Rodriguez) 03/02/25 20:37
+Finished Step: Follow Up·
+
+Comments: (Gino Rodriguez) 03/02/25 20:53
+Finished Step: Solicitud de alta/mod de circuito de Terceros·
+
+
+This Order was automatically initiated by Order NO:8882305
+Service Assurance Reengineering-Add   **8882305*$*
+
+Workflow Initialization
+Comments: (Alberto Quesada) 06/02/25 16:33
+Finished Step: Alta Tercero
+Se solicita a Telefónica instalación canal a 10 MB Global LAN.
+
+Se asignan las VLAN 591 DATOS a 10 MB y VLAN 592 gestión a 64K
+INTERCONEXION - BOGTCLFXNN003 - PTO TENGIGA 0/0/2/3  - TELEFONICA BOG_SUB_MORA_H30 - PUERTO 5/0/2
+
+
+This Order was automatically initiated by Order NO:8882307
+Activación Terceros   **8882307*$*
+
+Workflow Initialization

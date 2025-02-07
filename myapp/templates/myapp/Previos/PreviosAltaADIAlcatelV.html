@@ -6,7 +6,7 @@ bash
 
 admin show configuration configure full-context | match  {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
 admin show configuration configure full-context | match  :{{ datos.sv }}
-admin show configuration configure full-context | match   {{ datos.IES }}
+admin show configuration configure full-context | match   {{ datos.ies }}
 
 admin show configuration configure full-context | match  CUSTOMER-{{ qos }}
 show router route-table    {{ datos.wan|first_valid_ip }}

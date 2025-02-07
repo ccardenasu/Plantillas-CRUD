@@ -1,0 +1,326 @@
+DKO:8848911 (8860054)
+Comments: (Zuniga, Nogald) 23/12/24 11:39 Start DokuFlow.
+Asunto: TRASLADO EXTERNO acceso Servicio:  Internet / Managed Services – FO-PAP a @300Mb
+Cliente: HDI SEGUROS COLOMBIA S.A 
+Sede Actual:  LIBERTY SEGUROS - MEDELLIN CRA 43 A PISO 14
+Sede Nueva: LIBERTY SEGUROS - EDIFICIO MILLA DE ORO TORRE SUR
+Ubicación Actual: CARRERA 43A # 19 17 NA, MEDELLIN, AN-Antioquia, Colombia Latitud 33.737316 Longitud -117.796279
+Ubicación Nueva: CALLE 4 SUR , 050022 MEDELLÍN, COLOMBIA NA, Medellín, ANT-Antioquia, Colombia Latitud 6.1996129 Longitud -75.5721965
+Vista en DokuViz actual: LSEG_VN_81-33FQPX7
+Vista en DokuViz nueva: LSEG_VN_81-5RRYRQI
+ID Services : Internet / Managed Services
+Service ID :  81-Q41NCG	 / 1-4IOSLQ
+CID-CFS: 500039477 / 500100083	
+6000143884 IP Port		
+6000143885 CPE		
+6000143886 NID	
+6000143887 Ethernet	
+6000323384 Fiber Chain
+Project ID: 8847339
+SO: 81-5S0HOFW / 81-5S0HOFC
+======================
+Descripción del Trabajo: 
+TRASLADO EXTERNO acceso Servicio:  Internet / Managed Services – FO-PAP a 200 Mbps
+======================
+DATOS DEL ENLACE:
+---------------------------
+Tipo de Enlace: FO PAP
+Proveedor: CIRION
+IP_WAN_BBIP: 190.217.99.173/30; IP_WAN_Cliente: 190.217.99.174/30
+
+Actividades solicitadas:
+
+-- [ASIGNACION  EQUIPO ]-----
+
+Se trasladan los mismos actuales.
+
+--- [IP SERVICE ACTIVATION ] ---- 
+
+NOTA: NO REQUIERE MODIFICACION, solo se listan recursos para documentación y pruebas durante traslado interno de servicios.
+
+**** SERVICIO DE INTERNET ****
+
+Equipo: MDLNCLAEZG006#
+interface GigabitEthernet0/0/19
+ description XP019704 - LIBERTY SEGUROS S.A. # 1-39W9P [CRA.43B.ENTRE.CALLE.19Y20]
+ !
+ service instance 1 ethernet
+  description 12/LATAM/6000143887/PATH - LIBERTY SEGUROS S.A. # 1-39W9P [(500039477) EDIFICIO BLOCK EMPRESA - ADI]
+  encapsulation dot1q 1200
+  bridge-domain 308
+
+CID 500039477 - 400
+PE: ar3.mdc2
+Int: ae-12:603.1200
+IP WAN BB: 190.217.99.172/30
+
+- [INSIDE PLANT  ] --- 
+
+Se requiere el traslado externo del servicio y de la fibra DO DE ALTA PAP 8018683
+
+Ubicación Actual: CARRERA 43A # 19 17 NA, MEDELLIN, AN-Antioquia, Colombia Latitud 33.737316 Longitud -117.796279
+Ubicación Nueva: CALLE 4 SUR , 050022 MEDELLÍN, COLOMBIA NA, Medellín, ANT-Antioquia, Colombia Latitud 6.1996129 Longitud -75.5721965
+
+ASIGNACIONES ACTUAL 
+
+INFORMACION PLANTA EXTERNA
+NODO: PARQUE BERRIO
+ODR: 2
+Fiber Tray: 15
+Posición: 21
+
+INFORMACION PLANTA INTERNA
+Equipo: MDLNCLAEZG006
+Puerto: GigabitEthernet0/0/19
+Fiber Tray: 5
+Puerto:20
+
+Empalme de acceso: MSPS029
+TP Cliente 04442 
+GCO: GCO SAN JUAN
+BUFER: BLANCO
+HILO EXTERNO: 69
+ODR: 2
+Fiber Tray:15
+Puerto: 21
+Nodo: PARQUE BERRIO
+
+*******************
+
+Realizar relevamiento FO PAP Metro2 en la nueva sede del cliente.
+Según relevamiento realizar asignación de recursos para ejecutar actividad.
+Coordinar EAIM y realizar tendido de la FO en paralelo, según asignación realizada.
+Confirmar a SDM la fecha de entrega del tendido de la FO para coordinar el traslado de equipos.
+
+
+
+Workflow Initialization
+Comments: (Zuniga, Nogald) 23/12/24 11:45
+
+--- [SDM & ACTIVATION ] --- 
+POR FAVOR LEER TODA LA DO Y SI HAY ALGUNA AMBIGUEDAD O DUDA VALIDARLO CON EL CD.
+1. Coordinar y realizar todas las tareas necesarias para el traslado del acceso. 
+2. Favor enviar personal al cliente para realizar relevamiento y posterior movimiento de equipos por traslado externo a nueva ubicacion. 
+3. Se solicita realizar visita de inspección para identificar las actividades a realizar para el movimiento técnico de la sucursal
+4. Favor validar el impacto que tiene sobre el canal que se provee para la sede e identificar los equipos de los cuales se encargaria Cirion para el movimiento.
+5. Según el resultado de la visita, coordinar con el cliente una ventana de tiempo para realizar la actividad.
+6. Los recursos IP actuales son los mismos, estos no cambian. 
+7. Realizar pruebas de conectividad y saturación a nivel WAN, Verificar que alcance el BW solicitado, validar que no se presenten errores sobre todas las Interfaces.
+8. Realizar en compañía del cliente pruebas de Conectividad desde y hacia esta sede que garanticen que quedan totalmente operativos y realizar entrega formal.
+9. Entregar Informe de la actividad con las pruebas realizadas y Actualizar ingenieria.
+
+INFORMACION EQUIPOS TRASLADO:
+CPE Datos (Cisco ISR4331-AX/K9):  : 172.18.143.206
+KEY SERVER SECUNDARIO: CISCO1921/K9 : 100.65.0.2
+CPE Internet (C1111-8P):190.217.99.174 /30
+NID (ADVA Datos) :  LB: 10.226.186.26
+NID (ADVA Internet) : IP Monitoreo 10.226.159.112
+
+Solo se traslada el servicio de internet:
+
+De: Bedoya, Wílfer <wilfer.bedoya@ciriontechnologies.com> 
+Enviado el: lunes, 23 de diciembre de 2024 10:21 a. m.
+Para: Orduz Valencia, César Augusto <cesar.orduz@ciriontechnologies.com>; Zuñiga, Nogald <nogald.zuniga@ciriontechnologies.com>
+CC: De Almeida, Marcelo <marcelo.dealmeida@ciriontechnologies.com>; Medina Ramirez, Anyela <anyela.medina@ciriontechnologies.com>
+Asunto: RE: XML 8847339 MUDANZA / HDI SEGUROS COLOMBIA S.A 
+
+Gracias César.
+
+Nogald, proceder solo con el canal de Internet, gracias.
+
+--- [NETWORK MANAGMENT] --- Modificar NM Tipo Availability
+
+1. Por favor Modificar en las herramientas de gestión a la nueva capacidad, el cliente contrato el Servicio de Network Managment Tipo Availability
+Comments: (Gabriel Ernesto Cardenas) 09/01/25 16:23
+
+
+--- [IP SERVICE ACTIVATION ] ---- 
+
+NOTA: traslado exteno de servicios, por favor asignar recursos en el Nodo Santillana .
+
+**** SERVICIO DE INTERNET ACTUAL ****
+
+Equipo: MDLNCLAEZG006#
+interface GigabitEthernet0/0/19
+ description XP019704 - LIBERTY SEGUROS S.A. # 1-39W9P [CRA.43B.ENTRE.CALLE.19Y20]
+ !
+ service instance 1 ethernet
+  description 12/LATAM/6000143887/PATH - LIBERTY SEGUROS S.A. # 1-39W9P [(500039477) EDIFICIO BLOCK EMPRESA - ADI]
+  encapsulation dot1q 1200
+  bridge-domain 308
+
+CID 500039477 - 500
+PE: ar3.mdc2
+Int: ae-12:603.1200
+IP WAN BB: 190.217.99.172/30
+
+Nodo Parque Berrio Sede Actual: LIBERTY SEGUROS - MEDELLIN CRA 43 A PISO 14
+Nodo Santillana  Sede Nueva: LIBERTY SEGUROS - EDIFICIO MILLA DE ORO TORRE SUR
+
+
+*
+
+
+This Order was automatically initiated by Order NO:8848911
+Datos - ADI Mod   **8848911*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 09/01/25 16:30
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+--- [IP SERVICE ACTIVATION ] ---- 
+
+NOTA: NO REQUIERE MODIFICACION
+Comments: (Carlos Cardenas) 15/01/25 19:16
+CFS: 500039477
+DKO: 8848911 (8860054)
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000143884
+Cliente: HDI SEGUROS COLOMBIA S.A
+SEDE: EDIFICIO-MILLA-DE-ORO
+SW: MDLNCLAFZG014
+Interface SW: GigabitEthernet0/0/13
+PE: AR3.MDC2
+Interface PE: ae-12:989.989
+BW: 600M
+WAN: 190.217.99.172/30
+LB NID: 10.235.15.221                      
+
+Comments: (Gabriel Ernesto Cardenas) 30/01/25 07:45
+
+
+*A:ar3.mdc2# admin display-config | match 8848911 context all 
+#--------------------------------------------------
+    service
+        customer 8848911 create
+            description "HDI SEGUROS COLOMBIA S.A"
+        ies 8848911 customer 8848911 create
+            interface "ae-12:989.989" create
+            exit
+        ies 8848911 customer 8848911 create
+            interface "ae-12:989.989" create
+                description "CUSTOMER:HDI SEGUROS COLOMBIA S.A(CFS:500039477)(RFS:6000143884)"
+                enable-ingress-stats
+                tos-marking-state trusted
+                ip-mtu 1500
+                cflowd-parameters
+                    sampling unicast type interface
+                exit
+                sap lag-12:989.989 create
+                    ingress
+                        qos 264
+                    exit
+                    egress
+                        agg-rate
+                            rate 819200
+                        exit
+                    exit
+                exit
+                urpf-check
+                    mode loose
+                exit
+            exit
+            no shutdown
+*A:ar3.mdc2#
+
+
+
+*A:ar3.mdc2>config>service>ies>if>sap# /configure service ies 8848911 interface "ae-12:989.989"  address 190.217.99.173/30
+
+
+Comments: (Gabriel Ernesto Cardenas) 06/02/25 12:28
+CFS: 500039477
+
+DKO: 8848911 (8860054)
+
+tipo_configuracion: Alta
+
+tipo_servicio: ADI
+
+RFS-IP-PORT: 6000143884
+
+Cliente: HDI SEGUROS COLOMBIA S.A
+
+SEDE: EDIFICIO-MILLA-DE-ORO
+
+SW: MDLNCLAFZG014
+
+Interface SW: GigabitEthernet0/0/13
+
+PE: AR3.MDC2
+
+Interface PE: ae-12:989.989
+
+BW: 700M
+
+WAN: 190.217.99.172/30
+
+LB NID: 10.235.15.221                      
+
+ 
+*A:ar3.mdc2# admin display-config | match 8848911 context all 
+
+#--------------------------------------------------
+
+    service
+
+        customer 8848911 create
+
+            description "HDI SEGUROS COLOMBIA S.A"
+
+        ies 8848911 customer 8848911 create
+
+            interface "ae-12:989.989" create
+
+            exit
+
+        ies 8848911 customer 8848911 create
+
+            interface "ae-12:989.989" create
+
+                description "CUSTOMER:HDI SEGUROS COLOMBIA S.A(CFS:500039477)(RFS:6000143884)"
+
+                enable-ingress-stats
+
+                tos-marking-state trusted
+
+                ip-mtu 1500
+
+                cflowd-parameters
+
+                    sampling unicast type interface
+
+                exit
+
+                sap lag-12:989.989 create
+
+                    ingress
+
+                        qos 264
+
+                    exit
+
+                    egress
+
+                        agg-rate
+
+                            rate 819200
+
+                        exit
+
+                    exit
+
+                exit
+
+                urpf-check
+
+                    mode loose
+
+                exit
+
+            exit
+
+            no shutdown
+
+*A:ar3.mdc2#
+ 

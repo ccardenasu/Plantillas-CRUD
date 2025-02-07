@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 import pytz
 
-
 class Datos(models.Model):
     TIPO_CONFIGURACION_CHOICES = [
         ("", ""),
@@ -44,9 +43,9 @@ class Datos(models.Model):
     ]
 
     TIPO_ENCAP_CHOICES = [
-            ("N/A", "N/A"),
-            ("dot1q", "dot1q"),
-            ("qinq", "qinq"),
+        ("N/A", "N/A"),
+        ("dot1q", "dot1q"),
+        ("qinq", "qinq"),
     ]
 
     PAIS_CHOICES = [
@@ -67,7 +66,7 @@ class Datos(models.Model):
     bundle_ether_b = models.CharField(
         max_length=100, choices=BUNDLE_ETHER_CHOICES, default="N/A"
     )
-    cfs = models.CharField(max_length=100)
+    cfs = models.CharField(max_length=100, blank=True, null=True)
     tipo_configuracion = models.CharField(
         max_length=100, choices=TIPO_CONFIGURACION_CHOICES, default="default_config"
     )
@@ -77,24 +76,22 @@ class Datos(models.Model):
     tipo_equipo = models.CharField(
         max_length=100, choices=TIPO_EQUIPO_CHOICES, default=""
     )
-    encap_type= models.CharField(
+    encap_type = models.CharField(
         max_length=100, choices=TIPO_ENCAP_CHOICES, default="N/A"
     )
 
-    IES = models.CharField(max_length=100, blank=True, null=True)
     asn = models.CharField(max_length=100, blank=True, null=True)
     be = models.CharField(max_length=100, default="0")
     bw = models.CharField(max_length=100, default="0")
-    bw_Exchange = models.CharField(max_length=100, default="0")
+    bw_exchange = models.CharField(max_length=100, default="0")
     bw_plus = models.CharField(max_length=100, default="0")
-    cfs = models.CharField(max_length=100, blank=True, null=True)
     child_port = models.CharField(max_length=100, blank=True, null=True)
     cliente = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     cv = models.CharField(max_length=100, blank=True, null=True)
     cv_b = models.CharField(max_length=100, blank=True, null=True)
     dko = models.CharField(max_length=100, blank=True, null=True)
-    encap_type = models.CharField(max_length=100, blank=True, null=True)
+    ies = models.CharField(max_length=100, blank=True, null=True)
     interface_pe = models.CharField(max_length=100, blank=True, null=True)
     interface_pe_b = models.CharField(max_length=100, blank=True, null=True)
     interface_pe_vpls_a = models.CharField(max_length=100, blank=True, null=True)
@@ -136,8 +133,6 @@ class Datos(models.Model):
     vt = models.CharField(max_length=100, blank=True, null=True)
     wan = models.CharField(max_length=100, default="0.0.0.0/0")
     wanv6 = models.CharField(max_length=100, blank=True, null=True)
-
-        
 
     def save(self, *args, **kwargs):
         colombia_tz = pytz.timezone("America/Bogota")

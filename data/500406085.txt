@@ -1,0 +1,348 @@
+CFS: 500406085
+DKO: 8827876 (8830033)
+tipo_configuracion: Alta
+tipo_servicio: VPN
+RFS-IP-PORT: 6000320304
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+SEDE: LUMEN-KENAN-NAGUABO-PUERTO RICO 81-5Q6YRPP
+PE: psr1.prc1
+Interface PE: xe-1/0/0.3073
+VRF: 00/VPXX/857176/LVLC
+Vlan Tercero: 3073
+RD: 209:10039229
+Svlan: 3073
+Cvlan: 1300
+BW: 20M
+WAN: 100.65.0.76/30
+WANIPv6: 2001:450:2002:236:5d1::/126
+ASN: 65432
+LB NID: 172.12.1.42
+
+DKO:8827876 (8827907)
+Comments: (Vallejo Caguenas, Sergio) 28/11/24 16:41 Start DokuFlow.
+Actividad: Se requiere dar de Alta enlace VPN @20Mb vía Tercero Liberty PR
+
+Cliente: LEVEL3 COMMUNICATIONS,LLC 
+Sede: LUMEN-KENAN-NAGUABO-PUERTO RICO
+Dirección: CARR 192 KM 0.1 (GANADEROS BORGES GROCERY),NAGUABO,PR 00718 NA, NAGUABO,, null-null, Puerto Rico
+
+Technical Contact:
+evette manrique / M: evette.manrique@usda.gov / P: 4042103080
+lisa johnson / M: lisa.johnson@usda.gov	/P: 12025570720
+
+CCM: Bononi, Paulo
+
+XML 8823646
+CFS 500406085
+*:RFS6000320303 ( NID )
+*:RFS  --- ICT  ( 3rd Party )
+*:RFS6000320304 ( IP Port )
+
+=========== SOLICITUD DE EQUIPOS ===========
+
+1 x 1466410
+1078904720-02
+F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA
+
+1 x 1384891
+1013904010
+F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+
+ITEM: 1082088 -> SFP LAN NID Hacia el Cliente
+Descripcion: SMALL FORM FACTOR PLUGGABLE SINGLEMODE 10KM 1000SFP10 CHAMPION
+Parte numero: CHAMPION OPTICAL NETWORK
+Cantidad: 1 
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: Liberty PR
+Tipo: Capa 2 [L2]
+BW: 20Mb
+Handoff interface: Eletrical, RJ45
+DK-SURVEY-TDG-152007648-8747939
+
+========== IPSA=========
+1. Asignar VLAN en Interconexión indicada por OFFNET y dirección IP de monitoreo para NID,
+2. Crear subinterface en PE asignado con un BW @20Mbps y Routing:
+
+RECURSO:
+---------------------
+PE:  ASIGNAR
+Interface: ASIGNAR
+IP_WAN:  sin confirmacion Lumen-> preguntar al CD
+VRF: QWEST-10039229 -> confirmada por LUMEN
+RT: 209:10039229
+QoS; default
+Enrutamiento: BGP; # AS_BGP: 65432 - overwrite
+MD5: SI c5dad096f4e4eba7e955521c1
+
+3. Asignar ip de monitoreo para NID, y Dar de Alta RFS  
+
+============= SDM / SA =============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar ventana con el cliente para dar de Alta enlace VPN @20Mb:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Tener en cuenta que la interface de entrega a nivel LAN sera 1G, SMF, 2-Fiber.
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+POR FAVOR LEER TODA LA DOCUMENTACION Y SI HAY ALGUNA NOVEDAD O DUDA VALIDARLO CON EL CD.
+Circuit Designer : Sergio Vallejo
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 28/11/24 16:55
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8827876
+Datos - IP VPN Add   **8827876*$*
+
+Workflow Initialization
+Comments: (Lozano, Paula) 29/11/24 20:15
+Se solicita instalacion a 20Mbps,   Hato Rey POP- HTRYPREE  PSR1.PRC1-XE-1/0/0-TX (MX 3D SERIES)  NNI A9191260  1114094/1 VLAN 3073
+Comments: (Lozano, Paula) 29/11/24 20:17
+Finished Step: Alta Tercero
+
+Comments: (Vallejo Caguenas, Sergio) 05/12/24 10:25
+******* Actualizacion DKO **********
+Se confirma informacion por parte de Lumen
+
+WAN: 100.65.0.77/30
+WAN IPV6 2001:450:2002:236:5d1/126Comments from Subprocess 8830033
+
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 05/12/24 10:25
+******* Actualizacion DKO **********
+Se confirma informacion por parte de Lumen
+
+WAN: 100.65.0.77/30
+WAN IPV6 2001:450:2002:236:5d1/126
+Comments: (Carlos Cardenas) 05/12/24 12:42
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+CFS: 500406085
+DKO: 8827876 (8830033)
+tipo_configuracion: Alta
+tipo_servicio: VPN
+RFS-IP-PORT: 6000320304
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+SEDE: LUMEN-KENAN-NAGUABO-PUERTO RICO 81-5Q6YRPP
+PE: psr1.prc1
+Interface PE: xe-1/0/0.3073
+VRF: 00/VPXX/857176/LVLC
+Vlan Tercero: 3073
+RD: 209:10039229
+Svlan: 3073
+Cvlan: 1300
+BW: 20M
+WAN: 100.65.0.76/30
+WANIPv6: 2001:450:2002:236:5d1::/126
+ASN: 65432
+LB NID: 172.12.1.42 
+
+
+roci@psr1.prc1# show | compare | no-more 
+[edit interfaces xe-1/0/0]
++    unit 3073 {
++        description "CUSTOMER: LEVEL3 COMMUNICATIONS,LLC (CFS:500406085)(RFS:6000320304)";
++        vlan-tags outer 0x8100.3073 inner 0x8100.1300;
++        family inet {
++            no-redirects;
++            filter {
++                input xe-1/0/0.3073-inet-i;
++            }
++            policer {
++                input xe-1/0/0.3073-in;
++                output xe-1/0/0.3073-out;
++            }
++            address 100.65.0.77/30;
++        }
++        family inet6 {
++            no-redirects;
++            filter {
++                input xe-1/0/0.3073-inet6-i;
++            }
++            address 2001:450:2002:236:5d1::1/126;
++        }
++    }
+[edit policy-options]
++   policy-statement 44233-1-LUMEN-KENAN-NAGUABO-PUERTO_RICO_81-5Q6YRPP7500406085-export {
++       then accept;
++   }
+[edit class-of-service traffic-control-profiles]
+    xe-1/0/0.3072-20480-o { ... }
++   xe-1/0/0.3073-20480-o {
++       scheduler-map GX-CUST-SCHEDULER-MAP-I;
++       shaping-rate 20m;
++       delay-buffer-rate 81920000;
++   }
+[edit class-of-service interfaces xe-1/0/0]
++     unit 3073 {
++         output-traffic-control-profile xe-1/0/0.3073-20480-o;
++     }
+[edit firewall family inet]
+      filter xe-1/0/0.3072-inet-i { ... }
++     filter xe-1/0/0.3073-inet-i {
++         term EF_DSCP {
++             from {
++                 dscp 46;
++             }
++             then {
++                 count EF.rx-xe-1/0/0.3073-inet-i;
++                 loss-priority low;
++                 forwarding-class EF;
++             }
++         }
++         term EF-DE_DSCP {
++             from {
++                 dscp [ 32 34 36 38 40 ];
++             }
++             then {
++                 loss-priority high;
++                 forwarding-class EF;
++             }
++         }
++         term AF_DSCP {
++             from {
++                 dscp [ 16 24 26 28 ];
++             }
++             then {
++                 count AF.rx-xe-1/0/0.3073-inet-i;
++                 loss-priority low;
++                 forwarding-class AF;
++             }
++         }
++         term AF-DE_DSCP {
++             from {
++                 dscp [ 18 20 22 30 ];
++             }
++             then {
++                 count AF-DE.rx-xe-1/0/0.3073-inet-i;
++                 loss-priority high;
++                 forwarding-class AF;
++             }
++         }
++         term BE-DE {
++             then {
++                 count BE-DE.rx-xe-1/0/0.3073-inet-i;
++                 loss-priority high;
++                 forwarding-class BE;
++             }
++         }
++     }
+[edit firewall family inet6]
+      filter xe-1/0/0.3072-inet6-i { ... }
++     filter xe-1/0/0.3073-inet6-i {
++         term EF_DSCP {
++             from {
++                 traffic-class 46;
++             }
++             then {
++                 count EF.rx-xe-1/0/0.3073-inet6-i;
++                 loss-priority low;
++                 forwarding-class EF;
++             }
++         }
++         term EF-DE_DSCP {
++             from {
++                 traffic-class [ 32 34 36 38 40 ];
++             }
++             then {
++                 loss-priority high;
++                 forwarding-class EF;
++             }
++         }
++         term AF_DSCP {
++             from {
++                 traffic-class [ 16 24 26 28 ];
++             }
++             then {
++                 count AF.rx-xe-1/0/0.3073-inet6-i;
++                 loss-priority low;
++                 forwarding-class AF;
++             }
++         }
++         term AF-DE_DSCP {
++             from {
++                 traffic-class [ 18 20 22 30 ];
++             }
++             then {
++                 count AF-DE.rx-xe-1/0/0.3073-inet6-i;
++                 loss-priority high;
++                 forwarding-class AF;
++             }
++         }
++         term BE-DE {
++             then {
++                 count BE-DE.rx-xe-1/0/0.3073-inet6-i;
++                 loss-priority high;
++                 forwarding-class BE;
++             }
++         }
++     }
+[edit firewall]
+    policer xe-1/0/0.3072-out { ... }
++   policer xe-1/0/0.3073-in {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 20480000;
++           burst-size-limit 768k;
++       }
++       then discard;
++   }
++   policer xe-1/0/0.3073-out {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 20480000;
++           burst-size-limit 768k;
++       }
++       then discard;
++   }
+[edit routing-instances 00/VPXX/857176/LVLC protocols bgp]
+       group AIBONITO-PUERTO-RICO-7500404345-IPv6 { ... }
++      group LUMEN-KENAN-NAGUABO-PUERTO_RICO_81-5Q6YRPP-7500406085 {
++          type external;
++          log-updown;
++          import BGP-import;
++          family inet {
++              any {
++                  prefix-limit {
++                      maximum 5000;
++                      teardown 90 idle-timeout 120;
++                  }
++              }
++          }
++          export [ BGP-export 44233-1-LUMEN-KENAN-NAGUABO-PUERTO_RICO_81-5Q6YRPP7500406085-export ];
++          peer-as 65432;
++          as-override;
++          neighbor 100.65.0.78;
++      }
++      group LUMEN-KENAN-NAGUABO-PUERTO_RICO_81-5Q6YRPP-7500406085-IPV6 {
++          type external;
++          log-updown;
++          import BGP-import;
++          family inet {
++              any {
++                  prefix-limit {
++                      maximum 5000;
++                      teardown 90 idle-timeout 120;
++                  }
++              }
++          }
++          export BGP-export;
++          peer-as 65432;
++          as-override;
++          neighbor 2001:450:2002:236:5d1::2;
++      }
+
+{master}[edit]
+roci@psr1.prc1# 
+
+
+Comments: (Lozano, Paula) 06/02/25 11:44
+Se liberan recursos de Liberty.por cambio de proveedor. 

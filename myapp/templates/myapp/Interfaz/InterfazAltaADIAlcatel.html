@@ -1,36 +1,36 @@
 {% load custom_filters %}
 {% load network_filters %}
 
-/configure service customer {{ datos.IES }} create
-/configure service customer {{ datos.IES }} description "{{ datos.cliente }}"
-/configure service ies {{ datos.IES }} customer {{ datos.IES }} create
-/configure service ies {{ datos.IES }} no shutdown
+/configure service customer {{ datos.ies }} create
+/configure service customer {{ datos.ies }} description "{{ datos.cliente }}"
+/configure service ies {{ datos.ies }} customer {{ datos.ies }} create
+/configure service ies {{ datos.ies }} no shutdown
 exit
 #####
 
 {% if "SUBA" in datos.bundle_ether|strip or "CXV" in datos.bundle_ether|strip %}
 
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  create
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.sv }} create
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.sv }} ingress qos XXXXXXXXXXXXXXXXXXXXX
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.sv }}   egress agg-rate rate {{ bw_lag_alcatel }}
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  create
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.sv }} create
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.sv }} ingress qos XXXXXXXXXXXXXXXXXXXXX
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.sv }}   egress agg-rate rate {{ bw_lag_alcatel }}
     
 
-    {% if datos.wan|mask == '31' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  address {{ datos.wan }}{% endif %}
-    {% if datos.wan|mask != '31' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
+    {% if datos.wan|mask == '31' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  address {{ datos.wan }}{% endif %}
+    {% if datos.wan|mask != '31' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
 
     
 
 
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  urpf-check mode loose
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  ip-mtu 1500
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}   cflowd-parameters sampling unicast type interface
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}   tos-marking-state trusted
-    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  ipv6 address {{ datos.wanv6}}{% endif %}{% endif %}
-    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  ipv6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  enable-ingress-stats
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} no shutdown
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  urpf-check mode loose
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  ip-mtu 1500
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}   cflowd-parameters sampling unicast type interface
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}   tos-marking-state trusted
+    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  ipv6 address {{ datos.wanv6}}{% endif %}{% endif %}
+    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  ipv6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }}  enable-ingress-stats
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.sv }} no shutdown
     exit
 
     PE {{ datos.pe_vpls_a }}
@@ -65,23 +65,23 @@ exit
     set interfaces {{ datos.interface_pe_vpls_b }} unit {{ datos.sv }} family vpls policer input {{ datos.interface_pe_vpls_b }}.{{ datos.sv }}-cir-in    
     
 {% else  %}
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  create
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.cv }} create
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.cv }} ingress qos XXXXXXXXXXXXXXXXXXXXX
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.cv }}   egress agg-rate rate {{ bw_lag_alcatel }}
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  create
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} description "CUSTOMER:{{ datos.cliente }}(CFS:{{ datos.cfs }})(RFS:{{ datos.rfs_ip_port }})"
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.cv }} create
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.cv }} ingress qos XXXXXXXXXXXXXXXXXXXXX
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} create sap lag-{{num_puertos_lag}}:{{ datos.sv }}.{{ datos.cv }}   egress agg-rate rate {{ bw_lag_alcatel }}
     
 
-    {% if datos.wan|mask == '31' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  address {{ datos.wan }}{% endif %}
-    {% if datos.wan|mask != '31' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
+    {% if datos.wan|mask == '31' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  address {{ datos.wan }}{% endif %}
+    {% if datos.wan|mask != '31' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  address {{ datos.wan|first_valid_ip_with_mask }}{% endif %}
  
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  urpf-check mode loose
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ip-mtu 1500
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   cflowd-parameters sampling unicast type interface
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   tos-marking-state trusted
-    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ipv6 address {{ datos.wanv6}}{% endif %}{% endif %}
-    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ipv6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  enable-ingress-stats
-    /configure service ies {{ datos.IES }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} no shutdown
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  urpf-check mode loose
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ip-mtu 1500
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   cflowd-parameters sampling unicast type interface
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}   tos-marking-state trusted
+    {% if datos.wanv6|maskv6 == '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ipv6 address {{ datos.wanv6}}{% endif %}{% endif %}
+    {% if datos.wanv6|maskv6 != '127' %}{% if datos.wanv6 and datos.wanv6 != '2806:281::/32' %}/configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  ipv6 address {{ datos.wanv6|first_valid_ipv6_with_mask }}{% endif %}{% endif %}
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}  enable-ingress-stats
+    /configure service ies {{ datos.ies }} interface {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }} no shutdown
     exit
 {% endif %}

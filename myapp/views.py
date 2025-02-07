@@ -50,62 +50,60 @@ def datos_view(request):
                         if field_value not in [None, ""]:
                             file.write(f"{field_name}: {field_value}\n")
                             
-                            write_if_not_none("ASN", datos.asn)
-                            write_if_not_none("BE", datos.be)
-                            write_if_not_none("BW", datos.bw)
-                            write_if_not_none("BW_PLUS", datos.bw_plus)
-                            write_if_not_none("BW_EXCHENGE", datos.bw_Exchange)
-                            write_if_not_none("Bundle_ether", datos.bundle_ether)
-                            write_if_not_none("Bundle_ether_b", datos.bundle_ether_b)
-                            write_if_not_none("CFS", datos.cfs)
-                            write_if_not_none("Cliente", datos.cliente)
-                            write_if_not_none("CV", datos.cv)
-                            write_if_not_none("CV_B", datos.cv_b)
-                            write_if_not_none("DKO", datos.dko)
-                            write_if_not_none("Fecha de creación", datos.created_at)
-                            write_if_not_none("IES", datos.IES)
-                            write_if_not_none("Interface PE", datos.interface_pe)
-                            write_if_not_none("Interface PE_VPLS_A", datos.interface_pe_vpls_a)
-                            write_if_not_none("Interface PE_VPLS_B", datos.interface_pe_vpls_b)
-                            write_if_not_none("LB PE_VPLS_A", datos.lb_pe_vpls_a)
-                            write_if_not_none("LB PE_VPLS_B", datos.lb_pe_vpls_b)
-                            write_if_not_none("Interface PE_B", datos.interface_pe_b)
-                            write_if_not_none("Interface SW", datos.interface_sw)
-                            write_if_not_none("Interface SW_B", datos.interface_sw_b)
-                            write_if_not_none("LAN", datos.lan)
-                            write_if_not_none("LANV6", datos.lanv6)
-                            write_if_not_none("LBCPE", datos.lbcpe)
-                            write_if_not_none("LNNID", datos.lnnid)
-                            write_if_not_none("Lag", datos.lag)
-                            write_if_not_none("PE", datos.pe)
-                            write_if_not_none("PE_VPLS_A", datos.pe_vpls_a)
-                            write_if_not_none("PE_VPLS_B", datos.pe_vpls_b)
-                            write_if_not_none("PE_B", datos.pe_b)
-                            write_if_not_none("Puertos_lag", datos.puertos_lag)
-                            write_if_not_none("RFS-IP-PORT", datos.rfs_ip_port)
-                            write_if_not_none("RFS-IP-PORT_B", datos.rfs_ip_port_b)
-                            write_if_not_none("RFS-IP-PORT_NID", datos.rfs_ip_port_nid)
-                            write_if_not_none("RD", datos.rd)
-                            write_if_not_none("SEDE", datos.sede)
-                            write_if_not_none("SEDE_B", datos.sede_b)
-                            write_if_not_none("SV", datos.sv)
-                            write_if_not_none("SW", datos.sw)
-                            write_if_not_none("SW_B", datos.sw_b)
-                            write_if_not_none("Tipo de configuración", datos.tipo_configuracion)
-                            write_if_not_none("Tipo de equipo", datos.tipo_equipo)
-                            write_if_not_none("Unit", datos.unit)
-                            write_if_not_none("Unit_nid", datos.unit_nid)
-                            write_if_not_none("Unit_b", datos.unit_b)
-                            write_if_not_none("VRF", datos.vrf)
-                            write_if_not_none("VRF_INIT", datos.vrf_init)
-                            write_if_not_none("VT", datos.vt)
-                            write_if_not_none("WAN", datos.wan)
-                            write_if_not_none("WANv6", datos.wanv6)
+                            write_if_not_none("asn", datos.asn)
+                            write_if_not_none("be", datos.be)
+                            write_if_not_none("bw", datos.bw)
+                            write_if_not_none("bw_plus", datos.bw_plus)
+                            write_if_not_none("bw_exchenge", datos.bw_exchange)
+                            write_if_not_none("bundle_ether", datos.bundle_ether)
+                            write_if_not_none("bundle_ether_b", datos.bundle_ether_b)
+                            write_if_not_none("cfs", datos.cfs)
+                            write_if_not_none("cliente", datos.cliente)
+                            write_if_not_none("cv", datos.cv)
+                            write_if_not_none("cv_b", datos.cv_b)
+                            write_if_not_none("dko", datos.dko)
+                            write_if_not_none("fecha de creación", datos.created_at)
+                            write_if_not_none("ies", datos.ies)
+                            write_if_not_none("interface pe", datos.interface_pe)
+                            write_if_not_none("interface pe_b", datos.interface_pe_b)
+                            write_if_not_none("interface pe_vpls_a", datos.interface_pe_vpls_a)
+                            write_if_not_none("interface pe_vpls_b", datos.interface_pe_vpls_b)
+                            write_if_not_none("interface sw", datos.interface_sw)
+                            write_if_not_none("interface sw_b", datos.interface_sw_b)
+                            write_if_not_none("lan", datos.lan)
+                            write_if_not_none("lanv6", datos.lanv6)
+                            write_if_not_none("lbcpe", datos.lbcpe)
+                            write_if_not_none("lnnid", datos.lnnid)
+                            write_if_not_none("lag", datos.lag)
+                            write_if_not_none("pe", datos.pe)
+                            write_if_not_none("pe_b", datos.pe_b)
+                            write_if_not_none("pe_vpls_a", datos.pe_vpls_a)
+                            write_if_not_none("pe_vpls_b", datos.pe_vpls_b)
+                            write_if_not_none("puertos_lag", datos.puertos_lag)
+                            write_if_not_none("rfs-ip-port", datos.rfs_ip_port)
+                            write_if_not_none("rfs-ip-port_b", datos.rfs_ip_port_b)
+                            write_if_not_none("rfs-ip-port_nid", datos.rfs_ip_port_nid)
+                            write_if_not_none("rd", datos.rd)
+                            write_if_not_none("sede", datos.sede)
+                            write_if_not_none("sede_b", datos.sede_b)
+                            write_if_not_none("sv", datos.sv)
+                            write_if_not_none("sw", datos.sw)
+                            write_if_not_none("sw_b", datos.sw_b)
+                            write_if_not_none("tipo de configuración", datos.tipo_configuracion)
+                            write_if_not_none("tipo de equipo", datos.tipo_equipo)
+                            write_if_not_none("unit", datos.unit)
+                            write_if_not_none("unit_nid", datos.unit_nid)
+                            write_if_not_none("unit_b", datos.unit_b)
+                            write_if_not_none("vrf", datos.vrf)
+                            write_if_not_none("vrf_init", datos.vrf_init)
+                            write_if_not_none("vt", datos.vt)
+                            write_if_not_none("wan", datos.wan)
+                            write_if_not_none("wanv6", datos.wanv6)
+                            write_if_not_none("child_port", datos.child_port)
+                            write_if_not_none("encap_type", datos.encap_type)
+                            write_if_not_none("mtu", datos.mtu)
                             write_if_not_none("port_breakout", datos.port_breakout)
                             write_if_not_none("root_port", datos.root_port)
-                            write_if_not_none("child_port", datos.child_port)	
-                            write_if_not_none("encap_type", datos.encap_type)	
-                            write_if_not_none("mtu", datos.mtu)
 
 
                     # Comandos adicionales...
@@ -139,16 +137,12 @@ def datos_view(request):
                 print(f"burst_size_limit {burst_size_limit}")
                 bw_plus_por = round(int(datos.bw_plus)*bwjun / 100)
                 print(f"bw_plus_por {bw_plus_por}")
-                bw_Exchange_por = round(int(datos.bw_Exchange )*bwjun / 100)
-                print(f"bw_Exchange_por {bw_Exchange_por}")
+                bw_exchange_por = round(int(datos.bw_exchange )*bwjun / 100)
+                print(f"bw_exchange_por {bw_exchange_por}")
                 burst_size_limit_plus = round((bwx1024 * 1000 * (int(datos.bw_plus ) / 100*0.15/4)))
                 print(f"burst_size_limit_plus {burst_size_limit_plus}")
-                burst_size_limit_Exchange = round((bwx1024 * 1000 * (int(datos.bw_Exchange ) / 100*0.15/4)))
-                print(f"burst_size_limit_Exchange {burst_size_limit_Exchange}")
-
-
-
-
+                burst_size_limit_Exchange = round((bwx1024 * 1000 * (int(datos.bw_exchange ) / 100*0.15/4)))
+                print(f"burst_size_limit_exchange {burst_size_limit_Exchange}")
                 bw_lag_alcatel = int(datos.puertos_lag) * bwx1024
                 print(f"bw_lag_alcatel {bw_lag_alcatel}")
                 qos = str(bw_lag_alcatel)[:1]  # Extrae los dos primeros dígitos
@@ -162,7 +156,7 @@ def datos_view(request):
                 bw_lag_alcatel = None
                 qos = None
                 bw_plus_por = None
-                bw_Exchange_por = None
+                bw_exchange_por = None
                 burst_size_limit_plus = None
                 burst_size_limit_Exchange = None
             
@@ -182,7 +176,7 @@ def datos_view(request):
                     "burst_size_limit": burst_size_limit,
                     "bw_lag_alcatel": bw_lag_alcatel,
                     "bw_plus_por": bw_plus_por,
-                    "bw_Exchange_por": bw_Exchange_por,
+                    "bw_exchange_por": bw_exchange_por,
                     "burst_size_limit_plus": burst_size_limit_plus,
                     "burst_size_limit_Exchange": burst_size_limit_Exchange,
                     "qos": qos,
@@ -217,14 +211,14 @@ def buscar_cfs(request):
                             "be": dato.be,
                             "bw": dato.bw,
                             "bw_bw_plus": dato.bw_plus,
-                            "bw_bw_Exchange": dato.bw_Exchange,
+                            "bw_bw_exchange": dato.bw_exchange,
                             "cfs": dato.cfs,
                             "cliente": dato.cliente,
                             "cv": dato.cv,
                             "cv_b": dato.cv_b,
                             "dko": dato.dko,
                             "id": dato.id,
-                            "IES": dato.IES,
+                            "ies": dato.ies,
                             "interface_pe": dato.interface_pe,
                             "interface_pe_vpls_a": dato.interface_pe_vpls_a,
                             "interface_pe_vpls_b": dato.interface_pe_vpls_b,
@@ -269,7 +263,7 @@ def buscar_cfs(request):
                             "encap_type": dato.encap_type,
                             "mtu": dato.mtu,
                             "lag_administrative_key": dato.lag_administrative_key,
-                            "created_at": dato.created_at.strftime("%Y-%m-%d %H:%M:%S"),  # Incluir fecha de creación
+                            "created_at": dato.created_at.strftime("%Y-%m-%d %H:%M:%S")  # Incluir fecha de creación
                         }
                         for dato in datos
                     ],

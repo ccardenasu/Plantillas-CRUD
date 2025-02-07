@@ -51,7 +51,7 @@
         set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then forwarding-class BE
 
         set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i filter-specific
-        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding bandwidth-limit {{bw_Exchange_por}}
+        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding bandwidth-limit {{bw_exchange_por}}
         set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding burst-size-limit {{burst_size_limit_Exchange}}
         set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i then discard
 
@@ -165,7 +165,7 @@
         set firewall family inet filter {{ datos.interface_pe }}.{{ datos.unit }}-inet-i term BE-DE then forwarding-class BE
 
         set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i filter-specific
-        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding bandwidth-limit {{bw_Exchange_por}}
+        set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding bandwidth-limit {{bw_exchange_por}}
         set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i if-exceeding burst-size-limit {{burst_size_limit_Exchange}}
         set firewall policer {{ datos.interface_pe }}.{{ datos.unit }}.EF-i then discard
 
