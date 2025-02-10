@@ -36,25 +36,30 @@ def main(cfs):
         return
 
     patrones_busqueda = {
-        'sw': [r'DEVICE:\s*([^\s,]+)', r'SW:\s*([^\s,]+)', r'ME:\s*([^\s,]+)', r'DEVICE:\s*([^\s]+)', r'INTERCONEXION\s*-\s*([^\s,]+)'],
-        'rfs_ip_port_nid': [r'NID\s*:\s*(\d+)', r'\*:\s*RFS\s*(\d+)\s*\(\s*NID\s*\)', r'\*:\s*RFS\s*(\d+)\s*\( NID \)'],
-        'tipo': [r'(Internet)', r'(VPN)'],
+        'pe': [ r'PTO\s*([^\s,]+)', r'PE:\s*([^\s,]+)',],
+        'asn': [r'AS_BGP:\s*(\d+)', r'ASN:\s*(\d+)'],
         'bw': [r'@(\d+[MG]b)', r'(\d+)[MG]b', r'BW:\s*(\d+)[MG]'],
-        'interface_sw': [r'DEVICE:\s*[^\s,]+\s+(Te\d+/\d+/\d+/\d+)', r'Interface SW:\s*([^\s,]+)', r'INTERCONEXION\s*-\s*[^\s,]+\s*-\s*PTO\s*(TENGIGA\s*\d+/\d+/\d+/\d+)'],
-        'vrf': [r'VRF:\s*(.*)'],
-        'lnnid': [r'LB NID:\s*([\d.]+)'],
-        'configuracion': [r'(Alta)', r'(ampliación)'],
-        'pais': [r'(MEXICO)'],
-        'cliente': [r'(?i)CLIENTE:\s*(.*?)(?=\n)', r'(?i)Cliente:\s*(.*?)(?=\n)', r'(?i)CLIENT:\s*(.*?)(?=\n)'], 
-        'sede': [r'(?i)Sede:\s*(.*)', r'(?i)SITE:\s*(.*)'],
-        'dko': [r'DKO:\s*(\d+)'],
         'cfs': [r'CID-CFS :\s*(\d+)', r'CFS-CID:\s*(\d+)', r'CID-CFS:\s*(\d+)', r'CFS:\s*(\d+)', r'CFS\s*(\d+)'],
+        'cliente': [r'(?i)CLIENTE:\s*(.*?)(?=\n)', r'(?i)Cliente:\s*(.*?)(?=\n)', r'(?i)CLIENT:\s*(.*?)(?=\n)'],
+        'configuracion': [r'(Alta)', r'(ampliación)'],
+        'cvlan': [r'Cvlan:\s*(\d+)'],
+        'dko': [r'DKO:\s*(\d+)'],
+        'interface_pe': [r'Interface PE:\s*([^\s,]+)', r'PTO\s*[^\s,]+\s*([^\s,]+)'],
+        'interface_sw': [r'DEVICE:\s*[^\s,]+\s+(Te\d+/\d+/\d+/\d+)', r'Interface SW:\s*([^\s,]+)', r'INTERCONEXION\s*-\s*[^\s,]+\s*-\s*PTO\s*(TENGIGA\s*\d+/\d+/\d+/\d+)'],
+        'lnnid': [r'LB NID:\s*([\d.]+)'],
+        'pais': [r'(MEXICO)'],
+        'rd': [r'RD:\s*([^\s,]+)'],
         'rfs_ip_port': [r'RFS IP PORT:\s*(\d+)', r'RFS IP Port:\s*(\d+)', r'IP Port :\s*(\d+)', r'(\d+)\s*IP Port\s*', r'\*:\s*RFS(\d+)\s*\( IP Port \)', r'\*:\s*(\d+)\s*\(IP Port\)', r'\*:\s*RFS\s*(\d+)\s*\( IP Port \)'],
+        'rfs_ip_port_nid': [r'NID\s*:\s*(\d+)', r'\*:\s*RFS\s*(\d+)\s*\(\s*NID\s*\)', r'\*:\s*RFS\s*(\d+)\s*\( NID \)'],
+        'sede': [r'(?i)Sede\s*:\s*(.*)', r'(?i)SITE:\s*(.*)'],
+        'svlan': [r'Svlan:\s*(\d+)'],
+        'sw': [r'DEVICE:\s*([^\s,]+)', r'SW:\s*([^\s,]+)', r'ME:\s*([^\s,]+)', r'DEVICE:\s*([^\s]+)', r'INTERCONEXION\s*-\s*([^\s,]+)'],
+        'tipo': [r'(Internet)', r'(VPN)'],
         'vlan': [r'VLAN\s*(\d+)', r'S-VLAN:\s*(\d+)', r'VLAN ASIGNADA:\s*(\d+)'],
-        'asn': [r'AS_BGP:\s*(\d+)'],
+        'vrf': [r'VRF:\s*(.*)'],
         'wan': [r'IP_WAN:\s*([\d./]+)', r'WAN:\s*([\d./]+)'],
-        'wanv6': [r'WANIPv6:\s*([\da-fA-F:]+/\d+)'],  # Nuevo patrón para IPv6
-        'lbcpe': [r'CPE :\s*(\d+)'],
+        'wanv6': [r'WANIPv6:\s*([\da-fA-F:]+/\d+)'],
+        'lbcpe': [r'CPE :\s*([\d.]+)', r'LB CPE:\s*([\d.]+)']        
 
     }
 
@@ -80,19 +85,22 @@ def main(cfs):
 
 
     if resultados['bw'] != "No encontrado":
-        match = re.match(r'(\d+)([MG]b)', resultados['bw'])
-        if match:
-            bw_valor, unidad = match.groups()
-            bw_valor = int(bw_valor)
-            if unidad == "Gb":
-                bw_valor *= 1000
-            resultados['bw'] = f"{bw_valor}"
+        if "1Gbps" in texto:
+            resultados['bw'] = "1000"
+        else:
+            match = re.match(r'(\d+)([MG]b)', resultados['bw'])
+            if match:
+                bw_valor, unidad = match.groups()
+                bw_valor = int(bw_valor)
+                if unidad == "Gb":
+                    bw_valor *= 1000
+                resultados['bw'] = f"{bw_valor}"
 
     tipo_servicio = "ADI" if resultados['tipo'] == "Internet" else "VPN" if resultados['tipo'] == "VPN" else "No encontrado"
 
 
     # Asignar "Juniper" a tipo_equipo si se encuentra "MEXICO" y tipo_servicio es "ADI"
-    tipo_equipo = "JUNIPER" if resultados['pais'] != "No encontrado" and tipo_servicio == "ADI" else "No encontrado"
+    tipo_equipo = "JUNIPER" if (resultados['pais'] != "No encontrado" and tipo_servicio == "ADI") or ("edge" in resultados['pe'].lower()) else "No encontrado"
 
     # Buscar la palabra "VPN" en el texto y asignar "VPN" a la variable vpn si se encuentra
     vpn = "VPN" if "VPN" in texto else "No encontrado"
@@ -136,6 +144,33 @@ def main(cfs):
 
     if resultados['lnnid'] == "No encontrado":
         resultados['lnnid'] = ""
+
+    if resultados['pe'] != "No encontrado":
+        resultados['sw'] = "Conectado a PE"
+
+    if resultados['asn'] == "No encontrado":
+        resultados['asn'] = ""
+
+    if resultados['lbcpe'] == "No encontrado":
+        resultados['lbcpe'] = ""
+
+    if resultados['sw'] == "No encontrado":
+        resultados['sw'] = ""
+
+    if resultados['vlan'] == "No encontrado":
+        resultados['vlan'] = ""
+
+    if resultados['interface_sw'] == "No encontrado":
+        resultados['interface_sw'] = ""
+
+    if resultados['lnnid'] == "No encontrado":
+        resultados['lnnid'] = ""
+
+    if resultados['svlan'] == "No encontrado":
+        resultados['svlan'] = ""
+
+    if resultados['cvlan'] == "No encontrado":
+        resultados['cvlan'] = ""
 
     if any(resultados[clave] == "No encontrado" for clave in ['cliente', 'sede', 'cfs', 'rfs_ip_port', 'rfs_ip_port_nid']):
         ejecutar_enlace(cfs)

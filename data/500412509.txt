@@ -1,0 +1,116 @@
+DKO:8885611 (8886171)
+
+Comments: (Rojas, Carlos) 07/02/25 13:44 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere Alta de servicio de INTERNET via TERCERO a 1Gbps
+ 
+Cliente: CONSORCIO MI CASA BACANA DIGITAL 	
+Sede:     CONSORCIO MI CASA -REPELON	
+DirecciÃ³n:  CARRERA 7 #72,  REPELÃ“N, COLOMBIA, Latitud 10.4944215 Longitud -75.1228048
+Design ID:  K05E_VN_81-5SGGK7Y	
+
+SE: Giovanny Orjuela 
+CCM: Andrea Roa
+
+Nombre del contacto:  Pedro De La Ossa PeÃ±a
+Email del contacto: gerenciatecnica@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3157154734
+
+Nombre del contacto:  Hernan Figueroa
+Email del contacto: conectividad@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3232851197
+
+Nombre del contacto: Julio Hamburger
+Email del contacto: redes@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3194322030
+
+Project ID (XML): 8864995
+Service Instance: INTERNET
+CFS-CID: 500412509			
+
+RFS IP Port: 6000329485
+RFS 3rd Party: A GENERARSE POR FLUJO ICT
+RFS NID: 6000329486
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: FSP 150-XG108 XG108 H AND XG108 SH SOFTWARE BASE KEY F150/XG10X/SW/BASE/KEY 1091901005-01 ADVA
+Item SAP: 1480593
+Parte numero: 1091901005-01
+Cantidad: 1
+
+DescripciÃ³n: F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+Item SAP: 1384891
+Parte numero: 1013904010
+Cantidad: 1
+
+DescripciÃ³n: 10G BASE-SR SFP+ ETHERNET 850NM
+Item SAP: 1121903
+Parte numero: 10GSFP+E-SR
+Cantidad: 1 LAN DE ADVA - 2 HILOS
+
+==================== OFFNET ======================
+1. Contratar el siguiente enlace:
+
+NOTA: Por favor solicitar que se entregue el servicio en el nodo en un puerto independiente del NNI para conexiÃ³n directa a PE o a red Metro 3.0.  Se espera ampliacion a corto plazo a 5Gbps
+
+Proveedor: UFINET
+Tipo: Capa 2 [L2], QinQ en M2.0
+BW: 1Gbps
+TDG: DK-SURVEY-TDG-152064466-8864782
+Tipo: Optico - TENGIGA
+Conector lado cliente: LC
+
+2. Favor compartir con IP SA y SDM/SA los datos de la NNI acordada con el LEC (SW, Puerto, Nodo) y VLAN asignada por parte del proveedor para efectos de documentaciÃ³n y configuraciÃ³n
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio segÃºn el NNI que confirme OFFNET:
+
+NOTA: Se le ha solicitado a OFFNET puerto 10G independiente de NNI para conexiÃ³n directa a PE o a red Metro 3.0. Se espera ampliacion futura a 5Gbps
+
+CONSULTA NCD PARA IP 187016    
+
+Servicio: INTERNET
+PE: Por Asignar - CONFIGURAR EN PE EDGE
+Interface: Por Asignar - PUERTO TENGIGA
+IPv4 PE (IP pÃºblica): Por Asignar /31
+IPv6 PE: Por Asignar /127
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+IPv6 LAN (CPE): /48
+
+Enrutamiento: ESTATICO
+BW: 1Gbps
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y OFFNET para realizar CrossconexiÃ³n en nodo
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via fibra PaP de 1Gbps
+3. Instalar y configurar NID ADVA en sede del cliente.
+4. Compartir el direccionamiento IP publico LAN informado por parte de IPSA
+5. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (ADVA)
+6. Realizar prueba de esfuerzo del canal con el cliente y garantizar navegaciÃ³n exitosa a Internet
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Availability
+LB ADVA: SegÃºn asignaciÃ³n de IPSA
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 07/02/25 18:03
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8885611
+Datos - ADI Add   **8885611*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 07/02/25 18:57
+Finished Step: Alta Tercero·
+Se solicita a UFINET  instalación de canal a 1.000MBPS. Se asigna SVLAN 182 BOGTCLFX - PTO edge1.bgo2 et-0/0/18 BOGOTA  METRO 2.6
+
+This Order was automatically initiated by Order NO:8886065
+Activación Terceros ICT   **8886065*$*
+
+Workflow Initialization

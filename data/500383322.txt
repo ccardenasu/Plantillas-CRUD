@@ -1,0 +1,551 @@
+CFS: 500383322
+DKO: 8522917
+tipo_configuracion: Alta
+tipo_servicio: VPLS
+RFS-IP-PORT: 6000291900
+RFS-IP-PORT_NID: 6000291899
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+SEDE: LUMEN - EIS0186 - SAN JUAN - PUERTO RICO
+PE: psr1.prc1
+Interface PE: ae10.3006
+VRF: BBLL95138
+Vlan Tercero: 3006
+Svlan: 3006
+Cvlan: 1300
+BW: 200M
+LB NID: 172.12.1.20                      
+RFS-IP-PORT_B: 6000291900
+SEDE_B: NNI_CUSTOMER::LEVEL3
+PE_B: psr3.mia43
+Interface PE_B: xe-1/0/2:0.100
+Vlan_B: 100
+
+DKO:8522917 (8885655)
+Comments: (Vallejo Caguenas, Sergio) 02/05/24 19:28 Start DokuFlow.
+Actividad: Se requiere dar de Alta enlace VPN @200Mb vía Tercero Liberty
+
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+Sede:  LUMEN - EIS0186 - SAN JUAN - PUERTO RICO
+Dirección: 150 AVE CARLOS CHARDON NA, SAN JUAN, PR-Puerto Rico, Puerto Rico
+
+Technical Contact:
+David Sanchez / M: David_Sanchez@prd.uscourts.gov / P: +1 787-772-3088
+
+CCM: Bononi, Paulo
+
+Desing ID: GF88_VN_81-4WYAZJE
+XML 8521450
+CFS 500383322
+*:RFS6000291899 ( NID )
+*:RFS --- ICT ( 3rd Party )
+*:RFS6000291900 ( IP Port )
+
+=========== SOLICITUD DE EQUIPOS ===========
+
+Descripción: NID ADVA FSP 150CC-GE101Pro MicroNID, C-Temp, F150/ADV/GE101PRO, HW Rel 1.01
+Item SAP: 1469560
+Parte numero: 1078904820-01
+Cantidad: 1
+ 
+Descripción: Power Supply Unit, for FSP 150CC-GE101Pro MicroNID, 240 VAC Input, +12 VDC Output, F150/ADV/GE/ADAPT/240V/12V, HW Rel 1.01
+Item SAP: 1469561
+Parte numero: 1013904027
+Cantidad: 1
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: Liberty
+Tipo: Capa 2 [L2]
+BW: 200Mb
+Handoff interface: Eletrical, RJ45
+DK-SURVEY-TDG-151932962-8519942
+
+========== IPSA=========
+1. Asignar VLAN en Interconexión indicada por OFFNET y dirección IP de monitoreo para NID,
+2. Crear subinterface en PE asignado con un BW @200Mbps y Routing:
+
+RECURSO:
+---------------------
+PE: ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 172.20.34.21/30
+VRF: BBLL95138  -> confirmada por LUMEN
+RD: 20113
+
+Enrutamiento: BGP; # AS_BGP: 64657
+BFD: 9x999
+QoS: -- DSCP
+25% B -- 1-15,17,19,21,23,25,27,29,31,33,35,37,39,41-45,47,49-55,57-63
+50% E -- 16,18,20,22,24,26,28,30,48,56
+25% P -- 32,34,36,38,40,46
+
+3. Asignar ip de monitoreo para NID, y Dar de Alta RFS 
+
+============= SDM / SA =============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar ventana con el cliente para dar de Alta enlace VPN @200Mb:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+3. Tener presente que se debe tagear la Vlan 240 en el puerto LAN de entrega a el cliente Adicional se debe entregar en la interface optica 1G, SMF, 2-Fiber
+4. CPE Propiedad por el cliente.
+5. Realizar prueba de esfuerzo del canal. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+6. Entregar enlace al cliente.
+7. Documentar ingeniería.
+
+POR FAVOR LEER TODA LA DOCUMENTACION Y SI HAY ALGUNA NOVEDAD O DUDA VALIDARLO CON EL CD.
+Circuit Designer : Sergio Vallejo
+
+Workflow Initialization
+Comments: (Bononi, Paulo) 03/05/24 11:40
+Finished Step: Asignación de CCM·
+
+Comments: (Vallejo Caguenas, Sergio) 03/05/24 16:56
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Vargas Flores, Jose Luis) 03/05/24 19:04
+Finished Step: Asignación de SDM·
+
+Comments: (Carlos Cardenas) 14/05/24 13:36
+Usuario: Cardenas Urrea, Carl
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+Sucursal: IS0186_SAN_JUAN_PUERTO_RICO
+Design ID: 
+Tipo de Equipo: NID
+Alias: NID132542
+Snmp Version: 2c
+Address IP: 172.12.1.20
+Comunidad: $Lev3L3
+Eq Id: No EQID
+Vendedor: Adva
+Mascara Formato Largo:  255.255.255.128
+Gateway:  172.12.1.1
+Vlan Dominio:  400
+RFS_CFS:  RFS:6000291899
+
+Comments: (Rodrigues, Luiz) 23/08/24 16:57
+Equipos instalados y en la gestión. Comparto evidencias:
+
+-bash-4.1$ ping 172.12.1.20
+PING 172.12.1.20 (172.12.1.20) 56(84) bytes of data.
+64 bytes from 172.12.1.20: icmp_seq=1 ttl=58 time=157 ms
+64 bytes from 172.12.1.20: icmp_seq=2 ttl=58 time=157 ms
+64 bytes from 172.12.1.20: icmp_seq=3 ttl=58 time=157 ms
+64 bytes from 172.12.1.20: icmp_seq=4 ttl=58 time=157 ms
+64 bytes from 172.12.1.20: icmp_seq=5 ttl=58 time=157 ms
+64 bytes from 172.12.1.20: icmp_seq=6 ttl=58 time=157 ms
+^C
+--- 172.12.1.20 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5247ms
+rtt min/avg/max/mdev = 157.812/157.901/157.974/0.236 ms
+
+==================================================================================================================
+-bash-4.1$ ssh -l root 172.12.1.20
+The authenticity of host '172.12.1.20 (172.12.1.20)' can't be established.
+RSA key fingerprint is 5e:7b:d1:3b:4c:b9:33:94:75:71:12:c9:39:da:bb:bb.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '172.12.1.20' (RSA) to the list of known hosts.
+root@172.12.1.20's password: 
+
+
+Copyright (c) 2019 ADVA Optical Networking SE. All rights reserved.
+
+
+********************************************************************************
+
+This is the Cirion Tech device NID132542
+This equipment is the property of Cirion Technologies. 
+Unauthorized access is strictly prohibited.  Any unauthorized
+access or tampering with this equipment will result in civil
+and/or criminal prosecution.
+                                                   
+
+
+********************************************************************************
+NID132542--> 
+NID132542--> 
+NID132542-->
+
+==================================================================================================================
+ 
+roci@psr1.prc1> ping routing-instance 30237-1-GOV0186-BBLL95138-L3VPN 172.20.34.22 source 172.20.34.21 
+PING 172.20.34.22 (172.20.34.22): 56 data bytes
+64 bytes from 172.20.34.22: icmp_seq=15 ttl=64 time=1.766 ms
+64 bytes from 172.20.34.22: icmp_seq=16 ttl=64 time=1.030 ms
+64 bytes from 172.20.34.22: icmp_seq=17 ttl=64 time=0.947 ms
+64 bytes from 172.20.34.22: icmp_seq=18 ttl=64 time=1.041 ms
+64 bytes from 172.20.34.22: icmp_seq=19 ttl=64 time=0.965 ms
+64 bytes from 172.20.34.22: icmp_seq=20 ttl=64 time=0.883 ms
+^C
+--- 172.20.34.22 ping statistics ---
+21 packets transmitted, 6 packets received, 71% packet loss
+round-trip min/avg/max/stddev = 0.883/1.105/1.766/0.300 ms
+ ===============================================================================================================
+roci@psr1.prc1> show arp interface ae10.3006 
+MAC Address       Address         Name                      Interface               Flags
+b8:38:ef:0b:1b:c5 172.20.34.22    172.20.34.22              ae10.3006               none
+
+Comments: (Rodrigues, Luiz) 23/08/24 17:02
+Finished Step: Gestión de provisión del servicio. Follow Up
+Comments from Subprocess 8523615
+
+
+Workflow Initialization
+Comments: (Lozano, Paula) 08/05/24 19:06
+Finished Step: Alta Tercero
+Comments from Subprocess 8527184
+
+
+Workflow Initialization
+Comments: (Solano, Adriana) 09/05/24 15:41
+Finished Step: OffNet Survey Request ICT
+
+Comments: (Solano, Adriana) 10/05/24 14:13
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Lozano, Paula) 13/05/24 22:04
+Se contrata 200Mbps en  HTRYPREE - HATO REY POP   NNI 6000207145 - Claro 154-5626  VLAN 3006
+Comments: (Lozano, Paula) 13/05/24 22:08
+Finished Step: Alta Tercero
+
+Comments: (Carlos Cardenas) 14/05/24 13:36
+Usuario: Cardenas Urrea, Carl
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+Sucursal: IS0186_SAN_JUAN_PUERTO_RICO
+Design ID: 
+Tipo de Equipo: NID
+Alias: NID132542
+Snmp Version: 2c
+Address IP: 172.12.1.20
+Comunidad: $Lev3L3
+Eq Id: No EQID
+Vendedor: Adva
+Mascara Formato Largo:  255.255.255.128
+Gateway:  172.12.1.1
+Vlan Dominio:  400
+RFS_CFS:  RFS:6000291899
+Comments from Subprocess 8530645
+
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 14/05/24 13:32
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+roci@psr1.prc1# show interfaces ae10.3006 | display set 
+set interfaces ae10 unit 3006 enable
+set interfaces ae10 unit 3006 description "CUSTOMER:LEVEL3 COMMUNICATIONS LLC/IS0186 SAN JUAN PUERTO RICO(CFS:500383322)(RFS:6000291900)"
+set interfaces ae10 unit 3006 vlan-tags outer 0x8100.3006
+set interfaces ae10 unit 3006 vlan-tags inner 0x8100.1300
+set interfaces ae10 unit 3006 family inet no-redirects
+set interfaces ae10 unit 3006 family inet filter input ae10.3006-inet-i
+set interfaces ae10 unit 3006 family inet policer input ae10.3006-in
+set interfaces ae10 unit 3006 family inet policer output ae10.3006-out
+set interfaces ae10 unit 3006 family inet address 172.20.34.21/30
+
+{master}[edit]
+roci@psr1.prc1# show routing-instances 30237-1-GOV0186-BBLL95138-L3VPN | display set 
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN instance-type vrf
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN interface ae10.3006
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN interface lo0.3237
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN route-distinguisher 67.16.172.247:30237
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN vrf-import VPN-import
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN vrf-import 30237-1-GOV0186-BBLL95138-L3VPN-import
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN vrf-export VPN-export
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN vrf-export 30237-1-GOV0186-BBLL95138-L3VPN-export
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN vrf-table-label
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN routing-options router-id 64.214.102.91
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN routing-options auto-export
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp path-selection always-compare-med
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp family inet any
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 type external
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 log-updown
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 import BGP-import
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 family inet any prefix-limit maximum 5000
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 family inet any prefix-limit teardown 90
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 family inet any prefix-limit teardown idle-timeout 120
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 export BGP-export
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 export 30237-1-IS0186_SAN_JUAN_PUERTO_RICO-7500383322-export
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 peer-as 64657
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 as-override
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 neighbor 172.20.34.22 bfd-liveness-detection minimum-interval 500
+set routing-instances 30237-1-GOV0186-BBLL95138-L3VPN protocols bgp group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 neighbor 172.20.34.22 bfd-liveness-detection multiplier 5
+
+{master}[edit]
+roci@psr1.prc1# show | compare 
+[edit interfaces ae10]
++    unit 3006 {
++        enable;
++        description "CUSTOMER:LEVEL3 COMMUNICATIONS LLC/IS0186 SAN JUAN PUERTO RICO(CFS:500383322)(RFS:6000291900)";
++        vlan-tags outer 0x8100.3006 inner 0x8100.1300;
++        family inet {
++            no-redirects;
++            filter {
++                input ae10.3006-inet-i;
++            }
++            policer {
++                input ae10.3006-in;
++                output ae10.3006-out;
++            }
++            address 172.20.34.21/30;
++        }
++    }
+[edit interfaces lo0]
++    unit 3237 {
++        description "LOOP: LOOP0.30237: CUSTOMER: VPN-30237-1: GOV0186";
++        family inet {
++            filter {
++                input local-protect-vpn;
++            }                          
++            address 64.214.102.91/32;
++        }
++    }
+[edit policy-options]
++   policy-statement 30237-1-GOV0186-BBLL95138-L3VPN-export {
++       term DEFAULT {
++           then default-action reject;
++       }
++       term L3VPN {
++           then {
++               community add 30237-1-GOV0186-BBLL95138-L3VPN-mesh;
++               default-action accept;
++           }
++       }
++   }
++   policy-statement 30237-1-GOV0186-BBLL95138-L3VPN-import {
++       term L3VPN {
++           from community 30237-1-GOV0186-BBLL95138-L3VPN-mesh;
++           then accept;
++       }
++       term final {
++           then reject;
++       }                               
++   }
++   policy-statement 30237-1-IS0186_SAN_JUAN_PUERTO_RICO-7500383322-export {
++       then accept;
++   }
+[edit policy-options]
++   community 30237-1-GOV0186-BBLL95138-L3VPN-mesh members target:6745:110030237;
+[edit class-of-service traffic-control-profiles]
+    xe-1/0/0.328-51200-o { ... }
++   ae10.3006-200000K-o {
++       scheduler-map GX-CUST-SCHEDULER-MAP-I;
++       shaping-rate 200m;
++       delay-buffer-rate 800m;
++   }
+[edit class-of-service interfaces ae10]
++     unit 3006 {
++         rewrite-rules {
++             ieee-802.1 XMR-I;
++         }
++     }
+[edit firewall family inet]
+      filter xe-1/0/0.328-inet-e { ... }
++     filter ae10.3006-inet-i {
++         term EF_DSCP {                
++             from {
++                 dscp [ 16 18 20 22 24 26 28 30 48 56 ];
++             }
++             then {
++                 policer ae10.3006.EF-i;
++                 count EF.rx-ae10.3006-inet-i;
++                 loss-priority low;
++                 forwarding-class EF;
++             }
++         }
++         term AF_DSCP {
++             from {
++                 dscp [ 32 34 36 38 40 46 ];
++             }
++             then {
++                 policer ae10.3006.AF-i;
++                 count AF.rx-ae10.3006-inet-i;
++                 loss-priority low;
++                 forwarding-class AF;
++             }
++         }
++         term BE-DE {
++             then {                    
++                 count BE-DE.rx-ae10.3006-inet-i;
++                 loss-priority high;
++                 forwarding-class BE;
++             }
++         }
++     }
+[edit firewall]
+    policer xe-1/0/0.3058-cir-in { ... }
++   policer ae10.3006.EF-i {
++       filter-specific;
++       if-exceeding {
++           bandwidth-limit 102400000;
++           burst-size-limit 3840000;
++       }
++       then discard;
++   }
++   policer ae10.3006.AF-i {
++       filter-specific;
++       if-exceeding {
++           bandwidth-limit 51200000;
++           burst-size-limit 1920000;
++       }
++       then {                          
++           loss-priority high;
++           forwarding-class VPN-BE;
++       }
++   }
++   policer ae10.3006-in {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 200m;
++           burst-size-limit 7500000;
++       }
++       then discard;
++   }
++   policer ae10.3006-out {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 200m;
++           burst-size-limit 7500000;
++       }
++       then discard;
++   }
+[edit routing-instances]
++   30237-1-GOV0186-BBLL95138-L3VPN {
++       instance-type vrf;              
++       interface ae10.3006;
++       interface lo0.3237;
++       route-distinguisher 67.16.172.247:30237;
++       vrf-import [ VPN-import 30237-1-GOV0186-BBLL95138-L3VPN-import ];
++       vrf-export [ VPN-export 30237-1-GOV0186-BBLL95138-L3VPN-export ];
++       vrf-table-label;
++       routing-options {
++           router-id 64.214.102.91;
++           auto-export;
++       }
++       protocols {
++           bgp {
++               path-selection always-compare-med;
++               family inet {
++                   any;
++               }
++               group IS0186_SAN_JUAN_PUERTO_RICO-7500383322 {
++                   type external;
++                   log-updown;
++                   import BGP-import;
++                   family inet {
++                       any {
++                           prefix-limit {
++                               maximum 5000;
++                               teardown 90 idle-timeout 120;
++                           }
++                       }
++                   }
++                   export [ BGP-export 30237-1-IS0186_SAN_JUAN_PUERTO_RICO-7500383322-export ];
++                   peer-as 64657;
++                   as-override;
++                   neighbor 172.20.34.22 {
++                       bfd-liveness-detection {
++                           minimum-interval 500;
++                           multiplier 5;
++                       }
++                   }
++               }
++           }
++       }
++   }
+
+{master}[edit]
+roci@psr1.prc1# commit 
+
+
+
+roci@psr1.prc1# show | compare 
+[edit interfaces ae10]
++    unit 13006 {
++        description "LEVEL3 COMMUNICATIONS LLC CFS:500383322 (Gestion NID)";
++        encapsulation vlan-vpls;
++        vlan-tags outer 3006 inner 505;
++    }
+[edit routing-instances MGMT-NID-LOCAL-505]
++    interface ae10.13006;
+
+{master}[edit]
+roci@psr1.prc1# commit 
+
+
+
+
+Comments: (Carlos Cardenas) 14/05/24 13:38
+#####################################################
+#####################################################
+DKO: 8522917 (8530645)
+CFS: 500383322
+PE PSR1.PRC1 Interface ae10.3006
+VRF: 30237-1-GOV0186-BBLL95138-L3VPN
+RD: 6745:110030237
+VLAN TERCERO: 3006
+S-VLAN 3006
+C-VLAN 1300
+BW 200Mbps
+IPV4 WAN/RED 172.20.34.20/30
+ASN :64657
+ IP LB NID IS0186 - SAN JUAN - PUERTO RICO 172.12.1.20"
+#####################################################
+#####################################################
+
+
+
+Usuario: Cardenas Urrea, Carl
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+Sucursal: IS0186_SAN_JUAN_PUERTO_RICO
+Design ID: 
+Tipo de Equipo: NID
+Alias: NID132542
+Snmp Version: 2c
+Address IP: 172.12.1.20
+Comunidad: $Lev3L3
+Eq Id: No EQID
+Vendedor: Adva
+Mascara Formato Largo:  255.255.255.128
+Gateway:  172.12.1.1
+Vlan Dominio:  400
+RFS_CFS:  RFS:6000291899
+
+Comments: (Lozano, Paula) 23/08/24 17:42
+PRTC CLARO entrega Canal de 4Mbps, se anexa la DKO al correo y se da continuidad a la DKO.
+Comments: (Lozano, Paula) 23/08/24 17:45
+Finished Step: Entrega UM
+Comments from Subprocess 8613399
+
+
+Workflow Initialization
+Comments: (Bononi, Paulo) 23/08/24 17:51
+Finished Step: Generar ventana de Activación·
+
+
+This Order was automatically initiated by Order NO:8522917
+Datos - IP VPN Add   **8522917*$*
+
+Workflow Initialization
+Comments: (Bononi, Paulo) 06/02/25 18:50
+Finished Step: Generar ventana de Activación·
+
+Comments: (Silva, Laura) 06/02/25 18:57
+Finished Step: Reservar agenda para activación·
+
+Comments: (Gacha Bernal, Nelson) 07/02/25 14:08
+Cordial saludo,
+
+Solicito un soporte de IPSA para ver si es posible modificar la construcción de VPN a NNI de capa 2.
+
+Aquí está el propio NNI, esperando que pueda ayudar.
+Lumen:       esp1.mia42:port 1/1/4 description "40655K/10GIG-E/MIBBFLLO/MIAUFLWS/ENNI/SHARED/CIRION/500406094"
+Cirion: psr3.mia43:interfaces xe-1/0/2:0 description "NNI CUSTOMER::LEVEL3 COMMUNICATIONS L2 VPLS (CFS:500406094) (RFS:6000321932)"
+
+Cordialmente,
+
+Nelson Eduardo Gacha Bernal
+
+This Order was automatically initiated by Order NO:8613517
+Activación del servicio (Flujos por servicio)   **8613517*$*
+
+Workflow Initialization

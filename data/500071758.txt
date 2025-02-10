@@ -1,0 +1,110 @@
+DKO:8885255 (8885258)
+CFS: 500071758
+DKO: 8885255
+tipo_configuracion: Alta
+tipo_servicio: VPN
+RFS-IP-PORT: 6000119051
+RFS-IP-PORT_NID: No encontrado
+Cliente: THOMAS GREG & SONS LIMITED (GUERNSEY) S.A
+SEDE: TGSL - ZONA FRANCA TOCANCIPA
+SW: TCNPCLAAZG003
+Interface SW: GigabitEthernet0/0/1
+PE: psr3.bgo1
+Interface PE: ae14.198
+VRF: thomas_greg_Cra6
+RD: 16528:1203089
+Svlan: 198
+Cvlan: 1303
+BW: 36M
+WAN: 10.230.0.20/30
+ASN: 65008
+LB CPE: 172.18.114.245 
+Comments: (Ramirez Sanchez, Tania) 06/02/25 20:22 Start DokuFlow.
+ACTIVIDAD: Traslado de Sede /Alta de servicio SEDE ADMINISTRATIVA CRA 42 y sede CR 6.
+Technical Contact: CARLOS ALBERTO MEZA VILLAMIZAR - Phone: 3158414009 - Email: carlos.aguilera@thomasgreg.com 
+
+Cliente: THOMAS GREG & SONS LIMITED (GUERNSEY) S.A
+Sede  : TGSL - ZONA FRANCA TOCANCIPA
+Sede actual: TPSL - NAOS DC BT TOCANCIPA MANZANA 3 (DesignID:WE54_VN_81-1XEVL37)
+Sede Nueva: TGSL - ZONA FRANCA TOCANCIPA (DesignID: WE54_VN_81-5LA0ITR)
+Dirección Nueva = DATACENTER NEBULA -Direccion: TOCANCIPA KM 1.5 VIA BRICEÑO - ZIPAQUIRA Latitud 4.962805 Longitud -73.961353 .
+
+XML: 8878555
+
+CID-CFS: 500071758 --> Servicio ADMINISTRATIVA CRA 42 PPAL  BW: 150M
+RFS: 
+6000119051 IP Port 
+6000226666 Ethernet
+
+CID-CFS:  500071756 ---> Servicio Thomas_greg_Cra6 PPAL  BW: 36M
+RFS: 
+6000119061 IP Port		
+6000123237 Ethernet
+6000046862 CPE
+6000302223 Fiber Chain
+6000039556 NID
+--------------------------
+Description of Service: ||
+--------------------------
+Este es el proyecto para el traslado al DC Nébula el canal MPLS de TGSL.
+Se debe  de asignar una nueva VLAN sobre los recursos de red metro asignados bajo la DKO 8587717, ya que sobre el NID a instalar con dicha DKO se entregará el servicio al cliente en el DC NEBULA-Hostdime
+Este canal deben ser trasladados y se entregara en la misma troncal configurada en la DKO:8587717 y se debe entregar por el mismo puerto del NID ADVA y router asignado con DKO esta DKO.
+1.Servicio Thomas_greg_Cra6 PPAL  BW: 36Mbps
+2.Servicio SEDE ADMINISTRATIVA CRA 42 PPAL  BW: 150Mbps
+--------------------------
+Actividades solicitadas:
+==== IPSA ===
+Es un traslado de sede, la UM actual  y la nueva es FO CIRION, NOTA: Por favor realizar la configuración de BBIP en caliente durante ventana de trabajo previamente acordada por parte del SDM/SA con el cliente ya que con la mudanza del servicio se conservara el direccionamiento IP WAN y LAN
+1. Asignar VLAN y trasladar servicio a la troncal implementada con la DKO: 8587717.
+SW: TCNPCLAAZG003
+Interface GigabitEthernet0/0/1
+Crear  VLAN y trasladar en esta troncal para entregar estos servicios:
+1.Servicio Thomas_greg_Cra6 PPAL  BW: 36M
+PE:  psr3.bgo1 
+Int: ae11.145 
+IP BBIP: 10.230.0.21/30 
+VRF: thomas_greg_Cra6
+Loopback: 172.18.114.245
+
+2.Servicio SEDE ADMINISTRATIVA CRA 42 PPAL  BW: 150M
+Hacia BBIP
+PE: psr3.bgo1 
+Int. ae11.144 
+IP BBIP: 10.230.0.13/30
+VRF: thomas_greg_admon
+Loopback: 172.18.114.244
+Actual datos en  las ME :
+ME: CNRCCLABZG001 
+INTERFACE NAME: GigabitEthernet0/0/12
+==== SDM ===
+1. Validar asignación de recursos por parte de IPSA
+2. Este servicio se aprovisionara sobre una troncal Terceros MTI  implementada con la DKO: 8587717 y se entregara en un puerto libre del NID.
+S/N: LBADVA00231901442
+PISO 2 | RACK NA.02 | UR3
+FSP 150-GE114Pro
+10.226.204.66
+NID135222
+3.enviar el router Coubicación del Router: En el rack del cliente.
+Cross Conexión: Proporcionada por el cliente
+4. Agendar con el cliente ventana para instalación de enlace y traslado de equipos.
+5.realizar configuración de BBIP y red metro en conjunto con IPSA en caliente durante dicha ventana de trabajo ya que se deberá conservar el direccionamiento IP WAN y LAN
+4. Documentar ingeniería.
+Request equipment:  el equipo actual es un CPE Cisco 4431 con licencia Performance, se podría enviar un SRX340
+|1|1378166|CISCO ISR 4431 AX BUNDLE |ISR4431-AX/K9|
+|1|1372151|PERFORMANCE ON DEMAND LICENSE FOR 4400 SERIES|FL-44-PERF-K9|
+==== SA ===
+1. Garantizar que la conectividad con cliente durante la ventana de traslado sea exitosa, 
+2. Realizar pruebas en conjunto y entrega del servicio a conformidad del cliente.
+=== NETWORK MANAGMENT  ===
+SET UP NETWORK MANAGMENT TYPE  Application en el router CPE
+ip: 172.18.114.245 Servicio Thomas_greg_Cra6 PPAL  BW: 36M
+ip: 172.18.114.244 Servicio ADMINISTRATIVA CRA 42 PPAL  BW: 150M
+============
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8885255
+Datos - IP VPN Add   **8885255*$*
+
+Workflow Initialization

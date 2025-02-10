@@ -63,7 +63,7 @@
                         {% if datos.rfs_ip_port_nid %}RFS-IP-PORT_NID: {{ datos.rfs_ip_port_nid }}{% endif %}
                         {% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
                         {% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
-                        {% if datos.sw %}SW: {{ datos.sw }}{% endif %}
+                        {% if datos.sw and datos.sw != 'Conectado a PE' %}SW: {{ datos.sw }}{% endif %}
                         {% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
                         {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
                         {% if datos.pe_vpls_a %}PE_VPLS_A: {{ datos.pe_vpls_a }}{% endif %}
