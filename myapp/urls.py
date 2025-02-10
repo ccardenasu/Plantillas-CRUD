@@ -2,7 +2,6 @@ from django.urls import path
 from .views import datos_view, buscar_cfs, buscar_en_csv, buscar_vrf_rd, pais_mercado_nodo
 from myapp import views
 
-
 urlpatterns = [
     path("datos/", datos_view, name="datos"),
     path("buscar_cfs/", buscar_cfs, name="buscar_cfs"),
@@ -10,6 +9,5 @@ urlpatterns = [
     path("buscar_vrf_rd/", buscar_vrf_rd, name="buscar_vrf_rd"),
     path("pais_mercado_nodo/", pais_mercado_nodo, name="pais_mercado_nodo"),
     path("ejecutar_ipsa/", views.ejecutar_ipsa, name="ejecutar_ipsa"),  # Nueva ruta
-
-
+    path('buscar_vrf_page/', views.buscar_vrf_page, name='buscar_vrf_page'),  # Añadir esta línea
 ]

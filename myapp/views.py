@@ -8,6 +8,7 @@ import ipaddress
 import csv
 import subprocess
 import json  # Asegúrate de importar el módulo json
+from django.views.decorators.csrf import csrf_exempt
 
 
 def ejecutar_ipsa(request):
@@ -305,25 +306,54 @@ def buscar_en_csv(request):
             return JsonResponse({"error": str(e)}, status=500)
     return JsonResponse({"found": False})
 
+def buscar_vrf_page(request):
+    return render(request, 'myapp/buscar_vrf.html')
 
+import os
+import csv
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
 def buscar_vrf_rd(request):
-    vrf = request.GET.get("vrf", None)
-    print(f"VRF recibido: {vrf}")
-    if vrf:
-        csv_file_path = os.path.join(settings.BASE_DIR, "myapp/vrf_rd.csv")
-        print(f"Ruta del archivo CSV: {csv_file_path}")
-        try:
-            with open(csv_file_path, newline="", encoding="utf-8") as csvfile:
-                reader = csv.reader(csvfile, delimiter=";")
-                for row in reader:
-                    if row[0].strip() == vrf.strip():
-                        print(f"VRF encontrado: {vrf}, RD: {row[1]}")
-                        return JsonResponse({"found": True, "rd": row[1]})
-        except Exception as e:
-            print(f"Error al leer el archivo CSV: {e}")
-            return JsonResponse({"error": str(e)}, status=500)
-        print("VRF no encontrado")
-    return JsonResponse({"found": False})
+    if request.method == "GET":
+        vrf = request.GET.get("vrf", None)
+        print(f"VRF recibido: {vrf}")
+        if vrf:
+            csv_file_path = os.path.join(settings.BASE_DIR, "myapp/vrf_rd.csv")
+            print(f"Ruta del archivo CSV: {csv_file_path}")
+            try:
+                with open(csv_file_path, newline="", encoding="utf-8") as csvfile:
+                    reader = csv.reader(csvfile, delimiter=";")
+                    for row in reader:
+                        if row[0].strip() == vrf.strip():
+                            print(f"VRF encontrado: {vrf}, RD: {row[1]}")
+                            return JsonResponse({"found": True, "rd": row[1]})
+            except Exception as e:
+                print(f"Error al leer el archivo CSV: {e}")
+                return JsonResponse({"error": str(e)}, status=500)
+            return JsonResponse({"found": False, "message": "VRF no encontrada. Por favor, proporcione el campo 'rd' en una solicitud POST."})
+        return JsonResponse({"found": False, "message": "No se proporcionó VRF."})
+    
+    elif request.method == "POST":
+        vrf = request.POST.get("vrf", None)
+        rd = request.POST.get("rd", None)
+        print(f"VRF recibido: {vrf}, RD recibido: {rd}")
+        if vrf and rd:
+            csv_file_path = os.path.join(settings.BASE_DIR, "myapp/vrf_rd.csv")
+            print(f"Ruta del archivo CSV: {csv_file_path}")
+            try:
+                with open(csv_file_path, 'a', newline="", encoding="utf-8") as csvfile:
+                    writer = csv.writer(csvfile, delimiter=";")
+                    writer.writerow([vrf, rd])
+                    print(f"VRF y RD guardados: {vrf}, {rd}")
+                    return JsonResponse({"saved": True, "message": "VRF y RD guardados correctamente."})
+            except Exception as e:
+                print(f"Error al escribir en el archivo CSV: {e}")
+                return JsonResponse({"error": str(e)}, status=500)
+        return JsonResponse({"saved": False, "message": "No se proporcionó VRF o RD."})
+
 
 def pais_mercado_nodo(request):
     if request.method == "POST":

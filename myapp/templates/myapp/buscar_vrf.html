@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar VRF</title>
+    <script>
+        function buscarVRF() {
+            const vrf = document.getElementById("vrf").value;
+            fetch(`/myapp/buscar_vrf_rd?vrf=${vrf}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.found) {
+                        document.getElementById("resultado").innerText = `VRF encontrado: RD = ${data.rd}`;
+                        document.getElementById("rd").style.display = "none";
+                        document.getElementById("guardar").style.display = "none";
+                    } else {
+                        document.getElementById("resultado").innerText = data.message;
+                        document.getElementById("rd").style.display = "block";
+                        document.getElementById("guardar").style.display = "block";
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function guardarRD() {
+            const vrf = document.getElementById("vrf").value;
+            const rd = document.getElementById("rd").value;
+            fetch(`/myapp/buscar_vrf_rd/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `vrf=${vrf}&rd=${rd}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.saved) {
+                        document.getElementById("resultado").innerText = data.message;
+                        document.getElementById("rd").style.display = "none";
+                        document.getElementById("guardar").style.display = "none";
+                    } else {
+                        document.getElementById("resultado").innerText = data.message || "Error al guardar los datos.";
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Buscar VRF</h1>
+    <input type="text" id="vrf" placeholder="Ingrese VRF">
+    <button onclick="buscarVRF()">Buscar</button>
+    <p id="resultado"></p>
+    <input type="text" id="rd" placeholder="Ingrese RD" style="display:none;">
+    <button id="guardar" onclick="guardarRD()" style="display:none;">Guardar</button>
+</body>
+</html>
