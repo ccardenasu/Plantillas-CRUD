@@ -1,0 +1,342 @@
+DKO:8852982 (8854367)	
+
+Comments: (Rojas, Carlos) 28/12/24 19:22 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere Alta de servicio de INTERNET via TERCERO a 100Mbps
+ 
+Cliente: JARAMILLO MORA CONSTRUCTORA S.A. 	
+Sede:   JARAMILLO MORA S.A. - ACOPI
+DirecciÃ³n: VIA ANTIGUA CALI - YUMBO KILOMETRO 7, YUMBO, VALLE DEL CAUCA
+Design ID:  ME35_VN_81-107MFFF
+
+SE: Oscar Quintero 
+CCM: TBD
+
+Contacto: Myriam Carvajal
+Correo electrÃ³nico: mcarvajal@jaramillomora.com
+Tel (2) 6851717 extensiÃ³n #888
+Celular 3145282249.
+
+Contacto: Soporte TÃ©cnico
+correo: soporte@jaramillomora.com
+Tel: (2) 6851717 extensiÃ³n 278
+
+Project ID (XML): 8849518
+Service Instance: INTERNET
+CFS-CID: 500409230	
+
+RFS IP Port: 6000323872
+RFS Ethernet: A GENERARSE POR DELIVERY
+RFS 3rd Party: 6000037478
+RFS NID: 6000128428
+RFS CPE: 6000128374
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: Router Cisco C1111-8P
+Item SAP: 1463297
+Cantidad: 1
+
+DescripciÃ³n: Cisco 1100 Series Router Rackmount Wallmount Kit ACS-1100-RM-19
+Item SAP: 1453279
+Parte numero: 1000SFP31B20L
+Cantidad: 1
+
+DescripciÃ³n: IPSEC PLUS 200 MBPS LIC-CISCO ISR1100 8P FL-VPERF-8P-200 CISCO SYSTEMS INC
+Item SAP: 1465843 
+Parte numero: FL-VPERF-8P-200
+Cantidad: 1
+
+===================== OFFNET ======================
+1. Ampliar el siguiente enlace a 100Mbps y solicitar al tercero el paso de una segunda VLAN en QinQ para entregar el nuevo servicio de internet a dar de alta con la presente DKO utilizando los equipos hoy en dia instalados en sede:
+
+Proveedor: MC
+ID: 1361 en QinQ
+Pointer: LL3-<COLME35>.0003
+BW: 100Mbps  (BW actual = 20Mbps)
+TDG: DK-SURVEY-TDG-152056266-8846714
+
+NOTA: POR FAVOR SOLICITAR AL TERCERO QUE SE MODIFIQUE EL PUERTO DEL EQUIPO EN EL CUAL SE ENTREGA EL SERVICIO CON ID 1361  PARA QUE PASE DE MODO ACCESO A MODO TRONCAL. EL OBJETIVO DE LO ANTERIOR ES REUTILIZAR LOS EQUIPOS QUE SE TIENEN HOY EN DIA INSTALADOS EN SEDE 
+
+2. Favor compartir con IP SA y SDM/SA los datos de la NNI acordada con el LEC (SW, Puerto, Nodo) y VLAN asignada por parte del proveedor para efectos de documentaciÃ³n y configuraciÃ³n
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio segÃºn el NNI que confirme OFFNET. Se debe de configurar una nueva VLAN para configurarla en QinQ sobre los recursos de red metro que se tienen hoy en dÃ­a en uso para el servicio VPN activo en la sede
+
+Servicio: INTERNET
+PE: Por Asignar
+Interface: Por Asignar
+IPv4 PE (IP pÃºblica): Por Asignar /31
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+
+Enrutamiento: Estatico
+BW: 100Mbps
+
+RECURSOS DE RED METRO ACTUALMENTE EN USO PARA EL SERVICIO VPN EN LA SEDE:
+SW: CALICLAJNN001
+Int: TenGigE0/0/2/1.906281300
+VLAN 1300 - VPN
+
+2. Asegurar respuesta y gestion de NID en  sede. LB: 10.226.175.207
+3. Asignar LB CPE y dar de Alta RFS CPE.
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y OFFNET. Se le ha solicitado a OFFNET que el tercero entregue el servicio de ADI de la presente DKO se entregue en puerto troncalizado con el VPN que esta ya instalado en sede
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via TERCERO a 100Mbps
+3. Cambiar configuracion de puerto WAN y LAN de ADVA en sede para que pase de modo de acceso a troncal, al igual que el puerto WAN del CPE en sede
+4. Cambiar Router en sede del cliente por el Cisco C1111-8P indicado en esta DKO y entregar el servicio de VPN y ADI en puertos LAN independientes
+5. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (Router y ADVA)
+6. Realizar prueba de esfuerzo del canal con el cliente y garantizar navegaciÃ³n exitosa a Internet
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 30/12/24 10:09
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8852982
+Datos - ADI Mod   **8852982*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 30/12/24 18:29
+
+Se solicita a MC aumento a 100 Mb del canal en mención.
+Comments: (Wilches Rivera, Lesly Tatiana) 30/12/24 18:31
+Finished Step: Modificación Tercero
+
+
+This Order was automatically initiated by Order NO:8853150
+Activación Terceros ICT   **8853150*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 02/01/25 14:14
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+CFS: 500409230
+DKO: 8852982 (8854367)
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000323872
+Cliente: JARAMILLO MORA CONSTRUCTORA S.A.
+SEDE: ACOPI 81-107MFFF
+SW: CALICLAJNN001
+Interface SW: TenGigE0/0/2/1.906281200
+PE: ar4.cal1
+Interface PE: ae-13:430.1200
+Vlan Tercero: 628
+Svlan: 430
+Cvlan: 1200
+BW: 100M
+WAN: 64.76.56.218/31
+LANIPv4: 64.76.59.112/29
+
+
+Iniciando búsqueda en /data/net-tools/gblx/gblx/configs/...
+grep -r 64.76.59.112 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.113 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.114 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.115 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.116 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.117 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.118 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.119 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.59.112 /data/net-tools/gblx/gblx/configs
+Búsqueda en /data/net-tools/gblx/gblx/configs/ completada.
+---------------------------------------------
+Iniciando validación de listas negras...
+Ninguna de las IPs está en listas negras en ninguno de los sitios buscados (MXToolbox, Spamhaus, Barracuda).
+Validación de listas negras completada.
+---------------------------------------------
+La IP 64.76.59.112 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.113 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.114 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.115 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.116 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.117 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.118 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.119 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.59.112 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+
+Checking AS3549 route table for 64.76.59.112...
+show router route-table 64.76.59.112 
+64.76.56.0/22                                 Blackh* BGP       0162d01h   200
+
+
+Checking AS3356 route table for 64.76.59.112...
+show router route-table 64.76.59.112 
+64.76.56.0/22                                 Remote  BGP       01d22h46m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Checking AS3549 route table for 64.76.59.112/28...
+show router route-table 64.76.59.112/28 
+64.76.56.0/22                                 Blackh* BGP       0162d01h   200
+
+
+Checking AS3356 route table for 64.76.59.112/28...
+show router route-table 64.76.59.112/28 
+64.76.56.0/22                                 Remote  BGP       01d22h46m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Search complete.
+
+
+Iniciando búsqueda en /data/net-tools/gblx/gblx/configs/…
+grep -r 64.76.56.218 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.56.219 /data/net-tools/gblx/gblx/configs
+grep -r 64.76.56.216 /data/net-tools/gblx/gblx/configs
+Búsqueda en /data/net-tools/gblx/gblx/configs/ completada.
+---------------------------------------------
+Iniciando validación de listas negras...
+Ninguna de las IPs está en listas negras en ninguno de los sitios buscados (MXToolbox, Spamhaus, Barracuda).
+Validación de listas negras completada.
+---------------------------------------------
+La IP 64.76.56.218 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.56.219 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 64.76.56.216 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+
+Checking AS3549 route table for 64.76.56.218...
+show router route-table 64.76.56.218 
+64.76.56.0/22                                 Blackh* BGP       0162d01h   200
+
+
+Checking AS3356 route table for 64.76.56.218...
+show router route-table 64.76.56.218 
+64.76.56.0/22                                 Remote  BGP       01d22h41m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Checking AS3549 route table for 64.76.56.216/30...
+show router route-table 64.76.56.216/30 
+64.76.56.0/22                                 Blackh* BGP       0162d01h   200
+
+
+Checking AS3356 route table for 64.76.56.216/30...
+show router route-table 64.76.56.216/30 
+64.76.56.0/22                                 Remote  BGP       01d22h41m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Search complete.
+
+
+
+*B:ar4.cal1# admin display-config | match 64.76.56.219 context all 
+#--------------------------------------------------
+        static-route-entry 64.76.59.112/29
+            next-hop 64.76.56.219
+                no shutdown
+*B:ar4.cal1# 
+*B:ar4.cal1# admin display-config | match 8852982 context all 
+#--------------------------------------------------
+    service
+        customer 8852982 create
+            description "JARAMILLO MORA CONSTRUCTORA S.A."
+        ies 8852982 customer 8852982 create
+            interface "ae-13:430.1200" create
+            exit
+        ies 8852982 customer 8852982 create
+            interface "ae-13:430.1200" create
+                description "CUSTOMER:JARAMILLO MORA CONSTRUCTORA S.A.(CFS:500409230)(RFS:6000323872)"
+                enable-ingress-stats
+                address 64.76.56.218/31
+                tos-marking-state trusted
+                ip-mtu 1500
+                cflowd-parameters
+                    sampling unicast type interface
+                exit
+                sap lag-13:430.1200 create
+                    ingress
+                        qos 106
+                    exit
+                    egress
+                        agg-rate
+                            rate 102400
+                        exit
+                    exit
+                exit
+                urpf-check
+                    mode loose
+                exit
+            exit
+            no shutdown
+*B:ar4.cal1# 
+
+
+
+
+Building configuration...
+!! IOS XR Configuration 6.4.2
+interface TenGigE0/0/2/1.906280505 l2transport
+ description NID Management
+ encapsulation dot1q 628 second-dot1q 505 exact
+ rewrite ingress tag pop 2 symmetric
+ service-policy input 8Q_ENNI_INPUT
+ no service-policy output 20MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_2_1_OVC_628
+ service-policy output 100MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_2_1_OVC_628
+!
+interface TenGigE0/0/2/1.906280506 l2transport
+ description L2 Performance
+ encapsulation dot1q 628 second-dot1q 506 exact
+ rewrite ingress tag pop 2 symmetric
+ service-policy input 8Q_ENNI_INPUT
+ no service-policy output 20MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_2_1_OVC_628
+ service-policy output 100MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_2_1_OVC_628
+!
+interface TenGigE0/0/2/1.906281200 l2transport
+ description 12/LATAM/0324235/PATH - ENNI # MEDIA COMMERCE # 81-ENNI [(500409230) ACOPI 81-107MFFF]
+ encapsulation dot1q 628 second-dot1q 1200
+ rewrite ingress tag pop 1 symmetric
+ service-policy input 8Q_ENNI_INPUT
+ service-policy output 100MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_2_1_OVC_628
+ l2protocol cpsv tunnel
+ ethernet-services access-group L2-FRAMES ingress
+!
+interface TenGigE0/0/2/1.906281300 l2transport
+ no service-policy output 20MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_2_1_OVC_628
+ service-policy output 100MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_2_1_OVC_628
+!
+l2vpn
+ bridge group 3549_404005
+  bridge-domain 3549_404005
+   mac
+    withdraw state-down
+   !
+   mtu 9800
+   interface TenGigE0/0/2/1.906281200
+   !
+   vfi 3549_404005
+    vpn-id 3974
+    autodiscovery bgp
+     rd auto
+     route-target 3549:404005
+    !
+   !
+  !
+ !
+ bridge group LATAM_NID_MGMT_1
+  bridge-domain LATAM_NID_MGMT_1
+   interface TenGigE0/0/2/1.906280505
+    storm-control unknown-unicast pps 100
+    storm-control multicast pps 100
+    storm-control broadcast pps 100
+    split-horizon group
+   !
+  !
+ !
+ bridge group LATAM_METRO_L2_PERF_1
+  bridge-domain LATAM_METRO_L2_PERF_1
+   interface TenGigE0/0/2/1.906280506
+    split-horizon group
+   !
+  !
+ !
+!
+end
+
+RP/0/RSP0/CPU0:CALICLAJNN001#
+
+
+

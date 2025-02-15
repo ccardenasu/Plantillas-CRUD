@@ -1,0 +1,222 @@
+DOK:8661175 (8709430)
+Comments: (Ariza, Jorge) 16/10/24 12:37 Start DokuFlow.
+ACTIVIDAD: se requiere alta SD WAN IP VPN a 6Mb/s vía tercero con CPE Sd Wan Cisco
+
+IMPORTANTE: Este proceso obedece a la dinámica de cambio tecnológico de Sd Wan Versa hacia Sd Wan Cisco para reforzar el nivel de servicio del cliente
+
+CLIENTE: EMPRESA DE MEDICINA INTEGRAL EMI S.A.S. SERVICIO DE AMBULANCIA PREPAGADA
+DIRECCIÓN: CR 68 D # 18 - 30, BOGOTA, COLOMBIA
+SEDE: GRUPO EMI S.A. BOGOTA CR68D
+CIUDAD: BOGOTA
+
+CONTACTO: Pablo Gomez / Cel: 3163289708 / E: pablo.gomez@grupoemi.com
+Otro posible contacto validar con CCM
+CCM: Ingrid Lopez
+SE: Rita Forero
+AM: Jorge Ochoa
+Sd Wan TDE: Francisco Estrada
+
+XML: 8642086
+TYPE: SD WAN IP VPN
+CID-CFS: 500185829
+RFS IP Port: 6000314193 [NEW]
+RFS Fiber Chain: 6000314196
+RFS NID: 6000104730
+SOF/TDG Detail: TDG-151991620
+
+TYPE: SD WAN Broadband Internet
+CID-CFS: 500185831
+RFS 3rd Party: 6000104935
+SOF/TDG Detail: TDG-151991617
+
+TYPE: SD WAN Internet
+CID-CFS: 500185827
+RFS IP Port: 6000104748
+RFS 3rd Party: 6000070617
+RFS NID: 6000070616
+SOF/TDG Detail: TDG-151991613
+----------------------------------------------------------------------------------
+SOLICITUD DE EQUIPOS:
+IMPORTANTE: en la DO 8579701 se encuentra documentada la PO del SE para la solicitud de los equipos y licencias Sd Wan Cisco
+----------------------------------------------------------------------------------
+OFFNET:
+No se requiere
+----------------------------------------------------------------------------------
+IPSA:
+IMPORTANTE: En la sede tenemos un Sd Wan IP VPN [CID-CFS: 500185829]. Reusar la infraestructura actual asignando una nueva Vlan en paralelo ya que el actual Sd Wan Versa va a ser reemplazado por el Sd Wan Cisco al momento de la ventana de migración. De no ser posible configurar en paralelo realizar cambio en una migración en caliente en ventana acordada con el cliene
+
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio:
+TYPE: SD WAN IP VPN
+PE: Por Asignar
+INT: Por Asignar
+IP: 10.10.100.32/30
+VRF: emi_sdwan
+Ruteo: Estático
+BW: 6Mb/s
+SLA: 99.5%
+2. Actualizar los RFS:
+CID-CFS: 500185829
+RFS IP Port: 6000314193 [NEW]
+RFS Fiber Chain: 6000314196
+RFS NID: 6000104730
+----------------------------------------------------------------------------------
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 16/10/24 12:39
+----------------------------------------------------------------------------------
+SDM/SA:
+IMPORTANTE: Se debe contar con el alta de los servicios en los Hub Medellín bajo las DO 8651430, 8651431, 8654216 y Colombia XV bajo las DO 8648109, 8648110, 8654187. Sin esta alta en los hub no es posible realizar la migración hacia Sd Wan Cisco en los Spokes. El CD queda a su disposición ante cualquier dudad o aclaración
+
+La actividad para realizar el cambio tecnológico de Sd Wan Versa hacia Sd Wan Cisco se debe ejecutar de manera controlada con aprobación del cliente
+
+1. Validar asignación de recursos por parte de IPSA
+2. Agendar ventana con el cliente para realizar alta SD WAN IP VPN a 6Mb/s vía tercero con CPE Sd Wan Cisco:
+ - Realizar la migración según la definición del archivo LLD dado por el Sd Wan TDE y con la asignación de un ingeniero especialista de Cirion o en su defecto un contratista, validar esta asignación con CCM
+ - Migrar los tres accesos del Sd Wan Versa hacia el Sd Wan Cisco. Este proceso se puede realizar de manera paulatina
+ - Garantizar que los equipos queden en gestión y con acceso remoto
+ - Ajustar CPE Sd Wan con el nuevo BW
+ - Correr pruebas de esfuerzo de canal
+ - Al finalizar la actividad confirmar que todo el proyecto se haya ejecutado con éxito
+ - Retirar los equipos Sd Wan Versa y retornar al Stock
+3. Realizar pruebas en compañía del cliente (Datos, Aplicativos, Navegación etc), validando que el servicio Sd Wan funcione correctamente según las políticas definidas en la plantilla, LLD del proyecto y entregar la solución al cliente a total satisfacción
+4. Actualizar la ingeniería
+
+DATOS SD WAN:
+HOSTNAME DEVICE 1: FALK_CR68_BOG_M_--81-2M2FXNE
+SITE ID: 57021003
+SYSTEM IP: 10.57.1.3
+ORGANIZATION NAME: Por Asignar
+VBOND SERVER: Por Asignar
+DIRECCIONAMIENTO TLOC:
+RED TLOC PRIVATE 1: 10.20.200.32/30
+RED TLOC PRIVATE 2: 10.20.201.32/30
+
+HOSTNAME DEVICE 2: FALK_CR68_BOG_S_--81-2F4PQ3S
+SITE ID: 57021004
+SYSTEM IP: 10.57.1.4
+ORGANIZATION NAME: Por Asignar
+VBOND SERVER: Por Asignar
+DIRECCIONAMIENTO TLOC:
+RED TLOC PRIVATE 1: 10.20.200.32/30
+RED TLOC PRIVATE 2: 10.20.201.32/30
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT:
+Garantizar NM Type: Advanced Management
+Garantizar en las herramientas de gestión el nuevo BW
+IP WAN: la que asigne IPSA
+----------------------------------------------------------------------------------
+CIRCUIT DESIGNER:
+Liberar los siguientes recursos al finalizar esta orden:
+PE: PSR1.SUB1.BOG
+INT: ae10.2071
+IP: 192.168.136.201/29
+DES: CUSTOMER: GRUPO EMI S.A. (CFSID:500185829) (RFS:6000104068)
+ME: BOGTCLFXNN002
+INT: TenGigabitEthernet0/0/2/3
+DES: 12/LATAM/6000109728/SVC ENNI # UFINET 81-ENNI (500185829) GRUPO EMI: BOG.KRA 68D
+----------------------------------------------------------------------------------
+Comments: (Gomez, Luis Francisco) 16/10/24 14:38
+Finished Step: Asignación de SDM·
+
+Comments: (Ariza, Jorge) 25/10/24 11:11
+Luego de reunión con Sd Wan TDE se añade lo siguiente a la solicitud de IPSA y SDM/SA:
+----------------------------------------------------------------------------------
+IPSA:
+IMPORTANTE: En la sede tenemos un Sd Wan Internet [CID-CFS: 500185827]. Reusar la infraestructura actual para el nuevo servicio de Sd Wan Internet
+
+2. Asignar recursos de BBIP y red Metro para el siguiente servicio:
+TYPE: SD WAN Internet
+PE: Por Asignar
+INT: Por Asignar
+Cantidad de IP (WAN) IPv4: /31
+Cantidad de IP (WAN) IPv6: /64
+Cantidad de IP (LAN) IPv4/IPv6: No Asignar Solución Sd Wan
+Ruteo: Estatico
+ME: BOGTCLGWZG025 [Usar este ME2 e interfaz]
+INT: Gi0/0/10
+BW: 50Mb/s
+SLA: 99.5%
+----------------------------------------------------------------------------------
+SDM/SA:
+ - Desagregar servicio en NID y conectar hacia CPE Sd Wan Cisco
+----------------------------------------------------------------------------------
+
+This Order was automatically initiated by Order NO:8661175
+Datos - IP VPN Mod   **8661175*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 29/10/24 09:27
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+                        CFS: 500185829
+                        DKO: 8661175 (8709430)
+                        tipo_configuracion: Alta
+                        tipo_servicio: ADI
+                        RFS-IP-PORT: 6000314193
+                        Cliente: GRUPO EMI S.A.
+                        SEDE: BOGOTA CR68D 81-5EBVG6
+                        SW: BOGTCLGWZG025
+                        Interface SW: GigabitEthernet0/0/10
+                        PE: ar1.sub1.bog
+                        Interface PE: ae6.1565
+                        SV: 1565
+                        CV: 1201
+                        BW: 50M
+                        WAN: 8.242.144.98/31
+                        WANIPv6: 2001:13b0:a000:a2::/64
+
+
+
+Iniciando búsqueda en /data/net-tools/gblx/gblx/configs/...
+grep -r 8.242.144.98 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.144.99 /data/net-tools/gblx/gblx/configs
+grep -r 8.242.144.96 /data/net-tools/gblx/gblx/configs
+Búsqueda en /data/net-tools/gblx/gblx/configs/ completada.
+---------------------------------------------
+Iniciando validación de listas negras...
+Ninguna de las IPs está en listas negras en ninguno de los sitios buscados (MXToolbox, Spamhaus, Barracuda).
+Validación de listas negras completada.
+---------------------------------------------
+La IP 8.242.144.98 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.144.99 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+La IP 8.242.144.96 está localizada en: Barrio San Luis, Bogota D.C., CO, AS3549 Level 3 Parent, LLC.
+
+Checking AS3549 route table for 8.242.144.98...
+show router route-table 8.242.144.98 
+8.242.144.0/20                                Blackh* BGP       96d21h05m  200
+
+
+Checking AS3356 route table for 8.242.144.98...
+show router route-table 8.242.144.98 
+8.242.144.0/20                                Remote  BGP       19d14h47m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Checking AS3549 route table for 8.242.144.96/30...
+show router route-table 8.242.144.96/30 
+8.242.144.0/20                                Blackh* BGP       96d21h05m  200
+
+
+Checking AS3356 route table for 8.242.144.96/30...
+show router route-table 8.242.144.96/30 
+8.242.144.0/20                                Remote  BGP       19d14h47m  170
+       200.189.206.108 (tunneled)                                   11314
+
+
+Search complete.
+
+
+
+
+BOGTCLGWZG025#sh run interface GigabitEthernet0/0/10 | se ce 4
+ service instance 4 ethernet
+  description 12/LATAM/6000316271/PATH - GRUPO EMI S.A.  # 1-107T4D [(500185829) BOGOTA CR68D 81-5EBVG6 ]
+  encapsulation dot1q 1201
+  service-policy input RFS6000316271
+  bridge-domain 446
+  mac security maximum addresses 150
+  mac security violation restrict
+  mac security
+BOGTCLGWZG025#
+
+
+

@@ -1,0 +1,350 @@
+CFS: 500405029
+DKO: 8785562
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000318915
+RFS-IP-PORT_NID: 6000322542
+Cliente: SERVICIOS FEMAROCA TV SOCIEDAD ANONIMA
+SEDE: OFICINA-CENTRAL-CARTAGO-81-4ZAKL56
+PE: ear1.xcr4
+Interface PE: he-1/1/c20/1:0
+VRF: No encontrado
+BW: 20000M
+WAN: 8.243.244.116/30
+WANIPv6: 2001:13b2:c000:1000::/126
+
+Completed Load of Special Scid CFS500405029DIR
+Completed Load of Special Scid CFS500405029CAP
+
+
+DKO:8785562 (8843725)
+
+Comments: (Ever Contreras) 15/11/24 20:17 Start DokuFlow.
+
+Actividad: Se requiere dar de alta enlace IPT @2x10Gb vía tercero.
+
+
+Customer:SERVICIOS FEMAROCA TV SOCIEDAD ANONIMA
+
+A-Side Site:OFICINA CENTRAL CARTAGO 81-4ZAKL56
+ADDRESS: SAN RAFAEL, 200MTS NORTE DEL BNCR NA, OREMUNO, CA-Cartago, Costa Rica Latitud 9.92975 Longitud -84.0857
+
+Technical Contact:
+EDGAR EDUARDOMORA BARRANTES / M: emora@tekicr.com / P: +50660530039
+Validar datos adicionales del LCON con el CCM.
+
+CCM: Hess, Munique
+
+XML 8767934
+CFS 500405029 - PORT-10GE-1
+CFS 500405030 - PORT-10GE-2
+*:RFS6000318915 ( IP Port )
+
+========= OFFNET =========
+
+Contratar el siguiente enlace:
+
+Proveedor: UFINET
+Tipo: Capa 2 [L2]
+BW: 2x10Gb
+Customer Handoff Interface: 2 x 10GE, Optical, LC, 2-Fiber.
+POP Handoff Interface: 2 x 10GE, Optical, LC, 2-Fiber.
+CLLI POP: CSTRA04Z: Nodo Pavas San Jose
+Port Type: FIXED
+TDG-152004568 
+TDG-152004567 
+- Se envía a COTIZAR vía ICT, dado que las TDG fueron recibidas como ON-NET en lugar de OFF-NET, como se requería inicialmente.
+- El tercero deberá instalar un equipo en el POP PAVAS, específicamente en el Rack de Carriers, para realizar la entrega localmente en este POP.
+
+========= IPSA =========
+
+Asignar recurso IP para dar de alta el siguiente enlace_
+
+CLLI: CSTRA04Z: Nodo Pavas San Jose
+
+PE: Por Asignar
+Int. Por Asignar [2 x 10GE, SMF, LC, 2-Fiber, 10KM] - Configurar en esquema LAG.
+IPv4 WAN: Asignar /30
+IPv4 LAN: None
+BW: 20Gb
+Routing: Pendiente BGP Form por parte del cliente.
+
+*: Solución NIDLESS.
+*: CPE del cliente.
+
+========= SDM / SA =========
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar actividades para dar de alta enlace IPT 2x10Gb vía tercero:
+- El tercero deberá instalar un equipo en el POP PAVAS, específicamente en el Rack de Carriers, para realizar la entrega localmente en este POP.
+- Handoff Interface: 2 x 10GE, Optical, LC, 2-Fiber, 10KM.
+- Solución NIDLESS.
+- CPE del cliente.
+- El cliente deberá configurar LAG 2x10G en su equipo.
+3. Solicitar XC @POP PAVAS entre el recurso del tercero y el de IPSA.
+4. Programar PEM con el cliente garantizando correcto funcionamiento del enlace.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 18/11/24 10:40
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Lima, Sthefanny) 18/11/24 10:52
+Finished Step: Asignación de SDM·
+Comments from Subprocess 8794023
+
+
+Workflow Initialization
+Comments: (Rodriguez, Bullman) 27/11/24 14:21
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Villanueva Farfan, Cristina) 04/12/24 11:58
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Villanueva Farfan, Cristina) 04/12/24 15:26
+Finished Step: OffNet Survey Response ICT
+
+Comments: (Ever Contreras) 13/12/24 22:50
+
+========= NOTA DE ACTUALIZACIÓN DE DC =========
+
+En el proceso de cotización de Preventa con el tercero, se optimizó la solución considerando los costos, dado que el precio del enlace 2x10GE duplicaba el de un enlace @20Gb sobre interface 100GE. Por esta razón, el tercero entregará la capacidad @20Gb sobre puerto 100GE, garantizando además redundancia dentro de su red. 
+
+Por lo anterior, se requiere:
+
+========= SOLICITUD DE EQUIPOS =========
+
+1 x 1491435
+1078901050-01
+FSP150-XG404 1RU CARRIER AGGREGATION DEVICE WITH 4X QSFP28 OR QSFP+ 2 PORTS FILTER CAGE AND AIR FILT
+
+1 x 1491437
+1042201000-01
+FSP 150-XG480 XG404 AND XG418 FAN TRAY & EXHAUST MODULE F150/ADV/XG480/FAN-EXH HW REL 1.02 104220100
+
+1 x 1000619
+1040800069 -01
+Power Supply Module AC, 400W,  AC 110V/2
+
+2 x 1365164
+100GQSFP28E-LR4
+SINGLE-RATE 100GBASE-LR4 QSFP28 10KM 1310NM SMF LC/UPC CONNECTOR C-TEMP EML LASER 4.5W 100GQSFP28
+
+========= OFFNET =========
+
+Contratar el siguiente enlace:
+
+Proveedor: UFINET
+Tipo: Capa 2 [L2]
+BW: 20Gb | PROTECTED
+Customer Handoff Interface: 100GE, Optical, LC, 2-Fiber, 10KM
+POP Handoff Interface: 100GE, Optical, LC, 2-Fiber, 10KM
+CLLI POP: CSTRA04Z: Nodo Pavas San Jose
+Port Type: FIXED
+TDG-152004567-8794023
+- Se envía a COTIZAR vía ICT, dado que las TDG fueron recibidas como ON-NET en lugar de OFF-NET, como se requería inicialmente.
+- El tercero deberá instalar un equipo en el POP PAVAS, específicamente en el Rack de Carriers, para realizar la entrega localmente en este POP.
+
+========= IPSA =========
+
+1. Asignar recurso IP para dar de alta el siguiente enlace:
+
+CLLI: CSTRA04Z: Nodo Pavas San Jose
+
+CFS 500405029 | *:RFS6000318915 ( IP Port )
+PE: EAR1.XCR4
+Int. Por Asignar [100GE, SMF, LC, 2-Fiber, 10KM]
+IPv4 WAN: Asignar /30
+IPv4 LAN: None
+BW: 20Gb
+Routing: Pendiente BGP Form por parte del cliente.
+
+2. Asignar segmento /31 para gestión del NID y dar de alta *:RFS6000322542 ( NID ).
+
+*: CPE del cliente.
+
+========= SDM / SA =========
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar actividades para dar de alta enlace IPT @20Gb vía tercero:
+- El tercero deberá instalar un equipo en el POP PAVAS, específicamente en el Rack de Carriers, para realizar la entrega localmente en este POP.
+- Generar una PR manual solicitando un NID-100G para su instalación en el sitio del cliente, asegurando su gestión y acceso remoto.
+- Handoff Interface: 100GE, Optical, LC, 2-Fiber, 10KM.
+- CPE del cliente.
+3. Solicitar XC @POP PAVAS entre el recurso del tercero y el de IPSA.
+4. Programar PEM con el cliente garantizando correcto funcionamiento del enlace.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+Comments: (Ever Contreras) 13/12/24 22:53
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8785562
+Datos - ADI Add   **8785562*$*
+
+Workflow Initialization
+Comments: (Lozano, Paula) 17/12/24 13:24
+Se contrata 20Gb | PROTECTED, en Port Type: FIXED CLLI POP: CSTRA04Z: Nodo Pavas San Jose (El tercero deberá instalar un equipo en el POP PAVAS, específicamente en el Rack de Carriers, para realizar la entrega localmente en este POP.)
+Comments: (Lozano, Paula) 17/12/24 13:32
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8841942
+Activación Terceros ICT   **8841942*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 18/12/24 12:42
+Agradezco asignar un puerto con modulo 100GE, Optical, LC, 2-Fiber, 10KM. Y que este se vea reflejado en 3Scape
+
+Comments: (Arciniegas, Viviana) 07/01/25 14:55
+En comunicación con Juan Estrada via teams, indica que ya se realizó el envío del módulo, pendiente migración, se programará change para la próxima semana. Se verifica caso el 17/01
+Comments: (Arciniegas, Viviana) 09/01/25 14:13
+En comunicación con Juan Estrada via teams, indica programación Change: CHG0053932 [Migración de Circuitos de Escazú a Pavas]
+[Fecha: 17/01/2025. Hora: 06:00 GMT – 08:00 GMT]. Se valida caso el 20/01
+Comments: (Arciniegas, Viviana) 20/01/25 12:50
+En comunicación con Juan Estrada via teams, indica que fue necesario aplazar la actividad debido a una falla de transmisión, se programará la change para la proxima semana, pendiente confirmar fecha. Se revisa caso el 27/01
+Comments: (Arciniegas, Viviana) 27/01/25 13:08
+En comunicación con Juan Estrada via teams, indica la programación Change: CHG0054733 [Migración de Circuitos de Escazú a Pavas]
+[Fecha: 31/01/2025. Hora: 06:00 GMT – 08:00 GMT]. Se revisa caso el 03/02
+Comments: (Arciniegas, Viviana) 31/01/25 12:40
+En comunicación con Juan Estrada via teams, indica que por falta de personal disponible en Lumen, se debe reprogramar la actividad, pendiente confirmación de la nueva fecha. 
+Comments: (Arciniegas, Viviana) 03/02/25 11:53
+En comunicación con Juan Estrada confirma reprogramación de la actividad, Programación Change: CHG0055093 [Migración de Circuitos de Escazú a Pavas]
+[Fecha: 07/02/2025. Hora: 06:00 GMT – 08:00 GMT]. Se revisa caso el 10/02Comments from Subprocess 8844791
+
+
+Workflow InitializationComments from Subprocess 8844793
+
+
+Workflow InitializationComments from Subprocess 8844814
+
+
+Workflow Initialization
+Comments: (Gabriel Melo) 20/12/24 23:53
+Se rquiere instalar módulo y habilitar segunda ruta hacia el nodo Pavas.
+
+Objetivo: Instalación Módulo en Pavas
+
+Ubicación1: Costa Rica/San José/Pavas/CSTRA04Z
+
+Material Para Solicitar:
+    1 1365164	Champion One	100GQSFP28E-LR4 LCL: 1000
+
+Datos de el/los equipos a instalar: N/A 
+    
+Solicitudes necesarias de recursos: N/A
+	
+Posición de tarjetas/partes: 
+    ear1.xcr4 2/1/c20
+    
+Conexiones requeridas: N/A
+
+Notas Importantes:
+    El puerto se debe incluir en 3scape.
+	La DO se debe cerrar cuando el módulo esté instalado y la migración del circuito hacia Los Angeles realizada.
+	
+	
+DCD:12/01/2025
+
+Entregables: 
+    Módulo reconocido y equipo ear con las dos rutas activas.
+Comments: (Gabriel Melo) 20/12/24 23:54
+Finished Step: Requirement Validation·
+
+Comments: (Gabriel Melo) 21/12/24 00:19
+Finished Step: Set DCD / NCD·
+
+Comments: (Gabriel Melo) 21/12/24 00:22
+Finished Step: Work Package & Order Material
+Network Change Request·
+Comments from Subprocess 8848481
+
+
+Workflow Initialization
+Comments: (Estrada Martinez, Juan Camilo) 23/12/24 19:34
+Finished Step: Requirement Validation·
+
+ ++++++++++++++++++ NPI ++++++++++++++++++ 
+Se genera SO: 3000021709 
+DokuViz\Estrada Martinez, Juan Camilo (10706)
+ ++++++++++++++++++ NPI 12/26/2024 1:21:30 PM ++++ 
+
+ ++++++++++++++++++ NPI ++++++++++++++++++ 
+Se han cancelado dos Change, se genera la tercera CHG0055093:
+CHG0053932 [Fecha: 17/01/2025]=Cancelada por falla de transmissíon (INC3008619)
+CHG0054733 [Fecha: 31/01/2025]=Cancelada por falta de personal LUMEN
+
+Programación Change: CHG0055093 [Migración de Circuitos de Escazú a Pavas]
+[Fecha: 07/02/2025. Hora: 06:00 GMT – 08:00 GMT]
+DokuViz\Estrada Martinez, Juan Camilo (10706)
+ ++++++++++++++++++ NPI 1/31/2025 7:19:08 PM ++++ 
+
+Comments: (Estrada Martinez, Juan Camilo) 10/02/25 19:47
+Modulo instalado. Se adjunta evidencia.
+____________________________________________________
+A:ear1.xcr4# show port 2/1/c20
+ 
+===============================================================================
+QSFP-DD Connector
+===============================================================================
+Description        : ::RSV PLANNING [JEOP]
+Interface          : 2/1/c20
+FP Number          : 3                          MAC Chip Number  : 7
+Licensed           : Yes
+Admin State        : down
+Oper State         : down
+IfIndex            : 1611162880
+Last State Change  : 09/28/2024 13:41:34
+Last Cleared Time  : N/A                        DDM Events       : Enabled
+Breakout           : no breakout
+RS-FEC Config Mode : None
+ 
+Transceiver Data
+ 
+Transceiver Status : unsupported
+Transceiver Type   : QSFP28                     DCO              : Disabled
+Model Number       : none
+TX Laser Wavelength: 1310 nm                    Diag Capable     : yes
+Number of Lanes    : 4
+Connector Code     : LC                         Vendor OUI       : e8:07:34
+Manufacture date   : 2021/12/27                 Media            : Ethernet
+Serial Number      : LDST001228
+Part Number        : 100GQSFP28E-LR4
+Optical Compliance : 100GBASE-LR4
+Link Length support: 10km for SMF
+ 
+===============================================================================
+Transceiver Digital Diagnostic Monitoring (DDM)
+===============================================================================
+                              Value High Alarm  High Warn   Low Warn  Low Alarm
+-------------------------------------------------------------------------------
+Temperature (C)               +27.0     +75.0      +70.0       +0.0       -5.0
+Supply Voltage (V)             3.29      3.63       3.46       3.13       2.97
+===============================================================================
+ 
+===============================================================================
+Transceiver Lane Digital Diagnostic Monitoring (DDM)
+===============================================================================
+                                 High Alarm   High Warn    Low Warn   Low Alarm
+-------------------------------------------------------------------------------
+Lane Tx Bias Current (mA)             110.0       100.0        30.0        20.0
+Lane Tx Output Power (dBm)             5.50        4.50       -4.30       -6.30
+Lane Rx Optical Pwr (avg dBm)          5.00        4.50      -10.60      -12.60
+ 
+-------------------------------------------------------------------------------
+Lane ID Temp(C)/Alm       Tx Bias(mA)/Alm   Tx Pwr(dBm)/Alm   Rx Pwr(dBm)/Alm
+-------------------------------------------------------------------------------
+    1              -               0.0            -40.00            -40.00
+    2              -               0.0            -40.00            -40.00
+    3              -               0.0            -40.00            -40.00
+    4              -               0.0            -40.00            -40.00
+===============================================================================
+===============================================================================
+A:ear1.xcr4#
+Comments: (Estrada Martinez, Juan Camilo) 10/02/25 19:47
+Finished Step: Gestion Deployment
+MARGARITA

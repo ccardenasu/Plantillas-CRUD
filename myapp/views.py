@@ -33,6 +33,9 @@ def datos_view(request):
             num_puertos_lag = form.cleaned_data.get("num_puertos_lag")
             datos.save()
 
+             # Reemplazar espacios por guiones en el campo 'sede'
+            datos.sede = datos.sede.replace(' ', '-')
+
             lan_ips = [ip.strip() for ip in datos.lan.split(',')]
             lanv6_ips = [ip.strip() for ip in datos.lanv6.split(',')] if datos.lanv6 else []
             lan_ips_with_masks = [(ip.strip(), ipaddress.ip_network(ip.strip(), strict=False).prefixlen) for ip in datos.lan.split(',')] if datos.lan else []
@@ -55,6 +58,8 @@ def datos_view(request):
                             write_if_not_none("be", datos.be)
                             write_if_not_none("bw", datos.bw)
                             write_if_not_none("bw_plus", datos.bw_plus)
+                            write_if_not_none("bw_voz", datos.bw_voz)
+                            write_if_not_none("bw_video", datos.bw_video)
                             write_if_not_none("bw_exchenge", datos.bw_exchange)
                             write_if_not_none("bundle_ether", datos.bundle_ether)
                             write_if_not_none("bundle_ether_b", datos.bundle_ether_b)
@@ -85,6 +90,7 @@ def datos_view(request):
                             write_if_not_none("rfs-ip-port_b", datos.rfs_ip_port_b)
                             write_if_not_none("rfs-ip-port_nid", datos.rfs_ip_port_nid)
                             write_if_not_none("rd", datos.rd)
+                            write_if_not_none("rd2", datos.rd2)
                             write_if_not_none("sede", datos.sede)
                             write_if_not_none("sede_b", datos.sede_b)
                             write_if_not_none("sv", datos.sv)
@@ -97,6 +103,7 @@ def datos_view(request):
                             write_if_not_none("unit_b", datos.unit_b)
                             write_if_not_none("vrf", datos.vrf)
                             write_if_not_none("vrf_init", datos.vrf_init)
+                            write_if_not_none("vrf2", datos.vrf2)
                             write_if_not_none("vt", datos.vt)
                             write_if_not_none("wan", datos.wan)
                             write_if_not_none("wanv6", datos.wanv6)
@@ -138,10 +145,18 @@ def datos_view(request):
                 print(f"burst_size_limit {burst_size_limit}")
                 bw_plus_por = round(int(datos.bw_plus)*bwjun / 100)
                 print(f"bw_plus_por {bw_plus_por}")
+                bw_voz_por = round(int(datos.bw_voz)*bwjun / 100)
+                print(f"bw_voz_por {bw_voz_por}")
+                bw_video_por = round(int(datos.bw_video)*bwjun / 100)
+                print(f"bw_video_por {bw_video_por}")
                 bw_exchange_por = round(int(datos.bw_exchange )*bwjun / 100)
                 print(f"bw_exchange_por {bw_exchange_por}")
                 burst_size_limit_plus = round((bwx1024 * 1000 * (int(datos.bw_plus ) / 100*0.15/4)))
                 print(f"burst_size_limit_plus {burst_size_limit_plus}")
+                burst_size_limit_voz = round((bwx1024 * 1000 * (int(datos.bw_voz ) / 100*0.15/4)))
+                print(f"burst_size_limit_voz {burst_size_limit_voz}")
+                burst_size_limit_video = round((bwx1024 * 1000 * (int(datos.bw_video ) / 100*0.15/4)))
+                print(f"burst_size_limit_video {burst_size_limit_video}")
                 burst_size_limit_Exchange = round((bwx1024 * 1000 * (int(datos.bw_exchange ) / 100*0.15/4)))
                 print(f"burst_size_limit_exchange {burst_size_limit_Exchange}")
                 bw_lag_alcatel = int(datos.puertos_lag) * bwx1024
@@ -157,8 +172,12 @@ def datos_view(request):
                 bw_lag_alcatel = None
                 qos = None
                 bw_plus_por = None
+                bw_voz_por = None
+                bw_video_por = None
                 bw_exchange_por = None
                 burst_size_limit_plus = None
+                burst_size_limit_voz = None
+                burst_size_limit_video = None
                 burst_size_limit_Exchange = None
             
             form.fields['lag'].initial = num_puertos_lag
@@ -177,8 +196,12 @@ def datos_view(request):
                     "burst_size_limit": burst_size_limit,
                     "bw_lag_alcatel": bw_lag_alcatel,
                     "bw_plus_por": bw_plus_por,
+                    "bw_voz_por": bw_voz_por,
+                    "bw_video_por": bw_video_por,
                     "bw_exchange_por": bw_exchange_por,
                     "burst_size_limit_plus": burst_size_limit_plus,
+                    "burst_size_limit_voz": burst_size_limit_voz,
+                    "burst_size_limit_video": burst_size_limit_video,
                     "burst_size_limit_Exchange": burst_size_limit_Exchange,
                     "qos": qos,
                     "lan_ips": lan_ips,  # Pasar las IPs procesadas a la plantilla
@@ -212,6 +235,8 @@ def buscar_cfs(request):
                             "be": dato.be,
                             "bw": dato.bw,
                             "bw_bw_plus": dato.bw_plus,
+                            "bw_bw_voz": dato.bw_plus,
+                            "bw_bw_video": dato.bw_plus,
                             "bw_bw_exchange": dato.bw_exchange,
                             "cfs": dato.cfs,
                             "cliente": dato.cliente,

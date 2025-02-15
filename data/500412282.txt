@@ -1,0 +1,123 @@
+CFS: 500412282
+DKO: 8885878
+tipo_configuracion: Alta
+tipo_servicio: VPN
+RFS-IP-PORT: 6000329515
+RFS-IP-PORT_NID: 6000329516
+Cliente: UNIDAD ADMINISTRATIVA ESPECIAL DE LA JUSTICIA PENAL MILITAR Y POLICIAL
+SEDE: FINANZAUTO---CORABASTOS-Instancia-SD-WAN-IP-VPN-----TDG-151951247
+SW: BOGTCLFWNN001
+Interface SW: TenGigE0/0/2/3.919741300
+PE: psr3.bgo1
+Interface PE: ae14.208
+VRF: finanzauto
+Vlan Tercero: 1974
+RD: 16528:1104088
+Svlan: 208
+Cvlan: 1300
+BW: 10M
+WAN: 10.10.20.80/30
+
+DKO:8885878 (8887915)
+Comments: (Palmera Aguilera, Viviana) 07/02/25 16:40 Start DokuFlow.
+Scope:  ALTA VPN SDWAN CONVENIO @10M 
+Contacto técnico:
+Homero Garcia / Tel.: 5717499000 / E: homero.garcia@finanzauto.com.co
+VPN SDWAN  BACKUP @10M
+UNIDAD ADMINISTRATIVA ESPECIAL DE LA JUSTICIA PENAL MILITAR Y POLICIAL 
+sede: FINANZAUTO - CORABASTOS Instancia SD WAN IP VPN  -  TDG-151951247
+Dirección: CORABASTOS NA, BOGOTA, DC-DISTRITO CAPITAL DE BOGOTÁ, Colombia Latitud 4.630941 Longitud -74.156664
+XML : 8880681
+CFS ID:  500412282
+RFS:
+IP PORT: 6000329515
+NID: 6000329516
+3rd Party: --
+CPE SDWAN : *:RFS6000297142 ( Shared )
+
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN SDWAN   OFF NET   BW: 10Mbps.
+
+
+********* Request equipment**********
+
+ 
+1 x 1469560
+1078904820-01
+FSP 150CC-GE101PRO MICRONID C TEMP F150/ADV/GE101PRO 1078904820-01 ADVA
+
+
+***********SOLICTUD CONVENIOS. **********
+1.Contratar el siguiente circuito:
+ 
+DK-SURVEY-TDG-151951247-8572114
+Handoff interface: Optical
+Connector: 1GE, RJ-45
+ 
+Handoff interface: 1GE, RJ-45
+
+
+****************PEDIDO A IP********************
+1. Asignar VLAN en Interconexión indicada por OFFNET.
+2. Crear subinterface en PE asignado con un BW @10Mbps y Routing:
+3. Asignar ip de monitoreo para NID, y Dar de Alta RFS 
+Por temas de alta disponibilidad no compartir recursos en PE BBIP, red Metro e interfaces con el canal ppal (SW: BOGTCLFWNN001 
+Y psr2.cxv1.bog) 
+ 
+Type:VPN
+PE: ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 10.10.20.81/30
+Enrutamiento: Estatico
+BW: 10 Mbps
+VRF: finanzauto
+Ruteo: Estatico
+QoS: Voz 20% EF Video 15% AF41
+ 
+AS: No se requiere
+
+*********** ACTIVIDAD SDM - SERVICE ACTIVATION*********
+
+1. Solicitar equipos, coordinar la instalación y cableados NID.
+2. Validar que se haya ejecutado el alta  de recursos por parte de IPSA y OFFNET
+3. Agendar ventana con el cliente para realizar alta SD WAN IP VPN a 10Mb/s vía tercero con NID GE101PRO e integrar con CPE Sd Wan:
+ - Integrar con CPE Sd Wan operativo en la sede.
+ - Garantizar que los equipos continúen en gestión y con acceso remoto
+ - Ajustar NID y CPE Sd Wan con el nuevo BW
+ - Correr pruebas de esfuerzo de canal
+
+4. Realizar pruebas en compañía del cliente (Datos, Aplicativos, Navegación, Rendimiento, etc), validando que el servicio Sd Wan funcione correctamente según las políticas definidas en la plantilla, LLD del proyecto y entregar la solución al cliente a total satisfacción
+5. Actualizar la ingeniería
+
+DATOS SD WAN:
+DATA QUANTUM FINANZAUTO: Sede Central Aplicativos
+DATA COL XV FINANZAUTO: Salida a Internet
+
+HOSTNAME DEVICE 1: FNZ_BTACOR_1_1-20URVN_81-2UK51D9
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT:
+Garantizar NM Type: Application
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 10/02/25 14:32
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8885878
+Datos - IP VPN Add   **8885878*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 11/02/25 13:38
+Finished Step: Alta Tercero·
+
+Se solicita a LIBERTY instalación de un canal 10 MB. Se asigna la SVLAN 1974 en la NNI M2 de Bogotá - BOGTCLFXNN001 - TENGIGA Interface: TE0/0/2/3 
+
+
+
+
+This Order was automatically initiated by Order NO:8886811
+Activación Terceros ICT   **8886811*$*
+
+Workflow Initialization

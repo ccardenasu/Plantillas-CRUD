@@ -1,0 +1,129 @@
+Usuario: Cardenas Urrea, Carl
+Cliente: BANCO W S.A.
+Sucursal: BANCO-W---CAQUETA---CARTAGENA-DEL-CHAIRA-81-1QPC3H
+Design ID: 
+Tipo de Equipo: NID
+Alias: NID142605
+Snmp Version: 2c
+Address IP: 10.235.72.125
+Comunidad: $Lev3L3
+Eq Id: No EQID
+Vendedor: Adva
+Mascara Formato Largo:  255.255.255.0
+Gateway:  10.235.72.1
+Vlan Dominio:  505
+RFS_CFS:  RFS:6000330441
+
+
+
+DKO:8869229 (8891072)
+
+
+Comments: (Ariza, Jorge) 22/01/25 09:56 Start DokuFlow.
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere Traslado Interno de Internet a 15Mb vía Azteca y equipos asociados
+
+CUSTOMER TECHNICAL CONTACT:
+Karen Fajardo / kfajardo@bancow.com.co / 3137104215
+Internet @15Mb
+XML 8865290
+CFS 500086043
+
+CLIENT: BANCO W S.A.
+SITE: BANCO W - CAQUETA - CARTAGENA DEL CHAIRA
+ADDRESS: CL 3 # 4 - 21, CARTAGENA DEL CHAIRA, CAQUETA, COLOMBIA [LATITUD 1.333316 LONGITUD -74.843]
+
+RFS:
+*:RFS 6000217302 ( IP Port )
+*:RFS 6000059539 ( 3rd Party )
+*:RFS 6000059538 ( NID )
+*:RFS 6000217505 ( SDWAN CPE )
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere Traslado Interno de Internet a 15Mb vía Azteca y equipos asociados de BANCO W en Cartagena del Chaira
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Realizar Traslado Interno para
+PROVIDER: Azteca
+ID: SER-227916
+TYPE: Layer 2, QinQ
+BW: 15Mb
+QUOTING: DK-SURVEY-TDG-152065105-8865861
+Handoff interface: Electrical, RJ45
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+NA
+----------------------------------------------------------------------------------
+SDM
+
+1. De acuerdo con el relevamiento realizado por OFFNET, agendar ventana con el cliente para realizar Traslado Interno de Internet a 15Mb vía Azteca y equipos asociados (CPE, NID, Modem Bismark, etc.)
+2. Garantizar que los equipos queden en gestión y con acceso remoto
+3. Realizar prueba de esfuerzo del canal
+4. Documentar ingeniería
+
+Handoff interface POP: NNI
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+Configurar NM Advanced Management
+LB Asignada IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 22/01/25 11:07
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+Comments: (Figueredo, Leidy) 24/01/25 12:41
+Finished Step: Asignación de CCM·
+Comments from Subprocess 8869289
+
+
+Workflow Initialization
+Comments: (Castaneda, Steven) 22/01/25 20:12
+Se solicita a AZTECA realizar el traslado interno del canal en mención. 
+ 
+
+Comments: (Castaneda, Steven) 22/01/25 20:13
+Finished Step: Modificación Tercero·
+Comments from Subprocess 8870198
+
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 23/01/25 09:50
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+PROVISIONING IPSA
+
+NA
+Comments: (Castaneda, Steven) 11/02/25 16:05
+AZTECA entrega el traslado interno del servicio en mención, se anexa correo a la DKO y se cierra la tarea.
+Comments: (Castaneda, Steven) 11/02/25 16:08
+Finished Step: Entrega MOD UM·
+
+Comments: (Paez, Luis Fernando) 13/02/25 19:09
+***********************************SDM*********************************
+ Agradezco nos pueda ayudar a cambiar la IP 10.226.141.71 
+ del NID NID062184 ya esta no pertenece al mercado en el 
+ SW BOGTCLFXNN003.
+ Se encuentra IP libre 10.235.72.125 y sin asigacion en CRUD
+****************************************************************************
+
+This Order was automatically initiated by Order NO:8869229
+Datos - IP VPN Mod   **8869229*$*
+
+Workflow Initialization

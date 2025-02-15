@@ -1,0 +1,62 @@
+
+
+CFS: 500361599
+DKO: 8887229
+tipo_configuracion: Alta
+tipo_servicio: VPN
+RFS-IP-PORT: 6000269848
+RFS-IP-PORT_NID: No encontrado
+Cliente: ALORICA INC.
+SEDE: NCO FINANCIAL SYSTEMS - SAN CRISTOBAL
+PE: pr3.pty1
+Interface PE: ge-1/0/1.480
+VRF: 9024-1-ALORICAINC-C-L_INT_GST-9000000275-L3VPN
+RD: 6745:11009024
+BW: 1M
+WAN: 100.65.4.120/30
+ASN: 64523
+
+
+
+DKO:8887229 (8887257)
+
+Comments: (Palmera Aguilera, Viviana) 10/02/25 18:30 Start DokuFlow.
+
+Scope:  CAMBIO VRF
+Contacto técnico:
+JamauntrEAvant / jamauntre.avant@alorica.com / 4025911748 
+
+VPN
+
+Cliente:ALORICA INC. 
+sede: NCO FINANCIAL SYSTEMS - SAN CRISTOBAL
+Dirección: Calle A, Urbanización Industrial, San Cristóbal, Ave Jose Agustin Arango.	
+XML : 8883982
+CFS  ID:  500361599
+RFS:
+RFS IP PORT:  6000269848
+
+RFS NID: --
+RFS 3rd Party: 6000260355 (Shared) 
+RFS CPE: --
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN  OFF-NET 
+
+=========== IPSA  ===============
+Se requiere cambiar la vrf  del enlace por la nueva indicada
+Subinterface:
+pr3.pty1:ge-1/0/1.480	
+BBIP WAN : 100.65.4.121/30
+Vrf nueva: AloricaInc-C-L_INT_Gst (nueva)
+
+**************** S&A ****************
+Solo se requiere documentar el cambio de CFS ID del servicio de acuerdo al indicado en esta dkO
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8887229
+Datos - IP VPN Mod   **8887229*$*
+
+Workflow Initialization

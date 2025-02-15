@@ -1,0 +1,170 @@
+Se devuelve Tarea a Offnet dado que aun no han confirado recursos.
+
+
+
+De: Bravomalo Molineros, Maria Elena <maria.bravomalo@ciriontechnologies.com> 
+Enviado el: jueves, 13 de febrero de 2025 12:17 p. m.
+Para: Cardenas Urrea, Carlos <carlos.cardenas@ciriontechnologies.com>
+Asunto: RE: DKO:8884904 (8889100) DATOS NNI
+
+Hola Carlos,
+
+Por favor devuélveme la tarea, porque el proveedor no tiene los recursos aún, se estima que los tenga para abril.  Ahí yo te reenvío nuevamente a IPSA para que puedas asignar el puerto.
+
+Saludos, 
+
+María Elena
+
+
+
+María Elena BravoMalo M. 
+OffNet – ROW - Provisioning – LATAM 
+T +593 2 400-5120 | C +593 99 968-3250
+E  maria.bravomalo@ciriontechnologies.com 
+W ciriontechnologies.com
+     Quito - Ecuador
+
+
+
+
+	
+					
+
+
+De: Cardenas Urrea, Carlos <carlos.cardenas@ciriontechnologies.com> 
+Enviado el: jueves, 13 de febrero de 2025 7:26
+Para: Bravomalo Molineros, Maria Elena <maria.bravomalo@ciriontechnologies.com>
+Asunto: DKO:8884904 (8889100) DATOS NNI
+
+Maria Buen día.
+
+Le agradezco regalarme los datos del POP donde entregara el tercero, para así poder asignar el puerto Dedicado.
+
+
+Saludos.
+
+Carlos 
+
+
+
+DKO:8884904 (8889100)
+
+Customer:CABLE DE VERACRUZ
+
+A-Side Site: MINATITLAN VERACRUZ 81-5SFB1D7
+
+
+Comments: (Ever Contreras) 06/02/25 16:25 Start DokuFlow.
+##
+Se genera esta DKO después del cierre de la TDG por parte de Quoting: 2/5/2025 8:48:04 PM
+##
+
+Actividad: Se requiere dar de alta enlace de Internet @10Gb vía tercero.
+
+CABLE DE VERACRUZ
+ MINATITLAN VERACRUZ
+ADDRESS: CONSTITUCIÓN 44, 96739 MINATITLÁN, MEXICO NA, Minatitlán, VZ-Veracruz, Mexico Latitud 18.0003889 Longitud -94.5543509
+
+Technical Contact:
+Agustin BCustodio / M: agustincustodio09@gmail.com / P: 5214431348982
+Validar datos adicionales del LCON con el CCM.
+
+CCM: Romero Castillo, Diana	
+
+XML 8870888
+CFS 500411252
+*:RFS6000329329 ( NID )
+*:RFS6000329330 ( IP Port )
+
+========= SOLICITUD DE EQUIPOS =========
+
+1 x 1479381
+1078901070-01
+FSP150-XG108 1RU HALF-WIDTH LAYER 2 DEMARCATION DEVICE WITH 4X 10GBE/1GBE SFP+/SFP PORTS 4X 1GBE/100
+
+1 x 1384891
+1013904010
+F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+
+2 x 1166284
+10GSFP+E-LR
+10GE SFP+ 10KM SINGLEMODE 1310NM 10GSFP+E-LR CHAMPION
+
+========= OFFNET =========
+
+Contratar el siguiente enlace:
+
+Proveedor: TOTAL PLAY
+Tipo: Capa 2 [L2]
+NNI Port Type: FIXED
+Customer Handoff Interface: 10GE, Optical, SMF, LC, 2-Fiber, 1310NM, 10KM
+POP Handoff Interface: 10GE, Optical, SMF, LC, 2-Fiber, 1310NM, 10KM
+BW: 10Gb
+DK-SURVEY-TDG-152065489-8870806
+
+- El tercero deberá realizar la instalación del módem en sitio. En caso de no hacerlo, la distancia a su Access POP no deberá exceder los 10km, ya que esta es la distancia máxima soportada por el SFP que Cirion instalará en el NID local:
+
+10GSFP+E-LR | 10GE SFP+ 10KM SINGLEMODE 1310NM 10GSFP+E-LR CHAMPION
+
+========= IPSA =========
+
+- Asignar recursos IP para dar de alta el siguiente enlace vía OFFNET:
+
+Tipo: Internet
+PE: Por Asignar
+Int. Por Asignar [FIXED | 10GE, Optical, SMF, LC, 2-Fiber, 1310NM, 10KM]
+IPv4 WAN: Asignar /30 
+IPv4 LAN: Asignar /26 [Se anexa correo de aprobación]
+BW: 10Gb
+Routing: Static
+
+- Configurar otra subinterface, asignar un segmento /31 para gestión del NID ADVA 10G y dar de alta el RFS. 
+
+- CPE del cliente.
+
+========= SDM / SA =========
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar actividades para dar de alta enlace de Internet @10Gb vía tercero:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Customer Handoff Interface: 10GE, Optical, SMF, LC, 2-Fiber, 1310NM, 10KM
+- CPE del cliente.
+3. Realizar XCON en el POP entre el recurso del tercero y el de IP.
+4. Realizar prueba de esfuerzo del enlace.
+5. Programar PEM con el cliente, garantizando correcta navegación hacia Internet.
+6. Entregar enlace al cliente.
+7. Documentar ingeniería.
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 06/02/25 16:31
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8884904
+Datos - ADI Add   **8884904*$*
+
+Workflow Initialization
+Comments: (Bravomalo, María Elena) 07/02/25 17:28
+***IPSA***
+No se requiere asignacion VLAN es puerto fijo.
+
+
+Comments from Subprocess 8887773
+
+
+Workflow Initialization
+Comments: (Vera, Bianca) 11/02/25 12:40
+Finished Step: OffNet Survey Request ICT
+
+Comments: (Vera, Bianca) 11/02/25 13:07
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Bravomalo, María Elena) 12/02/25 13:30
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8884938
+Activación Terceros ICT   **8884938*$*
+
+Workflow Initialization

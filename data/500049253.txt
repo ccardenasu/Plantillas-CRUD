@@ -1,0 +1,109 @@
+CFS: 500049253
+DKO: 8887459
+tipo_configuracion: Ampliacion
+tipo_servicio: VPN
+RFS-IP-PORT: 6000150781
+RFS-IP-PORT_NID: 6000150780
+Cliente: SOLUCIONES EMPRESARIALES 360 ° S.A.S.
+SEDE: SOE-360°---GALAPA
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/0/1.915901300
+PE: psr1.sub1.bog
+Interface PE: ae10.2434
+Svlan: 2434
+BW: 150M
+
+DKO:8887459 (8887709)
+
+Comments: (Ariza, Jorge) 11/02/25 07:33 Start DokuFlow.
+----------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere ampliación de VPN a 150Mb vía Ufinet en actual NID y CPE
+
+CUSTOMER TECHNICAL CONTACT:
+Carlos Pardo / carlos.pardo@soe360grados.com.co
+VPN @150Mb
+XML 8881753
+CFS 500049253
+
+CLIENT: SOLUCIONES EMPRESARIALES 360 ° S.A.S.
+SITE: SOE 360° - GALAPA 
+ADDRESS: KM. 5 VIA B/QUILLA A GALAPA, GALAPA, ATLANTICO, COLOMBIA
+
+RFS:
+*:RFS 6000150781 ( IP Port )
+*:RFS 6000033343 ( 3rd Party )
+*:RFS 6000150780 ( NID )
+*:RFS 6000023008 ( CPE )
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere ampliación de VPN a 150Mb vía Ufinet en actual NID y CPE, garantizando que el tráfico de datos cumpla con la velocidad contratada y los estándares de calidad
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Realizar ampliación para
+PROVIDER: Ufinet
+TYPE: Layer 2, QinQ
+ID: COCO03140005
+BW: 150Mb
+QUOTING: DK-SURVEY-TDG-152068762-8880449
+Handoff interface: Electrical, RJ45
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Realizar ampliación para
+TYPE: VPN
+PE: PSR1.SUB1.BOG
+INT: ae10.2434
+IP: 192.168.60.1/30
+DES: CUSTOMER: SOLUCIONES EMPRESARIALES 360 S.A.S. (CFSID:500049253) (RFS:6000150781)
+ME: BOGTCLFXNN001
+INT: TenGigE0/0/0/1.915901300
+DES: 12/LATAM/6000152651/PATH - ENNI # UFINET # 81-ENNI [(500049253) SOLUCIONES EMPRESARIALES 360-GALAPA]
+BW: 150Mb
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar ampliación de recursos por parte de IPSA y OFFNET
+2. Agendar ventana con el cliente para realizar ampliación de VPN a 150Mb vía Ufinet en actual NID y CPE
+3. Garantizar que los equipos continuen en gestión y con acceso remoto
+4. Realizar prueba de esfuerzo del canal
+5. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT
+
+CPE NM Application ( Nuevo BW )
+LB Asignada IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 11/02/25 07:49
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8887459
+Datos - IP VPN Mod   **8887459*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 11/02/25 11:40
+Finished Step: Modificación Tercero·
+Se solicita a UFINET ampliación de 60 Mbps a 150 Mbps del canal en mención. 
+
+This Order was automatically initiated by Order NO:8887463
+Activación Terceros ICT   **8887463*$*
+
+Workflow Initialization

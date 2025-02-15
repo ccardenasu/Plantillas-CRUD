@@ -1,0 +1,109 @@
+CFS: 500408388
+DKO: 8855313
+tipo_configuracion: Modificacion
+tipo_servicio: VPN
+RFS-IP-PORT: 6000323525
+RFS-IP-PORT_NID: 6000323526
+Cliente: GODADDY.COM, LLC
+SEDE: No-encontrado
+PE: psr1.sub1.bog
+Interface PE: xe-7/0/5.14628
+VRF: 3967-1-GoDaddy-2006246559-L3VPN
+BW: 100M
+WAN: 10.111.255.4/30
+
+El servicio esta sobre mewtro 1, para habilitar gestion de NID se requeire migrar a metro 2 dado que la metro1 esta congelada.
+
+DKO:8855313 (8887329)
+
+
+Comments: (Vallejo Caguenas, Sergio) 02/01/25 13:13 Start DokuFlow.
+****** SE GENERE NUEVA DKO LUEGO DE LA CANCELACION DE LA DKO: 8849797 POR QUE ICT NORMALIZA Y REACTIVA EL ID ICT SE PASA POR OTRO FLUJO ****** 
+Actividad: Por cancelacion Errada se debe realizar reactivacion del canal VPN @100Mbps Convenio CABLE & WIRELESS COLOMBIA, Cambio de NID Accedian por ADVA y LP NID
+
+Customer Technical Contact:
+ROBINSON URREGO SILVA / M: orien@andinet.com.co 
+
+VPN @100Mb
+XML 8842917
+CFS 500408388
+
+Address: Carrera 7 No 156-10 Bogota - Cundinamarca
+
+RFS: 
+*:RFS6000323525 ( IP Port )
+*:RFS6000318474 ( 3rd Party )
+*:RFS6000323526 ( NID )
+*:RFS6000323527 ( CPE )
+--------------------------
+Description of Service: ||
+--------------------------
+Se requiere realizar ampliacion canal VPN @100Mbps Convenio CABLE & WIRELESS COLOMBIA, se mantiene CPE:ISR4331-AX/K9
+======================
+=========== OFFNET ===========
+
+Por Cancelacion errada se pone informacion de Circuito existente
+
+VENDOR: CABLE & WIRELESS COLOMBIA
+VENDOR ID: 142640
+ICT ID: 313611
+BW: 100 Mbps
+Handoff interface: Eletrical, RJ45
+
+============= IPSA =============
+
+Su amable colaboracion con el cambio de CFS/RFS por regularizacion de recursos por cancelacion Errada nuevos identificadores.
+Asignar LP NID 
+
+PE: psr1.sub1.bog
+INT: xe-7/0/5.14628  
+WAN: 10.111.255.5/30
+VRF: 3967-1-GoDaddy-2006246559-L3VPN
+::: UM :::
+EQUIPO: mesc3.sub.bog
+INT: Gi0/13
+Vlan 2128
+	
+LP NID: ASIGNAR LP NID 
+LP CPE: 172.18.94.131/32
+
+============= SDM =============
+
+0. Validar asignación de recursos por parte de IPSA 
+1. Despachar e integrar NID, cambiar Accedian por NID ADVA, Asegurar dejarlo en Gestion
+1.1 Recurperar gestion del CPE de 172.18.94.131/32  CPE:ISR4331-AX/K9
+2. Agendar ventana con el cliente para cambio de NID y recurperacion de Gestion Regularizar enlace VPN @100Mb:
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+Solicitar los siguientes equipos:
+SAP/ Descripción Cantidad 
+
+1384691/F150/ADV/GE114PRO/AC/811.|1|
+1362830/F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN.|1|
+1429801/AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT|1|
+
+============= SA =============
+
+1. Garantizar Gestion NID y CPE: 172.18.94.131/32  CPE:ISR4331-AX/K9
+2. Realizar prueba de conectividad
+3. realizar entrega a el Cliente.
+
+
+Workflow Initialization
+Comments: (Ramirez Ardila, Camilo) 10/02/25 19:40
+
+
+//////IPSA///////
+
+ASIGNAR RECURSOS
+
+
+
+
+
+
+This Order was automatically initiated by Order NO:8855313
+Datos - IP VPN Add   **8855313*$*
+
+Workflow Initialization

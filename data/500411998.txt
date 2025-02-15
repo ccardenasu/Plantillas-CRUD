@@ -1,0 +1,118 @@
+	CFS: 500411998
+	DKO: 8881968
+	tipo_configuracion: Alta
+	tipo_servicio: VPN
+	RFS-IP-PORT: 6000328543
+	RFS-IP-PORT_NID: 6000328545
+	Cliente: MORANGO S.A.S.
+	SEDE: BOGOTA---CC-COLINA
+	SW: BOGTCLFXZG014
+	Interface SW: GigabitEthernet0/0/14
+	PE: psr2.bgo2
+	Interface PE: ae14.591
+	VRF: morango
+	RD: 16528:1103722
+	Svlan: 591
+	Cvlan: 1300
+	BW: 15M
+	WAN: 10.10.30.56/30
+	ASN: 65013
+	LB CPE: 172.18.7.206 
+	LB NID: 10.235.89.164                      
+
+
+DKO:8881968 (8889837)
+
+Comments: (Felipe Teixeira) 03/02/25 16:49 Start DokuFlow.
+Actividad: Se requiere dar de alta enlace IPVPN @15M Onnet.
+
+
+Customer:MORANGO S.A.S.
+Sede: MORANGO - BOGOTA - CC COLINA
+Dirección: CARRERA 58D # 146 - 51 
+Ciudad: Bogota, DC-Distrito Capital De Bogota, Colombia
+
+Technical Contact:
+Myriam Guzman
+gerfinanzas@morangosa.com
++57 350 2727171
+
+DesignID: YD2A_VN_81-5SNTIDV
+
+XML : 8876730
+CFS :  500411998
+*:RFS6000328546 ( CPE )
+*:RFS6000328545 ( NID )
+*:RFS6000328544 ( Fiber Chain )
+*:RFS6000328543 ( IP Port )
+
+============= SOLICITUD DE EQUIPOS =============
+
+1 x 1466410
+1078904720-02
+F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA
+ 
+1 x 1384891
+1013904010
+F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+ 
+1 x 1248720
+1000SFP31B20L
+20KM SINGLE FIBER SFP 1310NM TX SMF LC -5 TO 75 C TX PWR -7 TO 1000SFP31B20L CHAM L
+
+1 x C881-K9
+CISCO 880 SERIES INTEGRATED SERVICES ROUTERS C881-K9 CSCO
+
+============= PEXT =============
+
+Asignar recursos de fibra [1 Hilo] para dar de alta enlace FO-P2P para el cliente MORANGO - BOGOTA - CC COLINA
+
+============= IPSA =============
+
+Asignar recursos en BBIP y Metro para dar de alta el siguiente enlace con la definicion de PEXT
+
+Tipo: VPN
+PE: Por Asignar
+Int. Por Asignar
+IPv4 WAN: 10.10.30.57/30
+VRF: morango
+BW: 15M
+BGP: ASN 65013
+
+*:Asignar LB NID y dar de alta RFS.
+*:Asignar LB CPE y dar de alta RFS.
+
+============= SDM / SA =============
+
+1.	Validar asignación de recursos por parte de IPSA y PEXT.
+2.	Agendar ventana con el cliente para dar de alta enlace IPVPN @15M. Garantizar que tanto el NID como el CPE queden en gestión y con acceso remoto. 
+3.	Realizar pruebas de esfuerzo sobre el canal.
+4.	Agendar ventana con el cliente para activar enlace. Garantizar BGP, QoS y pruebas de aplicativos con el cliente.
+5.	Entregar enlace al cliente.
+6.	Documentar ingeniería.
+
+============= NETWORK MANAGEMENT =============
+
+Configurar NM Monitor/Notify
+LB CPE: La que asigne IPSA.
+BW: 15M
+
+
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8881968
+Datos - IP VPN Add   **8881968*$*
+
+Workflow Initialization
+Comments: (Palomino Pastrana, John) 12/02/25 23:45
+NODO SUBA
+Comments: (Palomino Pastrana, John) 12/02/25 23:52
+Finished Step: Análisis y Validación de la Información·
+
+
+This Order was automatically initiated by Order NO:8881972
+Ingeniería de acceso Fibra Optica (1)   **8881972*$*
+
+Workflow Initialization

@@ -1,0 +1,437 @@
+CFS: 500410417
+DKO: 8864948
+tipo_configuracion: Alta
+tipo_servicio: VPLS
+RFS-IP-PORT: 6000325676
+RFS-IP-PORT_NID: 6000325677
+Cliente: BOGOTA DISTRITO CAPITAL
+SEDE: SDHT---PRINCIPAL
+SW: BOGTCLHAZG019
+Interface SW: TenGigabitEthernet 0/0/24
+PE: psr2.bgo2
+Interface PE: ae14.589
+VRF: 500410417-BOGOTA-DISTRITO-CAPITAL
+Vlan Tercero: 1740
+Svlan: 589
+Cvlan: 1100
+BW: 1000M
+LB NID: LADO Z 10.226.146.128 LADO  A 10.226.205.168                      
+RFS-IP-PORT_B: 6000325608
+SEDE_B: SDHT_NEBULA
+SW_B: TCNPCLAAYJ001
+Interface SW_B: TenGigE0/0/0/4
+PE_B: psr3.bgo1
+Interface PE_B: ae14.200
+Slan_B: 200
+Clan_B: 1100
+
+CFS: 500410417
+DKO: 8864948
+tipo_configuracion: Alta
+tipo_servicio: VPLS
+RFS-IP-PORT: 6000325676
+RFS-IP-PORT_NID: 6000325677
+Cliente: BOGOTA DISTRITO CAPITAL
+SEDE: SDHT - PRINCIPAL
+Interface SW: TCNPCLAAYJ001
+PE: psr3.bgo1
+Interface PE: ae14.199
+VRF: 500410417-BOGOTA-DISTRITO-CAPITAL
+Vlan Tercero: 1740
+Svlan: 199
+Cvlan: 1100
+BW: 1000M
+LB NID: LADO Z 10.226.205.167 LADO  A 10.226.205.168                      
+RFS-IP-PORT_B: 6000325608
+SEDE_B: SDHT_NEBULA
+SW_B: TCNPCLAAYJ001
+Interface SW_B: TenGigE0/0/0/4
+PE_B: psr3.bgo1
+Interface PE_B: ae14.200
+Slan_B: 200
+Clan_B: 1100
+
+El Pseudowire debe sr configrado entre NID
+
+DKO:8864948 (8886203)
+Comments: (Rojas, Carlos) 15/01/25 21:27 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar Alta de servicio EPL Pseudowire (L2L sin restricciÃ³n de MAC's) via Fibra Optica PaP sobre red Metro 2.0 a 1Gbps
+ 
+NOTA: Esta DKO se genera para realizar el alta del EPL Pseudowire (L2L sin restricciÃ³n de MAC's) en el LADO Z, el LADO A de la EPL se darÃ¡ de alta bajo la DKO 8864937
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+
+Cliente: BOGOTA DISTRITO CAPITAL
+ (SecretarÃ­a Distrital del Habitat)
+Sede:    SDHT - BOGOTA PRINCIPAL
+DirecciÃ³n: CALLE 52#13-64, BOGOTA, Colombia Latitud 4.598077 Longitud -74.076103
+Design ID:  X5DF_VN_81-Y6XUDG
+
+SE: Wilfer Bedoya
+CCM: Alirio Perez
+AM: Marco Rincon Arguello
+
+Nombre del contacto: Jose Luis Daza
+TelÃ©fono del contacto: +57 3015168815	
+Email del contacto: jose.daza@habitatbogota.gov.co
+
+Nombre del contacto: Carlos Gabriel GutiÃ©rrez Pacheco
+TelÃ©fono del contacto: +57 601 358 1600	
+Email del contacto: carlos.gutierrezp@habitatbogota.gov.co
+
+Project ID (XML): 8860742
+Service Instance:  Private LAN P2P (EVPL)
+CFS-CID: 500410417 - Instancia para EPL Pseudowire PRINCIPAL
+
+	RFS IP Port de VPLS - Punta Z: 6000325676
+RFS Fiber Chain- Punta Z: 6000325675
+RFS NID - Punta Z: 6000325677
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: FSP 150-XG108 XG108 H AND XG108 SH SOFTWARE BASE KEY F150/XG10X/SW/BASE/KEY 1091901005-01 ADVA
+Item SAP: 1480593
+Parte numero: 1091901005-01
+Cantidad: 1
+
+DescripciÃ³n: F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+Item SAP: 1384891
+Parte numero: 1013904010
+Cantidad: 1
+
+SFP TENGIGA DE UN SOLO HILO:
+DescripciÃ³n: SF 10G BASE-LR SFP PLUS 1330TX SINGLEMODE 10KM 10GSFP+E33B10L CHAMPION OPTICAL NETWORK
+Item SAP: 1269876
+Parte numero: 10GSFP+E33B10L
+Cantidad: 1 (WAN DE ADVA)
+
+SFP TENGIGA DE DOBLE HILO:
+DescripciÃ³n: 10G BASE-SR SFP+ ETHERNET 850NM
+Item SAP: 1121903
+Parte numero: 10GSFP+E-SR
+Cantidad: 1 (LAN DE ADVA)
+
+================= PLANTA EXTERNA ==================
+1. Realizar relevamiento de Fibra PAP hasta ubicaciÃ³n de equipos en la sede e informar costos al SE y CCM para su aprobaciÃ³n.
+2. Asignar de recursos de planta externa con el fin de habilitar  un enlace PaP (UN HILO EN FO MONOMODO) hasta el interior de sede del cliente.
+
+NOTA: Hoy en dia ya se tiene fibra instalada en la sede del cliente para un enlace SDH el cual se espera desinstalar mas adelante, por lo cual se debe verificar si es posible habilitar uno de los hilos de fibra de dicho cable que ya ingresa a la sede del cliente
+
+RECURSOS DE PLANTA EXTERNA ACTUALMENTE EN USO EN LA SEDE PARA SERVICIO WAVE:
+FT 14 PTO 11-18
+Nodo:  CALLE 72
+
+NOTA: SE DEBE DE BUSCAR DIVERSIDAD DE NODO O RUTA DE FIBRA PARA EL SERVICIO EPL PSEUDOWIRE PRINCIPAL A DAR DE ALTA CON ESTA DKO CON RESPECTO AL SERVICIO EPL PSEUDOWIRE BACKUP A DAR DE ALTA CON UNA NUEVA DKO MAS ADELANTE.  DE SER POSIBLE, USAR RUTA DE FIBRA EXISTENTE HACIA CALLE 72
+
+CONSULTA NCD - PLANNING PLANTA EXTERNA: 8864515
+
+
+3. Realizar tendido de fibra hasta rack del cliente 
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 15/01/25 21:28
+
+======================= IP SA =======================
+1. Realizar alta del servicio EPL Pseudowire (L2L sin restricciÃ³n de MAC's) via fibra optica PaP a 1Gbps sobre red Metro 2.0 para entregar el servicio en la sede del cliente. Asignar recursos de red metro segÃºn nodo que indique planta externa
+
+ASIGNAR EN RED METRO UN PUERTO TENGIGA CON FO MONOMODO DE UN HILO CON EL SIGUIENTE MODULO SFP INSTALADO:
+DescripciÃ³n: SFP PLUS 1330TX SINGLEMODE 10KM 10GSFP+E33B10L CHAMPION OPTICAL NETWORK
+Item SAP: 1269876
+Parte numero: 10GSFP+E33B10L (LADO NODO)
+Cantidad: 1
+
+NOTA: Esta DKO se genera para realizar el alta del EVPL en el LADO Z, el LADO A de la EPL se darÃ¡ de alta bajo la DKO 8864937
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+
+NOTA: SE DEBE ASEGURAR QUE EL SW METRO Y PUERTO ASIGNADO PARA EL ENLACE PRINCIPAL (Presente DKO) SEA DIFERENTE DEL ASIGNADO PARA EL ENLACE BACKUP (DKO a generarse mas adelante)
+
+>>> PUNTA Z:
+SW Metro: Por asignar
+Interface de SW metro: Por asignar
+CVLAN (encapsulation dot1q): Por asignar
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+
+===================== SDM/SA ======================
+NOTA: Esta DKO se genera para realizar el alta del EPL Pseudowire (L2L sin restricciÃ³n de MAC's) en el LADO Z, el LADO A de la EPL se darÃ¡ de alta bajo la DKO 8864937
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+
+1. Validar asignaciÃ³n de recursos en BBIP y red Metro a 1Gbps realizada por parte de IPSA para realizar crossconexion que corresponda en el nodo
+2. Programar con el cliente ventana de trabajo para alta del servicio
+3. Instalar ADVA solicitado con esta DKO en sede del cliente.Entregar el servicio al cliente en puerto LAN de 10G de FO Multimodo doble hilo
+4. Una vez que se haya realizado la instalaciÃ³n del enlace EVPL tanto en la PUNTA A como en la PUNTA Z, proceder a realizar pruebas en conjunto con el cliente garantizando el correcto funcionamiento de todos sus servicios 
+5. Realizar prueba de esfuerzo del canal para garantizar la capacidad contratada
+6. Entregar enlace a satisfacciÃ³n del cliente.
+7. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Monitor/ Notify 	
+LB ADVA - Punta A: SegÃºn asignacion de IPSA
+
+This Order was automatically initiated by Order NO:8864948
+Datos - EVPL Add   **8864948*$*
+
+Workflow Initialization
+Comments: (Palomino Pastrana, John) 07/02/25 19:20
+NODO ACROPOLIS TOCANCIPA
+
+
+Comments: (Palomino Pastrana, John) 07/02/25 19:22
+Finished Step: Análisis y Validación de la Información
+
+
+This Order was automatically initiated by Order NO:8864956
+Ingeniería de acceso Fibra Optica (1)   **8864956*$*
+
+Workflow Initialization
+
+
+
+
+
+
+
+
+
+
+
+DKO:8864937 (8886207)
+Comments: (Rojas, Carlos) 15/01/25 21:10 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar Alta de servicio EPL Pseudowire (L2L sin restricciÃ³n de MAC's) via Fibra Optica PaP sobre red Metro 2.0 a 1Gbps. 
+
+NOTA: Esta DKO se genera para realizar el alta del EPL Pseudowire (L2L sin restricciÃ³n de MAC's) en el LADO A, el LADO Z de la EPL se darÃ¡ de alta bajo una nueva DKO mas adelante.
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+ 
+Cliente: BOGOTA DISTRITO CAPITAL = SDHT (SecretarÃ­a Distrital del Habitat)	
+Sede:    SDHT_NEBULA TOCANCIPA
+DirecciÃ³n: ZONA FRANCA TOCANCIPA, Tocancipa, Cundinamarca, Colombia,  Latitud 4.9630158 Longitud -73.9605338
+Design ID:  X5DF_VN_81-5S9LRTO
+
+SE: Wilfer Bedoya
+CCM: Alirio Perez
+AM: Marco Rincon Arguello
+
+Nombre del contacto: Jose Luis Daza
+TelÃ©fono del contacto: +57 3015168815	
+Email del contacto: jose.daza@habitatbogota.gov.co
+
+Nombre del contacto: Carlos Gabriel GutiÃ©rrez Pacheco
+TelÃ©fono del contacto: +57 601 358 1600	
+Email del contacto: carlos.gutierrezp@habitatbogota.gov.co
+
+Project ID (XML): 8860742
+Service Instance:  Private LAN P2P (EVPL)	
+CFS-CID: 500410417 - Instancia para EPL Pseudowire PRINCIPAL
+
+RFS IP Port de VPLS - Punta A: 6000325608
+RFS Crossconection - Punta A: 6000325609
+RFS Fiber Chain - Punta A: 6000325610
+RFS NID - Punta A: 6000325611
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: FSP 150-XG108 XG108 H AND XG108 SH SOFTWARE BASE KEY F150/XG10X/SW/BASE/KEY 1091901005-01 ADVA
+Item SAP: 1480593
+Parte numero: 1091901005-01
+Cantidad: 1
+
+DescripciÃ³n: F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+Item SAP: 1384891
+Parte numero: 1013904010
+Cantidad: 1
+
+SFP TENGIGA DE UN SOLO HILO:
+DescripciÃ³n: SFP PLUS 1270TX SINGLEMODE 10KM 10GSFP+E27B10L CHAMPION OPTICAL NETWORK
+Item SAP: 1269875
+Parte numero: 10GSFP+E27B10L (WAN DE ADVA)
+Cantidad: 1
+
+SFP TENGIGA DE DOBLE HILO:
+DescripciÃ³n: 10G BASE-SR SFP+ ETHERNET 850NM
+Item SAP: 1121903
+Parte numero: 10GSFP+E-SR
+Cantidad: 1 (LAN DE ADVA)
+
+================= PLANTA EXTERNA ==================
+1. Asignar recursos de planta externa con el fin de habilitar un enlace PaP (UN HILO EN FO MONOMODO) hasta el interior del DC NEBULA-HOSTDIME en el MMR (Meet Me Room) del primer piso. Se debe de entregar fibra monomodo en conector LC/UPC
+
+NOTA: El hilo de fibra desde el MMR del primer piso hasta el ODF en el piso 2 se contratarÃ¡ con ayuda de OFFNET. 
+
+2. Documentar en la DKO toda la informacion posible (Rack, ODF, Puerto, Conector, etc) del lugar a donde llegarÃ¡ la Fibra al interior del DC NEBULA-HOSTDIME y compartirla con OFFNET y SDM
+
+NOTA: DE SER POSIBLE, SE DEBE DE BUSCAR DIVERSIDAD DE NODO O RUTA DE FIBRA PARA EL SERVICIO EPL PSEUDOWIRE PRINCIPAL A DAR DE ALTA CON ESTA DKO CON RESPECTO AL SERVICIO EPL PSEUDOWIRE BACKUP A DAR DE ALTA CON UNA NUEVA DKO MAS ADELANTE SEGÃšN RESPUESTA DE CONSULTA NCD INDICADA A CONTINUACION:
+
+CONSULTA NCD - PLANNING PLANTA EXTERNA: 8864243
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 15/01/25 21:11
+==================== OFFNET ======================
+**************************************************
+NOTA INFORMATIVA: Tras conversacion con Javier Andrade (Contratos terceros) se confirma que aÃºn no se encuentra habilitado el  nodo PERMANENTE en DC Nebula, por lo cual:
+
+* Planta externa debe de habilitar FO hasta MMR (Meet Me Room) del primer piso en DC NEBULA-HOSTDIME
+* OFFNET contratarÃ¡ XCON desde ODF de Piso 1 hasta ODF de Piso 2. Desde dicho ODF en Piso 2 hacia el rack de cliente, la XCON serÃ¡ responsabilidad del mismo **************************************************
+
+Ya que el ADVA a instalar va a quedar en el Rack del cliente, se requiere lo siguiente:
+
+1. Validar con Planta externa ubicaciÃ³n del hilo de fibra (Rack, ODF, Puerto, Conector, etc) habilitado en el MMR (Meet Me Room) del primer piso en DC NEBULA-HOSTDIME
+2. Contratar la siguiente crossconexion en DC NEBULA-HOSTDIME:
+
+XCON desde el ODF Cirion - Piso 1 hasta ODF en Piso 2
+ 
+>> CABLEADO: Fibra Optica Monomodo OS1 Simplex (Un Hilo), Conectores LC/UPC - LC/UPC
+ 
+>> ORIGEN: 
+UbicaciÃ³n: MMR (Meet Me Room) del primer piso en DC NEBULA-HOSTDIME
+Nombre o nomenclatura del ODF de Cirion:  ODF MARCADO COMO TP-13141 UBICADO EN ENTRANCE ROOM B
+Puerto del ODF con el hilo asignado: SEGÃšN ASIGNACION POR PARTE DE PLANTA EXTERNA
+ 
+>> DESTINO:
+ODF en Piso 2
+Puerto: segÃºn asignacion de Hostdime
+
+======================= IP SA =======================
+1. Realizar alta del servicio EPL Pseudowire (L2L sin restricciÃ³n de MAC's) via fibra optica PaP a 1Gbps sobre red Metro 2.0 para entregar el servicio en el DC NEBULA-HOSTIDME en ZF TOCANCIPA. El nodo de acceso desde el cual se debe de entregar el servicio serÃ¡ indicado por parte de planta externa (Posiblemente sea el nodo Acropolis en TocancipÃ¡)
+
+ASIGNAR EN RED METRO UN PUERTO TENGIGA CON FO MONOMODO DE UN HILO CON EL SIGUIENTE MODULO SFP INSTALADO:
+DescripciÃ³n: SFP PLUS 1330TX SINGLEMODE 10KM 10GSFP+E33B10L CHAMPION OPTICAL NETWORK
+Item SAP: 1269876
+Parte numero: 10GSFP+E33B10L (LADO NODO)
+Cantidad: 1
+
+NOTA: Esta DKO se genera para realizar el alta del EVPL en el LADO A, el LADO Z de la EVPL se darÃ¡ de alta bajo una nueva DKO mas adelante.
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+
+NOTA: SE DEBE ASEGURAR QUE EL SW METRO Y PUERTO ASIGNADO PARA EL ENLACE PRINCIPAL (Presente DKO) SEA DIFERENTE DEL ASIGNADO PARA EL ENLACE BACKUP (DKO a generarse mas adelante)
+
+>>> PUNTA A:
+SW Metro: Por asignar
+Interface de SW metro: Por asignar
+CVLAN (encapsulation dot1q): Por asignar
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+
+===================== SDM/SA ======================
+NOTA: Esta DKO se genera para realizar el alta del EPL Pseudowire (L2L sin restricciÃ³n de MAC's) en el LADO A, el LADO Z de la EPL se darÃ¡ de alta bajo una nueva DKO mas adelante.
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+
+1. Validar asignaciÃ³n de recursos en BBIP y red Metro a 1Gbps realizada por parte de IPSA para realizar crossconexion que corresponda en el nodo
+2. Instalar ADVA en rack de cliente. Configurar ADVA para entregar el servicio al cliente en puerto LAN de 10G de FO Multimodo doble hilo  y una WAN (Network) de 10G FO Monomodo de 1 hilo. Ambos modulos se incluyen en esta DKO
+
+RACK DE CLIENTE Y UNIDADES DE RACK AUTORIZADAS POR EL CLIENTE EN DONDE SE PUEDEN INSTALAR EQUIPOS:
+Sala 1 piso 2
+Rack: 1E16
+UR: 48 a 52 - Parte Frontal de Rack
+
+3. Seguimiento a OFFNET por crossconexiones solicitadas
+4. Programar con el cliente ventana de trabajo para alta del servicio
+5. Una vez que se haya realizado la instalaciÃ³n del enlace  EPL Pseudowire  tanto en la PUNTA A como en la PUNTA Z, proceder a realizar pruebas en conjunto con el cliente garantizando el correcto funcionamiento de todos sus servicios 
+6. Realizar prueba de esfuerzo del canal para garantizar la capacidad contratada
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+======================= CD ========================
+Solicitar la liberacion de los siguientes recursos y retiro de equipos:
+
+Acceso monitoreo NID DWDM
+PE: psr2.cxv1.bog
+Int: ae10.3003 
+
+SW: BOGTCLFWZG044
+Int: Gi0/0/8 (NO BAJAR PUERTO FISICO)
+VLAN 1740
+
+PE: psr2.cxv1.bog
+Int: xe-0/0/1.2040
+
+Liberar recursos de red SDH asociados al enlace WAVE:
+SDH ID: 800013031 Customer:DWDM300M:SECRETARIA DISTRITAL DEL HABITAT [X5DF_VN_81-Y6XUDG]300026979:BOGOTA_PRINCIPAL-COLXV
+
+RETIRAR EQUIPO INSTALADO EN DC COLXV
+MetroNID Accedian Principal (Ruta 1):
+SN: G409-3534
+Rack 003.007 
+UR 24 Azimut 5
+LB: 172.18.59.173
+
+RETIRAR EQUIPO INSTALADO EN SDHT - BOGOTÃ PRINCIPAL (Calle 52 No.13-64)
+MetroNID Accedian
+SN: G409-5162
+LB: 10.226.147.77
+
+============== NETWORK MANAGMENT ===============
+NO SE SOLICITA NM YA QUE EN EL XML NO HA LLEGADO NINGUNA INSTANCIA DE MANAGED SERVICES
+
+This Order was automatically initiated by Order NO:8864937
+Datos - EVPL Add   **8864937*$*
+
+Workflow Initialization
+Comments: (Palomino Pastrana, John) 07/02/25 19:23
+NODO ACROPOLIS TOCANCIPA
+
+Comments: (Palomino Pastrana, John) 07/02/25 19:24
+Finished Step: Análisis y Validación de la Información
+
+
+This Order was automatically initiated by Order NO:8864943
+Ingeniería de acceso Fibra Optica (1)   **8864943*$*
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 10/02/25 15:25
+****************************************************
+NOTA DE ACTUALIZACION
+****************************************************
+
+======================= IP SA =======================
+1. Realizar alta del servicio EPL Pseudowire (sin restricciÃ³n de MAC's) via fibra optica PaP a 1Gbps sobre red Metro 2.0 para entregar el servicio en el DC NEBULA-HOSTIDME en ZF TOCANCIPA. El nodo de acceso desde el cual se debe de entregar el servicio serÃ¡ indicado por parte de planta externa (Posiblemente sea el nodo Acropolis en TocancipÃ¡)
+
+ASIGNAR EN RED METRO UN PUERTO TENGIGA CON FO MONOMODO DE UN HILO CON EL SIGUIENTE MODULO SFP INSTALADO:
+DescripciÃ³n: SFP PLUS 1330TX SINGLEMODE 10KM 10GSFP+E33B10L CHAMPION OPTICAL NETWORK
+Item SAP: 1269876
+Parte numero: 10GSFP+E33B10L (LADO NODO)
+Cantidad: 1
+
+NOTA: Esta DKO se genera para realizar el alta del EPLoPW en el LADO A, el LADO Z de la EPLoPW se darÃ¡ de alta bajo una nueva DKO mas adelante.
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+
+NOTA: SE DEBE ASEGURAR QUE EL SW METRO Y PUERTO ASIGNADO PARA EL ENLACE PRINCIPAL (Presente DKO) SEA DIFERENTE DEL ASIGNADO PARA EL ENLACE BACKUP (DKO a generarse mas adelante)
+
+TIPO DE SERVICIO: EPLoPW
+
+>>> PUNTA A:
+SW Metro: Por asignar
+Interface de SW metro: Por asignar
+CVLAN (encapsulation dot1q): Por asignar
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+
+
+===================== SDM/SA ======================
+NOTA: Esta DKO se genera para realizar el alta del EPL Pseudowire (sin restricciÃ³n de MAC's) en el LADO A, el LADO Z de la EPL se darÃ¡ de alta bajo una nueva DKO mas adelante.
+>> LADO A:  SDHT_NEBULA TOCANCIPA
+>> LADO Z:   SDHT - BOGOTÃ PRINCIPAL
+
+1. Validar asignaciÃ³n de recursos en BBIP y red Metro a 1Gbps realizada por parte de IPSA para realizar crossconexion que corresponda en el nodo
+2. Instalar ADVA en rack de cliente. Configurar ADVA para entregar el servicio al cliente en puerto LAN de 10G de FO Multimodo doble hilo  y una WAN (Network) de 10G FO Monomodo de 1 hilo. Ambos modulos se incluyen en esta DKO
+
+RACK DE CLIENTE Y UNIDADES DE RACK AUTORIZADAS POR EL CLIENTE EN DONDE SE PUEDEN INSTALAR EQUIPOS:
+Sala 1 piso 2
+Rack: 1E16
+UR: 48 a 52 - Parte Frontal de Rack
+
+3. Seguimiento a OFFNET por crossconexiones solicitadas
+4. Programar con el cliente ventana de trabajo para alta del servicio
+5. Una vez que se haya realizado la instalaciÃ³n del enlace  EPLoPW tanto en la PUNTA A como en la PUNTA Z, proceder a realizar pruebas en conjunto con el cliente garantizando el correcto funcionamiento de todos sus servicios 
+6. Realizar prueba de esfuerzo del canal para garantizar la capacidad contratada
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+****************************************************

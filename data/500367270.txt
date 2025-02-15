@@ -1,0 +1,222 @@
+DKO:8388070 (8444144)
+
+Comments: (Ever Contreras) 07/11/23 19:36 Start DokuFlow.
+
+Actividad: Se requiere dar de Alta enlace DIA RESELL @10Mb vía Tercero.
+
+COMPAÑÍA PANAMEÑA DE AVIACIÓN S.A.
+ ATO JAMAICA MONTEGO BAY
+ADDRESS: MONTEGO BAY NA, MONTEGO BAY, 12-Manchester, Jamaica Latitude 18.502259 Longitude -77.914497
+
+Technical Contact:
+Evelyn Sanchez / M: easanchez@copaair.com / P: 5073042340
+No se dispone de LCON para cada sede del cliente.
+
+CCM : Moreno, Maria Elida
+
+XML 8381554
+CFS 500367270
+*:RFS6000268766 ( CPE 3rd Party )
+*:RFS6000268765 ( 3rd Party )
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: DIGICEL
+Tipo: Capa 3 [L3], DIA RESELL, WAN/30, LAN/None, CPE/ISR4221
+BW: 10Mb
+Customer Handoff Interface: Giga, Electrical, RJ45
+TDG: Pendiente. Se pide cotización por ICT.
+
+=========== IPSA ===========
+
+Dar de Alta RFS CPE
+IP CPE: La que asigne el Tercero.
+CPE del Tercero, pero administrado por Cirion.
+
+DIA RESELL
+No pasa por red de Cirion.
+
+=========== SDM / SA ===========
+
+1. Dar seguimiento a la entrega del circuito por parte de OFFNET:
+- DIA RESELL. No pasa por red de Cirion.
+- CPE provisto por el Tercero, pero administrado por Cirion.
+- Garantizar que el CPE quede en gestión y con acceso remoto.
+- WAN: /30, LAN: None.
+- Customer Handoff Interface: Giga, Electrical, RJ45
+- Si el cliente llegase a pedir configuración de Túneles encriptados, tomar el mail anexo a esta DKO y escalar directo al SE.
+3. Realizar prueba de esfuerzo sobre el canal.
+4. Agendar ventana de Activación con el cliente, garantizando navegación hacia Internet:
+- Si el cliente llegase a pedir configuración de Túneles encriptados, tomar el mail anexo a esta DKO y escalar directo al SE.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+=========== NETWORK MANAGEMENT ===========
+
+Configurar NM APPLICATION
+LB CPE: La que asigne el Tercero.
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 07/11/23 20:24
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Vargas Flores, Jose Luis) 21/11/23 21:42
+Finished Step: Asignación de SDM·
+Comments from Subprocess 8388145
+
+
+Workflow Initialization
+Comments: (Navarro, Omar) 13/11/23 18:32
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Vera, Bianca) 01/12/23 15:45
+Finished Step: OffNet Survey Request ICT
+
+Comments: (Vera, Bianca) 01/12/23 18:07
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Ever Contreras) 05/01/24 03:20
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: AMERICAN AXESS
+Tipo: Capa 3 [L3], DIA RESELL, WAN/30, LAN/None, CPE Cisco 3560 or Cisco 931.
+BW: 10Mb
+Customer Handoff Interface: FastE, RJ45
+
+Comments: (Ever Contreras) 05/01/24 03:21
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8388070
+Datos - ADI Add   **8388070*$*
+
+Workflow Initialization
+Comments: (Varela, Carina) 18-01-24 20:08
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8434824
+Activación Terceros ICT   **8434824*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 22/01/24 10:35
+
+From: Cardenas Urrea, Carlos 
+Sent: Friday, January 19, 2024 10:01 AM
+To: Varela, Carina <carina.varela@ciriontechnologies.com>
+Cc: Moreno, Dayana <dayana.moreno.ext@ciriontechnologies.com>
+Subject: Direccionamiento CPE COMPAÑÍA PANAMEÑA DE AVIACIÓN S.A.
+
+
+
+Para las siguientes dko requiero dar de Alta RFS CPE por lo que le agradezco indicarme La IP del  CPE que asigno el Tercero.
+
+8408119 (8444162)
+8388103 (8444151)
+8388079 (8444161)
+8388070 (8444144)
+8388087 (8444167)
+
+Gracias y quedo atento a sus comentarios
+
+
+Comments: (Moreno, Dayana) 17/05/24 14:45
+FECHA: **17/05**
+AREA: OFF NET - MURIEL ESPIRITO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **14/06**
+OBSERVACION: En comunicación con Maria Elena Bravomalo (OFFNET), vía teams, indica que el caso aun está en ON HOLD, ya que el cliente indica que se retoman trabajos hasta junio.
+-----------------------------------
+
+Comments: (Moreno, Dayana) 14/06/24 18:18
+FECHA: **14/06**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **21/06**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+
+Comments: (Moreno, Dayana) 02/07/24 14:12
+FECHA: **02/07**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **12/07**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Moreno, Dayana) 15/07/24 14:25
+FECHA: **15/07**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **29/07**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Arciniegas, Viviana) 29/07/24 11:48
+-----------------------------------
+FECHA: **29/07**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **12/08**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Arciniegas, Viviana) 06/08/24 13:00
+-----------------------------------
+FECHA: **06/08**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **23/08**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Arciniegas, Viviana) 26/08/24 13:54
+FECHA: 26/08
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: 13/09
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+Comments: (Arciniegas, Viviana) 13/09/24 11:00
+Debido a que la persona encargada no se encuentra, se verifica caso nuevamente 16/09
+Comments: (Arciniegas, Viviana) 17/09/24 13:46
+Se reactivan labores, en comunicaciópn con Paula Lozano indica que se realiza el site survey para Copa Airlines en el aeropuerto. Tanto Lucretia Carrion como Kenny Martinus desconocen esta solicitud de conexión del nuevo servicio, y no se dio permiso para llevar a cabo la visita de AmericanAxess.
+Comments: (Arciniegas, Viviana) 27/09/24 13:12
+El tercero realiza el site survey, en espera del informe de la visita y confirmación para realizar la instalación. 
+Comments: (Arciniegas, Viviana) 16/10/24 17:00
+Pendiente la llegada del equipo a Aruba, se estima que llegue en la semana del 20 de octubre.
+Comments: (Arciniegas, Viviana) 25/10/24 12:56
+Se informa que el equipos entregado en Aruba es un Cisco 3560, el SDM indica que este equipo es un switch y no es el adecuado, ya que no hace el ruteo, se realiza consulta al CD para confirmar si es posible utilizar el equipo Cisco 3560 en la solución de este proyecto para ser instalado en el cliente.
+Comments: (Arciniegas, Viviana) 30/10/24 16:42
+El CD Ever Contreras confirma que el equipo puede funcionar como CPE, el SDM envía scritp para configuración. En espera que se confirme la fecha de instalación del equipo. Se verifica caso el 06/11
+Comments: (Arciniegas, Viviana) 06/11/24 11:54
+De acuerdo a correo, el tercero indica que el equipo ya fue configurado con el script enviado por parte de Cirion, pendiente confirmación del cliente la cuál será validada por la CCM. Se revisa tarea el 08/11
+
+Comments: (Arciniegas, Viviana) 08/11/24 14:47
+De acuerdo a correo se indica que está pendiente VoBo por parte del cliente. Se revisa caso el 14/11
+Comments: (Arciniegas, Viviana) 14/11/24 10:55
+De acuerdo a correo se encuentra en validación interna para confirmar si se continúa con la instalación del equipo o si se realizará cancelación. Se revisa caso el 21/11
+Comments: (Arciniegas, Viviana) 21/11/24 11:06
+De acuerdo a correo se encuentra en validación interna para confirmar si se continúa con la instalación del equipo o si se realizará cancelación. Se revisa caso el 28/11
+Comments: (Arciniegas, Viviana) 29/11/24 10:55
+De acuerdo a correo se encuentra pendiente cronograma para llevar a cabo las actividades en la sede. Se revisa caso el 06/12
+Comments: (Arciniegas, Viviana) 06/12/24 12:07
+Continúa pendiente el cronograma para llevar a cabo las actividades en la sede. Se revisa caso el 13/12
+Comments: (Arciniegas, Viviana) 13/12/24 14:11
+Continúa pendiente el cronograma para llevar a cabo las actividades en la sede. Se revisa caso el  18/12
+Comments: (Arciniegas, Viviana) 20/12/24 13:14
+Continúa pendiente el cronograma para llevar a cabo las actividades en la sede. Se revisa caso el  27/12
+Comments: (Arciniegas, Viviana) 27/12/24 11:42
+Continúa pendiente el cronograma para llevar a cabo las actividades en la sede. Se revisa caso el  03/01
+Comments: (Arciniegas, Viviana) 28/01/25 12:21
+De acuerdo a correo se tiene pendiente el envío de las ip´s para que el sdm pueda compartir el script. Se verifica caso el 30/01
+Comments: (Arciniegas, Viviana) 29/01/25 17:09
+Tercero informa las ip´s, pendiente culminar la instalación del servicio. SDM comparte script. Se revisa caso el 04/02

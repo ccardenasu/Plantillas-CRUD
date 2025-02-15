@@ -1,0 +1,99 @@
+CFS: 500408389
+DKO: 8849790
+tipo_configuracion: Modificacion
+tipo_servicio: VPN
+RFS-IP-PORT: 6000323520
+RFS-IP-PORT_NID: 6000323521
+Cliente: GODADDY.COM, LLC
+SEDE: No-encontrado
+SW: BOGTCLFWZG003
+Interface SW: GigabitEthernet0/0/3
+PE: psr2.cxv1.bog
+Interface PE: ae10.10
+VRF: 3967-1-GoDaddy-2006246559-L3VPN
+BW: 100M
+WAN: 10.111.255.0/30
+Alias: NID142485
+Snmp Version: 2c
+Address IP: 10.226.205.229
+
+EA-CO11455@psr2.cxv1.bog# show | compare | no-more 
+[edit interfaces ae10 unit 10]
+-    description "CUSTOMER: VPN-3967-1|OSS: IMPS-MPLS: 81-1MNWMB :GODADDY.COM LLC-GM113340 (FRO2006294958VRP, BOG:CRA7#156-10) [300029118]";
++    description "CUSTOMER: GODADDY.COM, LLC (CFS:500408389) (RFS:6000323520)";
+comm
+
+
+DKO:8849790 (8887360)
+
+Comments: (Vallejo Caguenas, Sergio) 23/12/24 19:56 Start DokuFlow.
+Actividad: Por cancelacion Errada se debe realizar reactivacion del canal VPN @100Mbps por medio de Fibra Propia.
+
+Customer Technical Contact:
+ROBINSON URREGO SILVA / M: orien@andinet.com.co 
+
+VPN @100Mb
+XML 8842917
+CFS 500408389
+
+Address: Carrera 7 No 156-10
+
+RFS: 
+*:RFS6000323520 ( IP Port )
+*:RFS6000323522 ( Fiber Chain )
+*:RFS6000323521 ( NID )
+*:RFS6000323523 ( CPE )
+--------------------------
+Description of Service: ||
+--------------------------
+Por cancelacion Errada se debe realizar reactivacion del canal VPN @100Mbps por medio de Fibra Propia, Regularizar informacion en BBIP con CFS/RFS, se debe cambiar ACCEDIAN por ADVA, se mantiene CPE:ISR4331-AX/K9
+======================
+
+============= IPSA =============
+
+Su amable colaboracion con el cambio de CFS/RFS por regularizacion de recursos por cancelacion Errada nuevos identificadores.
+Asignar LP NID 
+
+PE: psr2.cxv1.bog
+INT: ae10.10
+WAN: 10.111.255.1/30
+VRF: 3967-1-GoDaddy-2006246559-L3VPN
+::: UM :::
+EQUIPO: BOGTCLFWZG003
+INT: GigabitEthernet0/0/3
+FAVOR BUSCAR EN XIME UM ya que a pesar que llega a M2 el recurso documentado no esta APP pero recibimos MAC
+	
+LP NID: ASIGNAR LP NID 
+LP CPE: 172.18.94.114/32
+
+============= SDM =============
+
+1. Despachar e integrar NID, cambiar Accedian por NID ADVA, Asegurar dejarlo en Gestion
+1.1 Recurperar gestion del CPE de 172.18.94.114/32  CPE:ISR4331-AX/K9
+2. Agendar ventana con el cliente para cambio de NID y recurperacion de Gestion Regularizar enlace VPN @100Mb:
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+Solicitar los siguientes equipos:
+SAP/ Descripción Cantidad 
+
+1384691/F150/ADV/GE114PRO/AC/811.|1|
+1362830/F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN.|1|
+1429801/AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT|1|
+1248720/20KM SINGLE FIBER SFP 1310NM TX SMF LC -5 TO 75 C TX PWR -7 TO 1000SFP31B20L CHAMPION ONE |1|1000SFP31B20L
+
+============= SA =============
+
+1. Garantizar Gestion NID y CPE: 172.18.94.114/32  CPE:ISR4331-AX/K9
+2. Realizar prueba de conectividad
+3. realizar entrega a el Cliente.
+
+Workflow Initialization
+Comments: (Figueredo, Leidy) 26/12/24 16:42
+Finished Step: Asignación de CCM·
+
+
+This Order was automatically initiated by Order NO:8849790
+Datos - IP VPN Add   **8849790*$*
+
+Workflow Initialization

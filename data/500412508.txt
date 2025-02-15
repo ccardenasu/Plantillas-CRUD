@@ -1,0 +1,136 @@
+CFS: 500412508
+DKO: 8886256
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000329558
+RFS-IP-PORT_NID: 6000329559
+Cliente: CONSORCIO MI CASA BACANA DIGITAL
+SEDE: GALAPA
+PE: edge2.bgo2
+Interface PE: et-4/0/11:0.1200
+Interface NID: et-4/0/11:0.505 
+VRF: No encontrado
+BW: 3000M
+WAN: 8.243.64.166/31
+WANIPv6: 2001:13b2:9008:1000::/127
+LANIPv4: 8.243.67.112/29
+LANIPv6: 2001:13b2:9100::/48
+LB NID: 8.243.67.31          
+
+
+DKO:8886256 (8886689)
+
+Comments: (Rojas, Carlos) 07/02/25 21:53 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere Alta de servicio de INTERNET via TERCERO a 1100Gbps
+ 
+Cliente: CONSORCIO MI CASA BACANA DIGITAL 	
+Sede:   CONSORCIO MI CASA -GALAPA	
+DirecciÃ³n: VÃA SIN NOMBRE ,  GALAPA, COLOMBIA, Latitud 10.9218891 Longitud -74.8772743
+Design ID:  K05E_VN_81-5SGGIV7			
+
+SE: Giovanny Orjuela 
+CCM: Andrea Roa
+
+Nombre del contacto:  Pedro De La Ossa PeÃ±a
+Email del contacto: gerenciatecnica@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3157154734
+
+Nombre del contacto:  Hernan Figueroa
+Email del contacto: conectividad@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3232851197
+
+Nombre del contacto: Julio Hamburger
+Email del contacto: redes@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3194322030
+
+Project ID (XML): 8864995
+Service Instance: INTERNET
+CFS-CID: 500412508							
+
+RFS IP Port: 6000329558
+RFS 3rd Party: A GENERARSE POR FLUJO ICT
+RFS NID: 6000329559
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: FSP 150-XG108 XG108 H AND XG108 SH SOFTWARE BASE KEY F150/XG10X/SW/BASE/KEY 1091901005-01 ADVA
+Item SAP: 1480593
+Parte numero: 1091901005-01
+Cantidad: 1
+
+DescripciÃ³n: F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+Item SAP: 1384891
+Parte numero: 1013904010
+Cantidad: 1
+
+DescripciÃ³n: 10G BASE-SR SFP+ ETHERNET 850NM
+Item SAP: 1121903
+Parte numero: 10GSFP+E-SR
+Cantidad: 1 LAN DE ADVA - 2 HILOS
+
+==================== OFFNET ======================
+1. Contratar el siguiente enlace:
+
+NOTA: Por favor solicitar que se entregue el servicio en el nodo en un puerto independiente del NNI para conexiÃ³n directa a PE o a red Metro 3.0.  Se espera ampliacion a corto plazo a 14Gbps
+
+Proveedor: UFINET
+Tipo: Capa 2 [L2], QinQ en M2.0
+BW: 3Gbps
+TDG: DK-SURVEY-TDG-152064458-8864753
+Tipo: Optico - TENGIGA
+Conector lado cliente: LC
+
+2. Favor compartir con IP SA y SDM/SA los datos de la NNI acordada con el LEC (SW, Puerto, Nodo) y VLAN asignada por parte del proveedor para efectos de documentaciÃ³n y configuraciÃ³n
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio segÃºn el NNI que confirme OFFNET:
+
+NOTA: Se le ha solicitado a OFFNET puerto 10G independiente de NNI para conexiÃ³n directa a PE o a red Metro 3.0. Se espera ampliacion futura a 14Gbps
+
+CONSULTA NCD PARA IP 8864127      
+
+Servicio: INTERNET
+PE: Por Asignar - CONFIGURAR EN PE EDGE
+Interface: Por Asignar - PUERTO TENGIGA
+IPv4 PE (IP pÃºblica): Por Asignar /31
+IPv6 PE: Por Asignar /127
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+IPv6 LAN (CPE): /48
+
+Enrutamiento: ESTATICO
+BW: 3Gbps
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y OFFNET para realizar CrossconexiÃ³n en nodo
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via fibra PaP de 3Gbps
+3. Instalar y configurar NID ADVA en sede del cliente.
+4. Compartir el direccionamiento IP publico LAN informado por parte de IPSA
+5. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (ADVA)
+6. Realizar prueba de esfuerzo del canal con el cliente y garantizar navegaciÃ³n exitosa a Internet
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Availability
+LB ADVA: SegÃºn asignaciÃ³n de IPSA
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 07/02/25 22:03
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8886256
+Datos - ADI Add   **8886256*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 10/02/25 13:04
+Finished Step: Alta Tercero·
+Se solicita  a UFINET instalación de canal a 3.000MBPS. lado cliente  1 Puertos TENGIGA, lado interconexión 1 puerto independiente SUBA
+
+This Order was automatically initiated by Order NO:8886261
+Activación Terceros ICT   **8886261*$*
+
+Workflow Initialization

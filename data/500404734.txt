@@ -1,0 +1,220 @@
+DKO:8772909 (8828170)
+Comments: (Rojas, Carlos) 12/11/24 16:36 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere Alta de servicio de INTERNET via TERCERO a 3Gbps
+ 
+Cliente: ASOCIACION DE TELECOMUNICACIONES Y EL SECTOR TIC DE SUPIA CALDAS 	
+Sede:    ASTVCOM - SUPIA
+DirecciÃ³n: SUPIA, CALDAS, COLOMBIA, Latitud 5.455278 Longitud -75.649444
+Design ID:  J501_VN_81-1B19D83
+
+SE: Utria Perez, Marvin 
+AM: Juan Heron
+CCM: Andrea Roa
+
+Contacto: Frankie Villada
+Correo: 	 astvcom@hotmail.com
+Telefono:  (+57) 311 6294874
+
+Project ID (XML): 8749381	
+Service Instance: INTERNET
+CFS-CID: 500404734	
+
+RFS IP Port: 6000318563
+RFS Ethernet:  A GENERARSE POR DELIVERY
+RFS 3rd Party: A GENERARSE POR FLUJO DE ICT
+RFS NID: 6000318565
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: FSP 150-XG108 XG108 H AND XG108 SH SOFTWARE BASE KEY F150/XG10X/SW/BASE/KEY 1091901005-01 ADVA
+Item SAP: 1480593
+Parte numero: 1091901005-01
+Cantidad: 1
+
+DescripciÃ³n: F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+Item SAP: 1384891
+Parte numero: 1013904010
+Cantidad: 1
+
+DescripciÃ³n: SF 10G BASE-LR SFP PLUS 1330TX SINGLEMODE 10KM 10GSFP+E33B10L CHAMPION OPTICAL NETWORK
+Item SAP: 1269876
+Parte numero: 10GSFP+E33B10L
+Cantidad: 1 (WAN ADVA)
+
+DescripciÃ³n: PLUGGABLE OPTIC 300M 10GBASE-SR SFP+ 850NM MULTIMODE 10GSFP+E-SR CHAMPION
+Item SAP: 1121903
+Parte numero: 10GSFP+E-SR
+Cantidad: 1 (LAN ADVA)
+
+===================== OFFNET ======================
+1. Contratar el siguiente enlace:
+
+Proveedor: UFINET
+Tipo: Capa 2 [L2], QinQ
+BW: 3Gbps
+TDG: DK-SURVEY-TDG-152005308-8725995
+Tipo: Optico - TENGIGA
+Conector lado cliente: LC
+
+2. Favor compartir con IP SA y SDM/SA los datos de la NNI acordada con el LEC (SW, Puerto, Nodo) y VLAN asignada por parte del proveedor para efectos de documentaciÃ³n y configuraciÃ³n
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio segÃºn el NNI que confirme OFFNET:
+
+Servicio: INTERNET
+PE: Por Asignar
+Interface: Por Asignar
+IPv4 PE (IP pÃºblica): Por Asignar /31
+IPv6 PE: Por Asignar /127
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+IPv6 LAN (CPE): /44 (PENDIENTE QUE SE Y AM CONFIRMEN SI PROCEDE DICHO DIRECCIONAMIENTO IP Y APROBACION CORRESPONDIENTE)
+
+Enrutamiento: BGP 
+AS BGP: (DE ACUERDO A FORMATO DILIGENCIADO POR EL CLIENTE, AUN PENDIENTE DE SER ENVIADO)
+BW:3Gbps
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+3. Asignar LB CPE y dar de Alta RFS CPE.
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y OFFNET
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via TERCERO a 3Gbps
+3. Compartir al cliente el direccionamiento IP publico LAN informado por parte de IPSA
+4. Instalar y configurar NID ADVA en sede del cliente. Entregar al cliente el servicio en puerto TENGIGA para FO Multimodo
+5. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (ADVA)
+6. Realizar prueba de esfuerzo del canal con el cliente y garantizar navegaciÃ³n exitosa a Internet
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Monitor/ Notify 
+LB ADVA: SegÃºn asignaciÃ³n de IPSA
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 12/11/24 17:14
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Gabriel Ernesto Cardenas) 14/11/24 11:25
+Finished Step: Asignación de SDM·
+
+Comments: (Rojas, Carlos) 18/11/24 10:37
+**********************************
+SE ACTUALIZA DIRECCION DE SEDE - INDICANDO DIRECCION COMPLETA:
+**********************************
+
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere Alta de servicio de INTERNET via TERCERO a 3Gbps
+ 
+Cliente: ASOCIACION DE TELECOMUNICACIONES Y EL SECTOR TIC DE SUPIA CALDAS 	
+Sede:    ASTVCOM - SUPIA
+DirecciÃ³n: Cl. 34 #6-31, Latitud: 5.456693839003411, Longitud: -75.64940983316855, SUPIA, CALDAS, COLOMBIA
+Design ID:  J501_VN_81-1B19D83
+
+**********************************
+Comments: (Rojas, Carlos) 25/11/24 14:06
+***********************************
+ACTUALIZACION DE DKO: 
+***********************************
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: FSP 150-XG108 XG108 H AND XG108 SH SOFTWARE BASE KEY F150/XG10X/SW/BASE/KEY 1091901005-01 ADVA
+Item SAP: 1480593
+Parte numero: 1091901005-01
+Cantidad: 1
+
+DescripciÃ³n: F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+Item SAP: 1384891
+Parte numero: 1013904010
+Cantidad: 1
+
+DescripciÃ³n: SF 10G BASE-LR SFP PLUS 1330TX SINGLEMODE 10KM 10GSFP+E33B10L CHAMPION OPTICAL NETWORK
+Item SAP: 1269876
+Parte numero: 10GSFP+E33B10L
+Cantidad: 2 (WAN + LAN ADVA)
+
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio segÃºn el NNI que confirme OFFNET:
+
+Servicio: INTERNET
+PE: Por Asignar
+Interface: Por Asignar
+IPv4 PE (IP pÃºblica): Por Asignar /31 (Confirmado por cliente)
+IPv6 PE: Por Asignar /127
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+IPv6 LAN (CPE): /48
+
+Enrutamiento: Estatico
+BW:3Gbps
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+3. Asignar LB CPE y dar de Alta RFS CPE.
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y OFFNET
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via TERCERO a 3Gbps
+3. Compartir al cliente el direccionamiento IP publico LAN informado por parte de IPSA
+4. Instalar y configurar NID ADVA en sede del cliente. Entregar al cliente el servicio en puerto TENGIGA para FO Monomodo doble hilo
+5. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (ADVA)
+6. Realizar prueba de esfuerzo del canal con el cliente y garantizar navegaciÃ³n exitosa a Internet
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+***********************************
+Comments: (Alarcon Perez, Jhon) 28/11/24 19:09
+========================================================
+========================================================
+SEÑORES IPSA
+
+Agradezco por favor realizar las correcciones de los recursos asginados sobre el soporte IPSA 8794052 (8794052) de acuerdo a la ultima actualizacion del CD. 
+
+CAMBIAR - WANIPv6: 2001:13b2:8000::14c/126 ---- se requiere asignar /127
+CAMBIAR - LANIPv6: 2001:13b2:9010::/44     ---- se requiere asignar /48
+
+Enrutamiento: Estatico
+BW:3Gbps
+========================================================
+========================================================
+
+
+This Order was automatically initiated by Order NO:8772909
+Datos - ADI Add   **8772909*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 29/11/24 11:56
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+CFS: 500404734
+DKO: 8772909 (8794052)
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000318563
+RFS-IP-PORT_NID: 6000318565
+Cliente: ASOCIACION DE TELECOMUNICACIONES Y EL SECTOR TIC DE SUPIA CALDAS
+SEDE: SUPIA 81-1B19D83
+PE: edge1.bgo2
+Interface PE: ae31.238
+Interface NID: ae31.10238
+Vlan Tercero: 238
+Svlan: 238
+Cvlan: 1200
+BW: 3000M
+WAN: 8.243.64.184/31
+WANIPv6: 2001:13b2:8000::14c/127
+LANIPv4: 8.243.64.200/29
+LANIPv6: 2001:13b2:9010::/48
+ASN: Pendiente
+LB NID: 8.243.64.188/31     
+
+oci@edge1.bgo2# show | compare | no-more 
+[edit interfaces ae31 unit 238 family inet6]
++       address 2001:13b2:8000::14c/127;
+-       address 2001:13b2:8000::14d/126;
+
+{master}[edit]
+roci@edge1.bgo2# 
+
+
+
+
+Favor cuando se tenga el Formato BGP informar para poder configurar el BGP.

@@ -1,3 +1,25 @@
+CFS: 500412509
+DKO: 8885611
+tipo_configuracion: Alta
+tipo_servicio: ADI
+RFS-IP-PORT: 6000329485
+RFS-IP-PORT_NID: 6000329486
+Cliente: CONSORCIO MI CASA BACANA DIGITAL
+SEDE: REPELON
+PE: edge1.bgo2
+Interface PE: ae30.182
+Interface NID: ae30.505 
+VRF: No encontrado
+Vlan Tercero: 182
+Svlan: 182
+Cvlan: 1300
+BW: 1000M
+WAN: 8.242.184.90/31
+WANIPv6: 2001:13b0:8001:af03::c0/126
+LANIPv4: 64.76.82.152/29
+LANIPv6: 2001:13b0:a020::/48
+LB NID: 8.242.184.93   
+
 DKO:8885611 (8886171)
 
 Comments: (Rojas, Carlos) 07/02/25 13:44 Start DokuFlow.

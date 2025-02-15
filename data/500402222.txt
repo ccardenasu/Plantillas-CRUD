@@ -1,0 +1,147 @@
+CFS: 500402222
+DKO: 8883596
+tipo_configuracion: Alta
+tipo_servicio: VPN
+RFS-IP-PORT: 6000315155
+RFS-IP-PORT_NID: 6000315156
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+SEDE: CSJ---ZARAGOZA-ANTIOQUIA-JUZGADO-PROMISCUO
+SW: sw1.mdc4
+Interface SW: GIGA 0/0/1
+PE: PSR1.MDC4
+Interface PE: ae3.1401
+VRF: CSJ_FORTI_SDWAN
+Vlan Tercero: 1401
+RD: 16528:1503520
+Svlan: 1401
+Cvlan: 1200
+BW: 20M
+WAN: 10.101.201.180/30
+
+DKO:8883596 (8890596)
+
+Comments: (Ramos, Juan) 05/02/25 12:26 Start DokuFlow.
+NOTA: Se canceló DKO 8685837 , debido a que proveedor UNE no logro entregar el BW solicitado y por parte de CCM/SE se acuerda migrar a otro proveedor
+
+Actividad: Se requiere alta y cambio de convenio enlace SDWAN IPVPN @20M se cambiará el convenio UNE al proveedor NETBEAM , y también  cambio de Tecnologia de VPN Legacy a SD WAN IP VPN ; NM Advanced Management
+
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+Sede: CSJ - ZARAGOZA ANTIOQUIA JUZGADO PROMISCUO
+Dirección: Calle Principal, Salon Pastooal Piso 1, ZARAGOZA, ANT-Antioquia, Colombia
+
+DesignID: L63C_VN_81-1YXHFII
+XML: 8671863
+SD WAN IP VPN CFS: 500402222
+RFS:
+6000315155 IP Port  
+6000315078  SDWAN CPE   
+6000315156  NID  
+ICT --- 3rd Party  
+
+---------------------------------------------------------------
+DATOS DEL ENLACE: || FUENTE Archivo Maestro CD - CSJ 2024_2026||
+----------------------------------------------------------------
+CONSECUTIVO: 240
+PIVOTE: 1334
+Tipo de Enlace: SD WAN IP VPN 
+BW:  20Mbps.
+
+========= SOLICITUD DE EQUIPOS =========
+
+1 x CPE
+FG40F - Fortinet 40F
+Nuevo Fortinet 40F , Sin licencia UTP no asociada a EA, vincular con Forticare "orden de compra gestionada por SE"
+
+1 x Nid Adva
+SAP: 1384691
+Descripción: F150/ADV/GE114PRO/AC/811. Cantidad: 1.
+SAP: 1362830
+Descripción: F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN. Cantidad: 1.
+SAP: 1429801
+Descripción: AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT. Cantidad: 1.
+
+============== OFFNET ====================
+
+DKO cambio de convenio UNE a NETBEAM
+Contratar el siguiente circuito:
+ 
+Proveedor: NETBEAM
+Tipo: Capa 2 [L2]
+BW:20 Mb
+Handoff interface: Eletrical, RJ45
+DK-SURVEY-TDG-151831298-8305307 -> se recotiza paquete cotizacion 8845426
+
+============== IPSA ====================
+
+1. Por modificación de convenio y cambio de tecnología se requiere realizar configuración nueva entre BBIP y NNI que indique OFFNET para nuevo recurso SDWAN.
+2. Preconfigurar recursos y mantenerlos Shutdown para activarlos en Ventana de mantenimiento controlada con el cliente.
+
+Tipo: SDWAN IPVPN @ 20M
+VRF:CSJ_FORTI_SDWAN
+
+RECURSO ACTUAL:
+--------------------------
+BBIP: psr1.mdc4 Interface: ae10.518
+METRO: ME2:MDLNCLAFNN001:Te0/0/2/1.934791300
+
+RECURSO NUEVO:
+---------------------
+PE: ASIGNAR
+INT: ASIGNAR
+WAN: 10.101.201.181/30
+Vrf:  CSJ_FORTI_SDWAN
+BW:  20Mbps
+
+Configurar IP y con VLAN asignada por offnet para gestión del NID.
+============== SDM / SA =================
+En la sede se habilitará una solución SDWAN Fortinet con un acceso de Datos MPLS a  Mb (solicitado en esta DKO) + un acceso de SDWAN Internet Starlink por Cirion (Solicitado en otra DKO) + un equipo Fortigate FG-40F (Solicitado en esta DKO) , implementando un esquema de balanceo de tráfico y alta disponibilidad.
+
+1. Realizar seguimiento a la configuración del nuevo servicio SDWAN IPVPN por parte de BBIP y OFFNET.
+2. En los sitios en los que el acceso no tenga NID instalar un equipo NID y entregar sobre un puerto libre el acceso de Datos SDWAN Fortinet a Mb solicitado en esta DKO.
+3. Instalar Nuevo Fortinet 40F, Sin licencia UTP no asociada a EA, vincular con Forticare "orden de compra gestionada por SE", configuración activo activo "Starlink de Cirion" y realizar la integración del canal SDWAN IPVPN al  equipo FG-40F, conectando el mismo a nivel WAN al nuevo canal de Datos SDWAN habilitado en esta DKO utilizando puerto libre sobre el equipo ADVA .
+4. Cargar sobre el equipo Fortinet la plantilla de configuración básica del proyecto, se debe validar que la gestión de los equipos suba sobre los gestores de la red SDWAN Fortinet (Fortimanager y Fortianalizer) habilitados para la red del cliente.
+Los siguientes son los datos básicos de configuración:
+Hostname: CSJ_ZARAGOZA_JUZGADO_PROMISCUO_U_RFS6000315078
+INT WAN 1 (Mpls): 10.101.201.182/30
+Ip Tunnel 1 - Concentrador MPLS: 172.30.10.154/23 (Spoke)
+
+5. Verificar la integración de los accesos y la negoc
+
+Workflow Initialization
+Comments: (Ramos, Juan) 05/02/25 12:27
+5. Verificar la integración de los accesos y la negociación de los puertos. Realizar pruebas de saturación y calidad sobre el acceso a Datos MPLS. No cargar sobre el equipo Fortinet la licencia del Enterprise Agreement.
+6. En ventana de mantenimiento acordada con el cliente con soporte del personal que administra el FW central del cliente en IFX, se debe realizar la migración de la solución de la sede de la actual solución MPLS a la nueva solución SDWAN Fortinet, realizando a nivel LAN las correspondientes Crossconexiones al SW Lan de la sede, y sobre el FW Central en IFX realizando el enrutamiento de los segmentos LAN de la sede ya no por la troncal de la solución MPLS sino por la troncal de la solución SDWAN Fortinet.
+7. Realizar el alta del servicio en la sede vía solución SDWAN Fortinet, realizar pruebas de los servicios del cliente (Datos, Aplicativos, Navegación etc), validando que el servicio SD-WAN Fortinet funcione correctamente según las políticas definidas en la plantilla y el LLD del proyecto.
+8. Se deben realizar pruebas sobre el esquema principal /backup en la solución de esta sede con el STARLINK proveedor SPEEDCAST que se encuentra en proceso de instalación bajo el CFS:500407843, garantizar que la policita este seteada al BW acordado, y ante una caída de uno de los canales habilitados en la sede, el otro canal soporte el tráfico de esta.
+9. Entregar la solución al cliente a Total Satisfacción, si el cliente requiere, prestarle soporte para la integración del canal a su solución de red.
+10. Entregar la solución SDWAN enviando un correo de entrega al contacto del cliente con las pruebas realizadas (Saturación, Conectividad, Navegación, Aplicativos y Alta Disponibilidad)
+11. Al terminar la actividad recuperar el antiguo CPE
+12. Actualizar la ingeniería.
+=================NETWORK MANAGEMENT=================
+
+NM Network Management Type Advanced Management solución SDWAN
+Asegurar monitoreo SDWAN definido para la solución del cliente CSJ y Actualizar nueva capacidad solución SDWAN
+BW:20 Mbps
+
+================= CD =================
+
+Confirmar que los recursos antiguos se den de baja luego del cambio de convenio
+
+RECURSO BBIP :
+psr1.mdc4 Interface: ae10.518
+::: UM:::
+ME2:MDLNCLAFNN001:Te0/0/2/1.934791300
+
+RECURSOS CONVENIO:
+VENDOR: UNE
+VENDOR ID: 45799
+ICT: 404977
+
+Comments: (Ramos, Juan) 06/02/25 17:51
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8883596
+Datos - IP VPN Add   **8883596*$*
+
+Workflow Initialization

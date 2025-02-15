@@ -1,0 +1,102 @@
+CFS: 500052374
+DKO: 8885282
+RFS-IP-PORT: 6000329314
+Cliente: MEDIA COMMERCE PARTNERS S.A.S.
+SEDE: BOGOTA-DC.-COL-XV
+PE: edge2.bgo1
+Interface PE: et-2/0/28.0
+BW: 20000M
+
+DKO:8885282 (8889005)
+
+Comments: (Rojas, Carlos) 06/02/25 21:00 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar migracion a puerto de 100G y  ampliaciÃ³n de servicio de INTERNET via Fibra Optica PaP sobre BBIP a 8Gbps de CIR + Burstable hasta 20Gbps
+
+Cliente: MEDIA COMMERCE PARTNERS S.A.S.
+Sede:   MEDIA COMMERCE S.A.-BOGOTA-DC. COL XV	
+DirecciÃ³n: CALLE 170#64-31, BOGOTA,  Latitud 4.592223 Longitud -74.091702
+Design ID:  M481_VN_1-3KQABD
+
+SE: Oscar Quintero 
+CCM: TBD
+
+Nombre del contacto:  Valentina Garcia
+Email del contacto: valentina.garcia@mc.net.co
+TelÃ©fono del contacto: +57 3163781417
+
+Project ID (XML): 8882246
+Service Instance: INTERNET
+CFS-CID: 500052374
+
+RFS IP Port: 6000329314   (Antiguo RFS IP Port: 6000090335)
+RFS Fiber Chain: 6000329436 (Antiguo RFS Fiber Chain: 6000329260)
+
+=============== SOLICITUD DE EQUIPOS ===============
+No se requiere envio de equipos
+
+================= PLANTA EXTERNA ==================
+1. Brindar apoyo al cliente  para HABILITAR 2 nuevos hilos de fibra desde la camara externa al nodo de COLXV hasta el FEC al interior del nodo con el fin de que se pueda realizar conexiÃ³n hacia el puerto de 100G del PE que asigne IPSA
+
+==================PLANTA INTERNA ==================
+1. Seguimiento a IPSA y planta externa por recursos asignados para habilitar hilos de fibra del cliente hasta el nuevo puerto de 100G asignado por parte de IPSA
+
+======================= IP SA =======================
+1. Realizar ampliaciÃ³n del servicio de INTERNET a 8Gbps de CIR + Burstable hasta 20Gbps  en BBIP migrando el servicio a puerto de 100Gbps independiente en el PE con modulo SFP de 100G para fibra Monomodo de doble hilo. Por favor dejar en shutdown el puerto de 100G para que sea habilitado durante la ventana de trabajo con el cliente
+
+NOTA: EL SERVICIO INDICADO EN ESTA DKO DEBE QUEDAR CONFIGURADO EN UN PE Y PUERTO FISICO INDEPENDIENTE DIFERENTE DEL ASIGNADO PARA EL SERVICIO SOLICITADO MIGRAR A PUERTO DE 100G CON LA DKO 8885279
+
+CONSULTA DE FACTIBILIDAD: 8860704
+
+RECURSOS ACTUALES EN BBIP DEL ENLACE:
+PE: edge2.bgo1
+Int: et-4/0/0:1.0
+WAN IPV4:  190.217.49.37/30 (SE CONSERVARÃ EL DIR. IP)
+WAN IPV6:  2001:13b0:a000:00cf::2/64 (SE CONSERVARÃ EL DIR. IP)
+
+2. Actualizar la descripciÃ³n del PE con el nuevo RFS IP Port y CID indicados en esta DKO:
+CFS-CID: 500052374
+RFS IP Port: 6000329314 
+
+===================== SDM/SA ======================
+1. Validar ampliaciÃ³n de recursos en BBIP y red Metro a 8Gbps de CIR + Burstable hasta 20Gbps realizada por parte de IPSA 
+2. Programar con el cliente ventana de trabajo para ampliaciÃ³n del servicio y migraciÃ³n a puerto de 100Gbps independiente en el PE
+
+NOTA: Se ha solicitado a PLANTA EXTERNA brindar apoyo al cliente para habilitar 2 nuevos hilos de fibra del cable del cliente con el objetivo de realizar cableado en paralelo al actual puerto
+
+3. Realizar prueba de esfuerzo del canal con el cliente y garantizar correcta navegaciÃ³n a Internet. Por favor dejar el actual puerto de 10G del PE en shutdown durante la ventana para poder posteriormente solicitar la liberacion del recurso:
+
+PE: edge2.bgo1
+Int: et-4/0/0:1.0
+WAN IPV4:  190.217.49.37/30
+WAN IPV6:  2001:13b0:a000:00cf::2/64
+
+4. Entregar enlace a satisfacciÃ³n del cliente.
+5. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+===================== CD ======================
+Solicitar liberar recursos de BBIP posterior a migracion de servicio a puerto de 100G:
+
+DC COLXV - SALA 3
+PE: edge2.bgo1
+Int: et-4/0/0:1.0
+WAN IPV4:  190.217.49.37/30 (NO LIBERAR DIRECCIONAMIENTO IP)
+WAN IPV6:  2001:13b0:a000:00cf::2/64 (NO LIBERAR DIRECCIONAMIENTO IP)
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8885282
+Datos - ADI Mod   **8885282*$*
+
+Workflow Initialization
+Comments: (Cely Corredor, Jenny) 12/02/25 12:57
+Favor asignar recursos IPSA al nodo COL XV
+Comments: (Cely Corredor, Jenny) 12/02/25 12:59
+Finished Step: Análisis y Validación de la Información
+
+
+This Order was automatically initiated by Order NO:8885284
+Ingeniería de acceso Fibra Optica (1)   **8885284*$*
+
+Workflow Initialization

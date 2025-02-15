@@ -1,0 +1,116 @@
+CFS: 500007713
+DKO: 8886728
+tipo_configuracion: Alta
+tipo_servicio: VPN
+RFS-IP-PORT: 6000085442
+RFS-IP-PORT_NID: No encontrado
+Cliente: SCOTIABANK COLPATRIA S.A.
+SEDE: CAJA-SATELITE-MADRID-CAFE-AGUILA-ROJA
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/2/1.934201300
+PE: psr2.bgo2
+Interface PE: ae14.580
+VRF: BCOLPOFI
+Vlan Tercero: 3420
+RD: 16528:2100062
+Svlan: 580
+Cvlan: 1300
+BW: 2M
+WAN: 10.90.3.0/30
+LB CPE: 172.18.16.232 
+LB NID: 10.235.88.55        
+
+
+DKO:8886728 (8887617)
+IP Port:6000085442
+
+Comments: (Gino Rodriguez) 10/02/25 13:46 Start DokuFlow.
+**** R E - I N G E N I E R Í A   C O N T I N G E N T E ****			
+*** IMPLANTACIÓN REQUERIDA PARA SUPERAR UNA SITUACIÓN DE ASSURANCE ****					
+Cirion provee para Scotia Bank Colpatria - Madrid - Caja Satélite Café Águila Roja un servicio IP VPN, con u.m. ETB.			
+Esta u.m. ETB se encuentra caida sin un horizonte claro de solución.			
+Se requiere instalar un nuevo enlace LEC Ufinet.
+			
+			
+Design id:	CPAT_VN_81-V1MAXB		
+Cliente:	SCOTIABANK COLPATRIA S.A.		
+Sede:	CAJA SATELITE MADRID CAFE AGUILA ROJA		
+Dirección:	CR 2 # 11 - 87, Madrid - Cundinamarca		
+Contacto principal: carlos.pinilla@scotiabankcolpatria.com - 311 254 8002			
+Contacto secundario: fredy.garzon@scotiabankcolpatria.com - Vicepresidencia de Tecnología			
+Favor copiar en los correos a:			
+Service Manager: cesar.rincon@ciriontechnologies.com - 317 516 2006			
+DL-COL-OUT.COLPATRIA@ciriontechnologies.com			
+			
+BW:	2M		
+LEC actual:	ETB ID: CAV30CI1070976		
+			
+
+Actividades solicitadas:			
+
+1. Con base en la factibilidad positiva de Ufinet, instalar un enlace Ufinet de 2M, como se solicita en la Xi.			
+Factib positiva: DokuOrder ID: 8651297			
+Se ajdunta correo de la SE, Rita Forero, autorizando la contratación			
+			
+La contratación debe ser a 12 meses, como indicó la SE:			
+NRC	 $         600.000 		
+MRC	$          214.650 		
+			
+RFS 3rd party = 	CFS:500007713     |        RFS:6000329584		
+			
+
+2. Proveer e instalar un nuevo NID para este servicio y ponerlo en gestión			
+RFS:6000329595 ( NID ).			
+			
+3. Configurar una VLAN de acceso sobre el backbone ME @ 2M para este nuevo enlace, sobre la interconexión que corresponda,			
+			
+4. Hacer corresponder esta VLAN  con el path IP VPN:			
+PE: psr2.cxv1.bog			
+Intfce: xe-0/0/1.13437			
+IP WAN: 10.90.3.1/30			
+vrf: BCOLPOFI			 
+BW: 2M			
+			
+5. a. Conectar el puerto Network del NID (1-1-1-1) al nuevo enlace Ufinet, que se está instalando con este DKO (como se muestra en la ing. de dokuviz),			
+			
+b. Conectar el puerto user del NID al port g0/0/1 del router (como se muestra en la ing. de dokuviz),			
+			
+6.a. Verificar alcanzabilidad por ping desde BBIP hasta CPE Cirion de casa del cliente,  10.90.3.2			
+			
+6.b. Verificar alcanzabilidad en gestión del NID,			
+			
+7. Estressar el enlace a su velocidad nominal,			
+			
+8. Asistir al cliente en sus pruebas aplicativas y obtener su conformidad,			
+			
+9.  Actualizar la ing de dokuviz.			
+			
+Gracias.			
+
+
+Workflow Initialization
+Comments: (Gino Rodriguez) 10/02/25 13:52
+Finished Step: Follow Up·
+
+Comments: (Gino Rodriguez) 10/02/25 13:53
+Finished Step: Follow Up·
+
+Comments: (Gino Rodriguez) 10/02/25 14:04
+Finished Step: Solicitud de alta/mod de circuito de Terceros·
+
+
+This Order was automatically initiated by Order NO:8886728
+Service Assurance Reengineering-Add   **8886728*$*
+
+	Workflow Initialization
+	Comments: (Moreno, Diana) 11/02/25 10:50
+	Se solicita a UFINET instalación de canal a 2 MBPS. Se asigna la SVLAN 3420 en la NNI Bogotá Metro2, 2.1 BOGTCLFXNN002 - TEN GIGA 0/0/2/1 
+
+	Comments: (Moreno, Diana) 11/02/25 10:50
+	Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8886780
+Activación Terceros   **8886780*$*
+
+Workflow Initialization

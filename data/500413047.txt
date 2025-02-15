@@ -1,0 +1,84 @@
+DKO:8888764 (8891624)
+
+Comments: (Ariza, Jorge) 12/02/25 10:53 Start DokuFlow.
+----------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere alta de SD WAN Broadband Internet vía Starlink e integrar con CPE SD-WAN
+
+CUSTOMER TECHNICAL CONTACT:
+Lilia Velasquez / liliavelasquez@datecsa.com
+SD WAN Broadband Internet @50Mb
+XML 8887046
+CFS 500413047
+
+CLIENT: DATECSA S.A.
+SITE: DATECSA - BOGOTA - CARRERA 23
+ADDRESS: CR 23 # 163, BOGOTA, COLOMBIA [LATITUD 4.7448938 LONGITUD -74.0466346]
+
+RFS:
+*:RFS 6000330056 ( 3rd Party )
+*:RFS 6000315717 ( SDWAN CPE ) Shared
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere alta de SD WAN Broadband Internet vía Starlink e integrar con CPE SD-WAN, en modalidad demo durante un periodo máximo de 45 días, a el fin de evaluar su funcionamiento y realizar las pruebas
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Contratar recursos
+Plan de Internet Satelital Banda Ancha Starlink
+QUOTING: TDG-152079974
+Handoff interface: Electrical, RJ45
+Rate Limit: 50Mb
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+NA
+----------------------------------------------------------------------------------
+SDM
+
+1. Es necesario realizar un relevamiento inicial en el sitio para definir la ubicación exacta de la instalación. Es importante tener en cuenta que la distancia máxima del cable propietario de OFFNET es de 25 metros para la conectividad WAN y de 5 metros para la conectividad LAN
+2. Se deberá llevar un herraje adecuado para la instalación de la estación en la pared o en la superficie definida. Este herraje será proporcionado por Cirion junto con la EAIM
+3. Agendar ventana con el cliente para realizar alta de SD WAN Broadband Internet vía Starlink e integrar con CPE SD-WAN
+4. Solicitar kit completo de montaje propiedad de Cirion; OFFNET se encargará de la instalación y puesta en marcha con Starlink
+5. El servicio se asignará por DHCP (sin IP fija)
+6. El canal será entregado una vez haya navegación, sin pruebas de saturación ni calidad de canal
+7. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+El Kit Starlink a ser utilizado en esta ubicación es asignado exclusivamente por OFFNET. Es importante no utilizar un kit diferente al asignado, por lo que la solicitud deberá realizarse posteriormente a la asignación de recursos por parte de OFFNET
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT
+
+CPE SD-WAN NM Advanced Management
+LB Asigna OFFNET
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 12/02/25 12:34
+Finished Step: Solicitud de alta de circuito de Terceros·
+
+
+This Order was automatically initiated by Order NO:8888764
+Datos - ADI Add   **8888764*$*
+
+Workflow Initialization
+Comments: (Alberto Quesada) 14/02/25 12:49
+Finished Step: Alta Tercero
+Se envía la solicitud administrativa de instalacion a Speedcast. El SDM debe pedir la asignación del KIT, realizar la instalación de la estación y solicitar a Speedcat la activación.
+Colombia Plan Fixed 1TB - NRC USD $50 - MRC USD $277
+
+This Order was automatically initiated by Order NO:8888947
+Activación Terceros   **8888947*$*
+
+Workflow Initialization

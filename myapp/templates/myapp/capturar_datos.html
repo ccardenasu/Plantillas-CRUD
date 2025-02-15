@@ -97,6 +97,16 @@
                         document.getElementById('id_sv').value = data.data.svlan;
                         document.getElementById('id_cv').value = data.data.cvlan;
                         document.getElementById('id_unit').value = data.data.svlan;   
+                        document.getElementById('id_rfs_ip_port_b').value = data.data.rfs_ip_port_punta_a; 
+                        document.getElementById('id_be').value = data.data.be;
+                        document.getElementById('id_bundle_ether').value = data.data.be;
+                        document.getElementById('id_bw_voz').value = data.data.voz;
+                        document.getElementById('id_bw_video').value = data.data.video;
+                        document.getElementById('id_lag').value = data.data.lag;
+
+
+
+                        
                         
                     } else {
                         console.error("Error al ejecutar IPSA.py:", data.error); // Mensaje de error

@@ -1,0 +1,230 @@
+DKO:8388103 (8444151)
+
+Comments: (Ever Contreras) 07/11/23 19:54 Start DokuFlow.
+
+Actividad: Se requiere dar de Alta enlace DIA RESELL @10Mb vía Tercero.
+
+COMPAÑÍA PANAMEÑA DE AVIACIÓN S.A.
+ ATO TRINIDAD Y TOBAGO
+ADDRESS: GOLDEN GROVE RD NA, PIARCO, POS-Port Of Spain, Trinidad and Tobago Latitude 10.601859 Longitude -61.33963
+
+Technical Contact:
+Evelyn Sanchez / M: easanchez@copaair.com / P: 5073042340
+No se dispone de LCON para cada sede del cliente.
+
+CCM : Moreno, Maria Elida
+
+XML 8381556
+CFS 500367264
+*:RFS6000268774 ( 3rd Party )
+*:RFS6000268775 ( CPE 3rd Party )
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: DIGICEL
+Tipo: Capa 3 [L3], DIA RESELL, WAN/30, LAN/None, CPE/ISR4221
+BW: 10Mb
+Customer Handoff Interface: Giga, Electrical, RJ45
+TDG: Pendiente. Se pide cotización por ICT.
+
+=========== IPSA ===========
+
+Dar de Alta RFS CPE
+IP CPE: La que asigne el Tercero.
+CPE del Tercero, pero administrado por Cirion.
+
+DIA RESELL
+No pasa por red de Cirion.
+
+=========== SDM / SA ===========
+
+1. Dar seguimiento a la entrega del circuito por parte de OFFNET:
+- DIA RESELL. No pasa por red de Cirion.
+- CPE provisto por el Tercero, pero administrado por Cirion.
+- Garantizar que el CPE quede en gestión y con acceso remoto.
+- WAN: /30, LAN: None.
+- Customer Handoff Interface: Giga, Electrical, RJ45
+- Si el cliente llegase a pedir configuración de Túneles encriptados, tomar el mail anexo a esta DKO y escalar directo al SE.
+3. Realizar prueba de esfuerzo sobre el canal.
+4. Agendar ventana de Activación con el cliente, garantizando navegación hacia Internet:
+- Si el cliente llegase a pedir configuración de Túneles encriptados, tomar el mail anexo a esta DKO y escalar directo al SE.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+=========== NETWORK MANAGEMENT ===========
+
+Configurar NM APPLICATION
+LB CPE: La que asigne el Tercero.
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 07/11/23 23:12
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Vargas Flores, Jose Luis) 21/11/23 21:44
+Finished Step: Asignación de SDM
+Comments from Subprocess 8388250
+
+
+Workflow Initialization
+Comments: (Navarro, Omar) 13/11/23 18:59
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Vera, Bianca) 01/12/23 15:51
+Finished Step: OffNet Survey Request ICT
+
+Comments: (Vera, Bianca) 01/12/23 19:52
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Ever Contreras) 05/01/24 03:23
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: AMERICAN AXESS
+Tipo: Capa 3 [L3], DIA RESELL, WAN/30, LAN/None, CPE Cisco 3560 or Cisco 931.
+BW: 10Mb
+Customer Handoff Interface: FastE, RJ45
+
+
+This Order was automatically initiated by Order NO:8388103
+Datos - ADI Add   **8388103*$*
+
+Workflow Initialization
+Comments: (Varela, Carina) 18-01-24 20:14
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8434825
+Activación Terceros ICT   **8434825*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 22/01/24 10:36
+
+From: Cardenas Urrea, Carlos 
+Sent: Friday, January 19, 2024 10:01 AM
+To: Varela, Carina <carina.varela@ciriontechnologies.com>
+Cc: Moreno, Dayana <dayana.moreno.ext@ciriontechnologies.com>
+Subject: Direccionamiento CPE COMPAÑÍA PANAMEÑA DE AVIACIÓN S.A.
+
+
+
+Para las siguientes dko requiero dar de Alta RFS CPE por lo que le agradezco indicarme La IP del  CPE que asigno el Tercero.
+
+8408119 (8444162)
+8388103 (8444151)
+8388079 (8444161)
+8388070 (8444144)
+8388087 (8444167)
+
+Gracias y quedo atento a sus comentarios
+
+
+Comments: (Moreno, Dayana) 17/05/24 14:45
+FECHA: **17/05**
+AREA: OFF NET - MURIEL ESPIRITO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **14/06**
+OBSERVACION: En comunicación con Maria Elena Bravomalo (OFFNET), vía teams, indica que el caso aun está en ON HOLD, ya que el cliente indica que se retoman trabajos hasta junio.
+-----------------------------------
+Comments: (Moreno, Dayana) 14/06/24 18:19
+FECHA: **14/06**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **21/06**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Moreno, Dayana) 21/06/24 17:45
+****************************
+FECHA: **21/06**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **02/07**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que el proyecto se encuentra pendiente por el área comercial. Se verificará el caso nuevamente el 02/07
+****************************
+
+Comments: (Moreno, Dayana) 02/07/24 14:11
+FECHA: **02/07**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **12/07**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Moreno, Dayana) 15/07/24 14:24
+FECHA: **15/07**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **29/07**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Arciniegas, Viviana) 29/07/24 11:51
+-----------------------------------
+FECHA: **29/07**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **12/08**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Arciniegas, Viviana) 06/08/24 13:03
+-----------------------------------
+FECHA: **06/08**
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: **23/08**
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+-----------------------------------
+Comments: (Arciniegas, Viviana) 26/08/24 13:56
+FECHA: 26/08
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: 13/09
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+Comments: (Arciniegas, Viviana) 13/09/24 11:02
+Debido a que la persona encargada no se encuentra, se verifica caso nuevamente 16/09
+Comments: (Arciniegas, Viviana) 17/09/24 14:05
+FECHA: 17/09
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: 27/09
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+Comments: (Arciniegas, Viviana) 27/09/24 12:41
+FECHA: 27/09
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: 11/10
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+Comments: (Arciniegas, Viviana) 16/10/24 16:57
+FECHA: 16/10
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: 25/10
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+Comments: (Arciniegas, Viviana) 05/11/24 14:16
+FECHA: 05/11
+AREA: OFFNET - MURIEL MARINHO
+IPSA: CARLOS CARDENAS
+PAIS: ESTADOS UNIDOS
+NUEVA FECHA SEGUIMIENTO: 18/11
+OBSERVACION: En comunicación con Muriel Marinho (OFFNET), vía teams, indica que aún no se tiene respuesta del cliente.
+Comments: (Arciniegas, Viviana) 06/12/24 14:53
+Actividad pendiente por confirmación del cliente. Se revisa caso el 20/12
+Comments: (Arciniegas, Viviana) 20/12/24 13:18
+Actividad pendiente por confirmación del cliente. Se revisa caso el 27/12
+Comments: (Arciniegas, Viviana) 27/12/24 12:12
+Actividad pendiente por confirmación del cliente. Se revisa caso el  03/01
+Comments: (Arciniegas, Viviana) 28/01/25 12:23
+Actividad pendiente por confirmación del cliente. Se revisa caso el 30/01

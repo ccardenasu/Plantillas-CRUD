@@ -1,0 +1,55 @@
+DKO:8891097 (8891105)
+
+Comments: (Palmera Aguilera, Viviana) 13/02/25 19:50 Start DokuFlow.
+NOTA!! Se genera la dko fuera de tiempo por reproceso de la dko original 
+Actividad: Configuración FWLL LEVAPAN
+
+CONTACTO CLIENTE:
+Wilson Perez Lizarazo wilson.perez@levapan.com / 3167506004
+
+
+
+XML: 8861202
+CFS :  500100264
+
+
+
+
+
+======================
+Alcance: Configuración FWLL 
+======================
+
+FWLL : 192.168.240.1/29
+
+======================
+Actividades solicitadas:
+--- [servicios de Seguridad] ----
+
+
+, para la conectividad SDWAN entre el Firewall Fortinet 301E actual y el nuevo equipo SDWAN Fortinet 200F en Datacenter Colombia XV 
+se asigno el siguiente direccionamiento.
+
+Red 192.168.240.0/29
+Firewall 301E 192.168.240.1/29
+SDWAN  220F 192.168.240.2/29
+
+Por favor crear un ticket solicitando la configuración del Firewall 301E con el direccionamiento indicado en el puerto 9 donde se 
+tiene la XCON hacia el SDWAN.
+
+Adicionalmente se requiere realizar pruebas de conectividad entre los equipos. Estas pruebas se pueden realizar el viernes 14 entre 
+11:00 a 13.30 ó ese mismo viernes desde las 15.00 a 17.00.
+
+
+============= S&A  =============
+
+
+Se requiere coordinar una ventana junto con el cliente y Security services  para las configuraciones descritas en el apartado de seguridad. 
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8891097
+Datos - ADI Mod   **8891097*$*
+
+Workflow Initialization

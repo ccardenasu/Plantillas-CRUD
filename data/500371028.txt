@@ -1,0 +1,100 @@
+CFS: 500371028
+DKO: 8887065
+tipo_configuracion: Ampliacion
+tipo_servicio: ADI
+RFS-IP-PORT: 6000273433
+RFS-IP-PORT_NID: 6000273424
+Cliente: MULTIENLACE S.A.S.
+SEDE: MOCAWA-81-5RBK5K1
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/2/1.932131200
+PE: ar1.sub1.bog
+Interface PE: ae6.1252
+BW: 250M
+
+DKO:8887065 (8891045)
+
+Customer:MULTIENLACE S.A.S.
+
+A-Side Site:MULTIENLACE MOCAWA 81-5RBK5K1
+
+
+Comments: (Palmera Aguilera, Viviana) 10/02/25 17:22 Start DokuFlow.
+Scope:  Ampliacion ADI 250@Mbps CONVENIO
+ 
+CONTACTO CLIENTE:
+Hector Rios / hector.rios@konecta-group.com  / +57 315 2520224
+ 
+ADI@250Mb
+XML: 8881821
+CFS :  500371028
+
+ 
+Dirección : MULTIENLACE MOCAWA, CARRERA14 #9-34 NA, ARMENIA, Quindio,
+ Latitud 4.53805 Longitud -75.667521
+ 
+RFS:
+RFS IP PORT: *:RFS6000273433 ( IP Port )
+RFS 3rd Party:  *:6000273428
+RFS NID : *:RFS6000273424 ( NID )
+RFS CPE: --
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: ADI  Ampl  BW: 250 Mbps.
+
+=========== OFF-Net  ===========
+
+Ampliacion enlace via convenio  UFINET: COCOCIR10131999C  a 250Mbps
+
+quoting: DK-SURVEY-TDG-152069258-8880644
+
+Connector: [RJ45]
+
+Handoff interface: [Electrical,RJ45]
+
+ 
+========== IPSA=========
+ 
+1. Se requiere ampliar   los siguientes recursos de 120Mbps a  250Mbps:
+ 
+Type:ADI
+PE: ar1.sub1.bog
+Interface: ae6.1252
+IPv4 PE: 201.234.148.46/31
+
+ ========== SDM ==========
+ 
+1.	Verificar que la subinterface en PE este configurado el BW a 250Mbps.
+
+2.	Validar con el cliente la ampliación a 250Mbps, cpe del cliente.
+
+
+ 
+ 
+ 
+============= SA =============
+ 
+Realizar pruebas de conectividad y entrega a satisfacción del cliente.
+ 
+=========== NETWORK MANAGMENT  ==========
+Validar NETWORK MANAGMENT A&C  sobre NID.
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 13/02/25 16:35
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8887065
+Datos - ADI Mod   **8887065*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 13/02/25 19:00
+Finished Step: Modificación Tercero·
+Se solicita a UFINET ampliacion de 120 Mbps a 250 Mbps del canal en mención. 
+
+This Order was automatically initiated by Order NO:8890627
+Activación Terceros ICT   **8890627*$*
+
+Workflow Initialization

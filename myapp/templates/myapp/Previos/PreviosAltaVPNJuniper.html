@@ -29,4 +29,14 @@
     show  | display set | match {{ datos.rd }}
     run show route table  {{ datos.vrf }}  {{ datos.wan|first_valid_ip }}
 
+    {% if datos.interface_pe == "ge-0/1/8"  %} 
+        ##
+        ##
+        ##
+        show  routing-instances {{ datos.vrf2 }}  | display set | match vrf  | no
+        show interfaces ge-0/1/9.{{ datos.unit }} | display set | no
+        show | display set | match  ge-0/1/9.{{ datos.unit }} | no
+        show  | display set | match {{ datos.rd2 }}
+        run show route table  {{ datos.vrf2 }}  {{ datos.wan|second_valid_ip }}
     {% endif %}
+{% endif %}

@@ -1,0 +1,89 @@
+CFS: 500079961
+DKO: 8891219
+tipo_configuracion: Ampliacion
+tipo_servicio: ADI
+RFS-IP-PORT: 6000090364
+RFS-IP-PORT_NID: 6000110727
+Cliente: MUNDIAL DE TORNILLOS S. A.
+SEDE: TORINILLOS---PALOQUEMADO-PPAL
+SW: BOGTCLHCZG004
+Interface SW: GigabitEthernet0/0/17
+PE: ar1.sub1.bog
+Interface PE: ae6.7
+VRF: No encontrado
+Svlan: 7
+BW: 20M
+
+DKO:8891219 (8891220)
+
+Comments: (Ariza, Jorge) 13/02/25 23:57 Start DokuFlow.
+----------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere ampliación de Internet a 20Mb vía Fibra PAP en actual NID y CPE
+
+CUSTOMER TECHNICAL CONTACT:
+Alexander Cardona / sistemas@mundialdetornillos.com / 3112752088
+Internet @20Mb
+XML 8885243
+CFS 500079961
+
+CLIENT: MUNDIAL DE TORNILLOS S. A.
+SITE: MUNDIAL DE TORINILLOS - PALOQUEMADO PPAL
+ADDRESS: CR 22 # 19 - 63, BOGOTA, COLOMBIA [LATITUD 4.6157703 LONGITUD -74.0830288]
+
+RFS:
+*:RFS 6000090364 ( IP Port )
+*:RFS 6000211693 ( Fiber Chain ) Shared
+*:RFS 6000110727 ( NID ) Shared
+*:RFS 6000054610 ( CPE ) Shared
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere ampliación de Internet a 20Mb vía Fibra PAP en actual NID y CPE, garantizando que cumpla con la velocidad contratada y los estándares de configuración del proyecto
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Realizar ampliación para
+TYPE: Internet
+PE: AR1.SUB1.BOG
+INT: ae6.7
+IP: 67.73.187.81/30
+DES: CUSTOMER: IMPS-CLI: MUNDIAL DE TORNILLOS S. A. (CFSID:500079961) [FPAP: SEDE ADMINISTRATIVA ADI BACKUP ]
+ME: BOGTCLHCZG004
+INT: GigaE0/0/17
+DES: 12/LATAM/6000066019/SVC MUNDIAL DE TORNILLOS S. A. 1-3GYIH (500079961) SEDE ADMINISTRATIVA ADI BACKUP
+BW: 20Mb
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar ampliación de recursos por parte de IPSA
+2. Agendar ventana con el cliente para realizar ampliación de Internet a 20Mb vía Fibra PAP en actual NID y CPE
+3. Garantizar que los equipos continuen en gestión y con acceso remoto
+4. Realizar prueba de esfuerzo del canal
+5. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE NM Application (Nuevo BW)
+LB Asignada IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8891219
+Datos - ADI Mod   **8891219*$*
+
+Workflow Initialization

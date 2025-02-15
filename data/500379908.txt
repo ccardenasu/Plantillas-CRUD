@@ -1,0 +1,135 @@
+CFS: 500379908
+DKO: 8724661
+tipo_configuracion: Ampliacion
+tipo_servicio: VPN
+RFS-IP-PORT: 6000287413
+Cliente: BANCIEN S.A Y/O BAN100 S.A
+SEDE: CF-OFICINA-MICROCREDITO-NEIVA
+SW: BOGTCLFWNN001
+Interface SW: GigabitE0/0/0/3.929881300
+PE: psr3.bgo1
+Interface PE: ae11.1513
+BW: 15M
+
+DKO:8724661 (8891617)
+
+Comments: (Palmera Aguilera, Viviana) 31/10/24 17:53 Start DokuFlow.
+AMPLIACION CONVENIO
+
+
+Cliente: BANCIEN S.A Y/O BAN100 S.A 
+Sede: CF-OFICINA MICROCREDITO NEIVA
+Dirección: Calle 21 # 13 - 43 Local 6
+Ciudad: Neiva
+
+Contactos cliente:
+
+Leonardo Bernal Ayala
+lbernal@credifinanciera.com.co 
+5713137500
+
+XML : 8695300
+CID ip vpn :  500379908
+*********** CONVENIOS ************* 
+Se solicita ampliar el enlace  via MC:
+TDG-152003752
+ID LEC MC 2827
+*:RFS6000287419 ( 3rd Party )
+BW :15Mbps 
+
+************* IPSA *******************
+
+1.	Ampliar el ste acceso a 15Mbps:
+
+INTERCONEXION CONVENIO
+NNI Me2: BOGTCLFWNN001
+Interface.: GigabitE0/0/0/3.929881300
+
+PE: psr3.bgo1
+Int: ae11.1513
+WAN BBIP: 10.4.0.181/30
+
+BW: 15Mbps
+========== ACTIVACION   ==========
+
+1.	Modificar el BW en el CPE actualmente operativo 
+2.	Realizar pruebas de esfuerzo al BW solicitado.
+
+
+Workflow Initialization
+Comments: (Gomez, Luis Francisco) 01/11/24 12:26
+Finished Step: Asignación de SDM·
+
+Comments: (Palmera Aguilera, Viviana) 14/11/24 19:37
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+Comments from Subprocess 8781623
+
+
+Workflow Initialization
+Comments: (Julio Peña) 18/11/24 12:08
+Estiamods para recnfirmar esta ampliacio  Se solicita ampliar el enlace  via MC:
+TDG-152003752
+ID LEC MC 2827
+*:RFS6000287419 ( 3rd Party )
+BW :15Mbps    Vigencia 12 meses 
+Comments: (Julio Peña) 18/11/24 12:17
+Finished Step: OffNet Survey Request ICTProducto
+
+Comments: (Villanueva Farfan, Cristina) 26/11/24 17:42
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Villanueva Farfan, Cristina) 29/11/24 23:01
+Finished Step: OffNet Survey Response ICT·
+Comments from Subprocess 8781623
+
+
+Workflow Initialization
+Comments: (Julio Peña) 18/11/24 12:08
+Estiamods para recnfirmar esta ampliacio  Se solicita ampliar el enlace  via MC:
+TDG-152003752
+ID LEC MC 2827
+*:RFS6000287419 ( 3rd Party )
+BW :15Mbps    Vigencia 12 meses 
+Comments: (Julio Peña) 18/11/24 12:17
+Finished Step: OffNet Survey Request ICTProducto
+
+Comments: (Villanueva Farfan, Cristina) 26/11/24 17:42
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Villanueva Farfan, Cristina) 29/11/24 23:01
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Palmera Aguilera, Viviana) 11/12/24 18:03
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+Comments from Subprocess 8839526
+
+
+Workflow Initialization
+Comments: (Julio Peña) 10/02/25 14:32
+Finished Step: OffNet Survey Request ICTProducto
+
+Comments: (Solano, Adriana) 10/02/25 19:32
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Solano, Adriana) 11/02/25 12:35
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Palmera Aguilera, Viviana) 13/02/25 16:39
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8724661
+Datos - IP VPN Mod   **8724661*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 14/02/25 12:40
+
+Se solicita a MC aumento a 15M del canal en mención. 
+Comments: (Wilches Rivera, Lesly Tatiana) 14/02/25 12:42
+Finished Step: Modificación Tercero
+
+
+This Order was automatically initiated by Order NO:8890618
+Activación Terceros ICT   **8890618*$*
+
+Workflow Initialization

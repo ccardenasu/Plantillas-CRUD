@@ -1,0 +1,90 @@
+DOK:8891000 (8891023)
+
+Comments: (Ariza, Jorge) 13/02/25 18:42 Start DokuFlow.
+---------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar debido a que no se contaba con la definición del espacio para el Hub SD-WAN en Sala 3 ColXV
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere alta de SD WAN Internet a 50Mb vía UNE en actual NID e integrar con CPE SD-WAN (SDO 8889653)
+
+CUSTOMER TECHNICAL CONTACT:
+Juan Olarte / juan.olarte@ceipa.edu.co / 3182404913
+SD WAN Internet @50Mb
+XML 8880419
+CFS 500353536
+
+CLIENT: FUNDACION UNIVERSITARIA CEIPA
+SITE: CEIPA - SEDE SABANETA
+ADDRESS: CL 77 SUR # 40 - 165, SABANETA, ANTIOQUIA, COLOMBIA [LATITUD 6.144804 LONGITUD -75.61911]
+
+RFS:
+*:RFS 6000165880 ( IP Port )
+*:RFS 6000165878 ( NID )
+*:RFS 6000165879 ( 3rd Party )
+*:RFS 6000330144 ( SDWAN CPE ) Shared
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere alta de SD WAN Internet a 50Mb vía UNE en actual NID e integrar con CPE SD-WAN, utilizando la infraestructura actual disponible
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. En la sede disponemos de un SD WAN Internet (CFS 500353536) vía UNE. Se requiere utilizar la infraestructura actual y configurar en paralelo nuevo SD WAN Internet
+2. Asignar recurso IP y Metro
+TYPE: SD WAN Internet
+PE: AR3.MDC2
+INT: ae-12:XX
+IPv4: /31
+IPv6: /127
+LAN: No Asignar Solución SD-WAN
+ME: MDLNCLAFNN001
+INT: TenGigaE0/0/2/1
+Ruteo: Estático
+BW: 50Mb
+Registrar CFS y RFS's
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar asignación de recursos por parte de IPSA
+2. Desagregar el nuevo SD WAN Internet en un puerto independiente del NID
+3. Agendar ventana con el cliente para realizar alta de SD WAN Internet a 50Mb vía UNE en actual NID e integrar con CPE SD-WAN
+4. Proceder con la migración de SD-WAN con la asignación de un ingeniero Cirion o contratista (confirmar con CCM)
+5. Garantizar que los equipos queden en gestión y con acceso remoto
+6. Realizar prueba de esfuerzo del canal
+7. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE SD-WAN NM Advanced Management
+LB Asigna IPSA
+----------------------------------------------------------------------------------
+CD
+
+PE: AR3.MDC2
+INT: ae-12:641.1200
+IP: 8.242.146.97/30
+DES: CUSTOMER:FUNDACION UNIVERSITARIA CEIPA (CFS:500353536) (RFS:6000165880)
+ME: MDLNCLAFNN001
+INT: TenGigaE0/0/2/1
+DES: 12/LATAM/6000166427/SVC ENNI # UNE 1-1BEL4B (500260704) CEIPA - SABANETA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8891000
+Datos - ADI Mod   **8891000*$*
+
+Workflow Initialization

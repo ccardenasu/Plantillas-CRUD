@@ -1,0 +1,193 @@
+8867375 (8867678)
+
+Comments: (Rojas, Carlos) 20/01/25 12:23 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere Alta de servicio de INTERNET via TERCERO a 2Gbps
+ 
+Cliente: CONSORCIO MI CASA BACANA DIGITAL 	
+Sede:    CONSORCIO MI CASA- MALAMBO
+DirecciÃ³n: CALLE 8#8-31, MALAMBO, ATLANTICO, COLOMBIA, Latitud 10.8578523 Longitud -74.7736466
+Design ID:  K05E_VN_81-5SFUQQI
+
+SE: Giovanny Orjuela 
+CCM: Andrea Roa
+
+Nombre del contacto:  Pedro De La Ossa PeÃ±a
+Email del contacto: gerenciatecnica@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3157154734
+
+Nombre del contacto:  Hernan Figueroa
+Email del contacto: conectividad@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3232851197
+
+Nombre del contacto: Julio Hamburger
+Email del contacto: redes@micasabacanadigital.com
+TelÃ©fono del contacto: +57 3194322030
+
+Project ID (XML): 8864995
+Service Instance: INTERNET
+CFS-CID: 500410685	
+
+RFS IP Port: 6000326320
+RFS 3rd Party: A GENERARSE POR FLUJO ICT
+RFS NID: 6000326321
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: FSP 150-XG108 XG108 H AND XG108 SH SOFTWARE BASE KEY F150/XG10X/SW/BASE/KEY 1091901005-01 ADVA
+Item SAP: 1480593
+Parte numero: 1091901005-01
+Cantidad: 1
+
+DescripciÃ³n: F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+Item SAP: 1384891
+Parte numero: 1013904010
+Cantidad: 1
+
+DescripciÃ³n: 10G BASE-SR SFP+ ETHERNET 850NM
+Item SAP: 1121903
+Parte numero: 10GSFP+E-SR
+Cantidad: 1 LAN DE ADVA - 2 HILOS
+
+==================== OFFNET ======================
+1. Contratar el siguiente enlace:
+
+NOTA: Por favor solicitar que se entregue el servicio en el nodo en un puerto independiente del NNI
+
+Proveedor: UFINET
+Tipo: Capa 2 [L2], QinQ en M2.0
+BW: 2Gbps
+TDG: DK-SURVEY-TDG-152064209-8863955
+Tipo: Optico - TENGIGA
+Conector lado cliente: LC
+
+2. Favor compartir con IP SA y SDM/SA los datos de la NNI acordada con el LEC (SW, Puerto, Nodo) y VLAN asignada por parte del proveedor para efectos de documentaciÃ³n y configuraciÃ³n
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio segÃºn el NNI que confirme OFFNET:
+
+Servicio: INTERNET
+PE: Por Asignar
+Interface: Por Asignar
+IPv4 PE (IP pÃºblica): Por Asignar /31
+IPv6 PE: Por Asignar /127
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+IPv6 LAN (CPE): /48
+
+Enrutamiento: SUJETO A RESPUESTA DE CLIENTE. AUN PENDIENTE QUE EL CLIENTE CONFIRME Y HAGA ENVIO DE FORMATO BGP
+BW: 2Gbps
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y OFFNET para realizar CrossconexiÃ³n en nodo
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via fibra PaP de 2Gbps
+3. Instalar y configurar NID ADVA en sede del cliente.
+4. Compartir el direccionamiento IP publico LAN informado por parte de IPSA
+5. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (ADVA)
+6. Realizar prueba de esfuerzo del canal con el cliente y garantizar navegaciÃ³n exitosa a Internet
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Availability
+LB ADVA: SegÃºn asignaciÃ³n de IPSA
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 20/01/25 12:32
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8867375
+Datos - ADI Add   **8867375*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 20/01/25 14:24
+Finished Step: Alta Tercero·
+Se solicita  a UFINET instalación de canal a 2 MBPS. lado cliente  2 Puertos TENGIGA, lado interconexion 1 puerto independiente TENGIGA 
+
+This Order was automatically initiated by Order NO:8867392
+Activación Terceros ICT   **8867392*$*
+
+Workflow Initialization
+Comments: (Estupinan Abril, John) 21/01/25 11:56
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+========================== IPSA ========================== 
+8.243.64.228/31  Monitoreo
+8.243.64.210/31
+8.243.64.232/29
+2001:13b2:8000::ba/127
+PE ========================== 
+roci@edge2.bgo2# show | display set | match et-4/0/10:0 
+set interfaces et-4/0/10:0 description "CUSTOMER::CONSORCIO MI CASA BACANA DIGITAL (CFS:500410685)"
+set interfaces et-4/0/10:0 disable
+set interfaces et-4/0/10:0 flexible-vlan-tagging
+set interfaces et-4/0/10:0 unit 505 description "CUSTOMER:: CONSORCIO MI CASA BACANA DIGITAL    NID"
+set interfaces et-4/0/10:0 unit 505 bandwidth 100k
+set interfaces et-4/0/10:0 unit 505 vlan-tags outer 1200
+set interfaces et-4/0/10:0 unit 505 vlan-tags inner 505
+set interfaces et-4/0/10:0 unit 505 family inet rpf-check mode loose
+set interfaces et-4/0/10:0 unit 505 family inet filter input customer-cflow
+set interfaces et-4/0/10:0 unit 505 family inet address 8.243.64.228/31
+set interfaces et-4/0/10:0 unit 1200 description "CUSTOMER:: CONSORCIO MI CASA BACANA DIGITAL (CFS:500410685) (RFS:6000326320)"
+set interfaces et-4/0/10:0 unit 1200 bandwidth 2g
+set interfaces et-4/0/10:0 unit 1200 vlan-tags outer 1200
+set interfaces et-4/0/10:0 unit 1200 vlan-tags inner 1200
+set interfaces et-4/0/10:0 unit 1200 family inet rpf-check mode loose
+set interfaces et-4/0/10:0 unit 1200 family inet filter input customer-cflow
+set interfaces et-4/0/10:0 unit 1200 family inet policer input ratelimit-2000000000
+set interfaces et-4/0/10:0 unit 1200 family inet policer output ratelimit-2000000000
+set interfaces et-4/0/10:0 unit 1200 family inet address 8.243.64.210/31
+set interfaces et-4/0/10:0 unit 1200 family inet6 rpf-check mode loose
+set interfaces et-4/0/10:0 unit 1200 family inet6 filter input ipv6-customer-cflow
+set interfaces et-4/0/10:0 unit 1200 family inet6 address 2001:13b2:8000::ba/127
+
+NID ========================== 
+Usuario: Estupinan Abril, Jo
+Cliente: CONSORCIO MI CASA BACANA DIGITAL
+Sucursal: MALAMBO
+Design ID: 
+Tipo de Equipo: NID
+Alias: NID141603
+Snmp Version: 2c
+Address IP: 8.243.64.229
+Comunidad: $Lev3L3
+
+Comments: (Rojas, Carlos) 07/02/25 22:18
+***********************************
+ACTUALIZACION DE DKO
+***********************************
+
+==================== OFFNET ======================
+1. Contratar el siguiente enlace:
+
+NOTA: Por favor solicitar que se entregue el servicio en el nodo en un puerto independiente del NNI para conexiÃ³n directa a PE o a red Metro 3.0. Se espera ampliacion futura a 18Gbps
+
+Proveedor: UFINET
+Tipo: Capa 2 [L2], QinQ en M2.0
+BW: 2Gbps
+TDG: DK-SURVEY-TDG-152064209-8863955
+Tipo: Optico - TENGIGA
+Conector lado cliente: LC
+
+2. Favor compartir con IP SA y SDM/SA los datos de la NNI acordada con el LEC (SW, Puerto, Nodo) y VLAN asignada por parte del proveedor para efectos de documentaciÃ³n y configuraciÃ³n
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro para el siguiente servicio segÃºn el NNI que confirme OFFNET:
+
+NOTA: Se le ha solicitado a OFFNET puerto 10G independiente de NNI para conexiÃ³n directa a PE o a red Metro 3.0. Se espera ampliacion futura a 18Gbps
+
+Servicio: INTERNET
+PE: Por Asignar - CONFIGURAR EN PE EDGE
+Interface: Por Asignar - PUERTO TENGIGA
+IPv4 PE (IP pÃºblica): Por Asignar /31
+IPv6 PE: Por Asignar /127
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+IPv6 LAN (CPE): /48
+
+Enrutamiento: ESTATICO
+BW: 2Gbps
+
+2. Asignar LB NID y dar de Alta RFS NID. Por favor asignar VLAN de gestiÃ³n del ADVA Independiente de la asignada para el servicio ya que el ADVA XG108 requiere una VLAN independiente para su gestiÃ³n remota
+
+***********************************

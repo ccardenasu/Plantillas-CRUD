@@ -1,0 +1,154 @@
+DKO:8852871 (8886980)
+
+Comments: (Vallejo Caguenas, Sergio) 27/12/24 22:18 Start DokuFlow.
+CANCELACIONES MASIVAS ERRADAS SE DEBE DAR CONTINUIDAD DE LA IMPLEMENTACION DE LA DKO 8503819 SE ACTUALIZA CFS/RFS
+
+Actividad: Se requiere realizar la instalación y puesta en marcha de un canal  VPN @2Mbps con CONVENIO LUMEN; NM Availability
+
+Cliente: TRUCKS CONTROL - SERVICOS DE LOGISTICA LTDA
+Sede: TRUCKS - STATENS ISLAND
+Dirección: TELEPORT 7, STATEN ISLAND, NY-New York, USA
+
+CONTACTO CLIENTE:
+Nombre: Emiliano Lima
+Correo: emiliano@truckscontrol.com.br
+Tel: +5543999574533
+
+REFERENCIAS:
+Vista en DokuViz: DC71_VN_81-5C82XHL
+XML: 8847810
+CFS: 500380976
+RFS:
+RFS CPE 3rd Party: 6000288706
+RFS 3rd PARTY: ---- ICT
+======================
+ 
+DATOS DEL ENLACE:
+---------------------------
+Tipo de Enlace: VPN 
+Proveedor: LUMEN
+Bw de Acceso: 2 Mbps IP VPN + OSS CPE; OSS Router: CPE C1111-8P, SFP [1G,2h, SMF,LX]
+======================
+ 
+Actividades solicitadas: 
+ 
+========= CONVENIOS [OFF NET ]  ==========
+
+CANCELACIONES MASIVAS ERRADAS SE DEBE DAR CONTINUIDAD DE LA IMPLEMENTACION DE LA DKO 8503819 SE ACTUALIZA CFS/RFS
+
+Contratar una última milla para un nuevo enlace capa 3 de VPN de acuerdo a la siguiente información:
+
+
+CONVENIO:  Lumen
+Tipo: IP VPN + OSS CPE; OSS Router: CPE C1111-8P, SFP [1G,2h, SMF,LX]
+BW: 2 Mbps
+DK-SURVEY-TDG -> SIN TDG SE SOLICITA COTIZAR
+
+- Se adjunta TIF Lumen
+- Tener en cuenta que se debe compartir la informacion de la configuracion de Lumen para que sea compartida con el SDM 
+- Tener en cuenta que en la cotizacion se solicita Manos remotas para la configuracion del CPE en Cliente.
+
+
+========== IPSA=========
+
+1) por parte del VPN Lumen se encargara de realizar las configuracion del canal
+2) se requiere poder gestionar el CPE Para lo cual se configuro la Loopback 172.24.5.91/32 la cual sera configurada por lumen con las Comunicades import export latam monitoreo con el Tag 10 -> la Loopback sera indicada en la actualizacion.
+3) se levantara soporte por si se tiene novedad con la gestion del equipo para validar la Loopback
+
+========== SDM/S&A ==========
+
+1. Seguimiento a la instalación y puesta en marcha del canal con CONVENIO
+2. Se debe confirmar con Lumen la VRF Azul generada y esta debe ser compartida con el SDM para que este nivele la configuracion de la conectividad de Brazil, Tener encuenta que las DKO en Brazil estaran bajo el XML 8497964
+3. Tener en cuenta que Lumen nos suministra el C1111-8P y 1 SFP [1G,2h, SMF,LX] y adicional Lumen nos dara las manos remotas para la configuracion del CPE en sede Cliente. 
+3.1. Configurar servicio VPN y Loopback para poder gestionar el equipo y aplicarle NM Availabity.
+3.2. Lumen nos enrutara de manera Statica la Loopback 172.24.5.91/32  hacia el CPE con le TAG10 -> la Loopback sera indicada en la actualizacion.
+5. Comunicarle al cliente el segmento WAN asignado y confirmar que no se traslape con un segmento usado en su red.
+6. acompañar a el cliente a realizar pruebas de conectividad y saturación a nivel WAN, Verificar que alcance el BW solicitado, validar que no se presenten errores sobre todas las Interfaces.
+7. Validar Routing , Conectividad WAN, LAN y Funcionalidad de Aplicaciones Cliente.
+8. Entregar Informe de la actividad y actualizar ingenieria.
+
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 30/12/24 10:12
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Lima, Sthefanny) 02/01/25 10:00
+Finished Step: Asignación de CCM·
+Comments from Subprocess 8853154
+
+
+Workflow Initialization
+Comments: (Vieira, Alessandro) 30/12/24 12:49
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Nascimento, Angelina) 02/01/25 17:11
+Finished Step: OffNet Survey Request ICT
+
+Comments: (Nascimento, Angelina) 03/01/25 14:36
+Finished Step: OffNet Survey Response ICT
+
+Comments: (Vallejo Caguenas, Sergio) 13/01/25 14:05
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+Comments from Subprocess 8861996
+
+
+Workflow Initialization
+Comments: (Bravomalo, María Elena) 14/01/25 18:04
+IPSA: Avanzar tarea de la DO 8852871 (8861996).  La DO anterior la cancelaron por error.
+
+
+Comments: (Bravomalo, María Elena) 16/01/25 17:50
+Finished Step: Alta Tercero
+Comments from Subprocess 8865727
+
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 16/01/25 18:30
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+En esta tarea no se pide actividad de IPSA
+
+Comments: (Bravomalo, María Elena) 29/01/25 13:48
+Finished Step: Entrega UM
+
+Comments: (Vallejo Caguenas, Sergio) 10/02/25 16:17
+******** ACTUALIZACION DKO ********
+
+DKO, 8852870 y 8852871
+
+========== IPSA=========
+1) por parte del VPN Lumen se encargara de realizar las configuracion del canal, Servicio en alta desde 04/2024 se solicita aprobacion a Andres Caceres para incluir VRF nueva Lumen sobre los filtros de las troncales de Trafico Lumen- Cirion esta tramitada por el CD Sergio Vallejo 
+2) se requiere poder gestionar el CPE para configurar NM, con las Loopback CPE ya asignadas  para que el activador la publique por BGP.
+3) configurar NNI Gestion y entre VRF LATAM y USA  para que la LP recibida por BGP Tenga el TAG 10 para que sea vista desde los bastiones Static Route Peer: 100.65.80.101/30
+3) Favor dejar el BW de esta de 4Mbps.
+LP: 172.24.5.91/32 
+LP: 172.24.5.92/32 
+----------------
+VRF Blue Lumen:
+----------------
+PE: psr1.sub1.bog
+INT: ge-0/1/9
+Vlan: Asignar
+VRF: 00/VPXX/002125/LUMN -> VRF USA
+target: 6745:11008718
+WAN: 100.65.80.101/30
+BW: 4Mbps
+----------------
+VRF Gris Andino:
+----------------
+PE: psr1.sub1.bog
+INT: ge-0/1/8
+Vlan: Asignar
+VRF: 4118-2-ONIXSAT-L3VPN -> VRF LUMEN
+target: 11415:1124118
+WAN: 100.65.80.102/30
+BW: 4Mbps
+
+Comments: (Gasca De Jesus, Adrian) 10/02/25 16:23
+solicito soporte a ipsa para realizar lo indicado por el CD
+
+This Order was automatically initiated by Order NO:8852871
+Datos - IP VPN Add   **8852871*$*
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 10/02/25 18:13
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·

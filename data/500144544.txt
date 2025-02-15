@@ -1,0 +1,79 @@
+una vez se tenga la ventana  programada , favor olicitar a IPSA la migración o cambio de VRF de las interfaces.
+
+VRF: BVCMEC---------> Cambiar a la BVCMEC_SDWAN
+BVCSET-FX-------> Cambiar a la BVCSET-FX_SDWAN
+VRF: crcc --------> Cambiar a la CRCC_SDWAN
+
+DKO:8887377 (8887379)
+
+Comments: (Ramirez Sanchez, Tania) 10/02/25 21:21 Start DokuFlow.
+Asunto: cambio de VRF canal BVC  CRCC Servicio: VPN - FO PAP Cirion
+Technical Contact: Yesid Torres - Phone: 16205566 (0)-0000000 - Email: lmurcia@skandia.com.co 
+
+XML: 8881759
+Cliente: SKANDIA ADMINISTRADORA DE FONDOS DE PENSIONES Y CESANTIAS S.A. 
+Sede: SKANDIA PENSIONES Y CESANTIAS
+Dirección = Avenida 19 No 113-30, Bogotá
+Vista en DokuViz: ATYT_VN_1-OQM6V
+CID-CFS: 500144544 
+RFS: 
+6000244057 NID 
+6000244058 Fiber Chain 
+6000244059 IP Port
+=====================
+NOTA: Con las DKO de los sitios centrales de ORTEZAL y DC COLXV y TRIARA se solicitó la creación de las nuevas VRF y los siguientes cambios del diseño.
+Por solicitud de CLARO para mitigar problemas y hacer una migración controlada de la red LEGASI a  nueva solucion de la BVC a SDWAN(servicio provisto por CLARO) se realizaran varios cambios en la implementación y el diseño.
+1. Se creara nuevas vrf, para la nueva solución SDWAN, en paralelo a las vrf actuales del cliente.
+BVCMEC_SDWAN
+BVCSET-FX_SDWAN 
+CRCC_SDWAN
+2. Claro debe crear Filtros en el BGP limitando que solo enseñe las ip Loopback, de donde levanta sus VPN y no nos enseñe más redes hacia nuestro EDGE, en los sitios centrales.
+3. Se definieron nuevas LOOPBACK que se usaran en los Fortinet de claro y a donde se levantaran los tuneles VPN, para la solución SDWAN.
+192.168.253.1/32  - colombia xv mec
+192.168.253.2/32  - colombia xv setfx
+192.168.253.11/32  -ortezal mec 
+192.168.253.12/32  - ortezal setfx
+
+Actividades solicitadas:
+======IP ACTIVATION ======
+1. Se debe migrar las subinterfaces de este afiliado a nuevas vrf, para la solución SDWAN.
+Las tres nuevas VRF que se crearon son:
+vrf: BVCMEC_SDWAN
+vrf: BVCSET-FX_SDWAN
+Vrf: CRCC_SDWAN
+Datos interface: 
+=======================
+METRO IP
+--------------------------
+SW: BOGTCLBLZG004 
+Interface: Gi0/0/7
+==========
+ACCESO IPVPN MEC: 
+Description: CUSTOMER: IMPS-MPLS: (GAM) TELMEX COLOMBIA S.A. [ (CFSID:500019895) AV.19#113-30:SKANDIA.P]
+Interface: ae10.56
+Device:	psr2.cxv1.bog (juniper)
+IP_WAN:  172.28.2.165/30
+BW: 6Mbps
+VRF: BVCMEC-------> Cambiar a la BVCMEC_SDWAN
+============= SDM  =============
+1. Se debe solicitar a IPSA la migración o cambio de VRF de las interfaces.
+VRF: BVCMEC---------> Cambiar a la BVCMEC_SDWAN
+BVCSET-FX-------> Cambiar a la BVCSET-FX_SDWAN
+VRF: crcc --------> Cambiar a la CRCC_SDWAN
+2. La administración y configuración del equipo lo hace CLARO en unión temporal con CIRION.
+Coordinar con el Cliente la migración del servicio al nuevo CPE SDWAN que lo administra e instalara Claro.
+3. Por favor realizar la migración de los siguientes canales del cliente  de la BVC-UT de las troncales Cisco MPLS actualmente instaladas en los DC Ortezal y CXV hacia las nuevas troncales SD WAN también en los Datacenters Ortezal y CXV que ya están en proceso de instalación.
+4. No se requiere instalación de equipos SD WAN, estos son proporcionados, instalados y configurados por el Operador Claro.
+============= SA =============
+1. Realizar prueba de esfuerzo del canal. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+2. Entregar enlace al cliente.
+3. Entregar Informe de la actividad con las pruebas realizadas y Actualizar ingenieria.
+=========
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8887377
+Datos - IP VPN Mod   **8887377*$*
+
+Workflow Initialization

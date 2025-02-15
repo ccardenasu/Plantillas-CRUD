@@ -119,6 +119,8 @@
             'id_bw',
             'id_bw_exchange',
             'id_bw_plus',
+            'id_bw_voz',
+            'id_bw_video',
             'id_cfs',
             'id_cliente',
             'id_cv',
@@ -130,7 +132,9 @@
             'id_pe',
             'id_puertos_lag',
             'id_rd',
+            'id_rd2',
             'id_rfs_ip_port',
+            'rfs-ip-port_b',
             'id_sede',
             'id_sv',
             'id_sw',
@@ -139,12 +143,14 @@
             'id_tipo_servicio',
             'id_unit',
             'id_vrf',
+            'id_vrf2',
             'id_vt',
             'id_wan',
             'id_wanv6'
         ];
 
         var fieldsToShowVPNAMPJUN = [
+            'id_be',
             'id_bundle_ether',
             'id_bw',
             'id_cfs',
@@ -377,7 +383,7 @@
                 <option value="TE7/3">TE7/3</option>
                 <option value="ae1">ae1</option>
                 <option value="ae3">ae3</option>
-                option value="Port-channel3">Port-channel3</option>
+                <option value="Port-channel3">Port-channel3</option>
 
             `;
             var optionsDefault = `
@@ -391,6 +397,7 @@
                 <option value="CXV">CXV</option>
                 <option value="ae1">ae1</option>
                 <option value="ae2">ae2</option>
+                
 
             `;
 
@@ -480,9 +487,9 @@
     }
 
     function validateForm(event) {
-        var nombre = document.querySelector('[name="nombre"]').value;
-        if (nombre === "") {
-            document.getElementById('error-message').innerText = "El nombre es obligatorio.";
+        var cfs = document.querySelector('[name="cfs"]').value;
+        if (cfs === "") {
+            document.getElementById('error-message').innerText = "El cfs es obligatorio.";
             event.preventDefault();
             window.scrollTo(0, 0);
             return false;
