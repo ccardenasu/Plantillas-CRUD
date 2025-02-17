@@ -16,8 +16,6 @@ def leer_archivo(data_path):
         logging.error(f"Error al leer el archivo: {e}")
     return None
 
-
-
 def buscar_primera_coincidencia(patrones, texto):
     if not patrones or not texto:
         return "No encontrado"
@@ -61,9 +59,6 @@ def buscar_ufinet_nni(texto):
     if match:
         return True
     return False
-
-import re
-
 
 def main(cfs):
     data_path = os.path.join('data', f'{cfs}.txt')
@@ -112,8 +107,12 @@ def main(cfs):
 
 }
 
-
     resultados = {clave: buscar_primera_coincidencia(patrones, texto) for clave, patrones in patrones_busqueda.items()}
+    
+    be = "Bundle-ether10" if resultados['be'] == "ae10" else "bundle_ether11" if resultados['tipo'] == "ae11" else "bundle_ether14" if resultados['tipo'] == "ae14" else "No encontrado"
+    tipo_servicio = "ADI" if resultados['tipo'] == "Internet" else "VPN" if resultados['tipo'] == "VPN" else "VPLS" if resultados['tipo'] == "EPL" else "No encontrado"
+    tipo_equipo = "ALCATEL" if "ar" in resultados['pe'].lower() else "JUNIPER" if (resultados['pais'] != "No encontrado" and tipo_servicio == "ADI") or ("edge" in resultados['pe'].lower()) or ("EPL" in texto) else "No encontrado"
+    vpn = "VPN" if "VPN" in texto else "No encontrado"
 
     if resultados['wan'] != "No encontrado":
         try:
@@ -143,13 +142,32 @@ def main(cfs):
         elif 'Gbps' in resultados['bw']:
             resultados['bw'] = int(re.search(r'\d+', resultados['bw']).group()) * 1000
 
-    be = "Bundle-ether10" if resultados['be'] == "ae10" else "bundle_ether11" if resultados['tipo'] == "ae11" else "bundle_ether14" if resultados['tipo'] == "ae14" else "No encontrado"
+    
 
-    tipo_servicio = "ADI" if resultados['tipo'] == "Internet" else "VPN" if resultados['tipo'] == "VPN" else "VPLS" if resultados['tipo'] == "EPL" else "No encontrado"
+    if resultados['cliente'] != "No encontrado" and resultados['sede'] != "No encontrado":
+        cliente_palabras = resultados['cliente'].split()
+        sede_palabras = resultados['sede'].split()
+        valores_unicos_sede = [palabra for palabra in sede_palabras if palabra not in cliente_palabras]
+        resultados['sede'] = ' '.join(valores_unicos_sede) if valores_unicos_sede else "No encontrado"
 
-    tipo_equipo = "ALCATEL" if "ar" in resultados['pe'].lower() else "JUNIPER" if (resultados['pais'] != "No encontrado" and tipo_servicio == "ADI") or ("edge" in resultados['pe'].lower()) or ("EPL" in texto) else "No encontrado"
+    if buscar_ufinet_nni(texto):
+        resultados['sw'] = "BOGTCLFXNN002"
+        resultados['interface_sw'] = "TEN GIGA 0/0/2/1"
+    else:
+        resultados['interface_sw'] = buscar_sw_int(texto)
 
-    vpn = "VPN" if "VPN" in texto else "No encontrado"
+    if resultados['pe'] != "No encontrado" and resultados['sw'] == "No encontrado":
+        resultados['sw'] = "Conectado a PE"
+
+    if resultados['sede'] != "No encontrado":
+        resultados['sede'] = resultados['sede'].lstrip(" -")
+
+    if resultados['rfs_ip_port_nid'] == "No encontrado":
+        resultados['rfs_ip_port_nid'] = ""
+
+    if resultados['pe'] == "edge1.bgo2" and resultados['interface_pe'] == "et-0/0/18":
+        resultados['interface_pe'] = "ae30"
+
     if vpn == "VPN":
         tipo_equipo = "JUNIPER"
 
@@ -159,81 +177,84 @@ def main(cfs):
         tipo_configuracion = "Ampliacion"
     else:
         tipo_configuracion = "No encontrado"
-
-    # Eliminar valores comunes entre "cliente" y "sede" manteniendo el orden
-    if resultados['cliente'] != "No encontrado" and resultados['sede'] != "No encontrado":
-        cliente_palabras = resultados['cliente'].split()
-        sede_palabras = resultados['sede'].split()
-        valores_unicos_sede = [palabra for palabra in sede_palabras if palabra not in cliente_palabras]
-        resultados['sede'] = ' '.join(valores_unicos_sede) if valores_unicos_sede else "No encontrado"
     
-       # Nueva búsqueda para "Ufinet", "NNI", "2.1"
-    if buscar_ufinet_nni(texto):
-        resultados['sw'] = "BOGTCLFXNN002"
-        resultados['interface_sw'] = "TEN GIGA 0/0/2/1"
-    else:
-        resultados['interface_sw'] = buscar_sw_int(texto)
-   
-    if resultados['rfs_ip_port_nid'] == "No encontrado":
-        resultados['rfs_ip_port_nid'] = ""
+    resultados['tipo_servicio'] = tipo_servicio
+    resultados['tipo_equipo'] = tipo_equipo
+    resultados['tipo_configuracion'] = tipo_configuracion
+    resultados['be'] = be
+
     if resultados['be'] == "No encontrado":
         resultados['be'] = ""
-    if resultados['sede'] != "No encontrado":
-        resultados['sede'] = resultados['sede'].lstrip(" -")
+
     if resultados['asn'] == "No encontrado":
         resultados['asn'] = ""
+
     if resultados['lbcpe'] == "No encontrado":
         resultados['lbcpe'] = ""
+
     if resultados['sw'] == "No encontrado":
         resultados['sw'] = ""
+
     if resultados['vlan'] == "No encontrado":
         resultados['vlan'] = ""
+
     if resultados['interface_sw'] == "No encontrado":
         resultados['interface_sw'] = ""
+
     if resultados['lnnid'] == "No encontrado":
         resultados['lnnid'] = ""
-    if resultados['pe'] != "No encontrado" and resultados['sw'] == "No encontrado":
-        resultados['sw'] = "Conectado a PE"
-    if resultados['pe'] == "edge1.bgo2" and resultados['interface_pe'] == "et-0/0/18":
-        resultados['interface_pe'] = "ae30"
+
     if resultados['asn'] == "No encontrado":
         resultados['asn'] = ""
+
     if resultados['lbcpe'] == "No encontrado":
         resultados['lbcpe'] = ""
+
     if resultados['sw'] == "No encontrado":
         resultados['sw'] = ""
-    if resultados['voz'] == "No encontrado":
-        resultados['voz'] = "0"
-    if resultados['video'] == "No encontrado":
-        resultados['video'] = "0"
+
     if resultados['vlan'] == "No encontrado":
         resultados['vlan'] = ""
+
     if resultados['lnnid'] == "No encontrado":
         resultados['lnnid'] = ""
+
     if resultados['svlan'] == "No encontrado":
         resultados['svlan'] = ""
+
     if resultados['cvlan'] == "No encontrado":
         resultados['cvlan'] = ""
+
     if resultados['rfs_ip_port_punta_a'] == "No encontrado":
         resultados['rfs_ip_port_punta_a'] = ""
+
+    if resultados['bw_exchange'] == "No encontrado":
+        resultados['bw_exchange'] = "0"
+
+    if resultados['bw_plus'] == "No encontrado":
+        resultados['bw_plus'] = "0"
+
+    if resultados['voz'] == "No encontrado":
+        resultados['voz'] = "0"
+
+    if resultados['video'] == "No encontrado":
+        resultados['video'] = "0"
+
     if resultados['tipo'] == "EPL":
         cliente_modificado = resultados['cliente'].replace(" ", "-")
         resultados['vrf'] = f"{resultados['cfs']}-{cliente_modificado}"
         resultados['rd'] = resultados['cfs']
+
     if "1114094/1" in texto:
         resultados['pe'] = "PSR1.PRC1"
         resultados['interface_pe'] = "xe-1/0/0"
         resultados['sw'] = "Conectado a PE"
-    # Procesar el resultado para eliminar ceros iniciales
+
     if resultados['vrf_init'] != "No encontrado":
         resultados['vrf_init'] = resultados['vrf_init'].lstrip('0')
 
     if any(resultados[clave] == "No encontrado" for clave in ['cliente', 'sede', 'cfs', 'rfs_ip_port', 'rfs_ip_port_nid']):
         ejecutar_enlace(cfs)
-    resultados['tipo_servicio'] = tipo_servicio
-    resultados['tipo_equipo'] = tipo_equipo
-    resultados['tipo_configuracion'] = tipo_configuracion
-    resultados['be'] = be
 
     print(json.dumps(resultados))
 
