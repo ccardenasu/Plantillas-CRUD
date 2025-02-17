@@ -143,6 +143,7 @@
             'id_tipo_servicio',
             'id_unit',
             'id_vrf',
+            'id_vrf_init',
             'id_vrf2',
             'id_vt',
             'id_wan',

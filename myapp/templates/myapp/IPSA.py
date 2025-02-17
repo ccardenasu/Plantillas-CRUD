@@ -54,8 +54,8 @@ def buscar_ufinet_nni(texto):
     if not texto:
         return "No encontrado"
     
-    patron = r'(.*Ufinet.*NNI.*2\.1.*)'
-    match = re.search(patron, texto)
+    patron = r'(.*UFINET.*NNI.*2\.1.*)'
+    match = re.search(patron, texto, re.IGNORECASE)
     if match:
         return True
     return False
@@ -240,6 +240,9 @@ def main(cfs):
     if resultados['video'] == "No encontrado":
         resultados['video'] = "0"
 
+    if resultados['vrf'] == "No encontrado":
+        resultados['vrf'] = "0"
+
     if resultados['tipo'] == "EPL":
         cliente_modificado = resultados['cliente'].replace(" ", "-")
         resultados['vrf'] = f"{resultados['cfs']}-{cliente_modificado}"
@@ -252,9 +255,8 @@ def main(cfs):
 
     if resultados['vrf_init'] != "No encontrado":
         resultados['vrf_init'] = resultados['vrf_init'].lstrip('0')
-
-    if any(resultados[clave] == "No encontrado" for clave in ['cliente', 'sede', 'cfs', 'rfs_ip_port', 'rfs_ip_port_nid']):
-        ejecutar_enlace(cfs)
+        
+    ejecutar_enlace(cfs)
 
     print(json.dumps(resultados))
 

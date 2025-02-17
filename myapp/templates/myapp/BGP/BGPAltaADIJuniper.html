@@ -76,21 +76,23 @@
 
 {% else %}
 
-{% if "edge" in datos.pe|strip %}
+    {% if "edge" in datos.pe|strip %}
+
+        {% for lan_ip, mask in lan_ips_with_masks %}
+            {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} community 3356:123 community 3356:22{% endif %}
+            {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22{% endif %}
+            {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
+            {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
+        {% endfor %}
+    {% else %}
 
     {% for lan_ip, mask in lan_ips_with_masks %}
-        {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} community 3356:123 community 3356:22{% endif %}
-        {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} community 3356:123 community 3356:22{% endif %}
-        {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
-        {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} community 3356:123 community 3356:22{% endif %}
-    {% endfor %}
-{% else %}
-
-    {% for lan_ip, mask in lan_ips_with_masks %}
-        {% if datos.wan|mask == '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} {% endif %}
-        {% if datos.wan|mask != '31' %}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} {% endif %}
-        {% if datos.wanv6|maskv6 == '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|first_valid_ipv6 }} {% endif %}
-        {% if datos.wanv6|maskv6 != '127' %}set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop  {{ datos.wanv6|second_valid_ipv6 }} {% endif %}
-    {% endfor %}
-{% endif %}
+        {% if datos.wan|mask == '31' and datos.wanv6 != '::1/0'%}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|first_valid_ip }} {% endif %}
+        {% if datos.wan|mask != '31' and datos.wanv6 != '::1/0'%}set routing-options static route  {{ lan_ip}} next-hop  {{ datos.wan|second_valid_ip }} {% endif %}
+        {% if datos.wanv6|maskv6 == '127' and datos.wanv6 != '::/0' %}
+        set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop {{ datos.wanv6|first_valid_ipv6 }}
+    {% endif %}
+        {% if datos.wanv6|maskv6 != '127' and datos.wanv6 != '::/0' %}         set routing-options rib inet6.0 static route {{ datos.lanv6 }} next-hop {{ datos.wanv6|second_valid_ipv6 }}{% endif %}    
+        {% endfor %}
+    {% endif %}
 {% endif %}

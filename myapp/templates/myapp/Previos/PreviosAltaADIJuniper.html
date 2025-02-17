@@ -1,8 +1,7 @@
 {% load custom_filters %}
 {% load network_filters %}
 
-bash
-roci {{ datos.pe }}
+ssh -l EA-CO11455  {{ datos.pe }}
 configure private
 {% if datos.rfs_ip_port_nid  %}show  interfaces  {{ datos.interface_pe }}  | display set  | no-more{% endif %}
 
