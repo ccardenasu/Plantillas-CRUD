@@ -11,6 +11,8 @@
         var rdField = document.getElementById('id_rd');
         var swField = document.getElementById('id_sw');
         var svField = document.getElementById('id_sv');
+        var vrf2Field = document.getElementById('id_vrf2');
+        var rd2Field = document.getElementById('id_rd2');
 
         var fieldsToShowVPLSALTJUN = [
             'id_be',
@@ -338,8 +340,26 @@
             }
         });
 
-        
-
+        vrf2Field.addEventListener('blur', function() {
+            var vrf2Value = vrf2Field.value;
+            if (vrf2Value) {
+                fetch(`/buscar_vrf_rd/?vrf=${vrf2Value}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.found) {
+                            rd2Field.value = data.rd;
+                        } else {
+                            rd2Field.value = '';
+                            alert("No se encontró el valor de RD para el VRF ingresado.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Ocurrió un error al buscar el valor de RD.");
+                    });
+            }
+        });
+    
         function updateFieldVisibility() {
             var tipoConfiguracion = tipoConfiguracionField.value;
             var tipoServicio = tipoServicioField.value;
@@ -635,4 +655,3 @@
                 errorMessage.innerText = "Ocurrió un error al buscar en el CSV.";
             });
     }
-    

@@ -280,6 +280,7 @@ def buscar_cfs(request):
                             "unit_nid": dato.unit_nid,
                             "unit_b": dato.unit_b,
                             "vrf": dato.vrf,
+                            "vrf2": dato.vrf2,
                             "vt": dato.vt,
                             "wan": dato.wan,
                             "wanv6": dato.wanv6,
