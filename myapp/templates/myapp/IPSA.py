@@ -52,6 +52,16 @@ def buscar_sw_int(texto):
                         return match_int.group(1).strip()
     return "No encontrado"
 
+def buscar_ufinet_nni(texto):
+    if not texto:
+        return "No encontrado"
+    
+    patron = r'(.*Ufinet.*NNI.*2\.1.*)'
+    match = re.search(patron, texto)
+    if match:
+        return True
+    return False
+
 import re
 
 
@@ -156,6 +166,13 @@ def main(cfs):
         sede_palabras = resultados['sede'].split()
         valores_unicos_sede = [palabra for palabra in sede_palabras if palabra not in cliente_palabras]
         resultados['sede'] = ' '.join(valores_unicos_sede) if valores_unicos_sede else "No encontrado"
+    
+       # Nueva búsqueda para "Ufinet", "NNI", "2.1"
+    if buscar_ufinet_nni(texto):
+        resultados['sw'] = "BOGTCLFXNN002"
+        resultados['interface_sw'] = "TEN GIGA 0/0/2/1"
+    else:
+        resultados['interface_sw'] = buscar_sw_int(texto)
    
     if resultados['rfs_ip_port_nid'] == "No encontrado":
         resultados['rfs_ip_port_nid'] = ""
@@ -171,9 +188,6 @@ def main(cfs):
         resultados['sw'] = ""
     if resultados['vlan'] == "No encontrado":
         resultados['vlan'] = ""
-
-    resultados['interface_sw'] = buscar_sw_int(texto)
-
     if resultados['interface_sw'] == "No encontrado":
         resultados['interface_sw'] = ""
     if resultados['lnnid'] == "No encontrado":
