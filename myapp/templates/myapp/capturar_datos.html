@@ -63,46 +63,49 @@
         });
 
         function ejecutarIPSA() {
-            console.log("Evento blur activado en CFS"); // Mensaje de consola
+            console.log("Evento blur activado en CFS - capturar_datos.html 66:"); // Mensaje de consola
             var cfsValue = document.getElementById('id_cfs').value;
-            console.log("Ejecutando IPSA.py con CFS:", cfsValue); // Mensaje de consola
+            console.log("Ejecutando IPSA.py con CFS - capturar_datos.html 68:", cfsValue); // Mensaje de consola
             fetch(`/ejecutar_ipsa/?cfs=${cfsValue}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        console.log("IPSA.py ejecutado correctamente"); // Mensaje de éxito
-                        console.log("Salida del script:", data.data); // Mostrar la salida del script
-                        // Actualizar los campos de texto "Cliente", "Sede" y "RFS IP Port"
-                        document.getElementById('id_dko').value = data.data.dko;
+                        console.log(`vrf_init: ${data.data.vrf_init}`);
+                        console.log(`rd_init: ${data.data.rd}`);
+
+                        console.log("IPSA.py ejecutado - correctamente capturar_datos.html 73:"); // Mensaje de éxito
+                        console.log("Salida del script - capturar_datos.html 74:", data.data); // Mostrar la salida del script
+                        document.getElementById('id_asn').value = data.data.asn;
+                        document.getElementById('id_be').value = data.data.be;
+                        document.getElementById('id_bw').value = data.data.bw;
+                        document.getElementById('id_bw_video').value = data.data.video;
+                        document.getElementById('id_bw_voz').value = data.data.voz;
+                        document.getElementById('id_bundle_ether').value = data.data.be;
                         document.getElementById('id_cfs').value = data.data.cfs;
                         document.getElementById('id_cliente').value = data.data.cliente;
-                        document.getElementById('id_sede').value = data.data.sede;
-                        document.getElementById('id_rfs_ip_port').value = data.data.rfs_ip_port;
-                        document.getElementById('id_vt').value = data.data.vlan;
-                        document.getElementById('id_sw').value = data.data.sw;
-                        document.getElementById('id_rfs_ip_port_nid').value = data.data.rfs_ip_port_nid;
-                        document.getElementById('id_interface_sw').value = data.data.interface_sw;
+                        document.getElementById('id_cv').value = data.data.cvlan;
+                        document.getElementById('id_dko').value = data.data.dko;
                         document.getElementById('id_interface_pe').value = data.data.interface_pe;
-                        document.getElementById('id_bw').value = data.data.bw;
-                        document.getElementById('id_asn').value = data.data.asn;
-                        document.getElementById('id_wan').value = data.data.wan;
-                        document.getElementById('id_wanv6').value = data.data.wanv6;
+                        document.getElementById('id_interface_sw').value = data.data.interface_sw;
+                        document.getElementById('id_lag').value = data.data.lag;
                         document.getElementById('id_lbcpe').value = data.data.lbcpe;
                         document.getElementById('id_lnnid').value = data.data.lnnid;
                         document.getElementById('id_pe').value = data.data.pe;
-                        document.getElementById('id_tipo_servicio').value = data.data.tipo_servicio;
-                        document.getElementById('id_tipo_equipo').value = data.data.tipo_equipo;
-                        document.getElementById('id_tipo_configuracion').value = data.data.tipo_configuracion;
-                        document.getElementById('id_vrf').value = data.data.vrf;
+                        document.getElementById('id_rfs_ip_port').value = data.data.rfs_ip_port;
+                        document.getElementById('id_rfs_ip_port_b').value = data.data.rfs_ip_port_punta_a;
+                        document.getElementById('id_rfs_ip_port_nid').value = data.data.rfs_ip_port_nid;
+                        document.getElementById('id_sede').value = data.data.sede;
                         document.getElementById('id_sv').value = data.data.svlan;
-                        document.getElementById('id_cv').value = data.data.cvlan;
-                        document.getElementById('id_unit').value = data.data.svlan;   
-                        document.getElementById('id_rfs_ip_port_b').value = data.data.rfs_ip_port_punta_a; 
-                        document.getElementById('id_be').value = data.data.be;
-                        document.getElementById('id_bundle_ether').value = data.data.be;
-                        document.getElementById('id_bw_voz').value = data.data.voz;
-                        document.getElementById('id_bw_video').value = data.data.video;
-                        document.getElementById('id_lag').value = data.data.lag;
+                        document.getElementById('id_sw').value = data.data.sw;
+                        document.getElementById('id_tipo_configuracion').value = data.data.tipo_configuracion;
+                        document.getElementById('id_tipo_equipo').value = data.data.tipo_equipo;
+                        document.getElementById('id_tipo_servicio').value = data.data.tipo_servicio;
+                        document.getElementById('id_unit').value = data.data.svlan;
+                        document.getElementById('id_vrf').value = data.data.vrf;
+                        document.getElementById('id_vrf_init').value = data.data.vrf_init;
+                        document.getElementById('id_vt').value = data.data.vlan;
+                        document.getElementById('id_wan').value = data.data.wan;
+                        document.getElementById('id_wanv6').value = data.data.wanv6;
 
 
 

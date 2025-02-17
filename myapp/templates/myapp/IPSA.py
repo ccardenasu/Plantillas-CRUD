@@ -96,7 +96,7 @@ def main(cfs):
         'wanv6': [r'WANIPv6:\s*([\da-fA-F:]+/\d+)'],
         'video': [r'Video\s*(\d+)%'],
         'vrf': [r'VRF:\s*(.*)', r'vrf:\s*(.*)'],
-        'vrf_init': [r'Target: 6745:.*(\d{5})'],
+        'vrf_init': [r'RD:.*(\d{5})',r'Target: 6745:.*(\d{5})',],
 
 }
 

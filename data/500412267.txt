@@ -12,7 +12,7 @@ Interface PE: xe-1/0/0.3078
 Interface NID: xe-1/0/0.505 
 VRF: 00/VPXX/721236/LVLC
 Vlan Tercero: 3078
-RD: 6745:110038262
+RD: 6745:1100380262
 Svlan: 3078
 Cvlan: 1300
 BW: 18M
@@ -69,7 +69,7 @@ PE:  ASIGNAR
 Interface: ASIGNAR
 IP_WAN: 55.121.234.37/30
 VRF: 00/VPXX/721236/LVLC -> confirmada por LUMEN 
-Target: 6745:110038262
+Target: 6745:1121262
 
 Enrutamiento: BGP; # AS_BGP: 65015
 MD5: SI Lumen informa que la Clave se entregara el dia de la activacion
