@@ -58,49 +58,63 @@
                         {% if datos.cfs %}CFS: {{ datos.cfs }}{% endif %}
                         {% if datos.dko %}DKO: {{ datos.dko }}{% endif %}
                         {% if datos.tipo_configuracion %}tipo_configuracion: {{ datos.tipo_configuracion }}{% endif %}
+                        {% if datos.tipo_equipo %}tipo_servicio: {{ datos.tipo_equipo }}{% endif %}
                         {% if datos.tipo_servicio %}tipo_servicio: {{ datos.tipo_servicio }}{% endif %}
-                        {% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
-                        {% if datos.rfs_ip_port_nid %}RFS-IP-PORT_NID: {{ datos.rfs_ip_port_nid }}{% endif %}
                         {% if datos.cliente %}Cliente: {{ datos.cliente }}{% endif %}
                         {% if datos.sede %}SEDE: {{ datos.sede }}{% endif %}
+                        {% if datos.sede_b %}SEDE_B: {{ datos.sede_b }}{% endif %}
+                        {% if datos.rfs_ip_port %}RFS-IP-PORT: {{ datos.rfs_ip_port }}{% endif %}
+                        {% if datos.rfs_ip_port_b %}RFS-IP-PORT_B: {{ datos.rfs_ip_port_b }}{% endif %}
+                        {% if datos.rfs_ip_port_nid %}RFS-IP-PORT_NID: {{ datos.rfs_ip_port_nid }}{% endif %}
+                        {% if datos.vt %}Vlan Tercero: {{ datos.vt }}{% endif %}      
                         {% if datos.sw and datos.sw != 'Conectado a PE' %}SW: {{ datos.sw }}{% endif %}
                         {% if datos.interface_sw %}Interface SW: {{ datos.interface_sw }}{% endif %}
+                        {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}M{% endif %}
+                        {% if datos.bw_plus and datos.bw_plus != '0' %}BW_plus: {{ datos.bw_plus }}M{% endif %}
+                        {% if datos.bw_exchange and datos.bw_exchange != '0' %}BW: {{ datos.bw_exchange }}M{% endif %}
+                        {% if datos.bw_voz and datos.bw_voz != '0' %}BW: {{ datos.bw_voz }}M{% endif %}
+                        {% if datos.bw_video and datos.bw_video != '0' %}BW: {{ datos.bw_video }}M{% endif %}
+                        {% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
+                        {% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
+                        {% if datos.sv == datos.cv and  datos.unit_b %}Vlan: {{ datos.sv }}{% endif %}
+                        {% if datos.sv != datos.cv %}Svlan: {{ datos.sv }}{% endif %}
+                        {% if datos.sv != datos.cv %}Cvlan: {{ datos.cv }}{% endif %}
+                        {% if datos.sv_b == datos.cv_b and  datos.unit_b %}Vlan_B: {{ datos.sv_b }}{% endif %}
+                        {% if datos.sv_b != datos.cv_b %}Slan_B: {{ datos.sv_b }}{% endif %}
+                        {% if datos.sv_b != datos.cv_b %}Clan_B: {{ datos.cv_b }}{% endif %}
+                        {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
+                        {% if datos.rd %}RD: {{ datos.rd }}{% endif %}
+                        {% if datos.vrf2 %}VRF: {{ datos.vrf2 }}{% endif %}
+                        {% if datos.rd2 %}RD: {{ datos.rd2 }}{% endif %}
+                        {% if datos.lag %}PE: {{ datos.lag }}{% endif %}
+                        {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
+                        {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
+                        {% if datos.wanv6 and datos.wanv6 != '::/0' %}WANIPv6: {{ datos.wanv6 }}{% endif %}
+                        {% if datos.lan and datos.lan != '0.0.0.0/0' %}LANIPv4: {{ datos.lan }}{% endif %}
+                        {% if datos.lanv6 %}LANIPv6: {{ datos.lanv6 }}{% endif %}
+                        {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %} 
+                        {% if datos.lnnid %}LB NID: {{ datos.lnnid }}{% endif %}  
                         {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
-                        {% if datos.pe_vpls_a %}PE_VPLS_A: {{ datos.pe_vpls_a }}{% endif %}
-                        {% if datos.pe_vpls_b %}PE_VPLS_B: {{ datos.pe_vpls_b }}{% endif %}
                         {% if "mesc20.baq.baq" in datos.sw|strip %}Interface PE: {{ datos.interface_pe }}:{{ datos.cv }}.{{ datos.cv }}
                         Interface PE_VPLS_A: {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}
                         Interface PE_VPLS_B: {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}
                         {% elif datos.sv and  datos.tipo_equipo == 'ALCATEL' or datos.tipo_equipo == 'ALCATEL_V' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
                         {% else %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
+                        {% if datos.pe_b %}PE: {{ datos.pe_b }}{% endif %}
+                        {% if datos.pe_vpls_a %}PE_VPLS_A: {{ datos.pe_vpls_a }}{% endif %}
+                        {% if datos.pe_vpls_b %}PE_VPLS_B: {{ datos.pe_vpls_b }}{% endif %}                        
                         {% if datos.unit_nid and  datos.tipo_equipo == 'ALCATEL' or datos.tipo_equipo == 'ALCATEL_V' %}Interface NID: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.unit_nid }}
                         {% else %}
                         {% if datos.unit_nid and datos.unit_nid != "" %}Interface NID: {{ datos.interface_pe }}.{{ datos.unit_nid }} {% endif %}
                         {% endif %}
-                        {% if datos.vrf %}VRF: {{ datos.vrf }}{% endif %}
-                        {% if datos.vt %}Vlan Tercero: {{ datos.vt }}{% endif %}
-                        {% if datos.rd %}RD: {{ datos.rd }}{% endif %}
-                        {% if datos.sv == datos.cv and  datos.unit_b %}Vlan: {{ datos.sv }}{% endif %}
-                        {% if datos.sv != datos.cv %}Svlan: {{ datos.sv }}{% endif %}
-                        {% if datos.sv != datos.cv %}Cvlan: {{ datos.cv }}{% endif %}
-                        {% if datos.bw and datos.bw != '0' %}BW: {{ datos.bw }}M{% endif %}
-                        {% if datos.wan and datos.wan != '0.0.0.0/0' %}WAN: {{ datos.wan }}{% endif %}
-                        {% if datos.wanv6 and datos.wanv6 != '::/0' %}WANIPv6: {{ datos.wanv6 }}{% endif %}
-                        {% if datos.lan and datos.lan != '0.0.0.0/0' %}LANIPv4: {{ datos.lan }}{% endif %}
-                        {% if datos.lanv6 %}LANIPv6: {{ datos.lanv6 }}{% endif %}
-                        {% if datos.asn %}ASN: {{ datos.asn }}{% endif %}
-                        {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %} 
-                        {% if datos.lnnid %}LB NID: {{ datos.lnnid }}{% endif %}                      
-                        {% if datos.rfs_ip_port_b %}RFS-IP-PORT_B: {{ datos.rfs_ip_port_b }}{% endif %}
-                        {% if datos.sede_b %}SEDE_B: {{ datos.sede_b }}{% endif %}
-                        {% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
-                        {% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
+                      
+                        
+                        
+                                            
+                        
                         {% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
                         {% if datos.interface_pe_b %}Interface PE_B: {{ datos.interface_pe_b }}.{{datos.unit_b }}{% endif %}
-                        {% if datos.sv_b == datos.cv_b and  datos.unit_b %}Vlan_B: {{ datos.sv_b }}{% endif %}
-                        {% if datos.sv_b != datos.cv_b %}Slan_B: {{ datos.sv_b }}{% endif %}
-                        {% if datos.sv_b != datos.cv_b %}Clan_B: {{ datos.cv_b }}{% endif %}
-
+                       
                     </textarea>
                     <div class="button-container">
                         <button class="datos-button" onclick="copyToClipboard('dataTextArea')" aria-label="Copiar Datos">Copiar Datos</button>

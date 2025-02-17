@@ -70,6 +70,8 @@ def main(cfs):
         'asn': [r'AS_BGP:\s*(\d+)', r'ASN:\s*(\d+)', r'ASN\s*(\d+)'],
         'be': [r'INT:\s*(ae\d+)\.\d+'],
         'bw': [r'\b(\d+)Mbps\b.*', r'\b(\d+)Gb\b.*', r'\b(\d+)Mb\b.*'],
+        'bw_exchange': [r'(\d+)% E --'],
+        'bw_plus': [r'(\d+)% P --'],
         'cfs': [r'CFS :\s*(\d+)', r'CID-CFS :\s*(\d+)', r'CFS-CID:\s*(\d+)', r'CID-CFS:\s*(\d+)', r'CFS:\s*(\d+)', r'CFS ID:\s*(\d+)', r'CFS\s*(\d+)'],
         'cliente': [r'(?i)Customer:\s*(.*?)(?=\n)', r'(?i)CLIENTE:\s*(.*?)(?=\n)', r'(?i)Cliente:\s*(.*?)(?=\n)', r'(?i)CLIENT:\s*(.*?)(?=\n)'],
         'configuracion': [r'(Alta)', r'(alta)', r'(ampliación)', r'(ampliacion)'],

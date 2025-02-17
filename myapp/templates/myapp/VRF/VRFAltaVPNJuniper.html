@@ -98,7 +98,7 @@ show  routing-instances {{ datos.vrf }}  | display set | no
         set routing-instances {{ datos.vrf }} description "{{datos.cliente}}"
         set routing-instances {{ datos.vrf }} instance-type vrf
         set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
-        set routing-instances {{ datos.vrf }} route-distinguisher "LB_PE:Nuemeros iniciales de VRF AZUL"
+        set routing-instances {{ datos.vrf }} route-distinguisher "LB_PE:{{ datos.vrf_init }}
         set routing-instances {{ datos.vrf }} vrf-import VPN-import
         set routing-instances {{ datos.vrf }} vrf-import {{ datos.vrf }}-import
         set routing-instances {{ datos.vrf }} vrf-export VPN-export
