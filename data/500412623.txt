@@ -1,0 +1,80 @@
+DKO:8889827 (8892171)
+
+Comments: (Ever Contreras) 12/02/25 23:31 Start DokuFlow.
+##
+Se genera esta DKO después de que Quoting cerrada la TDG: 2/11/2025 9:34:17 AM
+##
+
+Actividad: Se requiere dar de alta enlace EVPL [E-LAN] @50Mb vía tercero.
+
+WORLEY GROUP, INC.
+ WORLEY GROUP INC - TRINIDAD & TOBAGO
+ADDRESS: 38 RODNEY RD NA, CHAGUANAS, CHA-Chaguanas, Trinidad and Tobago Latitud 10.525656 Longitud -61.402196
+
+Technical Contact:
+JohnAdams / M: john.c.adams@worley.com / P: 18327318874
+Validar datos adicionales del LCON con el CCM.
+
+CCM: TBD
+
+XML 8882314
+CFS 500412623
+*:RFS6000329631 (IP Port)
+
+========== OFFNET ==========
+
+Contratar el siguiente enlace:
+
+Proveedor: IGN (Inteliglobe)
+Tipo: Capa 2 [L2]
+BW: 50Mb
+Customer Handoff Interface: Copper | RJ45
+NNI Type: FLEX | psr3.mia43	- ae21
+DK-SURVEY-TDG-152078186-8886848
+
+- Solicitar al tercero prueba de esfuerzo del enlace que garantice el BW contratado.
+
+========== IPSA ==========
+
+Asignar recurso IP para dar de alta el siguiente enlace vía OFFNET:
+
+Tipo: EVPL [E-LAN]
+PE: psr3.mia43
+Int. ae21.XXXX
+VRF: 21698000-1-WORLEYPARSONSGROUPINC.-2006828194-L2VPN
+BW: 50Mb
+
+- Solución NIDLESS.
+
+========== SDM / SA ==========
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar actividades para dar de alta enlace EVPL [E-LAN] @50Mb vía tercero:
+- Customer Handoff Interface: Copper | RJ45
+- Solución NIDLESS.
+3. Validar la prueba de esfuerzo que realice el tercero.
+4. Programar PEM con el cliente garantizando funcionalidad del enlace.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 13/02/25 15:41
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8889827
+Datos - EVPL Add   **8889827*$*
+
+Workflow Initialization
+Comments: (Lozano, Paula) 14/02/25 18:48
+Se contrata 50Mbps, en el POP psr3.mia43 - ae21 - Modo: Fixed 
+Comments: (Lozano, Paula) 14/02/25 18:51
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8890498
+Activación Terceros ICT   **8890498*$*
+
+Workflow Initialization
