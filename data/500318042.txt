@@ -1,0 +1,406 @@
+CFS: 500318042
+DKO: 8641803 (8651896)
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: LEVEL3 COMMUNICATIONS,LLC
+SEDE: LUMEN-KEYSTONE-RTO5-WHA-MEXICO-81-567J8FZ
+RFS-IP-PORT: 6000311236
+Vlan Tercero: 2855      
+SW: L5843422NN001
+Interface SW: TenGigE0/0/1/2.928551300
+BW: 40M
+Svlan: 89
+Cvlan: 1300
+VRF: 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN
+RD: 6745:11008348
+ASN: 65000
+WAN: 100.65.0.24/30
+LB CPE: 172.24.128.34 
+LB NID: 10.227.55.70  
+PE: PSR2.GUA1
+Interface PE: ae10.83
+
+	
+
+DKO:8641803 (8893824)
+Comments: (Vallejo Caguenas, Sergio) 27/09/24 16:29 Start DokuFlow.
+Actividad: Se requiere hacer traslado + Upgrade y cambio de Fibra Propia a Convenio enlace VPN @40Mb vía Tercero TRANSTELCO
+
+Cliente: LEVEL3 COMMUNICATIONS,LLC 
+Sede: LUMEN-KEYSTONE RTO5 WHA-MEXICO
+Dirección: MANUEL ACUNA 3410, GUADALAJARA, JA-Jalisco, Mexico
+
+Technical Contact:
+Scott Kaiser / M: Scott Kaiser kaiserks@state.gov / P: 636 751 3742
+
+CCM: Bononi, Paulo
+
+XML 8634339
+CFS 500318042
+*:RFS  --- ICT  ( 3rd Party )
+*:RFS6000311236 ( IP Port )
+*:RFS6000311237 ( NID )
+*:RFS6000311238 ( CPE )
+
+EON: 1191206/11
+FRO: FRO2007127893 
+
+=========== SOLICITUD DE EQUIPOS ===========
+
+ITEM: 370169, (SAP: 1384691).
+Descripción: F150/ADV/GE114PRO/AC/811.
+Cantidad: 1.
+
+ITEM: 363313, (N/P: 1013904011).
+Descripción: F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN.
+Cantidad: 1.
+
+ITEM: 2362-24, (N/P: 1036000632).
+Descripción: AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT.
+Cantidad: 1.
+
+SE DEBE TRASLADAR EL CPE ACTUAL EN SEDE CLIENTE ISR4331-AX/K9 A LA SEDE NUEVA
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+
+Proveedor: NEUTRAL NETWORKS
+Tipo: Capa 2 [L2]
+BW: 40Mb
+Handoff interface: Eletrical, RJ45
+DK-SURVEY-TDG-151985792-8638490
+
+========== IPSA=========
+1. Por traslado se debe realizar migracion de recursos del Actual al asignado Por Offnet
+2. Favor poner la descripcion estandar LATAM, asignar LP NID Y CPE
+
+RECURSO ACTUAL:
+---------------------
+PE: psr2.gua1
+INT: ae10.12
+WAN:  100.65.0.25/30
+VRF: 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN
+RD: target:6745:11008348
+::: UM :::
+EQUIPO: L5843422ZG006
+INT: gigabitEthernet 0/0/6
+BD: bridge-domain 20
+
+Enrutamiento: BGP; # AS_BGP: 65000 - overwrite
+Static Route:
+159.63.219.223/32 next-hop 100.65.0.26
+64.210.16.39/32 next-hop 100.65.0.26
+
+LP NID ACCEDIAN: 10.254.65.217/30
+LP CPE: 159.63.219.223/32
+
+RECURSO NUEVO:
+---------------------
+PE: ASIGNAR
+INT: ASIGNAR
+
+LP NID: ASIGNAR
+LP CPE: ASIGNAR
+
+3. Asignar ip de monitoreo para NID Y CPE, Dar de Alta RFS  
+
+============= SDM / SA =============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET.
+2. Agendar ventana con el cliente para TRASLADO enlace VPN @40Mb:
+- Se debe trasladar CPE de la sede Actual a la nueva e integrar el NID Adva ya que el actual es Accedian 
+- Garantizar que el NID quede en gestión y con acceso remoto. 
+- el CPE sebe quedar Gestionado por Cirion y tambien tendra Gestion del cliente.
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+POR FAVOR LEER TODA LA DOCUMENTACION Y SI HAY ALGUNA NOVEDAD O DUDA VALIDARLO CON EL CD.
+Circuit Designer : Sergio Vallejo
+
+============= CD ==================
+
+Liberar recursos de BBIP cuando se cambie a convenio. 
+
+PE: psr2.gua1
+INT: ae10.12
+WAN:  100.65.0.25/30
+VRF: 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN
+RD: target:6745:11008348
+::: UM :::
+EQUIPO: L5843422ZG006
+INT: gigabitEthernet 0/0/6
+BD: bridge-domain 20
+
+Workflow Initialization
+Comments: (Lima, Sthefanny) 30/09/24 10:18
+Finished Step: Asignación de SDM·
+
+Comments: (Vallejo Caguenas, Sergio) 04/10/24 18:13
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+Comments from Subprocess 8647756
+
+
+Workflow Initialization
+Comments: (Hernandez, Erik) 10/10/24 15:12
+IPSA
+
+VLAN                          2852
+Equipo -                   Puerta: L5843422NN001 - TenGigE 0/0/1/2                                
+CID Cirion:     6000294471                           
+CID Tercero: CIR-NNI-GDL-10757-01         
+Comments: (Hernandez, Erik) 10/10/24 15:17
+Finished Step: Alta Tercero
+Comments from Subprocess 8651896
+
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 11/10/24 11:27
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+                        CFS: 500318042
+                        DKO: 8641803 (8651896)
+                        tipo_configuracion: Alta
+                        tipo_servicio: VPN
+                        RFS-IP-PORT: 6000311236
+                        Cliente: LEVEL3 COMMUNICATIONS,LLC
+                        SEDE: LUMEN-KEYSTONE RTO5 WHA-MEXICO 81-567J8FZ
+                        SW: L5843422NN001
+                        Interface SW: TenGigE0/0/1/2.928521300
+                        PE: PSR2.GUA1
+                        Interface PE: ae10.79
+                        VRF: 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN
+                        Vlan Tercero: 2852
+                        RD: 6745:11008348
+                        SV: 79
+                        CV: 1300
+                        WAN: 100.65.0.24/30
+                        ASN: 65000
+                        LB CPE: 172.24.128.34
+                        LB NID: 10.227.55.70
+                        ==================================================================================
+
+
+Favor solicitar soporte para librar recursos actuales
+
+
+roci@psr2.gua1# run show arp interface ae10.12 
+MAC Address       Address         Name                      Interface               Flags
+f4:bd:9e:64:69:c0 100.65.0.26     100.65.0.26               ae10.12                 none
+
+{master}[edit]
+roci@psr2.gua1# 
+
+
+Building configuration...
+!! IOS XR Configuration 6.4.2
+interface TenGigE0/0/1/2.928520505 l2transport
+ description NID Management
+ encapsulation dot1q 2852 second-dot1q 505 exact
+ rewrite ingress tag pop 2 symmetric
+ service-policy input 8Q_ENNI_INPUT
+ service-policy output 40MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_1_2_OVC_2852
+!
+interface TenGigE0/0/1/2.928520506 l2transport
+ description L2 Performance
+ encapsulation dot1q 2852 second-dot1q 506 exact
+ rewrite ingress tag pop 2 symmetric
+ service-policy input 8Q_ENNI_INPUT
+ service-policy output 40MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_1_2_OVC_2852
+!
+interface TenGigE0/0/1/2.928521300 l2transport
+ description 12/LATAM/6000313674/PATH - ENNI # NEUTRAL # 81-ENNI [(500318042) LUMEN-KEYSTONE RTO5 WHA-MEXICO 81-567J8FZ]
+ encapsulation dot1q 2852 second-dot1q 1300
+ rewrite ingress tag pop 1 symmetric
+ service-policy input 8Q_ENNI_INPUT
+ service-policy output 40MBPS_OUTPUT_PARENT shared-policy-instance TE0_0_1_2_OVC_2852
+ l2protocol cpsv tunnel
+ ethernet-services access-group L2-FRAMES ingress
+!
+l2vpn
+ bridge group 3549_400272
+  bridge-domain 3549_400272
+   mac
+    withdraw state-down
+   !
+   mtu 9800
+   interface TenGigE0/0/1/2.928521300
+   !
+   vfi 3549_400272
+    vpn-id 241
+    autodiscovery bgp
+     rd auto
+     route-target 3549:400272
+    !
+   !
+  !
+ !
+ bridge group LATAM_NID_MGMT_1
+  bridge-domain LATAM_NID_MGMT_1
+   interface TenGigE0/0/1/2.928520505
+    storm-control unknown-unicast pps 100
+    storm-control multicast pps 100
+    storm-control broadcast pps 100
+    split-horizon group
+   !
+  !
+ !
+ bridge group LATAM_METRO_L2_PERF_1
+  bridge-domain LATAM_METRO_L2_PERF_1
+   interface TenGigE0/0/1/2.928520506
+    split-horizon group
+   !
+  !
+ !
+!
+end
+
+RP/0/RSP0/CPU0:L5843422NN001#
+
+
+
+roci@psr2.gua1# show | compare rollback 1 | no-more 
+[edit interfaces ae10]
++    inactive: unit 79 {
++        disable;
++        description "CUSTOMER: LEVEL3 COMMUNICATIONS,LLC (CFS:500318042)(RFS:6000311236)";
++        vlan-tags outer 0x8100.79 inner 0x8100.1300;
++        family inet {
++            no-redirects;
++            filter {
++                input ae10.79-inet-i;
++            }
++            policer {
++                input ae10.79-in;
++                output ae10.79-out;
++            }
++            address 100.65.0.25/30;
++        }
++    }
+[edit policy-options policy-statement 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN-export]
+     term GMS-loopback { ... }
++    term TS_HUB {
++        then {
++            community add 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN-209RT-mesh;
++            default-action accept;
++        }
++    }
++    term APP-REPORTING-spoke {
++        from {
++            route-filter 64.210.16.39/32 exact;
++        }
++        then {
++            community add APP-REPORTING-spoke;
++            default-action accept;
++        }
++    }
+[edit policy-options policy-statement 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN-import term L3VPN from]
+-     community [ 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN-mesh MGMT-hub ];
++     community [ 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN-mesh MGMT-hub APP-REPORTING-hub ];
+[edit policy-options policy-statement 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN-import]
+     term final { ... }
++    term TS_HUB {
++        from {
++            community 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN-209RT-mesh;
++            prefix-list-filter SOLARWINDS_HUB_PREFIXES orlonger;
++        }
++        then accept;
++    }
+[edit class-of-service traffic-control-profiles]
+    ae10.85-1000K-o { ... }
++   ae10.79-30000K-o {
++       scheduler-map GX-CUST-SCHEDULER-MAP-I;
++       shaping-rate 30m;
++       delay-buffer-rate 120m;
++   }
+[edit class-of-service interfaces ae10]
++     unit 79 {
++         output-traffic-control-profile ae10.79-30000K-o;
++         rewrite-rules {
++             ieee-802.1 XMR-I;
++         }
++     }
+[edit firewall family inet]
+      filter ae10.85-inet-i { ... }
++     filter ae10.79-inet-i {
++         term MGMT {
++             from {
++                 source-address {
++                     159.63.219.223/32;
++                 }
++                 destination-address {
++                     145.233.112.0/25;
++                     145.233.113.0/25;
++                     146.82.160.64/27;
++                     195.166.70.160/28;
++                     206.41.16.0/21;
++                     206.165.53.128/28;
++                     208.50.228.128/25;
++                     209.130.198.64/26;
++                     4.33.51.0/24;
++                     4.68.79.0/25;
++                 }
++             }
++             then {
++                 count MGMT.rx-ae10.79-inet-i;
++                 loss-priority low;
++                 forwarding-class EF;
++             }
++         }
++         term BE {
++             then {
++                 count BE.rx-ae10.79-inet-i;
++                 loss-priority high;
++                 forwarding-class VPN-BE;
++             }
++         }
++     }
+[edit firewall]
+    policer ae10.78-cir-in { ... }
++   policer ae10.79-in {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 50m;
++           burst-size-limit 1875000;
++       }
++       then discard;
++   }
++   policer ae10.79-out {
++       logical-interface-policer;
++       if-exceeding {
++           bandwidth-limit 50m;
++           burst-size-limit 1875000;
++       }
++       then discard;
++   }
+[edit routing-instances 8348-1-DiplomaticTelecommunicationsServiceProgramOffice-2007124005-L3VPN]
++    interface ae10.79;
+
+{master}[edit]
+roci@psr2.gua1# 
+
+{master}[edit]
+roci@psr2.gua1# quit 
+Exiting configuration mode
+
+{master}
+roci@psr2.gua1> quit 
+
+Connection to 200.186.25.18 closed.
+ccarden5@nocsup2b-prod(~) 
+
+
+Comments: (Hernandez, Erik) 17/02/25 14:02
+Finished Step: Entrega UM
+
+Comments: (Mora, Javier) 18/02/25 11:37
+IPSA
+Por favor su apoyo para reconfigurar servicio, terceros cambio de la VLAN 2852 A 2855
+
+This Order was automatically initiated by Order NO:8641803
+Datos - IP VPN Add   **8641803*$*
+
+Workflow Initialization

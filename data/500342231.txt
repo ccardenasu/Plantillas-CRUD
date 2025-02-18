@@ -1,0 +1,95 @@
+CFS: 500342231
+DKO: 8893910
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: ADI
+Cliente: BANCO W S.A. (CFS:500342231) (RFS:6000232784)
+SEDE: VALLE---CALI---SEDE-ADMINISTRATIVA
+RFS-IP-PORT: 6000232784
+RFS-IP-PORT_NID: 6000055838
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/3.911101200
+BW: 1000M
+Svlan: 1011
+PE: ar1.sub1.bog
+Interface PE: ae6.1011
+
+
+DKO:8893910 (8893927)
+
+Comments: (Ariza, Jorge) 18/02/25 12:23 Start DokuFlow.
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere ampliación de SD WAN Internet a 1Gb vía C&W en actual NID y CPE SD-WAN
+
+CUSTOMER TECHNICAL CONTACT:
+Karen Fajardo / kfajardo@bancow.com.co / 3137104215
+SD WAN Internet @1Gb
+XML 8892325
+CFS 500342231
+
+CLIENT: BANCO W S.A.
+SITE: BANCO W - VALLE - CALI - SEDE ADMINISTRATIVA
+ADDRESS: AVENIDA 5 N # 16 - 57, CALI, VALLE DEL CAUCA, COLOMBIA [LATITUD 3.459056604761575 LONGITUD -76.531621]
+
+RFS:
+*:RFS 6000232784 ( IP Port )
+*:RFS 6000055839 ( 3rd Party )
+*:RFS 6000055838 ( NID )
+*:RFS 6000205827 ( SDWAN CPE )
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere ampliación de SD WAN Internet a 1Gb vía C&W en actual NID y CPE SD-WAN, a fin de resolver la saturación en el acceso durante las videoconferencias
+----------------------------------------------------------------------------------
+OFFNET
+
+NA
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Realizar ampliación para
+TYPE: SD WAN Internet
+PE: AR1.SUB1.BOG
+INT: ae6.1011
+IP: 64.76.210.40/31
+DES: CUSTOMER: BANCO W S.A. (CFS:500342231) (RFS:6000232784)
+ME: BOGTCLFXNN001
+INT: TenGigaE0/0/2/3
+DES: 12/LATAM/6000238651/SVC ENNI # LAZUS 81-ENNI (500342231) BANCO W CALI PRINCIPAL INTERNET SECUNDARIO BKP
+BW: 1Gb
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar asignación de recursos por parte de IPSA
+2. Agendar ventana con el cliente para realizar ampliación de SD WAN Internet a 1Gb vía C&W en actual NID y CPE SD-WAN
+3. Garantizar que los equipos continúen en gestión y con acceso remoto
+4. Realizar prueba de esfuerzo del canal
+5. Documentar ingeniería
+
+Handoff interface POP: NNI
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE SD-WAN NM Advanced Management
+LB Asignada Por IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8893910
+Datos - ADI Mod   **8893910*$*
+
+Workflow Initialization
