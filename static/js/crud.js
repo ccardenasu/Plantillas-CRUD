@@ -152,6 +152,44 @@
             'id_wanv6'
         ];
 
+        var fieldsToShowNNIALTJUN = [
+            'id_asn',
+            'id_be',
+            'id_bundle_ether',
+            'id_bw',
+            'id_bw_exchange',
+            'id_bw_plus',
+            'id_bw_voz',
+            'id_bw_video',
+            'id_cfs',
+            'id_cliente',
+            'id_cv',
+            'id_dko',
+            'id_interface_pe',
+            'id_interface_sw',
+            'id_lbcpe',
+            'id_lnnid',
+            'id_pe',
+            'id_puertos_lag',
+            'id_rd',
+            'id_rd2',
+            'id_rfs_ip_port',
+            'rfs-ip-port_b',
+            'id_sede',
+            'id_sv',
+            'id_sw',
+            'id_tipo_configuracion',
+            'id_tipo_equipo',
+            'id_tipo_servicio',
+            'id_unit',
+            'id_vrf',
+            'id_vrf_init',
+            'id_vrf2',
+            'id_vt',
+            'id_wan',
+            'id_wanv6'
+        ];
+
         var fieldsToShowVPNAMPJUN = [
             'id_be',
             'id_bundle_ether',
@@ -377,6 +415,8 @@
                     field.style.display = fieldsToShowADIAMPALC.includes(field.id) ? 'block' : 'none';
                 } else if (tipoConfiguracion === 'Alta' && tipoServicio === "VPN" && tipoEquipo === "JUNIPER") {
                     field.style.display = fieldsToShowVPNALTJUN.includes(field.id) ? 'block' : 'none';
+                } else if (tipoConfiguracion === 'Alta' && tipoServicio === "NNI_L3_impsat" && tipoEquipo === "JUNIPER") {
+                    field.style.display = fieldsToShowNNIALTJUN.includes(field.id) ? 'block' : 'none';
                 } else if (tipoConfiguracion === 'Alta' && tipoServicio === "ADI" && tipoEquipo === "ALCATEL") {
                     field.style.display = fieldsToShowADIALTALC.includes(field.id) ? 'block' : 'none';
                 } else if (tipoConfiguracion === 'Alta' && tipoServicio === "ADI" && tipoEquipo === "ALCATEL_V") {

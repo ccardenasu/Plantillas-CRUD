@@ -1,3 +1,34 @@
+CFS: 500063096
+DKO: 8888837
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CAVIPETROL
+SEDE: CAVIPETROL-CASABE
+RFS-IP-PORT: 6000277684
+SW: MDLNCLAFNN001
+Interface SW: TenGigE0/0/2/1.931181300
+BW: 10M
+VRF: cavipetrol
+PE: PSR1.MDC4
+Interface PE: ae10.381
+
+
+
+NODO: Santillana
+Servicio: MPLS
+PE: psr1.mdc4
+Interface: ae10.381
+VRF: cavipetrol
+IPv4 PE: 10.10.10.141 /30
+
+NNI-M2 con LEC:
+SW: MDLNCLAFNN001
+Interface: TenGigE0/0/2/1.931181300
+VLAN: 3011
+Nodo: Santillana
+
+
 DKO:8888837 (8893353)
 
 Comments: (Felipe Teixeira) 12/02/25 11:40 Start DokuFlow.

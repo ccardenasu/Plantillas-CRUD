@@ -1,3 +1,19 @@
+CFS: 500108054
+DKO: 8888241
+tipo_configuracion: Ampliacion
+tipo_servicio: ALCATEL
+tipo_servicio: ADI
+Cliente: BAKER HUGHES OILFIELD OPERATIONS LLC
+SEDE: BH-CARRERA-7A-#-123---35---MIGRADA-LLAS
+RFS-IP-PORT: 6000089924
+RFS-IP-PORT_NID: 6000066931
+SW: BOGTCLFXNN001
+Interface SW: Te0/0/2/3.918751200
+BW: 500M
+Svlan: 1247
+Cvlan: 1200
+PE: ar2.bgo2
+Interface PE: lag-12:1247.1200
 DKO:8888241 (8893161)
 
 Comments: (Rojas, Carlos) 11/02/25 17:45 Start DokuFlow.
@@ -80,4 +96,4 @@ Se solicita a LIBERTY aumento 500 MB para el canal en mención.
 This Order was automatically initiated by Order NO:8890529
 Activación Terceros ICT   **8890529*$*
 
-Workflow Initialization
+Workflow Initializationx|

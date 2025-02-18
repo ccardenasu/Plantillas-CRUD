@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from .forms import DatosForm
@@ -7,7 +7,7 @@ import os
 import ipaddress
 import csv
 import subprocess
-import json  # Asegúrate de importar el módulo json
+import json
 from django.views.decorators.csrf import csrf_exempt
 
 

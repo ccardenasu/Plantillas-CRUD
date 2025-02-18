@@ -60,6 +60,16 @@ def buscar_ufinet_nni(texto):
         return True
     return False
 
+def buscar_LIBERTY_nni(texto):
+    if not texto:
+        return "No encontrado"
+    
+    patron = r'(.*LIBERTY.*NNI.*Bogotá.*)'
+    match = re.search(patron, texto, re.IGNORECASE)
+    if match:
+        return True
+    return False
+
 def main(cfs):
     data_path = os.path.join('data', f'{cfs}.txt')
 
@@ -77,7 +87,7 @@ def main(cfs):
         'bw': [r'\b(\d+)Mbps\b.*', r'\b(\d+)Gb\b.*', r'\b(\d+)Mb\b.*'],
         'bw_exchange': [r'(\d+)% E --'],
         'bw_plus': [r'(\d+)% P --'],
-        'cfs': [r'CFS :\s*(\d+)', r'CID-CFS :\s*(\d+)', r'CFS-CID:\s*(\d+)', r'CID-CFS:\s*(\d+)', r'CFS:\s*(\d+)', r'CFS ID:\s*(\d+)', r'CFS\s*(\d+)'],
+        'cfs': [r'CFS :\s*(\d+)', r'CID-CFS :\s*(\d+)', r'CFS-CID:\s*(\d+)', r'CID-CFS:\s*(\d+)', r'CFS:\s*(\d+)', r'CFS\s+ID:\s*(\d+)', r'CFS\s*(\d+)'],
         'cliente': [r'(?i)Customer:\s*(.*?)(?=\n)', r'(?i)CLIENTE:\s*(.*?)(?=\n)', r'(?i)Cliente:\s*(.*?)(?=\n)', r'(?i)CLIENT:\s*(.*?)(?=\n)'],
         'configuracion': [r'(Alta)', r'(alta)', r'(ampliación)', r'(ampliacion)'],
         'cvlan': [r'Int:\s*ae-\d+:\d+\.(\d+)', r'Cvlan:\s*(\d+)'],
@@ -156,6 +166,10 @@ def main(cfs):
     else:
         resultados['interface_sw'] = buscar_sw_int(texto)
 
+    if buscar_LIBERTY_nni(texto):
+        resultados['sw'] = "BOGTCLFXNN001"
+        resultados['interface_sw'] = "TEN GIGA 0/0/2/3"
+
     if resultados['pe'] != "No encontrado" and resultados['sw'] == "No encontrado":
         resultados['sw'] = "Conectado a PE"
 
@@ -184,7 +198,7 @@ def main(cfs):
     resultados['be'] = be
 
     if resultados['be'] == "No encontrado":
-        resultados['be'] = ""
+        resultados['be'] = "1"
 
     if resultados['asn'] == "No encontrado":
         resultados['asn'] = ""

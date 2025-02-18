@@ -9,6 +9,7 @@ class Datos(models.Model):
         ("BGP", "BGP"),
         ("Alta", "Alta"),
         ("Modificacion", "Modificacion"),
+        ("NNI_L3_impsat", "NNI_L3_impsat"),
     ]
 
     TIPO_SERVICIO_CHOICES = [

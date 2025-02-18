@@ -1,5 +1,25 @@
-DKO:8892136 (8893408)
+CFS: 500412775
+DKO: 8892136
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: ADI
+Cliente: SWISSLUB SAS
+SEDE: BELENUS-CHIA
+RFS-IP-PORT: 6000330525
+RFS-IP-PORT_NID: 6000330527
+SW: CHIACLADZG005
+Interface SW: GigabitEthernet0/0/6
+BW: 120M
+Svlan: 1646
+Cvlan: 1200
+VRF: 0
+WAN: 64.76.81.174/31
+WANIPv6: 2001:13b0:a018::/127
+LB NID: 10.235.89.170  
+PE: ar1.sub1.bog
+Interface PE: ae6.1646
 
+	
 Comments: (Ariza, Jorge) 14/02/25 18:38 Start DokuFlow.
 ---------------------------------------------------------------------------------
 Se genera DO fuera del tiempo estándar debido a que no se cuenta con la definición del HLD y LLD

@@ -1,3 +1,26 @@
+CFS: 500412911
+DKO: 8887959
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: BANCIEN S.A Y/O BAN100 S.A
+SEDE: CRA-10-BOGOTA
+RFS-IP-PORT: 6000329858
+RFS-IP-PORT_NID: 6000329859
+Vlan Tercero: 1976      
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/3.919761300
+BW: 200M
+Svlan: 599
+Cvlan: 1300
+VRF: credifinanciera
+RD: 16528:1103287
+ASN: 65121
+WAN: 10.4.0.188/30
+LB CPE: 172.18.18.91 
+LB NID: 10.226.203.130  
+PE: psr2.bgo2
+Interface PE: ae14.599
 DKO:8887959 (8893345)
 
 Comments: (Palmera Aguilera, Viviana) 11/02/25 14:22 Start DokuFlow.
@@ -6,7 +29,9 @@ Contacto técnico:
 Janine Garcia / j.garcia@procredit.com.co / tel: 2450759
 VPN SDWAN  BACKUP @200M
 
-BANCIEN S.A Y/O BAN100 S.A 
+
+Customer:BANCIEN S.A Y/O BAN100 S.A
+
 sede:  BANCO - BANCIEN- CRA 10 BOGOTA
 Dirección:  CRA 10 #65-98, LOCALIDAD DE CHAPINERO, BOGOTÁ, Latitud 4.6513302 Longitud -74.0608265
 XML : 8884703
