@@ -1,0 +1,94 @@
+DKO:8888837 (8893353)
+
+Comments: (Felipe Teixeira) 12/02/25 11:40 Start DokuFlow.
+SCOPE: Se requiere ampliar con recursos actuales de VPN a 10Mb vía Tercero Tigo;
+
+XML: 8885646
+
+CUSTOMER TECHNICAL CONTACT:
+Contacto Bogotá:
+Coordinadora de Infraestructura Informática Cavipetrol
+Tel : (5 71) 3322830 ext 1153 Cel: 
+sandra.piedrahita@cavipetrol.com
+
+CLIENT: CAVIPETROL
+Sede: CAVIPETROL-CASABE
+Direccion: ECOPETROL SUPERINTENDENCIA DEL RIO CASABE - Municipio de YONDO ANTIOQUIA (Zona Industria Campo Casabe)
+
+Tipo de serviço: (IPVPN) IPVPN 10Mbps - 500063096;
+
+RFS:
+*:RFS6000277684 ( IP Port )
+*:CFS500063096 RFS6000037317 ( RFS 3rd Party )
+*:CFS500063096 RFS6000068965 ( RFS NID )
+*:CFS500063096 RFS6000081308 ( RFS CPE )
+
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere ampliar con recursos actuales de VPN a 10Mb vía Tercero Tigo;
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Realizar Traslado Interno para
+PROVIDER: Tigo
+ID: 
+TYPE: 
+BW: 
+QUOTING: 
+Handoff interface: Electrical, RJ45
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+Se requiere ampliar con recursos actuales de VPN a 10Mb vía Tercero Tigo;
+Ampliacion de VPN 3Mb para VPN 10Mb;
+----------------------------------------------------------------------------------
+SDM
+
+1. De acuerdo con el relevamiento realizado por OFFNET, agendar ventana con el cliente para realizar Traslado Interno de VPN a 10Mb vía Tercero Tigo y equipos asociados
+2. Garantizar que los equipos queden en gestión y con acceso remoto
+3. Realizar prueba de esfuerzo del canal
+4. Documentar ingeniería
+
+Handoff interface POP: 
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+
+Workflow Initialization
+Comments: (Felipe Teixeira) 14/02/25 12:28
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Realizar Traslado Interno para
+PROVIDER: Tigo
+ID: P_1501852
+TYPE: 
+BW: 10mb
+QUOTING: DK-SURVEY-TDG-152079946-8885265
+Handoff interface: Electrical, RJ45
+Comments: (Felipe Teixeira) 14/02/25 17:32
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8888837
+Datos - IP VPN Mod   **8888837*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 17/02/25 18:33
+Finished Step: Modificación Tercero·
+
+Se solicita a UNE aumento de 3 MB a 10 MB para el canal en mención.
+
+
+This Order was automatically initiated by Order NO:8892026
+Activación Terceros ICT   **8892026*$*
+
+Workflow Initialization

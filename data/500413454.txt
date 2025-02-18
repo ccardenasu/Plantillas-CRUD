@@ -1,0 +1,69 @@
+DKO:8893361 (8893369)
+
+Comments: (Ever Contreras) 17/02/25 18:41 Start DokuFlow.
+
+Actividad: Se requiere dar de alta enlace de Internet @5Gb con fibras propias del cliente llegando al POP de Cirion.
+
+SPECTRO NETWORKS TELECOMUNICACIONES
+POP CIRION SALTILLO
+ADDRESS: SALVADOR GONZÁLEZ LOBO 799, REPÚBLICA ORIENTE, 25280 SALTILLO, COAH., MEXICO NA, Saltillo, COA-Coahuila, Mexico Latitud 25.4371754 Longitud -100.9858337
+
+Technical Contact:
+EugenioGalán / M: egalan@spectro.mx / P: 8441603384
+Validar datos adicionales del LCON con el CCM.
+
+CCM: TBD
+
+XML 8892932
+CFS 500413454
+*:RFS6000330659 ( IP Port )
+*:RFS6000330660 ( Fiber Chain )
+
+========== PLANTA EXTERNA ==========
+
+Ingresar las fibras del cliente [2 hilos] desde el Manhole y/o cámara de ingreso al POP SALTILLO hasta el interior de este para conectar al recurso Metro de Cirion.
+
+========== IPSA ==========
+
+1. Asignar recurso IP y Metro para dar de alta el siguiente enlace con fibras de cliente llegando al POP de Cirion:
+
+CLLI: SLTLXDBC : Nodo Saltillo
+
+SW ME3.0: Por Asignar
+Int. Por Asignar [10GSFP+E-LR | 10GE, Optical, SMF, LC, 2-Fiber, 1310NM, 10KM]		
+
+Tipo: Internet
+PE: Por Asignar
+Int. Por Asignar 
+IPv4 WAN: Asignar /29
+IPv4 LAN: None
+BW: 5Gb
+Routing: Directly Connected
+
+*: Solución NIDLESS.
+*: CPE del cliente.
+
+2. No realizar ninguna acción en la tarea recibida desde el flujo de Planta Externa.
+
+========== SDM / SA ==========
+
+1. Validar asignación de recursos por parte de IPSA.
+2. Agendar actividades para dar de alta enlace de Internet @5Gb:
+- El cliente llegará con fibras propias hasta el POP de Cirion.
+- [PLANTA EXTERNA] Cirion es responsable de ingresar las fibras del cliente [2 hilos] hasta el interior del POP.
+- [PLANTA INTERNA] Se debe pedir la XC interna en el POP para conectar estas fibras al recurso Metro.
+- Handoff Interface: 10GE, Optical, SMF, LC, 2-Fiber, 1310NM, 10KM
+- Solución NIDLESS.
+- CPE del cliente.
+3. Realizar prueba de esfuerzo del enlace.
+4. Programar PEM con el cliente garantizando correcta navegación hacia Internet.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8893361
+Datos - ADI Add   **8893361*$*
+
+Workflow Initialization

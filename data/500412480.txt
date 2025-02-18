@@ -1,0 +1,98 @@
+CFS: 500412480
+DKO: 8892907
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: BANCO W S.A.
+SEDE: VALLE---CALI---DATACENTER-PRINCIPAL
+RFS-IP-PORT: 6000330610
+SW: CALICLAJZG013
+Interface SW: GigabitEthernet0/0/11
+BW: 60M
+Svlan: 1038
+Cvlan: 1300
+VRF: 9038-1-SWISSLUB-SAS-9000002791-L3VPN
+RD: 6745:11009038
+WAN: 172.29.30.0/29
+PE: psr4.cal1
+Interface PE: ae11.1038
+
+
+DKO:8892907 (8892909)
+
+Comments: (Ariza, Jorge) 17/02/25 14:57 Start DokuFlow.
+---------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar debido a que no se cuenta con la definición del HLD y LLD
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere alta de SD WAN IP VPN a 60Mb vía Fibra PAP e integrar con CPE SD-WAN (SDO 8892783) en Piso 3 DC Santa Monica
+
+CUSTOMER TECHNICAL CONTACT:
+Karen Fajardo / kfajardo@bancow.com.co / 3137104215
+SD WAN IP VPN @60Mb
+XML 8882726
+CFS 500412480
+
+CLIENT: BANCO W S.A.
+SITE: BANCO W - VALLE - CALI - DATACENTER PRINCIPAL
+ADDRESS: AVENIDA 6 B NORTE # 25 A - 19, CALI, VALLE DEL CAUCA, COLOMBIA [LATITUD 3.4713607 LONGITUD -76.5298464]
+
+RFS:
+*:RFS 6000330610 ( IP Port )
+*:RFS 6000330612 ( ISP )
+*:RFS 6000330588 ( SDWAN CPE ) Shared
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere alta de SD WAN IP VPN a 60Mb vía Fibra PAP e integrar con CPE SD-WAN (SDO 8892783) en Piso 3 DC Santa Monica, garantizando alta disponibilidad y rendimiento eficiente de la red
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Por alta disponibilidad no compartir recurso IP y Metro en Piso 3 DC Santa Monica según la asignación de la SDO 8892783
+TYPE: SD WAN IP VPN
+PE: Asignar
+INT: Asignar
+IP: 172.29.30.1/29
+VRF: BANCOW_SDWAN
+LAN: No Asignar Solución SD-WAN
+ME: Asignar ME diferente según la asignación de la SDO 8892783
+Ruteo: Estático
+BW: 60Mb
+Registrar CFS y RFS's
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar asignación de recursos por parte de IPSA
+2. Solicitar la asignación de recursos a Planta Interna para complementar las Cross Connection (WAN y LAN)
+3. El equipo deberá ser instalado en Piso 3 DC Santa Monica. La asignación de espacio corresponde a DC, pero se incluye aquí como referencia. Para mayor claridad, confirmar con Frank Sanchez
+4. Agendar ventana con el cliente para realizar alta de SD WAN IP VPN a 60Mb vía Fibra PAP e integrar con CPE SD-WAN (SDO 8892783) en Piso 3 DC Santa Monica
+5. Proceder con la migración de SD-WAN con la asignación de un ingeniero Cirion o contratista (confirmar con CCM)
+6. Garantizar que el equipo quede en gestión y con acceso remoto
+7. Realizar prueba de esfuerzo del canal
+8. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+NA
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE SD-WAN NM Advanced Management
+LB Asignada Por IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8892907
+Datos - IP VPN Add   **8892907*$*
+
+Workflow Initialization

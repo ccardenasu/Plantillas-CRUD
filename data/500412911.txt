@@ -1,0 +1,103 @@
+DKO:8887959 (8893345)
+
+Comments: (Palmera Aguilera, Viviana) 11/02/25 14:22 Start DokuFlow.
+Scope:  ALTA VPN BACKUP CONVENIO @200M 
+Contacto técnico:
+Janine Garcia / j.garcia@procredit.com.co / tel: 2450759
+VPN SDWAN  BACKUP @200M
+
+BANCIEN S.A Y/O BAN100 S.A 
+sede:  BANCO - BANCIEN- CRA 10 BOGOTA
+Dirección:  CRA 10 #65-98, LOCALIDAD DE CHAPINERO, BOGOTÁ, Latitud 4.6513302 Longitud -74.0608265
+XML : 8884703
+CFS  ID:  500412911
+RFS:
+IP PORT:  6000329858
+NID:  6000329859
+3rd Party : --
+CPE: 6000329860
+
+
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN  OFF NET   BW: 200Mbps.
+
+
+********* Request equipment**********
+
+ 
+|1|1466410|F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU|ADVA|
+|1|1384891|F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO|ADVA|
+|1| 1343900| SRX300 with 8GE (w 2x SFP), 4G RAM, 8G Flash. Includes external power supply and cable. RMK not included|CPE|
+
+
+***********SOLICTUD CONVENIOS. **********
+1.Contratar el siguiente circuito:
+ 
+DK-SURVEY-TDG-152079259-8882594
+Handoff interface: Optical
+Connector: 1GE, RJ-45
+ 
+Handoff interface: 1GE, RJ-45
+
+
+****************PEDIDO A IP********************
+1. Asignar VLAN en Interconexión indicada por OFFNET.
+2. Crear subinterface en PE asignado con un BW @200Mbps y Routing diferente al PE asigando en la dko 8887829, enlace ppal
+3. Asignar ip de monitoreo para NID, y Dar de Alta RFS 
+ 
+Type:VPN
+PE: ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 10.4.0.189/30
+Enrutamiento: BGP AS  65121
+BW: 200 Mbps
+VRF: credifinanciera
+RD: 
+ 
+
+
+*********** ACTIVIDAD SDM - SERVICE ACTIVATION*********
+
+1.	Realizar la recepción del canal vía convenio en la sede del cliente, verificar que se haya realizado la configuración de la interfaz por parte de BBIP.
+2.	Realizar la instalación del NID Adva, conectar a nivel Wan contra Modem de Uk del convenio, verificar la negociación de los puertos, validar que el NID quede con gestión remota. 
+3.	Realizar la instalación del CPE  en la sede del cliente, conectándolo a nivel Wan al enlace de datos backup habilitado en esta dko.
+4.	Configurar túnel de encripcion hacia COXV: No Tunel: 123- Lo encripcion: 10.4.4.186/32 - Ip túnel hacia coxv: 10.4.2.186/30
+5. Agendar ventana con el cliente para activar enlace. Garantizar BGP  y pruebas de aplicativos con el cliente. 
+6. Una vez se haya implementado este enlace de backup se debe realizar pruebas de conmutación ppal / backup con redundancia HSRP Y Ibgp junto con el enlace ppal que se instala con la dko 8887829.
+7. Documentar ingeniería.
+
+**********NETWORK MANAGEMENT**********
+NM Notify
+
+****************************************
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 13/02/25 16:38
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8887959
+Datos - IP VPN Add   **8887959*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 17/02/25 18:18
+
+
+
+Comments: (Valbuena, Andrea) 17/02/25 18:19
+Finished Step: Alta Tercero
+
+Se solicita a LIBERTY instalación de un canal 200 MB. Se asigna la SVLAN 1976 en la NNI M2 de Bogotá - BOGTCLFXNN001 - TENGIGA Interface: TE0/0/2/3.
+
+NOTA: Esta contratación aplica portabilidad para el canal ID 1024783
+
+
+
+
+
+This Order was automatically initiated by Order NO:8890607
+Activación Terceros ICT   **8890607*$*
+
+Workflow Initialization

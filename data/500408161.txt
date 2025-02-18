@@ -1,0 +1,167 @@
+DKO:8847933 (8855855)
+
+Comments: (Ocampo, John Jairo) 20/12/24 16:28 Start DokuFlow.
+Actividad: Se requiere dar de alta enlace SDWAN VPN @25M vía acceso convenio UFINET, debido a cambio de Tecnología de VPN Legacy a SD WAN IP VPN
+
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+Sede: CSJ - SUCRE SAN ONOFRE - CRA 21
+Dirección: Sucre, San Onofre; Carrera 21 No. 19-105
+
+DesignID:  L63C_VN_81-5DY03OP
+XML: 8839833
+SD WAN IP VPN CFS: 500408161
+RFS:
+6000323234   IP Port 
+6000021601  3rd Party
+6000323235  NID 
+6000323251 SDWAN CPE
+
+VPN LEGACY CFS: 500047030
+----------------------------------------------------------------
+DATOS DEL ENLACE: || FUENTE Archivo Maestro CD - CSJ 2024_2026||
+----------------------------------------------------------------
+CONSECUTIVO: 1254
+PIVOTE: 274
+Tipo de Enlace: SD WAN IP VPN
+BW: 25 Mbps.
+
+========= SOLICITUD DE EQUIPOS =========
+1 x CPE
+FG40F - Fortinet 40F
+Nuevo Fortinet 40F, Sin licencia UTP no asociada a EA, vincular con Forticare "orden de compra gestionada por SE"
+
+1 x Nid Adva
+SAP: 1384691
+Descripción: F150/ADV/GE114PRO/AC/811. Cantidad: 1.
+SAP: 1362830
+Descripción: F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN. Cantidad: 1.
+SAP: 1429801
+Descripción: AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT. Cantidad: 1.
+
+============== OFFNET ====================
+
+1. Se requiere solicitar ampliación Y/O contratación de BW del siguiente recurso, y Contratar una vlan adicional para gestión del NID
+
+VENDOR: UFINET
+VENDOR ID: COCOCEN10013908C
+BW: 25 Mbps
+ID ICT: 331519
+FACTIBILIDAD: TDG-152021067
+
+============== IPSA ====================
+
+1. Por cambio de Tecnología se requiere realizar configuración nueva entre BBIP y NNI para recurso SDWAN, tener presente que en ventana con el cliente se debe realizar el cambio de Vlan a esta nueva interface configurada.
+2. Tener presente que se debe asegurar la configuración QinQ para la Gestión NID Favor Asignar LP y realizar configuración.
+
+RECURSO ACTUAL BBIP LEGACY VPN:
+PSR2.CXV1.BOG:xe-0/0/1.16182
+:::UM:::
+ME1:RSW1.CAG1.VUP:Gi0/5
+
+
+RECURSO NUEVO SD WAN IP VPN:
+PE: ASIGNAR
+INT: ASIGNAR
+IP WAN: 10.101.205.61/30
+Vrf:  CSJ_FORTI_SDWAN
+BW:  25Mbps
+
+Configurar IP y con VLAN asignada por offnet para gestión del NID.
+
+============== SDM / SA =================
+En la sede se habilitará una solución SDWAN Fortinet con un acceso de Datos MPLS a 25Mb (solicitado en esta DKO) + un acceso de SDWAN Internet Starlink por Cirion (Solicitado en otra DKO) + un equipo Fortigate FG-40F (Solicitado en esta DKO) , implementando un esquema de balanceo de tráfico y alta disponibilidad.
+
+1. Realizar seguimiento a la configuración del nuevo servicio SDWAN IPVPN por parte de BBIP y OFFNET.
+2. En los sitios en los que el acceso no tenga NID instalar un equipo NID y entregar sobre un puerto libre el acceso de Datos SDWAN Fortinet a 25Mb solicitado en esta DKO.
+3. Instalar Nuevo Fortinet 40F, Sin licencia UTP no asociada a EA, vincular con Forticare "orden de compra gestionada por SE", configuración activo activo "Starlink de Cirion" y realizar la integración del canal SDWAN IPVPN al equipo FG-40F, conectando el mismo a nivel WAN al nuevo canal de Datos SDWAN habilitado en esta DKO utilizando puerto libre sobre el equipo ADVA.
+4. Cargar sobre el equipo Fortinet la plantilla de configuración básica del proyecto, se debe validar que la gestión de los equipos suba sobre los gestores de la red SDWAN Fortinet (Fortimanager y Fortianalizer) habilitados para la red del cliente.
+Los siguientes son los datos básicos de configuración:
+Hostname: CSJ_San Onofre_F1  -- 81-5RI8GN1
+INT WAN1 (Mpls): 10.101.205.62/30
+Ip Tunnel 1 - Concentrador MPLS: 172.30.10.252/23 (Spoke)
+
+5. Verificar la integración de los accesos y la negociación de los puertos. Realizar pruebas de saturación y calidad sobre el acceso a Datos MPLS. No cargar sobre el equipo Fortinet la licencia del Enterprise Agreement.
+Comments: (Ocampo, John Jairo) 20/12/24 16:28
+6. En ventana de mantenimiento acordada con el cliente con soporte del personal que administra el FW central del cliente en IFX, se debe realizar la migración de la solución de la sede de la actual solución MPLS a la nueva solución SDWAN Fortinet, realizando a nivel LAN las correspondientes Crossconexiones al SW Lan de la sede, y sobre el FW Central en IFX realizando el enrutamiento de los segmentos LAN de la sede ya no por la troncal de la solución MPLS sino por la troncal de la solución SDWAN Fortinet.
+7. Realizar el alta del servicio en la sede vía solución SDWAN Fortinet, realizar pruebas de los servicios del cliente (Datos, Aplicativos, Navegación etc.), validando que el servicio SD-WAN Fortinet funcione correctamente según las políticas definidas en la plantilla y el LLD del proyecto.
+8. Se deben realizar pruebas sobre el esquema principal /backup en la solución de esta sede con el STARLINK proveedor SPEEDCAST actualmente instalado bajo el CFS: 500047030, garantizar que la policita este seteada al BW acordado, y ante una caída de uno de los canales habilitados en la sede, el otro canal soporte el tráfico de esta.
+9. Entregar la solución al cliente a Total Satisfacción, si el cliente requiere, prestarle soporte para la integración del canal a su solución de red.
+10. Entregar la solución SDWAN enviando un correo de entrega al contacto del cliente con las pruebas realizadas (Saturación, Conectividad, Navegación, Aplicativos y Alta Disponibilidad)
+11. Al terminar la actividad recuperar el antiguo CPE
+12. Actualizar la ingeniería.
+=================NETWORK MANAGEMENT=================
+NM Network Management Type Application solución SDWAN FORTINET
+Para el equipo SDWAN Fortinet, la idea es ingresar el equipo Fortinet a monitoreo vía herramienta Sixtus, el proceso para el ingreso de NM de la solución SDWAN Fortinet está en proceso de definición por parte de Arquitectura.
+================= CD =================
+Confirmar que los recursos Legacy se bajen luego de levantar el SDWAN IP VPN
+
+RECURSO BBIP LEGACY VPN:
+PSR2.CXV1.BOG:xe-0/0/1.16182
+::: UM:::
+ME1:RSW1.CAG1.VUP:Gi0/5
+
+
+
+Workflow Initialization
+
+Workflow Initialization
+Comments: (Ocampo, John Jairo) 30/12/24 12:57
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8847933
+Datos - IP VPN Mod   **8847933*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 03/01/25 10:09
+Finished Step: Modificación Tercero·
+Se solicita a UFINET  ampliación de 15 Mbps a 25 Mbps del canal en mención. 
+
+This Order was automatically initiated by Order NO:8853572
+Activación Terceros ICT   **8853572*$*
+
+Workflow Initialization
+Comments: (Hernandez, Hector) 08/01/25 13:09
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?·
+*********************************************************************************
+                                  IPSA
+*********************************************************************************
+PE
+*********************************************************************************
+En ventana para realizar el cambio
+
+
+psr2.cxv1.bog# show interfaces xe-0/0/1.16182 | display set 
+set interfaces xe-0/0/1 unit 16182 description "CUSTOMER:CONSEJO SUPERIOR DE LA JUDICATURA(CFS:500408161)(RFS:6000323234)"
+set interfaces xe-0/0/1 unit 16182 vlan-tags outer 1631
+set interfaces xe-0/0/1 unit 16182 vlan-tags inner 1182
+set interfaces xe-0/0/1 unit 16182 family inet no-redirects
+set interfaces xe-0/0/1 unit 16182 family inet filter input xe-0/0/1.16182-inet-i
+set interfaces xe-0/0/1 unit 16182 family inet filter output xe-0/0/1.16182-inet-e
+set interfaces xe-0/0/1 unit 16182 family inet address 10.101.0.137/30
+set interfaces xe-0/0/1 unit 16182 family inet address 10.101.205.61/30
+
+psr2.cxv1.bog# show | display set | match xe-0/0/1.16182 
+set class-of-service traffic-control-profiles xe-0/0/1.16182-25600-o shaping-rate 25600000
+set class-of-service traffic-control-profiles xe-0/0/1.16182-25600-o delay-buffer-rate 102400000
+set class-of-service interfaces xe-0/0/1 unit 16182 output-traffic-control-profile xe-0/0/1.16182-25600-o
+set routing-instances CSJ interface xe-0/0/1.16182
+*********************************************************************************
+NID
+*********************************************************************************
+Usuario: Hernandez, Hect
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+Sucursal: CSJ---SUCRE-SAN-ONOFRE---CRA-21
+Design ID: 
+Tipo de Equipo: NID
+Alias: NID141076
+Snmp Version: 2c
+Address IP: 172.18.241.46
+Comunidad: $Lev3L3
+Eq Id: No EQID
+Vendedor: Adva
+Mascara Formato Largo:  255.255.255.0
+Gateway:  172.18.241.1
+Vlan Dominio:  2016
+RFS_CFS:  RFS:6000323235
+*********************************************************************************

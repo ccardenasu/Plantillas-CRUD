@@ -1,0 +1,93 @@
+DKO:8892136 (8893408)
+
+Comments: (Ariza, Jorge) 14/02/25 18:38 Start DokuFlow.
+---------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar debido a que no se cuenta con la definición del HLD y LLD
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere alta de SD WAN Internet a 120Mb vía Fibra PAP con NID y CPE SD-WAN
+
+CUSTOMER TECHNICAL CONTACT:
+Mario Torres / mtorres@conauto.com.ec / +593967501784
+SD WAN Internet @120Mb
+XML 8884063
+CFS 500412775
+
+CLIENT: SWISSLUB SAS
+SITE: BELENUS CHIA
+ADDRESS: EDIFICIO BELENUS KILOMETRO 2 VIA CHIA CAJICA, OFICINA 408 PISO 1, CHIA, CUNDINAMARCA, COLOMBIA [LATITUD 4.8833898 LONGITUD -74.0370476]
+
+RFS:
+*:RFS 6000330525 ( IP Port )
+*:RFS 6000330526 ( Fiber Chain )
+*:RFS 6000330527 ( NID )
+*:RFS 6000330528 ( SDWAN CPE )
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere alta de SD WAN Internet a 120Mb vía Fibra PAP con NID y CPE SD-WAN, garantizando alta disponibilidad y rendimiento eficiente de la red
+----------------------------------------------------------------------------------
+PLEX
+
+1. Realizar el relevamiento de la fibra PAP, asignar recursos para la implementación del enlace Punto a Punto y realizar el tendido de fibra hasta el rack del cliente
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Asignar recurso IP y Metro según asignación PLEX
+TYPE: SD WAN Internet
+PE: Asignar
+INT: Asignar
+IPv4: /31
+IPv6: /127
+LAN: No Asignar Solución SD-WAN
+Ruteo: Estático
+BW: 120Mb
+Asignar LB NID
+Registrar CFS y RFS's
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar asignación de recursos por parte de IPSA y PLEX
+2. Agendar ventana con el cliente para realizar alta de SD WAN Internet a 120Mb vía Fibra PAP con NID y CPE SD-WAN
+3. Proceder con la migración de SD-WAN con la asignación de un ingeniero Cirion o contratista (confirmar con CCM)
+4. Registrar en la gestión de FortiManager y FortiAnalyzer (SDO 8891959)
+5. Garantizar que los equipos queden en gestión y con acceso remoto
+6. Realizar prueba de esfuerzo del canal
+7. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+|1|1469560|FSP 150CC-GE101PRO MICRONID C TEMP F150/ADV/GE101PRO 1078904820-01 ADVA|
+|1|1469870|FORTIWIFI-60F FWF-60F-N FRTI|
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE SD-WAN NM Advanced Management
+LB Asignada Por IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8892136
+Datos - ADI Add   **8892136*$*
+
+Workflow Initialization
+Comments: (Cely Corredor, Jenny) 17/02/25 19:05
+Favor asignar recursos IPSA al nodo CHIA
+Comments: (Cely Corredor, Jenny) 17/02/25 19:06
+Finished Step: Análisis y Validación de la Información·
+
+
+This Order was automatically initiated by Order NO:8892141
+Ingeniería de acceso Fibra Optica (1)   **8892141*$*
+
+Workflow Initialization
