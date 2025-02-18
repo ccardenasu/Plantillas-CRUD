@@ -1,0 +1,59 @@
+VRF AZUL CXV_107
+
+set interfaces ge-0/2/6 unit 107 description " CUSTOMER: VPN-13932-1: ANC-ASIA PACIFIC GX-IMPSAT-NNI-MIA1 (PTR: 1PERD115.0002,  EON: 783640/4, FRO2004944008VRP)"
+set interfaces ge-0/2/6 unit 107 vlan-id 107
+set interfaces ge-0/2/6 unit 107 family inet no-redirects
+set interfaces ge-0/2/6 unit 107 family inet filter input ge-0/2/6.107-inet-i
+set interfaces ge-0/2/6 unit 107 family inet address 159.63.122.33/30
+
+set interfaces ge-0/2/6 unit 107 family inet filter input ge-0/2/6.107-inet-i
+set firewall family inet filter ge-0/2/6.107-inet-i term EF_DSCP from dscp 34
+set firewall family inet filter ge-0/2/6.107-inet-i term EF_DSCP then count EF.rx-ge-0/2/6.107-inet-i
+set firewall family inet filter ge-0/2/6.107-inet-i term EF_DSCP then loss-priority low
+set firewall family inet filter ge-0/2/6.107-inet-i term EF_DSCP then forwarding-class EF
+set firewall family inet filter ge-0/2/6.107-inet-i term AF_DSCP from dscp 26
+set firewall family inet filter ge-0/2/6.107-inet-i term AF_DSCP then count AF.rx-ge-0/2/6.107-inet-i
+set firewall family inet filter ge-0/2/6.107-inet-i term AF_DSCP then loss-priority low
+set firewall family inet filter ge-0/2/6.107-inet-i term AF_DSCP then forwarding-class AF
+set firewall family inet filter ge-0/2/6.107-inet-i term BE then count BE.rx-ge-0/2/6.107-inet-i
+set firewall family inet filter ge-0/2/6.107-inet-i term BE then loss-priority low
+set firewall family inet filter ge-0/2/6.107-inet-i term BE then forwarding-class BE
+
+set policy-options policy-statement 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-export term DEFAULT then default-action reject
+set policy-options policy-statement 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-export term L3VPN then community add 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-mesh
+set policy-options policy-statement 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-export term L3VPN then default-action accept
+set policy-options policy-statement 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-import term L3VPN from community 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-mesh
+set policy-options policy-statement 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-import term L3VPN then accept
+set policy-options policy-statement 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-import term final then reject
+set policy-options policy-statement 13932-1-GX-IMPSAT-NNI-MIA1-2004944008-export then accept
+set policy-options community 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-mesh members target:6745:110013932
+
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN instance-type vrf
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN interface ge-0/2/6.107
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN route-distinguisher 200.186.24.219:13932
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN vrf-import VPN-import
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN vrf-import 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-import
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN vrf-export VPN-export
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN vrf-export 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN-export
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN vrf-table-label
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN routing-options router-id 159.63.122.29
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN routing-options auto-export
+
+
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp path-selection always-compare-med
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp family inet any
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 type external
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 log-updown
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 import iMPLS-impsat-import
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 family inet unicast loops 10
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 family inet any prefix-limit maximum 5000
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 family inet any prefix-limit teardown 90
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 family inet any prefix-limit teardown idle-timeout 120
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 export BGP-export
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 export 13932-1-GX-IMPSAT-NNI-MIA1-2004944008-export
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 peer-as 6140
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 neighbor 159.63.122.34 local-as 6745
+set routing-instances 13932-1-ANC-ASIAPACIFIC-2004035723-L3VPN protocols bgp group GX-IMPSAT-NNI-MIA1-2004944008 neighbor 159.63.122.34 local-as alias
+
+
+

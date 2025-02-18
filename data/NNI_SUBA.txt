@@ -1,0 +1,61 @@
+VRF AZUL SUBA
+
+
+set interfaces ge-0/1/9 unit 458 description "CUSTOMER: TRUCKS CONTROL - SERVICOS DE LOGISTICA LTDA (CFS:500380976)(RFS:60003300823"
+set interfaces ge-0/1/9 unit 458 vlan-id 458
+set interfaces ge-0/1/9 unit 458 family inet mtu 1500
+set interfaces ge-0/1/9 unit 458 family inet no-redirects
+set interfaces ge-0/1/9 unit 458 family inet filter input ge-0/1/9.458-inet-i
+set interfaces ge-0/1/9 unit 458 family inet address 100.65.80.101/30
+
+set firewall family inet filter ge-0/1/9.458-inet-i term EF then count EF.rx-ge-0/1/9.458-inet-i
+set firewall family inet filter ge-0/1/9.458-inet-i term EF then loss-priority low
+set firewall family inet filter ge-0/1/9.458-inet-i term EF then forwarding-class EF
+
+set policy-options policy-statement 00/VPXX/002125/LUMN-500380976-export then accept
+set policy-options policy-statement 00/VPXX/002125/LUMN-export term DEFAULT then default-action reject
+set policy-options policy-statement 00/VPXX/002125/LUMN-export term L3VPN then community add 00/VPXX/002125/LUMN-mesh
+set policy-options policy-statement 00/VPXX/002125/LUMN-export term L3VPN then default-action accept
+set policy-options policy-statement 00/VPXX/002125/LUMN-export term TWT-MGMT from route-filter 198.18.0.0/16 orlonger
+set policy-options policy-statement 00/VPXX/002125/LUMN-export term TWT-MGMT then community add 199998-1-TWTELECOM-MGMT-SPOKE
+set policy-options policy-statement 00/VPXX/002125/LUMN-import term L3VPN from community 00/VPXX/002125/LUMN-mesh
+set policy-options policy-statement 00/VPXX/002125/LUMN-import term L3VPN then accept
+set policy-options policy-statement 00/VPXX/002125/LUMN-import term TWT-MGMT from community 199999-1-TWTELECOM-MGMT-HUB
+set policy-options policy-statement 00/VPXX/002125/LUMN-import term TWT-MGMT then accept
+set policy-options policy-statement 00/VPXX/002125/LUMN-import term final then reject
+set policy-options community 00/VPXX/002125/LUMN-mesh members target:6745:110056934
+
+
+set routing-instances 00/VPXX/002125/LUMN instance-type vrf
+set routing-instances 00/VPXX/002125/LUMN interface ge-0/1/9.458
+set routing-instances 00/VPXX/002125/LUMN route-distinguisher 200.186.24.217:56934
+set routing-instances 00/VPXX/002125/LUMN vrf-import VPN-import
+set routing-instances 00/VPXX/002125/LUMN vrf-import 00/VPXX/002125/LUMN-import
+set routing-instances 00/VPXX/002125/LUMN vrf-export VPN-export
+set routing-instances 00/VPXX/002125/LUMN vrf-export 00/VPXX/002125/LUMN-export
+set routing-instances 00/VPXX/002125/LUMN vrf-table-label
+set routing-instances 00/VPXX/002125/LUMN routing-options router-id 100.65.80.101
+set routing-instances 00/VPXX/002125/LUMN routing-options auto-export
+set routing-instances 00/VPXX/002125/LUMN protocols bgp path-selection always-compare-med
+set routing-instances 00/VPXX/002125/LUMN protocols bgp family inet any
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 type external
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 log-updown
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 import iMPLS-impsat-import
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 family inet unicast loops 10
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 family inet any prefix-limit maximum 5000
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 family inet any prefix-limit teardown 90
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 family inet any prefix-limit teardown idle-timeout 120
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 export BGP-export
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 export 00/VPXX/002125/LUMN-500380976-export
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 peer-as 6140
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 neighbor 100.65.80.102 local-as 6745
+set routing-instances 00/VPXX/002125/LUMN protocols bgp group GX-IMPSAT-NNI-PTY1-500380976 neighbor 100.65.80.102 local-as alias
+
+
+VRF GRIS SUBA
+
+set interfaces ge-0/1/8 unit 107 description "TURNUP: CUSTOMER: IMPS-MPLS: 1-N5XG9: House Account 1-N5XG9 [ (9008) NNI PANAMA EON 754294/6 ]"
+set interfaces ge-0/1/8 unit 107 vlan-id 107
+set interfaces ge-0/1/8 unit 107 family inet mtu 1500
+set interfaces ge-0/1/8 unit 107 family inet no-redirects
+set interfaces ge-0/1/8 unit 107 family inet address 162.97.102.222/30

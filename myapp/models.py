@@ -9,7 +9,6 @@ class Datos(models.Model):
         ("BGP", "BGP"),
         ("Alta", "Alta"),
         ("Modificacion", "Modificacion"),
-        ("NNI_L3_impsat", "NNI_L3_impsat"),
     ]
 
     TIPO_SERVICIO_CHOICES = [
@@ -17,6 +16,8 @@ class Datos(models.Model):
         ("VPN", "VPN"),
         ("VPLS", "VPLS"),
         ("ADI", "ADI"),
+        ("NNI_L3_impsat", "NNI_L3_impsat"),
+
     ]
 
     TIPO_EQUIPO_CHOICES = [
