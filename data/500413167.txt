@@ -1,0 +1,104 @@
+DKO:8891137 (8894068)
+
+Comments: (Ever Contreras) 13/02/25 20:45 Start DokuFlow.
+
+Actividad: Se requiere dar de alta enlace EVPL @200M vía FO-P2P.
+
+A LOC: AT&T TTEC MARKETING
+Z LOC: AT&T MMR DC SUBA
+
+Customer: AT&T GLOBAL NETWORKS SERVICES COLOMBIA
+A-Side Site:  AT&T TTEC MARKETING
+ADDRESS: CALLE 100 19A-30, BOGOTA, D.C., DC-Distrito Capital De Bogota, Colombia Latitud 4.686484 Longitud -74.05343
+
+Z-Side Site:81-5TCJJ8M
+
+Technical Contact:
+Mark Mideros / M: mark.mideros@ttec.com / P: 573013572512
+Martha Gomez / M: Martha.gomez@ttec.com / P: 573214730876
+Validar datos adicionales del LCON con el CCM.
+
+CCM: TBD
+
+XML 8890044
+CFS: 500413167
+*:6000330329 (NID)
+*:6000330330 (Fiber Chain)
+*:6000330332 (IP Port) | A LOC
+*:6000330333 (IP Port) | Z LOC
+
+ID AT&T : CSM250205095750 - 41M-32655
+
+========= SOLICITUD DE EQUIPOS =========
+
+1 x 1466410
+1078904720-02
+F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA
+
+1 x 1384891
+1013904010
+F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA
+
+1 x 1248720
+1000SFP31B20L
+20KM SINGLE FIBER SFP 1310NM TX SMF LC -5 TO 75 C TX PWR -7 TO 1000SFP31B20L CHAM L
+
+1 x 1082088
+1000SFP10
+SMALL FORM FACTOR PLUGGABLE SINGLEMODE 10KM 1000SFP10 CHAMPION
+
+========= PLANTA EXTERNA =========
+
+Asignar recursos de fibra [1 hilo] para dar de alta enlace FO-P2P para el cliente AT&T TTEC MARKETING.
+
+========= IPSA =========
+
+Asignar recurso IP y Metro para dar de alta el siguiente enlace vía FO-P2P:
+
+Tipo: EVPL
+BW: 100Mb
+
+A LOC: AT&T TTEC MARKETING
+
+SW ME: Por Asignar
+Int. Por Asignar
+
+*:Asignar LB NID y dar de alta RFS.
+
+>> VPLS hacia psr2.bgo2 | xe-1/0/9.XXXX
+
+Z LOC: AT&T MMR DC SUBA
+
+TRONCAL 10 GIGA  # 10 | ID AT&T: CO202100010 | CID-CFS: 500260570
+psr2.bgo2 | xe-1/0/9
+
+========= SDM / SA =========
+
+1. Validar asignación de recursos por parte de IPSA y PLEX.
+2. Agendar actividades para dar de alta enlace EVPL @100Mb vía FO-P2P:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Customer Handoff Interface: 1000Base-LX
+- El enlace debe entregarse en el NNI CID: 500260570 | DesignID: ATGN_VN_BOG1_METRO | LB NID: 172.18.202.3
+3. Realizar prueba de esfuerzo del enlace.
+4. Programar PEM con el cliente garantizando funcionalidad del enlace.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8891137
+Datos - EVPL Add   **8891137*$*
+
+Workflow Initialization
+Comments: (Cely Corredor, Jenny) 18/02/25 13:40
+Favor asignar recursos IPSA al nodo CALLE 100
+
+Comments: (Cely Corredor, Jenny) 18/02/25 13:41
+Finished Step: Análisis y Validación de la Información·
+
+
+This Order was automatically initiated by Order NO:8891142
+Ingeniería de acceso Fibra Optica (1)   **8891142*$*
+
+Workflow Initialization

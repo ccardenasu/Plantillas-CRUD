@@ -70,6 +70,8 @@ def buscar_LIBERTY_nni(texto):
         return True
     return False
 
+
+
 def main(cfs):
     data_path = os.path.join('data', f'{cfs}.txt')
 
@@ -87,7 +89,7 @@ def main(cfs):
         'bw': [r'\b(\d+)Mbps\b.*', r'\b(\d+)Gb\b.*', r'\b(\d+)Mb\b.*'],
         'bw_exchange': [r'(\d+)% E --'],
         'bw_plus': [r'(\d+)% P --'],
-        'cfs': [r'CFS :\s*(\d+)', r'CID-CFS :\s*(\d+)', r'CFS-CID:\s*(\d+)', r'CID-CFS:\s*(\d+)', r'CFS:\s*(\d+)', r'CFS\s+ID:\s*(\d+)', r'CFS\s*(\d+)'],
+        'cfs': [r'CFS:\s*(\d+)',r'CFS :\s*(\d+)', r'CID-CFS :\s*(\d+)', r'CFS-CID:\s*(\d+)', r'CID-CFS:\s*(\d+)', r'CFS:\s*(\d+)', r'CFS\s+ID:\s*(\d+)', r'CFS\s*(\d+)'],
         'cliente': [r'(?i)Customer:\s*(.*?)(?=\n)', r'(?i)CLIENTE:\s*(.*?)(?=\n)', r'(?i)Cliente:\s*(.*?)(?=\n)', r'(?i)CLIENT:\s*(.*?)(?=\n)'],
         'configuracion': [r'(Alta)', r'(alta)', r'(ampliación)', r'(ampliacion)'],
         'cvlan': [r'Int:\s*ae-\d+:\d+\.(\d+)', r'Cvlan:\s*(\d+)'],
@@ -101,12 +103,13 @@ def main(cfs):
         'pe': [r'PTO\s*([^\s,]+)', r'(?<!C)PE:\s*([^\s,]+)', r'PE:\s*([^\s,]+)'],
         'rd': [r'RD:\s*([^\s,]+)'],
         'rfs_ip_port': [r'IP Port:\s*(\d+)', r'IP PORT:\s*(\d+)', r'RFS IP PORT:\s*(\d+)', r'RFS IP Port:\s*(\d+)', r'IP Port :\s*(\d+)', r'(\d+)\s*IP Port\s*', r'\*:\s*RFS(\d+)\s*\( IP Port \)', r'\*:\s*(\d+)\s*\(IP Port\)', r'\*:\s*RFS\s*(\d+)\s*\( IP Port \)', r'RFS IP Port de VPLS - Punta Z:\s*(\d+)'],
-        'rfs_ip_port_nid': [r'NID\s*:\s*(\d+)', r'\*:\s*RFS\s*(\d+)\s*\(\s*NID\s*\)', r'\*:\s*RFS\s*(\d+)\s*\( NID \)', r'RFS NID - Punta Z:\s*(\d+)'],
-        'rfs_ip_port_punta_a': [r'RFS IP Port de VPLS - Punta A:\s*(\d+)'],
+        'rfs_ip_port_nid': [r'\*:\s*(\d+)\s*\(NID\)', r'\*:\s*RFS\s*(\d+)\s*\(\s*NID\s*\)', r'\*:\s*RFS\s*(\d+)\s*\( NID \)', r'RFS NID - Punta Z:\s*(\d+)',r'NID\s*:\s*(\d+)',],
+        'rfs_ip_port_punta_z': [r'(\d+)\s*\(IP Port\) \| Z LOC', r'RFS IP Port de VPLS - Punta A:\s*(\d+)'],
         'sede': [r'(?i)Site:\s*(.*)', r'(?i)Sede\s*:\s*(.*)', r'(?i)SITE:\s*(.*)'],
+        'sede_b': [r'(?i)Z-Side Site:\s*(.*)',],
         'svlan': [r'Int:\s*ae-\d+:(\d+)\.\d+', r'Svlan:\s*(\d+)', r'INT:\s*ae\d+\.(\d+)'],
         'sw': [r'NODO\s*(\d+)', r'SW:\s*([^\s,]+)\s*-\s*TEN GIGA\s*[^\s,]+', r'SW:\s*(\d+)', r'DEVICE:\s*([^\s,]+)', r'SW:\s*([^\s,]+)', r'ME:\s*([^\s,]+)', r'DEVICE:\s*([^\s]+)', r'INTERCONEXION\s*-\s*([^\s,]+)', r'NNI\s*[^\s,]+\s*-\s*([^\s,]+)'],
-        'tipo': [r'(VPN)', r'(Internet)', r'(EPL)'],
+        'tipo': [r'(VPN)', r'(Internet)', r'(EPL)', r'(EVPL)'],
         'vlan': [r'vlan\s*(\d+)', r'VLAN\s*(\d+)', r'S-VLAN:\s*(\d+)', r'VLAN ASIGNADA:\s*(\d+)'],
         'voz': [r'Voz\s*(\d+)%'],
         'wan': [r'IP_WAN:\s*([\d./]+)', r'WAN:\s*([\d./]+)'],
@@ -120,8 +123,8 @@ def main(cfs):
     resultados = {clave: buscar_primera_coincidencia(patrones, texto) for clave, patrones in patrones_busqueda.items()}
     
     be = "Bundle-ether10" if resultados['be'] == "ae10" else "bundle_ether11" if resultados['tipo'] == "ae11" else "bundle_ether14" if resultados['tipo'] == "ae14" else "No encontrado"
-    tipo_servicio = "ADI" if resultados['tipo'] == "Internet" else "VPN" if resultados['tipo'] == "VPN" else "VPLS" if resultados['tipo'] == "EPL" else "No encontrado"
-    tipo_equipo = "ALCATEL" if "ar" in resultados['pe'].lower() else "JUNIPER" if (resultados['pais'] != "No encontrado" and tipo_servicio == "ADI") or ("edge" in resultados['pe'].lower()) or ("EPL" in texto) else "No encontrado"
+    tipo_servicio = "ADI" if resultados['tipo'] == "Internet" else "VPN" if resultados['tipo'] == "VPN" else "VPLS" if resultados['tipo'] == "EPL" else "VPLS" if resultados['tipo'] == "EVPL" else "No encontrado"
+    tipo_equipo = "ALCATEL" if "ar" in resultados['pe'].lower() else "JUNIPER" if (resultados['pais'] != "No encontrado" and tipo_servicio == "ADI") or ("edge" in resultados['pe'].lower()) or ("EPL" in texto)or ("VPLS" in texto) else "No encontrado"
     vpn = "VPN" if "VPN" in texto else "No encontrado"
 
     if resultados['wan'] != "No encontrado":
@@ -239,8 +242,8 @@ def main(cfs):
     if resultados['cvlan'] == "No encontrado":
         resultados['cvlan'] = ""
 
-    if resultados['rfs_ip_port_punta_a'] == "No encontrado":
-        resultados['rfs_ip_port_punta_a'] = ""
+    if resultados['rfs_ip_port_punta_z'] == "No encontrado":
+        resultados['rfs_ip_port_punta_z'] = ""
 
     if resultados['bw_exchange'] == "No encontrado":
         resultados['bw_exchange'] = "0"

@@ -70,8 +70,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        console.log(`vrf_init: ${data.data.vrf_init}`);
-                        console.log(`rd_init: ${data.data.rd}`);
+                        console.log(`rfs_ip_port_punta_z: ${data.data.rfs_ip_port_punta_z}`);
 
                         console.log("IPSA.py ejecutado - correctamente capturar_datos.html 73:"); // Mensaje de éxito
                         console.log("Salida del script - capturar_datos.html 74:", data.data); // Mostrar la salida del script
@@ -94,9 +93,10 @@
                         document.getElementById('id_lnnid').value = data.data.lnnid;
                         document.getElementById('id_pe').value = data.data.pe;
                         document.getElementById('id_rfs_ip_port').value = data.data.rfs_ip_port;
-                        document.getElementById('id_rfs_ip_port_b').value = data.data.rfs_ip_port_punta_a;
+                        document.getElementById('id_rfs_ip_port_b').value = data.data.rfs_ip_port_punta_z;
                         document.getElementById('id_rfs_ip_port_nid').value = data.data.rfs_ip_port_nid;
                         document.getElementById('id_sede').value = data.data.sede;
+                        document.getElementById('id_sede_b').value = data.data.sede_b;
                         document.getElementById('id_sv').value = data.data.svlan;
                         document.getElementById('id_sw').value = data.data.sw;
                         document.getElementById('id_tipo_configuracion').value = data.data.tipo_configuracion;
