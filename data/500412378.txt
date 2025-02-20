@@ -1,0 +1,140 @@
+DKO:8883632 (8895154)
+
+Comments: (Rojas, Carlos) 05/02/25 12:48 Start DokuFlow.
+IMPORTANTE: SE GENERA DKO PARA SOLICITAR INSTALAR ULTIMA MILLA CON TERCERO NETBEAM POR SOLICITUD DE SE-ENRIQUE ERAZO YA QUE DE ACUERDO A CONSULTA REALIZADA DE SU PARTE A LA SEDE DEL CLIENTE SOLO LLEGA DICHO PROVEEDOR
+
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere Alta de servicio de INTERNET via TERCERO a 10Mbps
+ 
+Cliente: AT&T GLOBAL NETWORKS SERVICES COLOMBIA 	
+Sede:  AT&T AEROPUERTO SANTIAGO PEREZ QUIROZ-ARAUCA	
+DirecciÃ³n: Latitud 7.0681634 Longitud -70.7353102, AEROPUERTO SANTIAGO PEREZ QUIROZ, ARAUCA, COLOMBIA
+Design ID:  ATGN_VN_81-5O2Q6G4
+
+SE: Erazo, Enrique 
+CCM: Menuzzo Semeghini, Joao	
+
+Contacto de ATT:  Francisco Rodriguez  francisco.rodriguez@intl.att.com     +1 213-516-3337
+
+Contactos de Avianca
+Jose Miguel Roca  TelÃ©fono 573044704707  E-mail jose.roca@avianca.com
+Contacto Local Samara Arciniegas Alvarez  TelÃ©fono 573132458392  E-mail leidy.arciniegas@avianca.com
+
+Project ID (XML): 8881653	
+Service Instance: Internet
+CFS-CID: 500412378		
+
+RFS IP Port: 6000329108
+RFS Ethernet: A GENERARSE CON DELIVERY
+RFS 3rd Party: A GENERARSE POR FLUJO ICT
+RFS NID: 6000329109
+RFS CPE: 6000329110
+
+=============== SOLICITUD DE EQUIPOS ===============
+NOTA: SI NO HAY DISPONIBILIDAD DE C1111-8P INSTALAR UN JUNIPER SRX300  - PN: 1343900
+
+DescripciÃ³n: Router Cisco C1111-8P
+Item SAP: 1463297
+Cantidad: 1
+
+DescripciÃ³n: Cisco 1100 Series Router Rackmount Wallmount Kit ACS-1100-RM-19
+Item SAP: 1453279
+Parte numero: 1000SFP31B20L
+Cantidad: 1
+
+DescripciÃ³n: NID ADVA FSP 150CC-GE101Pro MicroNID, C-Temp, F150/ADV/GE101PRO, HW Rel 1.01
+Item SAP: 1469560
+Parte numero: 1078904820-01
+Cantidad: 1
+
+DescripciÃ³n: 20KM SINGLE FIBER SFP 1310NM TX SMF LC -5 TO 75 C TX PWR -7 TO 1000SFP31B20L CHAMPION ONE
+Item SAP: 1248720
+Parte numero: 1000SFP31B20L
+Cantidad: 1 (WAN)
+
+===================== OFFNET ======================
+1. Contratar el siguiente enlace:
+
+Proveedor: NETBEAM
+Tipo: Capa 2 [L2], QinQ en M2.0
+BW: 10Mbps
+TDG: TDG-152078516 
+Tipo: Electrico
+Conector lado cliente: RJ45
+
+2. Favor compartir con IP SA y SDM/SA los datos de la NNI acordada con el LEC (SW, Puerto, Nodo) y VLAN asignada por parte del proveedor para efectos de documentaciÃ³n y configuraciÃ³n
+
+======================= IP SA =======================
+1. Asignar recursos de BBIP y red Metro 2.0 para el siguiente servicio:
+
+Servicio: INTERNET
+PE: Por Asignar
+Interface: Por Asignar
+IPv4 PE (IP pÃºblica): Por Asignar /31
+IPv6 PE: Por Asignar /127
+IPv4 LAN CPE (IP pÃºblica): Por asignar /29
+IPv6 LAN (CPE): /64
+
+Enrutamiento: Estatico
+BW: 10Mbps
+
+2. Asignar LB NID y dar de Alta RFS NID. 
+3. Asignar LB CPE y dar de Alta RFS CPE.
+
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y OFFNETa para realizar CrossconexiÃ³n en nodo
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via fibra PaP de 10Mbps
+3. Configurar el direccionamiento IP publico LAN informado por parte de IPSA
+4. Instalar y configurar Router y NID ADVA en sede del cliente.
+5. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (Router y ADVA)
+6. Realizar prueba de esfuerzo del canal con el cliente y garantizar navegaciÃ³n exitosa a Internet
+7. Entregar enlace a satisfacciÃ³n del cliente.
+8. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+NO LLEVA NM, NO SE RECIBIERON INSTANCIAS MANAGED SERVICES
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 05/02/25 12:59
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+Comments from Subprocess 8883644
+
+
+Workflow Initialization
+Comments: (Erazo, Enrique) 10/02/25 15:58
+OK, favor tomar de referencia el resultado del Request ID: 8640996; TDG-151994865 realizado en noviembre 2024 de Netbeam: "a continuación presentamos nuestra propuesta comercial acorde a su solicitud
+tiempo 12 meses
+Costo mensual : 1390000 COP
+Costo instalación: 2600000 COP"
+
+Comments: (Erazo, Enrique) 10/02/25 15:59
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Villanueva Farfan, Cristina) 13/02/25 19:00
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Villanueva Farfan, Cristina) 14/02/25 22:49
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Rojas, Carlos) 17/02/25 11:10
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8883632
+Datos - ADI Add   **8883632*$*
+
+Workflow Initialization
+Comments: (Castaneda, Steven) 19/02/25 11:07
+Se solicita a NETBEAM realizar la instalación a 10 MB del canal en mención.
+
+Se asigna VLAN 1442 en la NNI METRO 2.0 MEDELLIN - MEDELLIN MDLNCLAF - SW1.MDC4 GIGA 0/0/1
+
+Comments: (Castaneda, Steven) 19/02/25 11:10
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8892593
+Activación Terceros ICT   **8892593*$*
+
+Workflow Initialization

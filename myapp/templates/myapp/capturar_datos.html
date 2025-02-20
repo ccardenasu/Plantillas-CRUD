@@ -70,7 +70,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        console.log(`rfs_ip_port_punta_z: ${data.data.rfs_ip_port_punta_z}`);
+                        console.log(`sede_b: ${data.data.sede_b}`);
 
                         console.log("IPSA.py ejecutado - correctamente capturar_datos.html 73:"); // Mensaje de éxito
                         console.log("Salida del script - capturar_datos.html 74:", data.data); // Mostrar la salida del script
@@ -87,11 +87,13 @@
                         document.getElementById('id_cv').value = data.data.cvlan;
                         document.getElementById('id_dko').value = data.data.dko;
                         document.getElementById('id_interface_pe').value = data.data.interface_pe;
+                        document.getElementById('id_interface_pe_b').value = data.data.interface_pe_b;
                         document.getElementById('id_interface_sw').value = data.data.interface_sw;
                         document.getElementById('id_lag').value = data.data.lag;
                         document.getElementById('id_lbcpe').value = data.data.lbcpe;
                         document.getElementById('id_lnnid').value = data.data.lnnid;
                         document.getElementById('id_pe').value = data.data.pe;
+                        document.getElementById('id_pe_b').value = data.data.pe_b;
                         document.getElementById('id_rfs_ip_port').value = data.data.rfs_ip_port;
                         document.getElementById('id_rfs_ip_port_b').value = data.data.rfs_ip_port_punta_z;
                         document.getElementById('id_rfs_ip_port_nid').value = data.data.rfs_ip_port_nid;

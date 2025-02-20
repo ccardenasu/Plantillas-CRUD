@@ -1,0 +1,67 @@
+CFS: 500189387
+DKO: 8894649
+tipo_configuracion: Ampliacion
+tipo_servicio: ALCATEL
+tipo_servicio: ADI
+Cliente: BANCO DAVIVIENDA
+SEDE: DC-MEDELLIN---INTERNET
+RFS-IP-PORT: 6000330798
+BW: 8000M
+PE: ar1.mdc6
+Interface PE: xe-1/2/2:12
+
+DKO:8894649 (8894675)
+
+Comments: (Rojas, Carlos) 18/02/25 18:09 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar ampliaciÃ³n de servicio de INTERNET SERVICIOS PRINCIPAL  a 8Gbps
+ 
+Cliente: BANCO DAVIVIENDA 	
+Sede:   DAVIVIENDA - DC MEDELLIN - INTERNET		
+DirecciÃ³n: CALLE 40#53-53, MEDELLÃN, Antioquia, Colombia Latitud 6.2413165 Longitud -75.5744965
+Design ID:  DVIV_VN_81-2MDFHPB	
+
+SE: Camilo Andres Romero 
+CCM: Sarmiento, Arling	
+
+Nombre del contacto:  Carlos Arturo Anaya Estevez 
+Email del contacto: dmortego@davivienda.com 
+
+Project ID (XML): 8891376
+Service Instance: Internet
+CFS-CID: 500189387
+
+RFS IP Port: 6000330798
+RFS DWDM: 6000330799
+RFS Fiber Chain: 6000330802
+RFS CPE: 6000330803
+
+=============== SOLICITUD DE EQUIPOS ===============
+No se requiere envio de equipo
+
+======================= IP SA =======================
+1. Realizar ampliaciÃ³n del servicio de INTERNET SERVICIOS PRINCIPAL  a 8Gbps en BBIP
+
+RECURSOS ACTUALES EN BBIP DEL ENLACE:
+pe: ar1.mdc6
+Int xe-1/2/2:12  ies:29650
+WANIPV4:  204.199.86.157/30
+
+2. Modificar descripcion de recursos en BBIP con el RFS IP Port y CID indicado en esta DKO
+
+===================== SDM/SA ======================
+1. Validar ampliaciÃ³n de recursos en BBIP y red Metro a 8Gbps realizada por parte de IPSA 
+2. Programar con el cliente ventana de trabajo para ampliaciÃ³n del servicio
+3. Configurar Router a nueva capacidad contratada.
+4. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (Router)
+5. Realizar prueba de esfuerzo del canal con el cliente y garantizar correcta navegaciÃ³n a Internet
+6. Entregar enlace a satisfacciÃ³n del cliente.
+7. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8894649
+Datos - ADI Mod   **8894649*$*
+
+Workflow Initialization

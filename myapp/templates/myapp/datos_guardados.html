@@ -99,7 +99,7 @@
                         Interface PE_VPLS_B: {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}
                         {% elif datos.sv and  datos.tipo_equipo == 'ALCATEL' or datos.tipo_equipo == 'ALCATEL_V' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
                         {% else %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
-                        {% if datos.pe_b %}PE: {{ datos.pe_b }}{% endif %}
+                        {% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
                         {% if datos.pe_vpls_a %}PE_VPLS_A: {{ datos.pe_vpls_a }}{% endif %}
                         {% if datos.pe_vpls_b %}PE_VPLS_B: {{ datos.pe_vpls_b }}{% endif %}                        
                         {% if datos.unit_nid and  datos.tipo_equipo == 'ALCATEL' or datos.tipo_equipo == 'ALCATEL_V' %}Interface NID: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.unit_nid }}

@@ -1,0 +1,154 @@
+CFS: 500399460
+DKO: 8681547
+tipo_configuracion: Alta
+tipo_servicio: ALCATEL
+tipo_servicio: ADI
+Cliente: COMERCIALIZADORA INTERNACIONAL FLORES
+SEDE: FINCA-EL-BOSQUE
+RFS-IP-PORT: 6000314920
+RFS-IP-PORT_NID: 6000270601
+SW: mese2.manjui.bog
+Interface SW: Fa0/24
+BW: 30M
+Svlan: 1900
+Cvlan: 3478
+WAN: 64.76.81.178/31
+WANIPv6: 2001:13b0:a01c::/64
+PE: ar2.bgo1
+Interface PE: ae-3:1900.3478
+
+En ventana deben quitar shut de internet y poner en shut del VPN
+/configure service ies 8681547 interface ae-3:1900.3478 no shutdown
+set interfaces xe-0/0/1 unit 3478 disable
+
+DKO:8681547 (8894880)
+
+Comments: (Ariza, Jorge) 21/10/24 17:07 Start DokuFlow.
+----------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar por falta de definición de la solución Sd Wan, que al final quedo definida como Hub and Spoke
+----------------------------------------------------------------------------------
+ACTIVIDAD: se requiere alta SD WAN Internet a 30Mb/s vía radio en actual NID GE114PRO con CPE Sd Wan FG-60F
+
+Nota: El SD WAN Internet va a reemplazar el VPN actual
+
+CLIENTE: COMERCIALIZADORA INTERNACIONAL FLORES DE FUNZA S.A.S
+DIRECCIÓN: LATITUD 4.744760 LONGITUD -74.206923, FUNZA, CUNDINAMARCA, COLOMBIA
+SEDE: FLORES DE FUNZA - FINCA EL BOSQUE
+CIUDAD: FUNZA
+
+CONTACTO: Sandra Maldonado / Cel: 3143307405 / E: smaldonado@floresfunza.com
+Otro posible contacto validar con CCM
+CCM: Alirio Perez
+SE: Julio Peña
+AM: Diego Moreno
+Sd Wan TDE: Matias Hernan Caro
+
+XML: 8640573
+CID-CFS: 500399460
+RFS IP Port: 6000314920
+RFS Radio: 6000270599
+RFS NID: 6000270601 [SHARE]
+RFS SDWAN CPE: 6000314922
+SOF/TDG Detail: TDG-151986488
+----------------------------------------------------------------------------------
+SOLICITUD DE EQUIPOS:
+Tomar del Stock, si no hay en Stock se debe solicitar una PO al SE
+
+1 x 1464571
+FG-60F
+FORTIGATE-60F 10 X GE RJ45 PORTS INCL 7 X INTERNAL PORTS 2 X WAN PORTS 1 X DMZ PORT FG-60F FRTI + LICENSE
+----------------------------------------------------------------------------------
+RADIOS:
+Se requiere cambio de ancho de banda espectral pasando de 3.5MHz a 7MHz, lo que eventualmente cambiara frecuencias y el costo de la contraprestación por el permiso
+
+1. Ampliación de recursos configurado en:
+DEVICE: CERAGON IP 20
+BAND: 3.5GHz
+ID: 16813
+CID-CFS: 500399460
+RFS Radio: 6000270599
+BW: 30Mb/s
+SLA: 99.5%
+2. Actualizar la ingeniería
+----------------------------------------------------------------------------------
+IPSA:
+En la sede tenemos un VPN Radio [CID-CFS: 500368406]. Reusar la infraestructura actual para el nuevo servicio de Sd Wan Internet. 
+Como no es posible configurar en paralelo realizar cambio en una migración en caliente en ventana acordada con el cliente. 
+En vista de que el SD WAN Internet va a reemplazar el VPN actual
+
+1. Ampliación de recursos configurado en:
+TYPE: SD WAN Internet
+PE: Por Asignar
+INT: Por Asignar
+Cantidad de IP (WAN) IPv4: /31
+Cantidad de IP (WAN) IPv6: /64
+Cantidad de IP (LAN) IPv4/IPv6: No Asignar Solución Sd Wan
+Ruteo: Estatico
+ME: mese2.manjui.bog [Usar este ME1 e interfaz]
+INT: Fa0/24
+BW: 30Mb/s
+SLA: 99.5%
+2. Registrar los RFS:
+CID-CFS: 500399460
+RFS IP Port: 6000314920
+RFS Radio: 6000270599
+RFS NID: 6000270601 [SHARE]
+RFS SDWAN CPE: 6000314922
+----------------------------------------------------------------------------------
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 21/10/24 17:10
+----------------------------------------------------------------------------------
+SDM/SA:
+Este proceso obedece a la dinámica de cambio tecnológico de Legacy hacia Sd Wan Fortinet y se debe ejecutar de manera controlada con aprobación del cliente
+
+Se solicita el alta de los servicios en el hub Flores de Funza Oficina Principal bajo las DO 8671812 y 8680833. El CD queda a su disposición ante cualquier dudad o aclaración
+
+1. Solicitar equipos, coordinar la instalación y cableados
+2. Validar asignación de recursos por parte de IPSA y RADIOS
+3. Agendar ventana con el cliente para realizar alta SD WAN Internet a 30Mb/s vía radio en actual NID GE114PRO con CPE Sd Wan FG-60F:
+ - Como no es posible configurar en paralelo realizar cambio en una migración en caliente en ventana acordada con el cliente y conectar hacia el CPE Sd Wan
+ - Realizar la migración según la definición del archivo LLD dado por el Sd Wan TDE y con la asignación de un ingeniero especialista de Cirion o en su defecto un contratista, validar esta asignación con CCM
+ - Garantizar que los equipos continuen en gestión y con acceso remoto
+ - Ajustar NID y CPE Sd Wan con el nuevo BW
+ - Correr pruebas de esfuerzo de canal
+ - Al finalizar la actividad confirmar que todo el proyecto se haya ejecutado con éxito
+4. Realizar pruebas en compañía del cliente (Datos, Aplicativos, Navegación, etc), validando que el servicio Sd Wan funcione correctamente según las políticas definidas en la plantilla, LLD del proyecto y entregar la solución al cliente a total satisfacción
+5. Actualizar la ingeniería
+----------------------------------------------------------------------------------
+NETWORK MANAGEMENT:
+Garantizar NM Type: Advanced Management
+Garantizar en las herramientas de gestión este nuevo servicio
+IP WAN: la que asigne IPSA
+----------------------------------------------------------------------------------
+CIRCUIT DESIGNER:
+Liberar los siguientes recursos al finalizar esta orden:
+TYPE: VPN
+CID-CFS: 500368406
+PE: PSR2.CXV1.BOG
+INT: xe-0/0/1.3478
+IP: 192.168.100.161/30
+DES: CUSTOMER: COMERCIALIZADORA INTERNACIONAL FLORES (CFS:500368406) (RFS:6000270600)
+ME: MESE2.MANJUI.BOG
+INT: Fa0/24
+----------------------------------------------------------------------------------
+Comments: (Gomez, Luis Francisco) 22/10/24 19:53
+Finished Step: Asignación de SDM·
+
+Comments: (Ariza, Jorge) 05/02/25 13:48
+----------------------------------------------------------------------------------
+SDM
+
+1. Se solicita FortiGate-60F para implementar Hardware Switch en Alta Disponibilidad (HA), a fin de garantizar la continuidad y seguridad operativa de la infraestructura de red
+
+*:RFS 6000329121 ( SDWAN CPE )
+
+REQUEST EQUIPMENT:
+|1|1464571|FORTIGATE-60F 10 X GE RJ45 PORTS INCL 7 X INTERNAL PORTS 2 X WAN PORTS 1 X DMZ PORT FG-60F FRTI|
+----------------------------------------------------------------------------------
+
+
+This Order was automatically initiated by Order NO:8681547
+Datos - ADI Mod   **8681547*$*
+
+Workflow Initialization

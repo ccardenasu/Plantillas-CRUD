@@ -1,0 +1,97 @@
+DKO:8889719 (8894417)
+
+Comments: (Gino Rodriguez) 12/02/25 19:35 Start DokuFlow.
+Cirion provee para Cenit en sede Caño Limón un enlace Telefónica de 10M, que ha presentado		
+problemas de calidad. Al decir de este LEC, no tiene cómo mejorar el enlace.		
+Adicionalmente, Cirion provee otro enlace de Telefónica de 4M, así que hay un SPOF de LEC que debemos superar.		
+		
+Design id:	JC2D_VN_81-1JZ97C7	
+Cliente:	CENIT TRANSPORTE Y LOGISTICA DE HIDROCARBUROS S A S	
+Sede:	Estación Caño Limón - Arauca	
+Dirección:	KM 80 VÍA ARAUCA - ARAUQUITA, Coordinates: LAT N: 6.916667, LON W: 71.193611	
+Contacto: 	Andrés Uribe, andres.uribe@ciriontechnologies.com	
+Teléfono:	T: +57 601-611 9000 Ext4647 | C +57 315 446 9825	
+BW:	10M	
+LEC Actual: 	Telefónica, DS-01803685	
+
+		
+Actividades solicitadas:		
+
+1. Con base en la factibilidad positiva de Netbeam, instalar un enlace Netbeam de 10M,		
+como se solicita en la Xi.		
+Factib positiva: DokuOrder ID: 8859780		
+
+Se adjunta info del relevamiento que ya hizo Netbeam.		
+
+Se ajdunta correo del SE, Yilber Duque, autorizando la contratación.		
+		
+La contratación debe ser a 12 meses:		
+NRC: $3.600.000		
+MRC: $2.200.000		
+		
+Costos de obra civil según relevamiento: $ 2.362.000 (antes de i.v.a.). Ver adjuntos.		
+		
+RFS 3rd party = 	CFS:500178757      |     RFS:6000330174	
+		
+
+2. Proveer e instalar un nuevo NID para este servicio y ponerlo en gestión		
+RFS:6000330176 ( NID )		
+		
+
+3. Configurar una VLAN de acceso sobre el backbone ME @ 10M para este nuevo enlace, sobre la interconexión que corresponda,		
+		
+
+4. Hacer corresponder esta VLAN  con el path IP VPN:		
+PE: psr3.bgo1		
+Int: ae11.294		
+Vrf: cenit		
+IP WAN: 192.168.251.25/30		
+		
+
+5. a. Conectar el puerto Network del NID (1-1-1-1) al nuevo enlace Netbeam, que se está instalando con este DKO (como se muestra en la ing. de dokuviz),		
+		
+b. Conectar el puerto user del NID al port g0/0/0 del CPE cisco C1111X (como se muestra en la ing. de dokuviz),		
+		
+
+6.a. Verificar alcanzabilidad por ping desde BBIP hasta CPE Cirion de casa del cliente,  192.168.251.26,		
+		
+6.b. Verificar alcanzabilidad en gestión del NID,		
+		
+
+7. Estressar el enlace a su velocidad nominal,		
+		
+
+8. Asistir al cliente en sus pruebas aplicativas y obtener su conformidad,		
+		
+
+9.  Actualizar la ing de dokuviz.		
+		
+
+Gracias.		
+
+
+Workflow Initialization
+Comments: (Gino Rodriguez) 12/02/25 19:52
+Finished Step: Follow Up·
+
+Comments: (Gino Rodriguez) 12/02/25 19:56
+Finished Step: Solicitud de alta/mod de circuito de Terceros·
+
+
+This Order was automatically initiated by Order NO:8889719
+Service Assurance Reengineering-Add   **8889719*$*
+
+Workflow Initialization
+Comments: (Castaneda, Steven) 18/02/25 16:43
+Se solicita a NETBEAM realizar la instalación a 10 MB del canal en mención.
+
+Se asigna VLAN 1441 en la NNI METRO 2.0 MEDELLIN - MEDELLIN MDLNCLAF - SW1.MDC4 GIGA 0/0/1
+
+Comments: (Castaneda, Steven) 18/02/25 16:45
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8889759
+Activación Terceros   **8889759*$*
+
+Workflow Initialization

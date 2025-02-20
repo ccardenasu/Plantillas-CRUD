@@ -1,0 +1,84 @@
+DKO:8889633 (8894885)
+
+Comments: (Vallejo Caguenas, Sergio) 12/02/25 18:51 Start DokuFlow.
+Scope: Se requiere realizar ALTA canal VPN @300Mbps por Medio de convenio WIND
+
+Customer Technical Contact:
+Humberto Graciano / M: hgraciano@medline.com /P: (1809) 390-4919	
+
+VPN @300Mbps
+XML 8887357
+CFS 500413062
+
+Address: LAS AMERICAS INDUSTRIAL FREE ZONE NA, SANTO DOMINGO ESTE, 32-Santo Domingo, Dominican Republic
+
+RFS: 
+*:RFS6000330162 ( IP Port )
+*:RFS --- ICT   ( 3rd Party )
+--------------------------
+Description of Service: ||
+--------------------------
+Se requiere realizar ALTA canal VPN @300Mbps por Medio de convenio WIND, Tener presente que como Replubica Dominicana es un pais 100% Offnet se realiza solucion NIDLESS
+======================
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+Proveedor: WIND
+Tipo: Capa 2 [L2]
+BW: 300Mb
+
+quoting: DK-SURVEY-TDG-152080274-8886853
+Handoff interface: 1GE, SMF, 2-Fiber, 1310nm
+============= IPSA =============
+
+1. Asignar VLAN en Interconexión indicada por OFFNET 
+2. Crear subinterface en PE asignado con un BW @300Mbps y Routing:
+
+RECURSO:
+---------------------
+PE:  ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 192.168.241.121/30
+VRF: MEDIN-10008094 -> confirmada por LUMEN 
+Target: 209:10008094
+
+Enrutamiento: BGP; # AS_BGP: 65001
+QoS: -- DSCP
+25% B -- 1-15,17,19,21,23,25,27,29,31,33,35,37,39,41-45,47,49-55,57-63					
+25% E -- 16,18,20,22,24,26,28,30
+50% P -- 32,34,36,38,40,46
+
+============= SDM =============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET
+2. Agendar ventana con Lumen y  el cliente para dar de Alta enlace VPN @300Mbps
+- Tener en cuenta que la interface de entrega por parte del convenio debe ser  1GE, SMF, 2-Fiber, 1310nm
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+============= SA =============
+
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 13/02/25 16:41
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8889633
+Datos - IP VPN Add   **8889633*$*
+
+Workflow Initialization
+Comments: (Lozano, Paula) 18/02/25 21:21
+Se contrata 300Mbps POP  CON_URB_246_1 Puerta:  PSR1.WIN1.STD-GE-1/0/8-TX (MX 3D SERIES) VLAN 1784
+Comments: (Lozano, Paula) 18/02/25 21:23
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8890622
+Activación Terceros ICT   **8890622*$*
+
+Workflow Initialization

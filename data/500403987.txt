@@ -1,0 +1,524 @@
+DKO:8755090 (8895957)
+
+Comments: (Ever Contreras) 07/11/24 23:59 Start DokuFlow.
+
+Actividad: Se requiere dar de Alta enlace Cloud EVPL Azure @100Mb vía Lumen. Debido al esquema de funcionamiento de Azure, Lumen proporcionará tanto el enlace principal como el enlace de respaldo [BCK].
+
+A LOC:  ZONETECH ASHBURN-USA : Recursos asignados con esta DKO.
+Z LOC:  ZONETECH DC CIRION CARACAS LA URBINA : Recursos asignados con la DKO que se genere a partir del XML 8719967.
+
+ZONETECH LLC
+ ZONETECH ASHBURN-USA
+ADDRESS: 20717 ASHBURN VALLEY CT NA, ASHBURN, VA-Virginia, USA Latitud 39.04256 Longitud -77.493631
+
+Technical Contact:
+Reinaldo Battistella / M: reinaldo.b@ifxnw.com.ve / P: +582127504509
+Validar datos adicionales del LCON con el CCM.
+
+CCM: Paola Abella
+
+XML 8719966
+CFS 500403987 - PRINCIPAL
+*:RFS6000317989 ( IP Port )
+
+CFS 500403988 - RESPALDO
+*:RFS6000317990 ( IP Port )
+
+============ OFFNET ============
+
+Contratar el siguiente circuito:
+
+Cloud Connect Private LAN EVPL - PPAL & BCK
+Cloud Provider: Azure
+Proveedor: Lumen
+Tipo: Capa 3 [L3]
+BW: 100Mb
+DK-SURVEY-TDG-152003109-8666747
+
+- Se anexa TIF-Cloud.
+- Se deberá confirmar VLAN PPAL y VLAN BCK para que IPSA configure ambos enlaces, uno por cada VLAN.
+- Debido al esquema de funcionamiento de Azure, Lumen proporcionará tanto el enlace principal como el enlace de respaldo [BCK], ambos incluidos en el mismo MRC.
+
+============ IPSA ============
+
+Asignar recursos IP y de NNI para dar de alta los siguientes enlaces:
+
+CLLI : MIAUFLWS : Nap Of The Americas
+
+PE: psr3.mia43
+Int. xe-0/0/0:1
+
+Tipo: EVPL-1-PRINCIPAL
+VLAN-XX
+
+Tipo: EVPL-2-RESPALDO
+VLAN-YY
+
+A LOC:  ZONETECH ASHBURN-USA : Recursos asignados con esta DKO.
+Z LOC:  ZONETECH DC CIRION CARACAS LA URBINA : Recursos que serán pedidos con la DKO que se genere a partir del XML 8719967.
+
+NOTA: 
+Se puede usar como ejemplo, referencia o espejo los circuitos de CRESA:
+"CUSTOMER: CRESA-RETAIL S. A. S.  (CFS:500387970) (RFS:6000296660)"
+"CUSTOMER: CRESA-RETAIL S. A. S.  (CFS:500387971) (RFS:6000296663)"
+
+============ SDM / SA ============
+
+1. Dar seguimiento a la implementación del servicio Cloud Azure @100Mb vía Tercero.
+2. Validar conectividad con el cliente desde la sede Latam [DesignID: VEN:NBAB_VN_81-58XZLTP | XML 8719967].
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+
+
+Workflow Initialization
+Comments: (Lima, Sthefanny) 08/11/24 10:59
+Finished Step: Asignación de SDM·
+
+Comments: (Ever Contreras) 13/11/24 10:35
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+Comments: (Rodrigues, Luiz) 04/12/24 17:55
+Datos de la cruzada en LA URBICA (CARACAS):
+
+Se realizaron las dos CXs para el servicio al cliente Zonetech , ambas crossconecciones  se llevaron al   ODF espejo (panel de colocación)  ubicado en MMR AM08 sala 2 de DC al rack BB18 en su ODF#2 en los puertos 3 y 4  sugeridos,  restaría al  personal de Zonetech  realize la conexión hacia los puertos 23 y 24  del equipo  nexus 3064.
+ODF Espejo Puerto 3:   Equipo Cliente Cisco 3064 puerto 23.
+ODF Espejo Puerto 4:   Equipo Cliente Cisco 3064 puerto 24.
+
+Comments: (Rodrigues, Luiz) 04/12/24 17:56
+Puertos iluminados desde el ODF espejo ubicado en MMR AM08 sala 2 de DC al rack BB18 en su ODF#2 en los puertos 3 y 4.
+Comments: (Rodrigues, Luiz) 04/12/24 18:01
+Datos de configuración del circuito:
+
+roci@psr3.mia43> show configuration | display set | match 500403987 
+set interfaces ae27 unit 103 description "CUSTOMER:ZONETECH LLC(CFS:500403987)(RFS:6000317989)"
+set routing-instances 500403987_ZONETECH instance-type vpls
+set routing-instances 500403987_ZONETECH protocols vpls interface-mac-limit 150
+set routing-instances 500403987_ZONETECH protocols vpls no-mac-learning
+set routing-instances 500403987_ZONETECH protocols vpls neighbor 200.186.25.81
+set routing-instances 500403987_ZONETECH protocols vpls no-tunnel-services
+set routing-instances 500403987_ZONETECH protocols vpls vpls-id 500403987
+set routing-instances 500403987_ZONETECH protocols vpls mtu 9000
+set routing-instances 500403987_ZONETECH interface ae27.103
+
+{master}
+roci@psr3.mia43> show configuration | display set | match rout | match ae27.103 
+set routing-instances 500403987_ZONETECH interface ae27.103
+
+{master}
+roci@psr3.mia43> 
+
+Comments: (Rodrigues, Luiz) 04/12/24 18:05
+Vpls neighbor 200.186.25.81 - psr2.ccs1
+
+roci@psr2.ccs1> show configuration interfaces ae10.3073 | display set 
+set interfaces ae10 unit 3073 description "CUSTOMER:ZONETECH LLC (CFS:500403987) (RFS:6000318330)"
+set interfaces ae10 unit 3073 encapsulation vlan-vpls
+set interfaces ae10 unit 3073 vlan-tags outer 0x8100.1603
+set interfaces ae10 unit 3073 vlan-tags inner 0x8100.3073
+set interfaces ae10 unit 3073 input-vlan-map pop-pop
+set interfaces ae10 unit 3073 output-vlan-map push-push
+set interfaces ae10 unit 3073 family vpls filter input ae10.3073-cos-i
+set interfaces ae10 unit 3073 family vpls filter output ae10.3073-vpls-e
+set interfaces ae10 unit 3073 family vpls policer input ae10.3073-cir-in
+
+roci@psr2.ccs1> show configuration | display set | match rout | match ae10.3073 
+set routing-instances 500403987_ZONETECH interface ae10.3073
+Comments: (Rodrigues, Luiz) 06/12/24 15:26
+8755090 - ZONETECH LLC - CFS 500403987 - PRINCIPAL:
+
+roci@psr3.mia43> show configuration | display set | match ae27.103 
+set interfaces ae27 unit 103 family vpls filter input ae27.103-cos-i
+set interfaces ae27 unit 103 family vpls filter output ae27.103-vpls-e
+set interfaces ae27 unit 103 family vpls policer input ae27.103-cir-in
+set firewall family vpls filter ae27.103--inet-i term EF_DSCP from dscp 46
+set firewall family vpls filter ae27.103-cos-i term all then count EFlow.rx-ae27.103-cos-i
+set firewall family vpls filter ae27.103-cos-i term all then loss-priority high
+set firewall family vpls filter ae27.103-cos-i term all then forwarding-class EF
+set firewall family vpls filter ae27.103-vpls-e term EF_DSCP then count EF.rx-ae27.103-vpls-i
+set firewall family vpls filter ae27.103-vpls-e term EF_DSCP then loss-priority low
+set firewall family vpls filter ae27.103-vpls-e term EF_DSCP then forwarding-class EF
+set firewall family vpls filter ae27.103-vpls-e term EF-DE_DSCP from dscp 34
+set firewall family vpls filter ae27.103-vpls-e term EF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae27.103-vpls-e term EF-DE_DSCP then forwarding-class EF-DE
+set firewall family vpls filter ae27.103-vpls-e term EF_DE_DSCP then count EF-DE.rx-ae27.103-vpls-e
+set firewall family vpls filter ae27.103-vpls-e term AF_DSCP from dscp 26
+set firewall family vpls filter ae27.103-vpls-e term AF_DSCP then count AF-DE.rx-ae27.103-vpls-e
+set firewall family vpls filter ae27.103-vpls-e term AF_DSCP then loss-priority low
+set firewall family vpls filter ae27.103-vpls-e term AF_DSCP then forwarding-class AF
+set firewall family vpls filter ae27.103-vpls-e term AF-DE_DSCP from dscp 18
+set firewall family vpls filter ae27.103-vpls-e term AF-DE_DSCP then count AF-DE.rx-ae27.1034-vpls-e
+set firewall family vpls filter ae27.103-vpls-e term AF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae27.103-vpls-e term AF-DE_DSCP then forwarding-class AF-DE
+set firewall family vpls filter ae27.103-vpls-e term VPN-BE from dscp 10
+set firewall family vpls filter ae27.103-vpls-e term VPN-BE then count VPN-BE.rx-ae27.103-vpls-e
+set firewall family vpls filter ae27.103-vpls-e term VPN-BE then loss-priority high
+set firewall family vpls filter ae27.103-vpls-e term VPN-BE then forwarding-class VPN-BE
+set firewall family vpls filter ae27.103-vpls-e term BE then count BE.rx-ae27.103-vpls-e
+set firewall family vpls filter ae27.103-vpls-e term BE then loss-priority high
+set firewall family vpls filter ae27.103-vpls-e term BE then forwarding-class BE
+set firewall policer ae27.103-cir-in logical-interface-policer
+set firewall policer ae27.103-cir-in if-exceeding bandwidth-limit 102400000
+set firewall policer ae27.103-cir-in if-exceeding burst-size-limit 3840000
+set firewall policer ae27.103-cir-in then discard
+set routing-instances 500403987_ZONETECH interface ae27.103
+
+roci@psr3.mia43> show configuration | display set | match 500403987_ZONETECH 
+set routing-instances 500403987_ZONETECH instance-type vpls
+set routing-instances 500403987_ZONETECH protocols vpls interface-mac-limit 150
+set routing-instances 500403987_ZONETECH protocols vpls no-mac-learning
+set routing-instances 500403987_ZONETECH protocols vpls neighbor 200.186.25.81
+set routing-instances 500403987_ZONETECH protocols vpls no-tunnel-services
+set routing-instances 500403987_ZONETECH protocols vpls vpls-id 500403987
+set routing-instances 500403987_ZONETECH protocols vpls mtu 9000
+set routing-instances 500403987_ZONETECH interface ae27.103
+==========================================================================
+roci@psr2.ccs1> show configuration | display set | match ae10.3073 
+set interfaces ae10 unit 3073 family vpls filter input ae10.3073-cos-i
+set interfaces ae10 unit 3073 family vpls filter output ae10.3073-vpls-e
+set interfaces ae10 unit 3073 family vpls policer input ae10.3073-cir-in
+set firewall family vpls filter ae10.3073--inet-i term EF_DSCP from dscp 46
+set firewall family vpls filter ae10.3073-vpls-e term EF_DSCP then count EF.rx-ae10.3073-vpls-i
+set firewall family vpls filter ae10.3073-vpls-e term EF_DSCP then loss-priority low
+set firewall family vpls filter ae10.3073-vpls-e term EF_DSCP then forwarding-class EF
+set firewall family vpls filter ae10.3073-vpls-e term EF-DE_DSCP from dscp 34
+set firewall family vpls filter ae10.3073-vpls-e term EF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae10.3073-vpls-e term EF-DE_DSCP then forwarding-class EF-DE
+set firewall family vpls filter ae10.3073-vpls-e term EF_DE_DSCP then count EF-DE.rx-ae10.3073-vpls-e
+set firewall family vpls filter ae10.3073-vpls-e term AF_DSCP from dscp 26
+set firewall family vpls filter ae10.3073-vpls-e term AF_DSCP then count AF-DE.rx-ae10.3073-vpls-e
+set firewall family vpls filter ae10.3073-vpls-e term AF_DSCP then loss-priority low
+set firewall family vpls filter ae10.3073-vpls-e term AF_DSCP then forwarding-class AF
+set firewall family vpls filter ae10.3073-vpls-e term AF-DE_DSCP from dscp 18
+set firewall family vpls filter ae10.3073-vpls-e term AF-DE_DSCP then count AF-DE.rx-ae10.30734-vpls-e
+set firewall family vpls filter ae10.3073-vpls-e term AF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae10.3073-vpls-e term AF-DE_DSCP then forwarding-class AF-DE
+set firewall family vpls filter ae10.3073-vpls-e term VPN-BE from dscp 10
+set firewall family vpls filter ae10.3073-vpls-e term VPN-BE then count VPN-BE.rx-ae10.3073-vpls-e
+set firewall family vpls filter ae10.3073-vpls-e term VPN-BE then loss-priority high
+set firewall family vpls filter ae10.3073-vpls-e term VPN-BE then forwarding-class VPN-BE
+set firewall family vpls filter ae10.3073-vpls-e term BE then count BE.rx-ae10.3073-vpls-e
+set firewall family vpls filter ae10.3073-vpls-e term BE then loss-priority high
+set firewall family vpls filter ae10.3073-vpls-e term BE then forwarding-class BE
+set firewall family vpls filter ae10.3073-cos-i term all then count EFlow.rx-ae10.3073-cos-i
+set firewall family vpls filter ae10.3073-cos-i term all then loss-priority high
+set firewall family vpls filter ae10.3073-cos-i term all then forwarding-class EF
+set firewall policer ae10.3073-cir-in logical-interface-policer
+set firewall policer ae10.3073-cir-in if-exceeding bandwidth-limit 102400000
+set firewall policer ae10.3073-cir-in if-exceeding burst-size-limit 3840000
+set firewall policer ae10.3073-cir-in then discard
+set routing-instances 500403987_ZONETECH interface ae10.3073
+
+roci@psr2.ccs1> show configuration | display set | match 500403987_ZONETECH 
+set routing-instances 500403987_ZONETECH instance-type vpls
+set routing-instances 500403987_ZONETECH interface ae10.3073
+set routing-instances 500403987_ZONETECH protocols vpls interface-mac-limit 150
+set routing-instances 500403987_ZONETECH protocols vpls no-mac-learning
+set routing-instances 500403987_ZONETECH protocols vpls no-tunnel-services
+set routing-instances 500403987_ZONETECH protocols vpls vpls-id 500403987
+set routing-instances 500403987_ZONETECH protocols vpls mtu 9000
+set routing-instances 500403987_ZONETECH protocols vpls neighbor 200.186.25.156
+==========================================================================
+VPLS status:
+
+roci@psr2.ccs1> show vpls connections instance 500403987_ZONETECH summary      
+Layer-2 VPN Connections Summary:
+
+Instance: 500403987_ZONETECH
+  VPLS-id: 500403987
+    Total VCs up: 1, Total VCs down: 0
+==========================================================================
+roci@psr3.mia43> show vpls connections instance 500403987_ZONETECH summary 
+Layer-2 VPN Connections Summary:
+
+Instance: 500403987_ZONETECH
+  VPLS-id: 500403987
+    Total VCs up: 1, Total VCs down: 0
+
+{master}
+roci@psr3.mia43> 
+==========================================================================
+Comments: (Rodrigues, Luiz) 06/12/24 15:31
+8755090 - ZONETECH LLC - CFS 500403988 - RESPALDO:
+
+roci@psr2.ccs1> show configuration | display set | match 500403988 
+set interfaces ae10 unit 3072 description "CUSTOMER:ZONETECH LLC (CFS:500403988) (RFS:6000318332)"
+set routing-instances 500403988_ZONETECH instance-type vpls
+set routing-instances 500403988_ZONETECH interface ae10.3072
+set routing-instances 500403988_ZONETECH protocols vpls interface-mac-limit 150
+set routing-instances 500403988_ZONETECH protocols vpls no-mac-learning
+set routing-instances 500403988_ZONETECH protocols vpls no-tunnel-services
+set routing-instances 500403988_ZONETECH protocols vpls vpls-id 500403988
+set routing-instances 500403988_ZONETECH protocols vpls mtu 9000
+set routing-instances 500403988_ZONETECH protocols vpls neighbor 200.186.25.156
+
+roci@psr2.ccs1> show configuration | display set | match ae10.3072 
+set interfaces ae10 unit 3072 family vpls filter input ae10.3072-cos-i
+set interfaces ae10 unit 3072 family vpls filter output ae10.3072-vpls-e
+set interfaces ae10 unit 3072 family vpls policer input ae10.3072-cir-in
+set firewall family vpls filter ae10.3072--inet-i term EF_DSCP from dscp 46
+set firewall family vpls filter ae10.3072-vpls-e term EF_DSCP then count EF.rx-ae10.3072-vpls-i
+set firewall family vpls filter ae10.3072-vpls-e term EF_DSCP then loss-priority low
+set firewall family vpls filter ae10.3072-vpls-e term EF_DSCP then forwarding-class EF
+set firewall family vpls filter ae10.3072-vpls-e term EF-DE_DSCP from dscp 34
+set firewall family vpls filter ae10.3072-vpls-e term EF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae10.3072-vpls-e term EF-DE_DSCP then forwarding-class EF-DE
+set firewall family vpls filter ae10.3072-vpls-e term EF_DE_DSCP then count EF-DE.rx-ae10.3072-vpls-e
+set firewall family vpls filter ae10.3072-vpls-e term AF_DSCP from dscp 26
+set firewall family vpls filter ae10.3072-vpls-e term AF_DSCP then count AF-DE.rx-ae10.3072-vpls-e
+set firewall family vpls filter ae10.3072-vpls-e term AF_DSCP then loss-priority low
+set firewall family vpls filter ae10.3072-vpls-e term AF_DSCP then forwarding-class AF
+set firewall family vpls filter ae10.3072-vpls-e term AF-DE_DSCP from dscp 18
+set firewall family vpls filter ae10.3072-vpls-e term AF-DE_DSCP then count AF-DE.rx-ae10.30724-vpls-e
+set firewall family vpls filter ae10.3072-vpls-e term AF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae10.3072-vpls-e term AF-DE_DSCP then forwarding-class AF-DE
+set firewall family vpls filter ae10.3072-vpls-e term VPN-BE from dscp 10
+set firewall family vpls filter ae10.3072-vpls-e term VPN-BE then count VPN-BE.rx-ae10.3072-vpls-e
+set firewall family vpls filter ae10.3072-vpls-e term VPN-BE then loss-priority high
+set firewall family vpls filter ae10.3072-vpls-e term VPN-BE then forwarding-class VPN-BE
+set firewall family vpls filter ae10.3072-vpls-e term BE then count BE.rx-ae10.3072-vpls-e
+set firewall family vpls filter ae10.3072-vpls-e term BE then loss-priority high
+set firewall family vpls filter ae10.3072-vpls-e term BE then forwarding-class BE
+set firewall family vpls filter ae10.3072-cos-i term all then count EFlow.rx-ae10.3072-cos-i
+set firewall family vpls filter ae10.3072-cos-i term all then loss-priority high
+set firewall family vpls filter ae10.3072-cos-i term all then forwarding-class EF
+set firewall policer ae10.3072-cir-in logical-interface-policer
+set firewall policer ae10.3072-cir-in if-exceeding bandwidth-limit 102400000
+set firewall policer ae10.3072-cir-in if-exceeding burst-size-limit 3840000
+set firewall policer ae10.3072-cir-in then discard
+set routing-instances 500403988_ZONETECH interface ae10.3072
+
+roci@psr2.ccs1> show configuration | display set | match 500403988_ZONETECH 
+set routing-instances 500403988_ZONETECH instance-type vpls
+set routing-instances 500403988_ZONETECH interface ae10.3072
+set routing-instances 500403988_ZONETECH protocols vpls interface-mac-limit 150
+set routing-instances 500403988_ZONETECH protocols vpls no-mac-learning
+set routing-instances 500403988_ZONETECH protocols vpls no-tunnel-services
+set routing-instances 500403988_ZONETECH protocols vpls vpls-id 500403988
+set routing-instances 500403988_ZONETECH protocols vpls mtu 9000
+set routing-instances 500403988_ZONETECH protocols vpls neighbor 200.186.25.156
+===============================================================================================================
+VPLS Status:
+
+roci@psr2.ccs1> show vpls connections instance 500403988_ZONETECH summary      
+Layer-2 VPN Connections Summary:
+
+Instance: 500403988_ZONETECH
+  VPLS-id: 500403988
+    Total VCs up: 1, Total VCs down: 0
+
+roci@psr2.ccs1> 
+
+===============================================================================================================
+roci@psr3.mia43> show configuration | display set | match 500403988 
+set interfaces ae27 unit 104 description "CUSTOMER:ZONETECH LLC(CFS:500403988)(RFS:6000317990)"
+set routing-instances 500403988_ZONETECH instance-type vpls
+set routing-instances 500403988_ZONETECH protocols vpls interface-mac-limit 150
+set routing-instances 500403988_ZONETECH protocols vpls no-mac-learning
+set routing-instances 500403988_ZONETECH protocols vpls neighbor 200.186.25.81
+set routing-instances 500403988_ZONETECH protocols vpls no-tunnel-services
+set routing-instances 500403988_ZONETECH protocols vpls vpls-id 500403988
+set routing-instances 500403988_ZONETECH protocols vpls mtu 9000
+set routing-instances 500403988_ZONETECH interface ae27.104
+===============================================================================================================
+roci@psr3.mia43> show configuration | display set | match ae27.104  
+set interfaces ae27 unit 104 family vpls filter input ae27.104-cos-i
+set interfaces ae27 unit 104 family vpls filter output ae27.104-vpls-e
+set interfaces ae27 unit 104 family vpls policer input ae27.104-cir-in
+set firewall family vpls filter ae27.104-cos-i term all then count EFlow.rx-ae27.104-cos-i
+set firewall family vpls filter ae27.104-cos-i term all then loss-priority high
+set firewall family vpls filter ae27.104-cos-i term all then forwarding-class EF
+set firewall family vpls filter ae27.104-vpls-e term EF_DSCP then count EF.rx-ae27.104-vpls-i
+set firewall family vpls filter ae27.104-vpls-e term EF_DSCP then loss-priority low
+set firewall family vpls filter ae27.104-vpls-e term EF_DSCP then forwarding-class EF
+set firewall family vpls filter ae27.104-vpls-e term EF-DE_DSCP from dscp 34
+set firewall family vpls filter ae27.104-vpls-e term EF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae27.104-vpls-e term EF-DE_DSCP then forwarding-class EF-DE
+set firewall family vpls filter ae27.104-vpls-e term EF_DE_DSCP then count EF-DE.rx-ae27.104-vpls-e
+set firewall family vpls filter ae27.104-vpls-e term AF_DSCP from dscp 26
+set firewall family vpls filter ae27.104-vpls-e term AF_DSCP then count AF-DE.rx-ae27.104-vpls-e
+set firewall family vpls filter ae27.104-vpls-e term AF_DSCP then loss-priority low
+set firewall family vpls filter ae27.104-vpls-e term AF_DSCP then forwarding-class AF
+set firewall family vpls filter ae27.104-vpls-e term AF-DE_DSCP from dscp 18
+set firewall family vpls filter ae27.104-vpls-e term AF-DE_DSCP then count AF-DE.rx-ae27.1044-vpls-e
+set firewall family vpls filter ae27.104-vpls-e term AF-DE_DSCP then loss-priority high
+set firewall family vpls filter ae27.104-vpls-e term AF-DE_DSCP then forwarding-class AF-DE
+set firewall family vpls filter ae27.104-vpls-e term VPN-BE from dscp 10
+set firewall family vpls filter ae27.104-vpls-e term VPN-BE then count VPN-BE.rx-ae27.104-vpls-e
+set firewall family vpls filter ae27.104-vpls-e term VPN-BE then loss-priority high
+set firewall family vpls filter ae27.104-vpls-e term VPN-BE then forwarding-class VPN-BE
+set firewall family vpls filter ae27.104-vpls-e term BE then count BE.rx-ae27.104-vpls-e
+set firewall family vpls filter ae27.104-vpls-e term BE then loss-priority high
+set firewall family vpls filter ae27.104-vpls-e term BE then forwarding-class BE
+set firewall policer ae27.104-cir-in logical-interface-policer
+set firewall policer ae27.104-cir-in if-exceeding bandwidth-limit 102400000
+set firewall policer ae27.104-cir-in if-exceeding burst-size-limit 3840000
+set firewall policer ae27.104-cir-in then discard
+set routing-instances 500403988_ZONETECH interface ae27.104
+===============================================================================================================
+roci@psr3.mia43> show configuration | display set | match 500403988_ZONETECH 
+set routing-instances 500403988_ZONETECH instance-type vpls
+set routing-instances 500403988_ZONETECH protocols vpls interface-mac-limit 150
+set routing-instances 500403988_ZONETECH protocols vpls no-mac-learning
+set routing-instances 500403988_ZONETECH protocols vpls neighbor 200.186.25.81
+set routing-instances 500403988_ZONETECH protocols vpls no-tunnel-services
+set routing-instances 500403988_ZONETECH protocols vpls vpls-id 500403988
+set routing-instances 500403988_ZONETECH protocols vpls mtu 9000
+set routing-instances 500403988_ZONETECH interface ae27.104
+===============================================================================================================
+VPLS Status: 
+
+roci@psr3.mia43> show vpls connections instance 500403988_ZONETECH summary      
+Layer-2 VPN Connections Summary:
+
+Instance: 500403988_ZONETECH
+  VPLS-id: 500403988
+    Total VCs up: 1, Total VCs down: 0
+
+{master}
+roci@psr3.mia43> 
+
+
+
+Comments: (Rodrigues, Luiz) 06/12/24 15:34
+Finished Step: Gestión de provisión del servicio. Follow Up
+Comments from Subprocess 8775830
+
+
+Workflow Initialization
+Comments: (Bravomalo, María Elena) 18/11/24 18:15
+Finished Step: Alta Tercero
+Comments from Subprocess 8795639
+
+
+Workflow Initialization
+Comments: (Carlos Cardenas) 21/11/24 18:38
+Finished Step: Asignación y configuración de recursos IP. Requiere recursos de Tx?
+CFS: 500403987
+DKO: 8766157 (8766180)
+tipo_configuracion: Alta
+tipo_servicio: VPLS
+RFS-IP-PORT: 6000318330
+Cliente: ZONETECH LLC
+SEDE: DC CIRION CARACAS LA URBINA 81-58XZLTP
+SW: mesc11.im21.ccs
+Interface SW: GigabitEthernet0/8
+PE: psr2.ccs1
+Interface PE: ae10.3073
+VRF: 500403987_ZONETECH
+SV: 1603
+CV: 3073
+BW: 100M
+RFS-IP-PORT_B: 6000317989
+SEDE_B: ZONETECH ASHBURN-USA
+PE_B: psr3.mia43
+Interface PE_B: ae27.103
+Vlan_B: 103
+
+
+
+Instance: 500403987_ZONETECH
+  VPLS-id: 500403987
+    Neighbor                  Type  St     Time last up          # Up trans
+    200.186.25.156(vpls-id 500403987) rmt Up Nov 21 21:29:34 2024          1
+      Remote PE: 200.186.25.156, Negotiated control-word: No
+      Incoming label: 262153, Outgoing label: 74339
+      Negotiated PW status TLV: No
+      Local interface: lsi.1048876, Status: Up, Encapsulation: ETHERNET
+        Description: Intf - vpls 500403987_ZONETECH neighbor 200.186.25.156 vpls-id 500403987
+      Flow Label Transmit: No, Flow Label Receive: No
+
+[edit]
+roci@psr2.ccs1# 
+
+
+
+CFS: 500403988
+DKO: 8766206 (8766227)
+tipo_configuracion: Alta
+tipo_servicio: VPLS
+RFS-IP-PORT: 6000318332
+Cliente: ZONETECH LLC
+SEDE: DC CIRION CARACAS LA URBINA 81-58XZLTP
+SW: mesc7.im21.ccs
+Interface SW: GigabitEthernet0/4
+PE: psr2.ccs1
+Interface PE: ae10.3072
+VRF: 500403988_ZONETECH
+SV: 1603
+CV: 3072
+BW: 100M
+RFS-IP-PORT_B: 6000317990
+SEDE_B: ZONETECH ASHBURN-USA
+PE_B: psr3.mia43
+Interface PE_B: ae27.104
+Vlan_B: 104
+
+
+Instance: 500403988_ZONETECH
+  VPLS-id: 500403988
+    Neighbor                  Type  St     Time last up          # Up trans
+    200.186.25.156(vpls-id 500403988) rmt Up Nov 21 21:37:50 2024          1
+      Remote PE: 200.186.25.156, Negotiated control-word: No
+      Incoming label: 262152, Outgoing label: 74340
+      Negotiated PW status TLV: No
+      Local interface: lsi.1048877, Status: Up, Encapsulation: ETHERNET
+        Description: Intf - vpls 500403988_ZONETECH neighbor 200.186.25.156 vpls-id 500403988
+      Flow Label Transmit: No, Flow Label Receive: No
+
+[edit]
+roci@psr2.ccs1#
+
+Comments: (Bravomalo, María Elena) 06/12/24 19:27
+Finished Step: Entrega UM
+Comments from Subprocess 8836053
+
+
+Workflow Initialization
+Comments: (Paola  Abella) 09/12/24 12:51
+Finished Step: Generar ventana de Activación·
+
+
+This Order was automatically initiated by Order NO:8755090
+Datos - EVPL Add   **8755090*$*
+
+Workflow Initialization
+Comments: (Paola  Abella) 17/12/24 14:37
+Finished Step: Generar ventana de Activación·
+
+Comments: (Silva, Laura) 18/12/24 13:16
+Finished Step: Reservar agenda para activación·
+
+Comments: (Narvaez, Marcela) 23/12/24 11:32
+======================= S&A =======================
+=================== Marcela Narváez ===============
+De: Narváez Sepúlveda, Marcela <marcela.narvaezsepulveda@ciriontechnologies.com> 
+Enviado el: lunes, 23 de diciembre de 2024 9:30 a. m.
+Para: Activaciones Cluster Andino Norte <activaciones.cluster.andino.norte@ciriontechnologies.com>; Abella Olaya, Paola Andrea <paola.abella@ciriontechnologies.com>
+Asunto: Activación de servicio - ZONETECH LLC<USA> - DKO 8755090 8766157 8766206 - Marcela Narvaez
+
+Buen día,
+
+Ingeniera @Abella Olaya, Paola Andrea, según lo conversado en la sesión sostenida el día de hoy con cliente, indica que la información de la configuración enviada días anteriores del servicio se encuentra de manera correcta y ya que en este momento el cliente final tiene la red congelada por temas de fin de año por favor se agende la entrega del servicio para inicios del próximo año.
+
+Gracias por su atención.
+================================================
+Comments: (Narvaez, Marcela) 23/12/24 11:32
+Finished Step: Prueba y aceptación del cliente·
+
+
+This Order was automatically initiated by Order NO:8843567
+Activación del servicio (Flujos por servicio)   **8843567*$*
+
+Workflow Initialization
+Comments: (Paola  Abella) 18/02/25 16:05
+Finished Step: Generar ventana de Activación
+
+Comments: (Silva, Laura) 18/02/25 16:28
+Finished Step: Reservar agenda para activación·
+
+
+This Order was automatically initiated by Order NO:8848910
+Activación del servicio   **8848910*$*
+
+Workflow Initialization

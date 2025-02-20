@@ -95,12 +95,14 @@ def main(cfs):
         'cvlan': [r'Int:\s*ae-\d+:\d+\.(\d+)', r'Cvlan:\s*(\d+)'],
         'dko': [r'DKO:\s*(\d+)'],
         'interface_pe': [r'Interface PE:\s*([^\s,]+)', r'PTO\s*[^\s,]+\s*([^\s,]+)', r'Int:\s*(ae-\d+):\d+\.\d+'],
+        'interface_pe_b': [r'CLIENT_b:\s*(.*?)(?=\n)'],
         'interface_sw': [r'(TE\d+/\d+/\d+/\d+)', r'TE\d+/\d+/\d+/\d+', r'DEVICE:\s*[^\s,]+\s+(Te\d+/\d+/\d+/\d+)', r'Interface SW:\s*([^\s,]+)', r'INTERCONEXION\s*-\s*[^\s,]+\s*-\s*PTO\s*(TENGIGA\s*\d+/\d+/\d+/\d+)'],
         'lag': [r'Int:\s*ae-(\d+):\d+\.\d+'],
         'lbcpe': [r'CPE :\s*([\d.]+)', r'LB CPE:\s*([\d.]+)'],
         'lnnid': [r'LB NID:\s*([\d.]+)'],
         'pais': [r'(MEXICO)'],
         'pe': [r'PTO\s*([^\s,]+)', r'(?<!C)PE:\s*([^\s,]+)', r'PE:\s*([^\s,]+)'],
+        'pe_b': [r'(?i)CLIENT_B:\s*(.*?)(?=\n)'],
         'rd': [r'RD:\s*([^\s,]+)'],
         'rfs_ip_port': [r'IP Port:\s*(\d+)', r'IP PORT:\s*(\d+)', r'RFS IP PORT:\s*(\d+)', r'RFS IP Port:\s*(\d+)', r'IP Port :\s*(\d+)', r'(\d+)\s*IP Port\s*', r'\*:\s*RFS(\d+)\s*\( IP Port \)', r'\*:\s*(\d+)\s*\(IP Port\)', r'\*:\s*RFS\s*(\d+)\s*\( IP Port \)', r'RFS IP Port de VPLS - Punta Z:\s*(\d+)'],
         'rfs_ip_port_nid': [r'\*:\s*(\d+)\s*\(NID\)', r'\*:\s*RFS\s*(\d+)\s*\(\s*NID\s*\)', r'\*:\s*RFS\s*(\d+)\s*\( NID \)', r'RFS NID - Punta Z:\s*(\d+)',r'NID\s*:\s*(\d+)',],
@@ -179,6 +181,9 @@ def main(cfs):
     if resultados['sede'] != "No encontrado":
         resultados['sede'] = resultados['sede'].lstrip(" -")
 
+    if resultados['sede_b'] == "No encontrado":
+        resultados['sede_b'] = ""
+
     if resultados['rfs_ip_port_nid'] == "No encontrado":
         resultados['rfs_ip_port_nid'] = ""
 
@@ -208,6 +213,9 @@ def main(cfs):
 
     if resultados['lbcpe'] == "No encontrado":
         resultados['lbcpe'] = ""
+
+    if resultados['pe_b'] == "No encontrado":
+        resultados['pe_b'] = ""
 
     if resultados['sw'] == "No encontrado":
         resultados['sw'] = ""
@@ -258,10 +266,10 @@ def main(cfs):
         resultados['video'] = "0"
 
     if resultados['vrf'] == "No encontrado":
-        resultados['vrf'] = "0"
+        resultados['vrf'] = ""
 
-    if resultados['tipo'] == "EPL":
-        cliente_modificado = resultados['cliente'].replace(" ", "-")
+    if resultados['tipo'] in ["EPL", "EVPL"]:
+        cliente_modificado = resultados['cliente'].replace("&", "").replace(" ", "-")
         resultados['vrf'] = f"{resultados['cfs']}-{cliente_modificado}"
         resultados['rd'] = resultados['cfs']
 
@@ -269,6 +277,10 @@ def main(cfs):
         resultados['pe'] = "PSR1.PRC1"
         resultados['interface_pe'] = "xe-1/0/0"
         resultados['sw'] = "Conectado a PE"
+    
+    if "CO202100010" in texto:
+        resultados['pe_b'] = "psr2.bgo2"
+        resultados['interface_pe_b'] = "xe-1/0/9"
 
     if resultados['vrf_init'] != "No encontrado":
         resultados['vrf_init'] = resultados['vrf_init'].lstrip('0')

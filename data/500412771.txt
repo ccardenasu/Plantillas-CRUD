@@ -1,0 +1,123 @@
+CFS: 500412771
+DKO: 8892174
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: SWISSLUB SAS
+SEDE: FUNZA-II
+RFS-IP-PORT: 6000330538
+RFS-IP-PORT_NID: 6000330539
+Vlan Tercero: 1977      
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/3.919771300
+BW: 20M
+Svlan: 607
+Cvlan: 1300
+VRF: 9035-1-SWISSLUB-SAS-9000005335-L3VPN
+RD: 6745:11009035
+WAN: 172.23.12.12/30
+LB NID: 10.226.203.253  
+PE: psr2.bgo2
+Interface PE: ae14.607
+
+DKO:8892174 (8894073)
+
+Comments: (Ariza, Jorge) 14/02/25 19:03 Start DokuFlow.
+---------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar debido a que no se cuenta con la definición del HLD y LLD
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere alta de SD WAN IP VPN a 20Mb vía C&W con NID e integrar con CPE SD-WAN (SDO 8892168)
+
+CUSTOMER TECHNICAL CONTACT:
+Mario Torres / mtorres@conauto.com.ec / +593967501784
+SD WAN IP VPN @20Mb
+XML 8884063
+CFS 500412771
+
+CLIENT: SWISSLUB SAS
+SITE: SWISSLUB FUNZA II
+ADDRESS: ENTREDA CELTA TRADE PARK, 250027, FUNZA, CUNDINAMARCA, COLOMBIA [LATITUD 4.7708067 LONGITUD -74.1756698]
+
+RFS:
+*:RFS 6000330538 ( IP Port )
+*:RFS ICT Asigna ( 3rd Party )
+*:RFS 6000330539 ( NID )
+*:RFS 6000330535 ( SDWAN CPE ) Shared
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere alta de SD WAN IP VPN a 20Mb vía C&W con NID e integrar con CPE SD-WAN, garantizando alta disponibilidad y rendimiento eficiente de la red
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Contratar el circuito
+PROVIDER: CABLE & WIRELESS
+TYPE: Layer 2, QinQ
+BW: 20Mb
+QUOTING: DK-SURVEY-TDG-152078576-8881593
+Handoff interface: Electrical, RJ45
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Asignar recurso IP y Metro según asignación OFFNET
+TYPE: SD WAN IP VPN
+PE: Asignar
+INT: Asignar
+IP: 172.23.12.13/30
+VRF: Asignar VRF de la SDO 8891864
+LAN: No Asignar Solución SD-WAN
+Ruteo: Estático
+BW: 20Mb
+Asignar LB NID
+Registrar CFS y RFS's
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET
+2. Agendar ventana con el cliente para realizar alta de SD WAN IP VPN a 20Mb vía C&W con NID e integrar con CPE SD-WAN (SDO 8892168)
+3. Proceder con la migración de SD-WAN con la asignación de un ingeniero Cirion o contratista (confirmar con CCM)
+4. Registrar en la gestión de FortiManager y FortiAnalyzer (SDO 8891959)
+5. Garantizar que los equipos queden en gestión y con acceso remoto
+6. Realizar prueba de esfuerzo del canal
+7. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+|1|1469560|FSP 150CC-GE101PRO MICRONID C TEMP F150/ADV/GE101PRO 1078904820-01 ADVA|
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE SD-WAN NM Advanced Management
+LB Asignada Por IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 14/02/25 20:17
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8892174
+Datos - IP VPN Add   **8892174*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 18/02/25 13:46
+Finished Step: Alta Tercero·
+
+Se solicita a LIBERTY instalación de un canal 20 MB. Se asigna la SVLAN 1977 en la NNI M2 de Bogotá - BOGTCLFXNN001 - TENGIGA Interface: TE0/0/2/3 
+
+
+
+This Order was automatically initiated by Order NO:8892294
+Activación Terceros ICT   **8892294*$*
+
+Workflow Initialization

@@ -1,0 +1,122 @@
+CFS: 500410837
+DKO: 8894800
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+SEDE: CSJ---COTA-PARQUE-EMPRESARIAL-SAN-BERNARDO
+RFS-IP-PORT: 6000326842
+Vlan Tercero: 1966      
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/3.919661300
+BW: 32M
+Svlan: 606
+Cvlan: 1300
+VRF: CSJ
+RD: 16528:1103520
+WAN: 10.101.62.220/30
+LB CPE: 172.18.100.61 
+LB NID: 10.226.203.252  
+PE: psr2.bgo2
+Interface PE: ae14.606
+
+Proveedor Liberty Se asigna la VLAN 1966 EN LA NNI M2.0 BOGOTA ITX BOGTCLFXNN001 - TENGIGA Interface: TE0/0/2/3.
+ 
+ DKO:8894800 (8895094)
+
+Comments: (Ramos, Juan) 18/02/25 19:37 Start DokuFlow.
+Actividad: Se requiere dar de alta enlace VPN @32M vía acceso convenio LIBERTY, NM APPLICATION
+
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+Sede: CSJ - COTA PARQUE EMPRESARIAL SAN BERNARDO
+Dirección: Cundinamarca, Bogotá; Autopista Medellín Km 1.5 Parque Empresarial San Bernardo bodega 3, Bodega de Archivo
+Coordenadas: 4.736667479835984, -74.13342995057874
+
+DesignID: L63C_VN_81-5RZ4080
+XML: 8866583
+CFS: 500410837
+RFS:
+6000326842 IP Port 
+6000326841 CPE
+ICT ----------  3rd Party
+
+----------------------------------------------------------------
+DATOS DEL ENLACE: || FUENTE Archivo Maestro CD - CSJ 2024_2026||
+----------------------------------------------------------------
+CONSECUTIVO: 1527
+PIVOTE: 3576
+Tipo de Enlace: VPN
+BW:  32Mbps.
+========= SOLICITUD DE EQUIPOS =========
+
+========= SOLICITUD DE EQUIPOS =========
+
+1xCPE
+C4321-K9 o C1111-8P
+
+------------------------------------------- 
+CISCO 1111-8P 
+------------------------------------------- 
+ITEM: 1463297 
+Descripcion: ISR 1100 8 Ports Dual GE WAN Ethernet Router C1111-8P 
+Cantidad: 1 
+
+ITEM: 1453279? ? ? 
+Descripcion: Cisco 1100 Series Router Rackmount Wallmount Kit? ? ? ?ACS-1100-RM-19 
+Cantidad: 1 
+
+============== OFFNET ====================
+
+Contratar el siguiente circuito:
+
+VENDOR: NETBEAM
+Tipo: Capa 2 [L2]
+BW: 32Mbps
+FACTIBILIDAD: TDG-152054734
+
+============== IPSA ====================
+
+- Asignar recursos en BBIP y Metro para dar de alta el siguiente enlace vía convenio:
+Tipo: VPN
+PE: Por Asignar
+Int. Por Asignar
+VRF: CSJ
+IP WAN PE: 10.101.62.221/30
+BW: 32M
+Enrutamiento: Estático
+Hacia Interconexión convenio y vlan asignado por offnet
+*:Asignar LB CPE y dar de alta RFS.
+
+============== SDM / SA =================
+- Conectar el nuevo acceso directo al CPE instalado en sitio RFS:6000326841
+- Configurar en el router lo siguiente:
+IP WAN CPE: 10.101.62.222/30
+BW: 32Mb
+QoS: Critico 40%- Prioritario 20% (plantilla)
+ENRUTAMIENTO:  Estático ruta por defecto al BBIP.
+IP Loopback : ASIGNA BBIP.
+- Verificar que el router tenga habilitada la licencia de enscripción.
+- Cargar sobre el router la plantilla de configuración del proyecto CSJ. Configurar vrf lite creando la vrf CSJ DATOS y dentro de esta configurar un Tunel Gre Multipunto contra el router central Ppal de la solución en Colombia XV, habilitando encripción y enrutamiento dinámico BGP sobre este tunnel.
+Para la sede la interfaz tunnel backup asignada es:
+ZONA CENTRO 1;  INT TUNNEL 11 (PPAL) e INT TUNNEL 21 (BCK)
+IP Tunnel PPAL: 10.102.11.56/24
+- Integrar la solución a la red del cliente y prestar soporte para la habilitación - migración de los servicios de red del cliente al nuevo enlace.
+- En la sede se implementará una solución tipo 2UK + 1CPE. Realizar pruebas de conmutación entre túneles. En estado normal el tráfico de la sede se debe establecer por el enlace Principal y ante una caída debe conmutar al enlace de Backup.
+- Realizar prueba de esfuerzo, conmutación y garantizar BW contratado
+- Confirmar que los aplicativos y la navegación funcionen de manera correcta, que el tráfico este encriptado, la configuración de QoS correcta y que funcionen los enlaces PPAL y de BCK.
+- Actualizar la ingeniería. 
+
+=================NETWORK MANAGEMENT=================
+- Configurar NM APPLICATION
+LB CPE: La que asigne IPSA
+
+
+Workflow Initialization
+Comments: (Ramos, Juan) 19/02/25 10:40
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8894800
+Datos - IP VPN Add   **8894800*$*
+
+Workflow Initialization
