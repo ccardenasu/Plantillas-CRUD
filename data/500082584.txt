@@ -1,0 +1,135 @@
+CFS: 500082584
+DKO: 8893077
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: BANCO W S.A.
+SEDE: VALLE---CALI---INDEPENDENCIA---3
+RFS-IP-PORT: 6000330625
+RFS-IP-PORT_NID: 6000056410
+SW: CALICLAJNN001
+Interface SW: TenGigE0/0/2/1.907711301
+BW: 15M
+Svlan: 1039
+Cvlan: 1301
+VRF: 9054-1-BANCOW_SDWAN-9000002791-L3VPN
+RD: 6745:11009054
+WAN: 172.29.30.8/30
+PE: psr4.cal1
+Interface PE: ae11.1039
+
+DKO:8893077 (8896100)
+
+Comments: (Ariza, Jorge) 17/02/25 16:51 Start DokuFlow.
+---------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar debido a que no se cuenta con la definición del HLD y LLD
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere alta de SD WAN IP VPN a 15Mb vía Media Commerce en actual NID y nuevo CPE SD-WAN
+
+CUSTOMER TECHNICAL CONTACT:
+Karen Fajardo / kfajardo@bancow.com.co / 3137104215
+SD WAN IP VPN @15Mb
+XML 8882726
+CFS 500082584
+
+CLIENT: BANCO W S.A.
+SITE: BANCO W - VALLE - CALI - INDEPENDENCIA - 3
+ADDRESS: CL 27 # 41 - 11, CALI, VALLE DEL CAUCA, COLOMBIA [LATITUD 3.417013 LONGITUD -76.517316]
+
+RFS:
+*:RFS 6000330625 ( IP Port ) New
+*:RFS 6000056410 ( NID )
+*:RFS 6000056411 ( 3rd Party )
+*:RFS 6000330624 ( SDWAN CPE ) New
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere alta de SD WAN IP VPN a 15Mb vía Media Commerce en actual NID y nuevo CPE SD-WAN, garantizando alta disponibilidad y rendimiento eficiente de la red
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Ampliar recurso L2
+PROVIDER: Media Commerce
+ID: 2112
+TYPE: Layer 2, QinQ
+BW: 15Mb
+QUOTING: DK-SURVEY-TDG-152077409-8879702
+Handoff interface: Electrical, RJ45
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. En la sede disponemos de un SD WAN IP VPN (CFS 500082584) vía Media Commerce. Se requiere utilizar la infraestructura actual y configurar en paralelo nuevo SD WAN IP VPN asignándole recurso IP y Metro
+TYPE: SD WAN IP VPN
+PE: PSR4.CAL1
+INT: ae11.XX
+IP: 172.29.30.9/30
+VRF: BCOW_SDWAN
+LAN: No Asignar Solución SD-WAN
+ME: CALICLAJNN001
+INT: TenGigaE0/0/2/1.XX
+Ruteo: Estático
+BW: 15Mb
+Registrar CFS y RFS's
+CFS 500082584 *:RFS 6000330625 ( IP Port ) New
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET
+2. Desagregar el nuevo SD WAN IP VPN en un puerto independiente del NID
+3. Agendar ventana con el cliente para realizar alta de SD WAN IP VPN a 15Mb vía Media Commerce en actual NID y nuevo CPE SD-WAN
+4. Proceder con la migración de SD-WAN con la asignación de un ingeniero Cirion o contratista (confirmar con CCM)
+5. Garantizar que el equipo quede en gestión y con acceso remoto
+6. Realizar prueba de esfuerzo del canal
+7. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+|1|1464571|FORTIGATE-60F 10 X GE RJ45 PORTS INCL 7 X INTERNAL PORTS 2 X WAN PORTS 1 X DMZ PORT FG-60F FRTI|
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE SD-WAN NM Advanced Management
+LB Asignada Por IPSA
+----------------------------------------------------------------------------------
+CD
+
+PE: PSR4.CAL1
+INT: ae11.599
+IP: 192.168.202.173/30
+DES: BANCO W - VALLE - CALI - INDEPENDENCIA - 3	CUSTOMER: BANCO W S.A. (CFS:500082584) (RFS:6000218014)
+ME: CALICLAJNN001
+INT: TenGigaE0/0/2/1
+DES: 12/LATAM/6000223489/SVC ENNI # MEDIA COMMERCE 81-ENNI (500082584) BANCO W CALI INDEPENDENCIA 3
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 17/02/25 19:33
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8893077
+Datos - IP VPN Mod   **8893077*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 19/02/25 19:28
+
+Se avanza administrativamente sin modificacion ya que se valida y el canal se encuentra a 15MB desde el 2022 con la DKO 8094707.
+
+Comments: (Wilches Rivera, Lesly Tatiana) 19/02/25 19:30
+Finished Step: Modificación Tercero
+
+
+This Order was automatically initiated by Order NO:8893456
+Activación Terceros ICT   **8893456*$*
+
+Workflow Initialization

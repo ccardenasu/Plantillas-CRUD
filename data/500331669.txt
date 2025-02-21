@@ -1,0 +1,96 @@
+CFS: 500331669
+DKO: 8891964
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: ADI
+Cliente: CASA LUKER S.A.
+SEDE: FUNZA
+RFS-IP-PORT: 6000219711
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/0/3.909431200
+BW: 30M
+PE: ar1.sub1.bog
+Interface PE: ae6.1148
+
+
+
+DKO:8891964 (8896851)
+
+Comments: (Ramirez Sanchez, Tania) 14/02/25 16:56 Start DokuFlow.
+Actividad: Ampliación  SD WAN Internet enlace UFINET a 30 MB
+
+Technical Contact: NORBERTO ALONSO GÓMEZ Q - Phone: +573113344284 - Email: ngomez@casaluker.com.co 
+ 
+SEDE: CASA LUKER FUNZA
+Direccion: Km 1,5 cerrito la florida Funza Cundinamarca.
+Vista en DokuViz: LUKE_VN_81-OFXA07
+
+SD WAN Internet@30Mb
+XML: 8887835
+CFS: 500331669
+RFS:
+6000033395 3rd Party LL3-<COLLUKE>.0022		
+6000219711 IP Port	
+6000219712 NID
+6000260158 Ethernet
+6000219710 ( SDWAN CPE )
+--------------------------
+Description of Service: ||
+--------------------------
+En la  red SDWAN internet,  ampliar a 30Mbps  el  acceso  CID: 500013094, teniendo  presente  que  la  última  milla  es  tercerizada con UFINET: COCO07390026 en la sede CASA LUKER FUNZA 
+--------------------------
+=========== OFFNET ===========
+Ampliar convenio a 30M.
+DK-SURVEY-TDG-152079729-8884176
+UFINET
+ID: COCO07390026
+============= IPSA =============
+Ampliar a 30Mbps:
+Type: SDWAN internet
+PE ar1.sub1.bog 
+Interface ae6.1148
+WAN BBIP 204.199.75.158/31
+IPV6 WAN/RED 2001:13b0:8001:c06f::a8a/127
+UM:
+NE BOGTCLFXNN001
+INTERFACE TenGigabitEthernet0/0/0/3
+
+ ========== SDM ==========
+1. Seguimiento a la modificacion del canal parte de UFINET y IPSA.
+2. hacer ampiacion en el CPE SDWAN.
+FortiGate-60F
+NAME: CASA_LUKER_BOG_FUNZA_U
+SN : FGT60FTK2109ASZQ
+3. Verificar que se haya realizado la configuración solicitada a BBIP.
+============= SA =============
+
+Realizar pruebas de conectividad y saturación a nivel WAN y LAN, Verificar que alcance el BW solicitado, validar que no se presenten errores sobre todas las Interfaces.
+
+=========== NETWORK MANAGMENT  ==========
+Configurar NETWORK MANAGMENT NM ADVANCED MANAGEMENT solución SDWAN FORTINET.
+Se configura si este Cliente tiene equipos SDWAN en gestión, si cerrar la tareas para que facture.
+============
+
+
+
+
+Workflow Initialization
+Comments: (Diego Rubiano) 17/02/25 13:52
+Finished Step: Asignación de CCM·
+
+Comments: (Ramirez Sanchez, Tania) 19/02/25 18:16
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8891964
+Datos - ADI Mod   **8891964*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 20/02/25 14:18
+Finished Step: Modificación Tercero·
+Se solicita a UFINET ampliación de 15 Mbps a 30 Mbps del canal en mención. 
+
+This Order was automatically initiated by Order NO:8895912
+Activación Terceros ICT   **8895912*$*
+
+Workflow Initialization

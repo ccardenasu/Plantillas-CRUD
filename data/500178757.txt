@@ -1,3 +1,24 @@
+CFS: 500178757
+DKO: 8889719
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CENIT TRANSPORTE Y LOGISTICA DE HIDROCARBUROS S A S
+SEDE: Estación-Caño-Limón---Arauca
+RFS-IP-PORT: 6000311832
+Vlan Tercero: 1441      
+SW: sw1.mdc4
+Interface SW: ge-0/0/1
+BW: 10M
+Svlan: 1441
+Cvlan: 1300
+VRF: cenit
+RD: 16528:1103888
+WAN: 192.168.251.24/30
+LB NID: 172.18.244.45  
+PE: PSR1.MDC4
+Interface PE: ae3.1441
+
 DKO:8889719 (8894417)
 
 Comments: (Gino Rodriguez) 12/02/25 19:35 Start DokuFlow.

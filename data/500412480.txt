@@ -1,3 +1,28 @@
+Se libera VRF VRF: 9035-1-SWISSLUB-SAS-9000002791-L3VPN y servicio queda en VRF: 9035-1-SWISSLUB-SAS-9000005335-L3VPN
+
+set routing-instances 9054-1-BANCOW_SDWAN-9000002791-L3VPN interface ae11.1038  
+
+
+CFS: 500412480
+DKO: 8892907
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: BANCO W S.A.
+SEDE: VALLE---CALI---DATACENTER-PRINCIPAL
+RFS-IP-PORT: 6000330610
+SW: CALICLAJZG013
+Interface SW: GigabitEthernet0/0/11
+BW: 60M
+Svlan: 1038
+Cvlan: 1300
+VRF: 9035-1-SWISSLUB-SAS-9000005335-L3VPN
+RD: 6745:11009035
+WAN: 172.29.30.0/29
+PE: psr4.cal1
+Interface PE: ae11.1038
+
+
 CFS: 500412480
 DKO: 8892907
 tipo_configuracion: Alta

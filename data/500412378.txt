@@ -1,3 +1,29 @@
+CFS: 500412378
+DKO: 8883632
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: ADI
+Cliente: AT&T GLOBAL NETWORKS SERVICES COLOMBIA
+SEDE: AEROPUERTO-SANTIAGO-PEREZ-QUIROZ-ARAUCA
+RFS-IP-PORT: 6000329108
+RFS-IP-PORT_NID: 6000329109
+Vlan Tercero: 1442      
+SW: sw1.mdc4
+Interface SW: ge-0/0/1
+BW: 10M
+Svlan: 1442
+Cvlan: 1300
+WAN: 64.76.81.188/31
+WANIPv6: 2001:13b0:8001:af03::4:0/127
+LANIPv4: 64.76.83.24/29
+LANIPv6: 2001:13b0:a01e::/64
+LB NID: 172.18.122.45  
+PE: ar2.bgo1
+Interface PE: ae-14.1442
+PE_VPLS_A: psr2.cxv1.bog
+PE_VPLS_B: psr1.mdc4                        
+Interface NID: ae-14.505
+
 DKO:8883632 (8895154)
 
 Comments: (Rojas, Carlos) 05/02/25 12:48 Start DokuFlow.

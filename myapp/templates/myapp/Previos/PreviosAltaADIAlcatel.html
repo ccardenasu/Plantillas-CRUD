@@ -27,8 +27,7 @@ exit
     ##
     ##
     
-    bash
-    roci {{ datos.pe_vpls_b }}
+    ssh -l EA-CO11455  {{ datos.pe_vpls_b }}
     configure private
     
     show interfaces {{ datos.interface_pe_vpls_b }} | display set | no

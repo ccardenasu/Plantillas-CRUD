@@ -37,7 +37,7 @@ exit
     set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} description "CUSTOMER:{{ datos.cliente }} (CFS:{{ datos.cfs }}) (RFS:{{ datos.rfs_ip_port }})"
     set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} encapsulation vlan-vpls
     {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.sv }}{% endif %}
-    {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.sv }}{% endif %}
+    {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
     {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} input-vlan-map pop {% endif %}
     {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} input-vlan-map pop-pop{% endif %}
     {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe_vpls_a }} unit {{ datos.sv }} output-vlan-map push {% endif %}

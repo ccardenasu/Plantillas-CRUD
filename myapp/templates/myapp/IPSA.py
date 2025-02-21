@@ -50,11 +50,21 @@ def buscar_sw_int(texto):
                         return match_int.group(1).strip()
     return "No encontrado"
 
-def buscar_ufinet_nni(texto):
+def buscar_ufinet_nni_2_1(texto):
     if not texto:
         return "No encontrado"
     
     patron = r'(.*UFINET.*NNI.*2\.1.*)'
+    match = re.search(patron, texto, re.IGNORECASE)
+    if match:
+        return True
+    return False
+
+def buscar_ufinet_nni_BOGOTA_2_3(texto):
+    if not texto:
+        return "No encontrado"
+    
+    patron = r'(.*UFINET.*ITX BOGOTA.*2\.3.*)'
     match = re.search(patron, texto, re.IGNORECASE)
     if match:
         return True
@@ -165,8 +175,14 @@ def main(cfs):
         valores_unicos_sede = [palabra for palabra in sede_palabras if palabra not in cliente_palabras]
         resultados['sede'] = ' '.join(valores_unicos_sede) if valores_unicos_sede else "No encontrado"
 
-    if buscar_ufinet_nni(texto):
+    if buscar_ufinet_nni_2_1(texto):
         resultados['sw'] = "BOGTCLFXNN002"
+        resultados['interface_sw'] = "TEN GIGA 0/0/2/1"
+    else:
+        resultados['interface_sw'] = buscar_sw_int(texto)
+
+    if buscar_ufinet_nni_BOGOTA_2_3(texto):
+        resultados['sw'] = "BOGTCLFWNN003"
         resultados['interface_sw'] = "TEN GIGA 0/0/2/1"
     else:
         resultados['interface_sw'] = buscar_sw_int(texto)
