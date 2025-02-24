@@ -1,0 +1,92 @@
+DOK:8875976 (8898294)
+
+Comments: (Ocampo, John Jairo) 29/01/25 11:13 Start DokuFlow.
+Actividad: Se requiere realizar TRASLADO INTERNO del enlace SDWAN IP VPN  via UNE, Consecutivo: 228- Pívot 1177
+ 
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA	
+Sede: CSJ - URRAO ANTIOQUIA JUZGADO PROMISCUO
+DIRECCION: Antioquia, Urrao; Calle 29 # 31-75 
+ 
+CONTACTO CLIENTE:
+Nombre:MANUEL MARTINDE LA HOZ DOMINGUEZ 	
+Correo:mdelahoz@deaj.ramajudicial.gov.co  
+Phone: 2147483647 
+
+CCM :Camilo Linares
+ 
+REFERENCIAS:
+Vista en DokuViz: L63C_VN_81-1YROL5H
+XML: 8871910
+CFS : 500402983
+RFS:
+RFS IP PORT: 6000317695
+RFS  CPE: 6000317695
+RFS 3rd Party: 	6000071500
+ 
+--------------------
+DATOS DEL ENLACE: ||
+--------------------
+Tipo de Enlace: SDWAN IP VPN
+traslado interno BW: 40Mbps.
+ 
+Actividades solicitadas:
+ 
+=========== OFFNET ===========
+ 
+Recursos OFFNET a nivel informativo
+ 
+Proveedor: UNE
+CID: 45790
+TDG-152066744 
+El cliente deberá confirmar la nueva ubicación final de los equipos dentro de la misma sede.
+
+========== IPSA ==========
+ 
+No se requieren recursos.
+
+========== SDM / SA ==========
+
+Se pasa por flujo SDM por favor legalizar actividades realizadas
+ 
+1. Agendar ventana con el cliente y el tercero para realizar traslado interno de enlace IP VPN @40Mbps via UNE.
+2. Mover los equipos de CIRION y del tercero, esta última con el apoyo del tercero UNE. El cliente deberá confirmar la nueva ubicación final de los equipos.
+3. Realizar pruebas de conectividad y saturación a nivel WAN, validar que no se presenten errores sobre todas las Interfaces, restablecimiento del servicio luego del traslado interno
+4. Entregar enlace al cliente.
+5. Entregar Informe de la actividad y actualizar ingeniería.
+
+
+Workflow Initialization
+Comments: (Ocampo, John Jairo) 30/01/25 10:52
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+Comments from Subprocess 8877726
+
+
+Workflow Initialization
+Comments: (Yilber Duque) 05/02/25 16:10
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Bermudez, Diana) 06/02/25 15:21
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Bermudez, Diana) 11/02/25 17:06
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Ocampo, John Jairo) 17/02/25 11:03
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8875976
+Datos - IP VPN Mod   **8875976*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 21/02/25 16:34
+Finished Step: Modificación Tercero·
+
+Se legaliza contratacion de traslado interno ya realizado con UNE. 
+
+
+
+This Order was automatically initiated by Order NO:8892574
+Activación Terceros ICT   **8892574*$*
+
+Workflow Initialization

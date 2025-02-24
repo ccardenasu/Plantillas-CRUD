@@ -1,0 +1,103 @@
+CFS: 500047443
+DKO: 8885867
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+SEDE: CSJ---BOYACÁ--GUATEGUE-DESPACHOS-JUDICIALES-CRA7
+RFS-IP-PORT: 6000198083
+SW: BOGTCLFWNN001
+Interface SW: TenGigabitEthernet0/0/2/1.920981300
+BW: 32M
+PE: psr2.cxv1.bog
+Interface PE: ae10.580
+DKO:8885867 (8897792)
+
+Comments: (Ocampo, John Jairo) 07/02/25 16:31 Start DokuFlow.
+Actividad: Se requiere ampliación enlace VPN @32M vía acceso convenio AZTECA, NM
+
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+Sede: CSJ - BOYACÁ -GUATEGUE DESPACHOS JUDICIALES-CRA7
+Dirección: Boyacá, Guateque; Calle 7 # 6-46 Palacio Municipal
+	
+DesignID: L63C_VN_81-525D6O7	
+XML: 8884166
+CFS: 500047443
+RFS:
+6000198083 IP Port 
+6000044357 3rd Party
+ FIBER CHAIN
+8884166 CPE
+----------------------------------------------------------------
+DATOS DEL ENLACE: || FUENTE Archivo Maestro CD - CSJ 2024_2026||
+----------------------------------------------------------------
+CONSECUTIVO: 383
+PIVOTE: 178
+Tipo de Enlace: VPN
+BW:  32Mbps.
+========= SOLICITUD DE EQUIPOS =========
+
+Conserva equipos Legacy
+
+============== OFFNET ====================
+
+- Solicitar ampliación convenio AZTECA, verificar en el archivo máster del proyecto si ya fue ampliado y regularizar.
+
+VENDOR: AZTECA
+VENDIR ID: SER-219517
+BW: 32 Mbps
+ID ICT:  402370
+FACTIBILIDAD: TDG-152068931
+
+============== IPSA ====================
+
+- Ampliar
+Tipo: VPN@ 32M
+
+BBIP:
+PSR2.CXV1.BOG:ae10.580
+
+METRO:
+ME2:BOGTCLFWNN001:TenGigabitEthernet0/0/2/1..920981300
+
+============== SDM / SA =================
+- Verificar recursos para ampliación del acceso por parte IPSA y OFFNET
+- Se conserva el CPE instalado en sitio o se debe instalar nuevo equipo de acuerdo a las notas en solicitud de equipos.
+- Reconfigurar los tunneles en el CPE esquema protegido, el tunnel backup se debe reconfigurar para que levante por el nuevo acceso backup, el alta del acceso se envía en otra DKO.
+Para la sede la interfaz tunnel principal asignada es:
+
+IP Tunnel:
+IP: 10.102.11.51/24
+
+- En la sede se implementará una solución tipo 2UK + 1CPE. Realizar pruebas de conmutación entre túneles. En estado normal el tráfico de la sede se debe establecer por el enlace Principal y ante una caída debe conmutar al enlace de Backup.
+- Realizar prueba de esfuerzo, conmutación y garantizar BW contratado
+- Confirmar que los aplicativos y la navegación funcionen de manera correcta, que el tráfico este encriptado, la configuración de QoS correcta y que funcionen los enlaces PPAL y de BCK.
+- Actualizar la ingeniería.
+=================NETWORK MANAGEMENT=================
+- Ampliar a nueva capacidad NM APPLICATION
+LB CPE: CER063178 :172.18.239.136
+
+
+Workflow Initialization
+Comments: (Usuga Torres, Katherine) 07/02/25 20:19
+Finished Step: Asignación de CCM·
+
+Comments: (Ocampo, John Jairo) 14/02/25 16:14
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8885867
+Datos - IP VPN Mod   **8885867*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 21/02/25 12:16
+
+Se avanza la DKO legalizando la renovacion a 32 MB entregado por AZTECA.
+Comments: (Wilches Rivera, Lesly Tatiana) 21/02/25 12:49
+Finished Step: Modificación Tercero·
+
+
+This Order was automatically initiated by Order NO:8891898
+Activación Terceros ICT   **8891898*$*
+
+Workflow Initialization

@@ -1,0 +1,172 @@
+CFS: 500411249
+DKO: 8875979
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: ADI
+Cliente: ULTRACEM S.A.S
+SEDE: PLANTA-GALAPA-PPAL
+RFS-IP-PORT: 6000272149
+RFS-IP-PORT_NID: 6000272147
+Vlan Tercero: 1264      
+SW: BOGTCLFWNN003
+Interface SW: TenGigE0/0/2/1.912641200
+BW: 200M
+Svlan: 861
+Cvlan: 1200
+PE: AR1.CXV2.BOG
+Interface PE: ae5.861
+
+DKO:8875979 (8897212)
+
+Comments: (Rojas, Carlos) 29/01/25 11:16 Start DokuFlow.
+============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar ALTA POR RECONEXION de servicio INTERNET a 200Mbps via TERCERO reutilizando los recursos de UM ya instalados hoy en dÃ­a en la sede y que aun no se han dado de baja 
+
+NOTA: La DKO de baja por error es la DKO 8871527  (ANTIGUO CID CIRION: 500369024)
+ 
+Cliente: ULTRACEM S.A.S 
+Sede:  ULTRACEM PLANTA GALAPA PPAL
+DirecciÃ³n: VIA CORDIALIDAD KM 127, GALAPA, ATLANTICO
+Design ID:  BDFE_VN_81-581JWSW
+
+Nombre del contacto: JULIAN ALBERTOVASQUEZ ARANGAO 
+Email del contacto: aserrano@ultracem.co 
+
+Project ID (XML): 8870884
+Service Instance: Internet
+CFS-CID: 500411249
+
+RFS COMPARTIDOS DESDE EL ANTERIOR CID (500369024): 
+RFS IP Port: 6000272149
+RFS Ethernet: 6000273876
+RFS 3rd Party: 6000272312
+RFS NID: 6000272147
+RFS CPE: 6000272146
+
+=============== SOLICITUD DE EQUIPOS ===============
+No se requiere envio de equipos ya que se reutilizaran los equipos que aun NO se han retirado de la sede
+
+===================== OFFNET ======================
+Se requiere Alta por RECONEXION de servicio del cual aun no se han liberado ninguno de los recursos, por lo cual se requiere:
+
+1. Verificar que con el proveedor se encuentre contratada la capacidad del siguiente enlace:
+
+RFS 3rd Party actual: 6000272312
+Proveedor: UFINET
+ID: COCOCIR10131929C
+Pointer: LL3-<COLBDFE>.0001
+BW: 200Mbps
+
+NOTA: Se solicitarÃ¡ apoyo a Leonardo Sailer y Gerardo Pin para que se modifique desde la base de datos el CID-CFS asociado al pointer.
+
+======================= IP SA =======================
+Se requiere Alta por RECONEXION de servicio del cual aun no se han liberado ninguno de los recursos, sumado a ampliacion de los recursos existentes, por lo cual se requiere lo siguiente:
+
+1. Modificar descripcion de los recursos asignados para el servicio de INTERNET  a 200Mbps en BBIP y red Metro 2.0. SE DEBEN DE REMARCAR LOS RECURSOS DE BBIP Y METRO CON EL NUEVO CID (500411249)
+
+RECURSOS ACTUALES EN BBIP DEL ENLACE:
+ PE: ar1.cxv2.bog
+Int: ae5.861
+WAN IPV4 BBIP: 201.234.143.30
+WAN IPV6 BBIP: 2001:13b0:8001:c06f::dac/127
+
+RECURSOS ACTUALES  EN RED METRO DEL ENLACE:
+SW: NNI: BOGTCLFWNN003
+Int: TenGigE0/0/2/1.912641200
+VLAN 1200
+
+2. Asegurar respuesta y gestion remota del ADVA y CPE en sede - IP WAN CPE: 201.234.143.31/31  ---  LB ADVA: 10.235.6.87
+
+===================== SDM/SA ======================
+Se requiere Alta por RECONEXION de servicio del cual aun no se han liberado ninguno de los recursos, por lo cual se requiere lo siguiente:
+
+1. Verificar que IPSA haya realizado ajuste de la descripcion (CID-CIFS y RFS IP Port) y de la capacidad solicitada bajo esta DKO para los recursos en BBIP y red Metro; Del mismo modo verificar con OFFNET que el tercero haya ajustado la capacidad del enlace a la solicitada con esta DKO
+2. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en sede (Router)
+3. Asegurar que la configuracion de los  equipos se encuentre a la capacidad contratada por el cliente de 200Mbps. Se debe asegurar que la descripcion de interfaces en CPE y ADVA quede con el NUEVO CID (500411249)
+3. Realizar prueba de esfuerzo del canal con el cliente y garantizar correcta navegacion a Internet
+4. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos de ser necesario
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Monitor/ Notify 	
+LB CPE: SegÃºn asignacion de IPSA
+LB ADVA: SegÃºn asignacion de IPSA
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 29/01/25 11:25
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Canabal, Jose) 18/02/25 20:50
+se realiza validación del servicio y se ven equipos con tráfico ok.
+CER127736#sh int Gi0/0/0     
+GigabitEthernet0/0/0 is up, line protocol is up 
+  Hardware is C1111-2x1GE, address is a03d.6e17.9680 (bia a03d.6e17.9680)
+  Description: "15/MCPELATAM/RFS:6000272146/WAN1 - ULTRACEM S - ULTRACEM-PLANTA-GALAPA-PPAL # CER127736 [MCPE]"
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation 802.1Q Virtual LAN, Vlan ID  1., loopback not set
+  Keepalive not supported 
+  Full Duplex, 1000Mbps, link type is auto, media type is RJ45
+  output flow-control is off, input flow-control is off
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  30 second input rate 7648000 bits/sec, 1046 packets/sec
+  30 second output rate 2018000 bits/sec, 966 packets/sec
+     3302337275 packets input, 2986506679709 bytes, 0 no buffer
+     Received 1436 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 507514 multicast, 0 pause input
+     2396327241 packets output, 1112970783519 bytes, 0 underruns
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+CER127736#sh arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  201.234.143.30         11   ac4b.c84a.87c3  ARPA   GigabitEthernet0/0/0.1200
+Internet  201.234.143.31          -   a03d.6e17.9680  ARPA   GigabitEthernet0/0/0.1200
+Internet  201.234.143.49          -   a03d.6e17.96f4  ARPA   Vlan11
+Internet  201.234.143.50          0   0009.0f09.000c  ARPA   Vlan11
+Internet  201.234.143.51          0   0009.0f09.000c  ARPA   Vlan11
+Internet  201.234.143.52          0   Incomplete      ARPA   
+Internet  201.234.143.54          0   Incomplete      ARPA   
+CER127736#
+Comments: (Canabal, Jose) 18/02/25 20:51
+Finished Step: Gestión de provisión del servicio. Follow Up·
+Comments from Subprocess 8876001
+
+
+Workflow Initialization
+Comments: (Utria Perez, Marvin) 30/01/25 13:27
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Bermudez, Diana) 14/02/25 13:07
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Bermudez, Diana) 19/02/25 13:06
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Rojas, Carlos) 19/02/25 13:29
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8875979
+Datos - ADI Mod   **8875979*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 20/02/25 18:00
+Finished Step: Modificación Tercero
+Se solicita a Ufinet  instalación de canal a 200 MBPS. Se asigna la SVLAN 1264 NNI  METRO 2.3 BOGOTA BOGTCLFWNN003 - TEN GIGA 0/0/2/1 
+
+
+
+This Order was automatically initiated by Order NO:8895439
+Activación Terceros ICT   **8895439*$*
+
+Workflow Initialization

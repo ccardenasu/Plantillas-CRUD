@@ -1,0 +1,125 @@
+CFS: 500413609
+DKO: 8896232
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CPO S.A. - POLICLINICO DEL OLAYA
+SEDE: PEREIRA-30-DE-AGOSTO-81-5K77PR7
+RFS-IP-PORT: 6000331069
+RFS-IP-PORT_NID: 6000331070
+Vlan Tercero: 1404      
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/0/1.914041300
+BW: 12M
+Svlan: 613
+Cvlan: 1300
+VRF: policlinico
+RD: 16528:1101345
+ASN: 65001
+WAN: 10.110.120.0/30
+LB CPE: 172.18.100.116 
+LB NID: 10.235.88.62  
+PE: psr2.bgo2
+Interface PE: ae14.613
+
+DKO:8896232 (8898012)
+
+Comments: (Vallejo Caguenas, Sergio) 19/02/25 23:50 Start DokuFlow.
+Scope: Se requiere realizar ALTA canal VPN @12Mbps por Medio de convenio MEDIA COMMERCE
+
+Customer Technical Contact:
+Diana Bonilla / M: Diana.Bonilla@CPOSA-POLICLINICODELOLAYA.com  /P: 601 3612888	
+
+VPN @12Mbps
+XML 8894496
+CFS 500413609
+
+Address: AV. 30 DE AGOSTO #40-51, PEREIRA, RISARALDA, COLOMBIA NA, Pereira, RIS-Risaralda, Colombia
+
+RFS: 
+*:RFS6000331069 ( IP Port )
+*:RFS --- ICT   ( 3rd Party )
+*:RFS6000331070 ( NID )
+*:RFS6000331071 ( CPE )
+--------------------------
+Description of Service: ||
+--------------------------
+Se requiere realizar ALTA canal VPN @12Mbps por Medio de convenio MEDIA COMMERCE
+======================
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+Proveedor: MEDIA COMMERCE
+Tipo: Capa 2 [L2]
+BW: 12Mb
+
+quoting: DK-SURVEY-TDG-151968553-8595532
+Handoff interface: Eletrical, RJ45
+============= IPSA =============
+
+1. Asignar VLAN en Interconexión indicada por OFFNET y dirección IP de monitoreo para NID,
+2. Crear subinterface en PE asignado con un BW @12Mbps y Routing:
+3. Asignar ip de monitoreo para NID, y CPE Dar de Alta RFS  
+
+RECURSO:
+---------------------
+PE:  ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 10.110.120.1/30
+VRF: policlinico
+Enrutamiento: BGP; # AS_BGP: 65001
+
+============= SDM =============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET
+2. Agendar ventana con cliente para dar de Alta enlace VPN @12Mbps
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Tener en cuenta que la interface de entrega a nivel LAN sera Eletrical, RJ45
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+Handoff interface CLIENT: Eletrical, RJ45
+
+Solicitar los siguientes equipos:
+P/N Descripción Cantidad 
+|1|1466410|F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA|
+|1|1384891|F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA|
+|1|1463297|ISR 1100 8 Ports Dual GE WAN Ethernet Router C1111-8P |
+|1|1453279|Cisco 1100 Series Router Rackmount Wallmount Kit ACS-1100-RM-19 |
+
+Si no se tiene Router Cisco se debe remplazar por un CPE Junipper:
+
+|1|1343900|HW ONLY REQUIRE SRX300 JSB OR JSE SRX300 JPNW |
+|1|1004662|SRX300 rack mount kit with adaptor tray |
+============= SA =============
+
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+=========== NETWORK MANAGMENT  ==========
+Configurar NETWORK MANAGMENT Application
+
+LP: Asignada IPSA
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 20/02/25 16:02
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8896232
+Datos - IP VPN Add   **8896232*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 21/02/25 13:36
+
+Se solicita a MC instalación a 12Mbps del canal en mención, Se asigna la Svlan 1404 ITX PEREIRA M2,0 
+Comments: (Wilches Rivera, Lesly Tatiana) 21/02/25 13:41
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8897019
+Activación Terceros ICT   **8897019*$*
+
+Workflow Initialization

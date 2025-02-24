@@ -1,0 +1,139 @@
+	CFS: 500333006
+	DKO: 8893128
+	tipo_configuracion: Alta
+	tipo_servicio: ALCATEL
+	tipo_servicio: ADI
+	Cliente: BANCO W S.A.
+	SEDE: VALLE---CALI---INDEPENDENCIA---3
+	RFS-IP-PORT: 6000330629
+	RFS-IP-PORT_NID: 6000055687
+	Vlan Tercero: 551      
+	SW: CALICLAJNN002
+	Interface SW: TenGigE0/0/0/3.905511202
+	BW: 15M
+	Svlan: 443
+	Cvlan: 1202
+	WAN: 64.76.83.48/29
+	WANIPv6: 2001:13b0:8001:af03::2:0/127
+	PE: ar4.cal1
+	Interface PE: ae-13:443.1202
+
+DKO:8893128 (8898427)
+
+Comments: (Ariza, Jorge) 17/02/25 17:08 Start DokuFlow.
+---------------------------------------------------------------------------------
+Se genera DO fuera del tiempo estándar debido a que no se cuenta con la definición del HLD y LLD
+---------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere alta de SD WAN Internet a 15Mb vía C&W en actual NID y nuevo CPE SD-WAN en HA (SDO 8893077)
+
+CUSTOMER TECHNICAL CONTACT:
+Karen Fajardo / kfajardo@bancow.com.co / 3137104215
+SD WAN Internet @15Mb
+XML 8882726
+CFS 500333006
+
+CLIENT: BANCO W S.A.
+SITE: BANCO W - VALLE - CALI - INDEPENDENCIA - 3
+ADDRESS: CL 27 # 41 - 11, CALI, VALLE DEL CAUCA, COLOMBIA [LATITUD 3.417013 LONGITUD -76.517316]
+
+RFS:
+*:RFS 6000330629 ( IP Port ) New
+*:RFS 6000055688 ( 3rd Party )
+*:RFS 6000055687 ( NID )
+*:RFS 6000330630 ( SDWAN CPE ) New
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere alta de SD WAN Internet a 15Mb vía C&W en actual NID y nuevo CPE SD-WAN en HA, garantizando alta disponibilidad y rendimiento eficiente de la red
+----------------------------------------------------------------------------------
+OFFNET
+
+1. Ampliar recurso L2
+PROVIDER: C&W
+ID: CI1006152
+TYPE: Layer 2, QinQ
+BW: 15Mb
+QUOTING: DK-SURVEY-TDG-152077403-8879701
+Handoff interface: Electrical, RJ45
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. En la sede disponemos de un SD WAN Internet (CFS 500333006) vía C&W. Se requiere utilizar la infraestructura actual y configurar en paralelo nuevo SD WAN Internet asignándole recurso IP y Metro
+TYPE: SD WAN Internet
+PE: AR3.CAL1
+INT: ae-12:XX
+IPv4: /29
+IPv6: /127
+LAN: No Asignar Solución SD-WAN
+ME: CALICLAJNN002
+INT: TenGigaE0/0/0/3.XX
+Ruteo: Estático
+BW: 15Mb
+Registrar CFS y RFS's
+CFS 500333006 *:RFS 6000330629 ( IP Port ) New
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET
+2. Desagregar el nuevo SD WAN Internet en un puerto independiente del NID
+3. Agendar ventana con el cliente para realizar alta de SD WAN Internet a 15Mb vía C&W en actual NID y nuevo CPE SD-WAN en HA (SDO 8893077)
+4. Proceder con la migración de SD-WAN con la asignación de un ingeniero Cirion o contratista (confirmar con CCM)
+5. Garantizar que el equipo quede en gestión y con acceso remoto
+6. Realizar prueba de esfuerzo del canal
+7. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+|1|1464571|FORTIGATE-60F 10 X GE RJ45 PORTS INCL 7 X INTERNAL PORTS 2 X WAN PORTS 1 X DMZ PORT FG-60F FRTI|
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño de bajo nivel (LLD) del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE SD-WAN NM Advanced Management
+LB Asignada Por IPSA
+----------------------------------------------------------------------------------
+CD
+
+PE: AR3.CAL1
+INT: ae-12:726.1200
+IP: 204.199.89.60/31
+DES: CUSTOMER:BANCO W S.A. (CFSID:500333006)(RFS:6000223996)
+ME: CALICLAJNN002
+INT: TenGigaE0/0/0/3
+DES: 12/LATAM/6000256592/SVC ENNI # CABLE & WIRELESS 81-ENNI (500333006) CALI - INDEPENDENCIA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Ariza, Jorge) 17/02/25 17:25
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+IPv4: /31 (Por favor asignar esta mascara de sudred
+----------------------------------------------------------------------------------
+
+Comments: (Ariza, Jorge) 18/02/25 19:44
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8893128
+Datos - ADI Mod   **8893128*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 21/02/25 17:43
+Finished Step: Modificación Tercero·
+
+Se solicita a LIBERTY aumento a 15 MB el canal en mención:
+
+This Order was automatically initiated by Order NO:8894815
+Activación Terceros ICT   **8894815*$*
+
+Workflow Initialization

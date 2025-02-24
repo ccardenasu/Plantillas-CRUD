@@ -1,0 +1,98 @@
+CFS: 500413459
+DKO: 8894086
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CENCOSUD COLOMBIA S.A
+SEDE: CENCOSUD-SAN-CAYETANO
+RFS-IP-PORT: 6000330821
+SW: BOGTCLFXZG003
+Interface SW: GigabitEthernet0/0/22
+BW: 15M
+Svlan: 609
+Cvlan: 1300
+VRF: cencosud_co
+RD: 16528:1202186
+ASN: 64575
+WAN: 10.132.33.33/32
+LB CPE: 172.18.100.72 
+LB NID: 10.235.89.176  
+PE: psr2.bgo2
+Interface PE: ae14.609
+
+
+DKO:8894086 (8896982)
+
+Comments: (Palmera Aguilera, Viviana) 18/02/25 13:54 Start DokuFlow.
+Scope: Se requiere Instalación Acceso BBIP VPN a 15Mbps servicios Datos para el Cliente: CENCOSUD COLOMBIA S.A
+
+Customer Technical Contact: Oscar Bare / oscar.bareno@cencosud.com / 3176411057 
+XML.: 8893116
+Product.: IP VPN
+CFS.: 500413459
+BW.: 15Mbps 
+Address: CALLE 46A 85 A ¿ 51, 111071 BOGOTÁ, COLOMBIA NA, Bogotá, DC-Distrito Capital De Bogota, Colombia Latitud 4.6770763 Longitud -74.1167831
+
+RFS:
+6000330824 ( CPE )
+6000330823  ( NID )
+6000330825 ( Fiber Chain )
+	
+ 
+================ PLEX ===============
+
+Tipo de Enlace: FO PAP
+Acometida: Simple
+Client: CENCOSUD COLOMBIA S.A
+Site: CENCOSUD-SAN CAYETANO 	
+
+============== PROVISIONING IPSA ===============
+
+Type: VPN
+BW: 15Mbps
+PE: Asignar
+Int. Asignar
+VRF: cencosud_co
+IP WAN: 10.132.33.33 /30
+AS: 64575
+::: UM :::
+Metro: Red Metro según asignación de PLANTA EXTERNA
+
+============= SDM =============
+
+SOLICITUD DE EQUIPOS 
+MATERIAL SAP MATERIAL DESCRIPTION MANUF PART NUMBER QUANTITY
+1469560 FSP 150CC-GE101PRO MICRONID C TEMP F150/ADV/GE101PRO 1078904820-01 ADVA ADVA OPTICAL NETWORKING 1078904820-01 1
+1094128 20KM SINGLE FIBER SFP 1490NM TX SMF LC -5 DEG TO 75 DEG C TX PWR -7 TO -1 MIN RX -22 1000SFP49B2
+SAP: 1343900, DESCRIP: SRX300 with 8GE (w 2x SFP), 4G RAM, 8G Flash. Includes external power supply and cable. RMK not included.  1
+
+
+Handoff interface POP: [Optic,1G,MMF,1-Fiber]
+Handoff interface CLIENT: [Electrical,RJ45]
+
+=============== NETWORK MANAGMENT ===============
+
+SET UP NETWORK MANAGMENT TYPE: NM - Availability & Capacity
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8894086
+Datos - IP VPN Add   **8894086*$*
+
+Workflow Initialization
+Comments: (Medina, Mireya) 20/02/25 15:23
+Buen dia
+asignacion
+recursos PLEX
+NODO SUBA
+Mireya Enriquez Medina 
+
+Comments: (Medina, Mireya) 20/02/25 15:33
+Finished Step: Análisis y Validación de la Información·
+
+
+This Order was automatically initiated by Order NO:8894107
+Ingeniería de acceso Fibra Optica (1)   **8894107*$*
+
+Workflow Initialization

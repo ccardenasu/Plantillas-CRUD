@@ -1,0 +1,85 @@
+DKO:8891621 (8898312)
+
+Comments: (Felipe Teixeira) 14/02/25 12:49 Start DokuFlow.
+
+SCOPE: Se requiere ampliar con recursos actuales de VPN a 100Mb vía Tercero CLARO;
+
+XML: 8885646
+
+CUSTOMER TECHNICAL CONTACT:
+Contacto Bogotá: Sandra Janneth Piedrahita U.
+Coordinadora de Infraestructura Informática Cavipetrol
+Tel : (5 71) 3322830 ext 1153 Cel: 3153427963
+sandra.piedrahita@cavipetrol.com
+Margarita Cardona - Encargada de Seguridad, ext 1154
+
+ING. JAIRO BRAVO MENDOZA
+Director Tecnología e Informática y Operaciones
+jairo.bravo@cavipetrol.com
+Oficina:  (57) (1) 3322830 Ext. 1151
+Móvil:    (57) (318) 2100908
+
+CLIENT: CAVIPETROL
+Sede: CAVIPETROL SEDE PRINCIPAL
+Direccion: Krr. 13 No 37-43 Piso 3 - BOGOTA
+
+Tipo de serviço: (IPVPN) IPVPN 100Mbps - 500012136;
+
+RFS:
+*:RFS6000002164 ( RFS 3rd Party )
+
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere ampliar con recursos actuales de VPN a 100Mb vía Tercero CLARO;
+Contratar al convenio Claro la ampliación a 100Mb del canal L2L habilitado para el cliente Cavipetrol entre las siguientes sedes.
+Punta A: Cavipetrol Bogota Ppal Krr. 13 No 37-43 Piso 3
+Punta B: Datacenter Colombia XV
+
+---------------------------------OFFNET---------------------------------
+
+1. Realizar Traslado Interno para
+CANAL BOGOTA PPAL CRA 13 - DATACENTER COLOMBIA XV.
+PROVIDER: Claro
+ID: IPS0421
+TYPE: 
+BW: 100mb
+QUOTING: DK-SURVEY-TDG-152079949-8885264
+Handoff interface: Electrical, RJ45
+Pointer: *:LL3-<COLCVPT>.0011
+----------------------------PROVISIONING IPSA-----------------------------------
+
+Se requiere ampliar con recursos actuales de VPN a 100Mb vía Tercero CLARO (CFS 500012136)
+Ampliacion de VPN 30Mb para VPN 100Mb;
+
+----------------------------SDM / SA---------------------------------
+
+1. Realizar seguimiento al convenio Claro y a la ampliación del canal L2L habilitado entre las dos sedes del cliente a 100MB.
+2. Ingresar a los dos (2) router de la solución instalados en ambos extremos de la misma y modificar lo que se requiera en los mismos con el finde habilitar el nuevo BW de 100Mb sobre el canal de backup via Claro.
+Punta A: Cavipetrol Bogota Ppal Cra 13  Vista : CVPT_VN_1-A72M7
+Punta B: Datacenter Colombia XV Vista : CVPT_VN_1-4FGMQT
+3. Realizar prueba de saturación sobre el canal , generando tráfico entre las interfaces del enlace de Backup vi Claro (IP 10.10.10.129/30 Colombia XV -  10.10.10.130/30 Bta Ppal Cra 13), validando que el enlace alcance el BW contratado de 100 Mb.
+4. Verificar con el cliente que el tráfico y los aplicativos entre las sedes funcione de manera correcta, validar que el esquema de alta disponibilidad este bien configurado.
+5. Realizar la entrega de la ampliación del BW del canal al cliente. Verificar que el cliente reciba dicha ampliación a total satisfacción, confirmar que el canal quede configurado al nuevo BW de 100Mb, realizar pruebas de saturación sobre el canal asegurándonos de que el mismo alcance el nuevo BW de 100Mb en ambos sentidos.
+6. Entregar la solución al cliente a Total Satisfacción, si el cliente requiere, prestarle soporte para la ampliación del BW del canal. Entregar el  canales enviando un correo de entrega al contacto del cliente con las pruebas realizadas (Saturación y Conectividad).
+7. Actualizar la ingeniería, actualizar la configuración en las ingenierías en ambos extremos.
+8. Punta A: Cavipetrol Bogota Ppal Cra 13  Vista : CVPT_VN_1-A72M7
+Punta B: Datacenter Colombia XV Vista : CVPT_VN_1-4FGMQT
+
+Workflow Initialization
+Comments: (Felipe Teixeira) 14/02/25 17:32
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8891621
+Datos - IP VPN Mod   **8891621*$*
+
+Workflow Initialization
+Comments: (Alberto Quesada) 21/02/25 16:47
+Finished Step: Modificación Tercero
+Se solicita a CLARO aumento de 30 MB a 100 MB.
+
+This Order was automatically initiated by Order NO:8892035
+Activación Terceros ICT   **8892035*$*
+
+Workflow Initialization

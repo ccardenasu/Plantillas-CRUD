@@ -1,0 +1,77 @@
+DKO:8893049 (8898379)
+
+Comments: (Palmera Aguilera, Viviana) 17/02/25 16:37 Start DokuFlow.
+Scope:  AMPLIACION ADI TIGO-UNE  NIQUIA. ENLACE TOTALMENTE OFFNET
+ 
+CONTACTO CLIENTE:
+John Fernando Carmona / jfcarmon@bancolombia.com.co
+Oscar Morales / OSMORALE@BANCOLOMBIA.COM.CO
+
+ 
+ADI@6000Mb
+XML: 8889142
+CFS : 500012112
+
+ 
+Dirección : BANCOLOMBIA-SEDE_ADMIN-0000-NIQUIA-INTERNET
+ 
+RFS:
+
+RFS 3rd Party:  6000001715
+
+
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN  OFFNET
+
+
+=========== OFF-Net  ===========
+
+Ampliacion enlace via convenio  UNE a 6Gbps
+
+ID Cliente: 1715
+ID Enlace: 100008774
+ACP-1532234
+ADI con ID 10686322
+
+quoting: DK-SURVEY-TDG-152080521-8888473
+
+ 
+========== IPSA=========
+ 
+No requiere intervención, enlace totalmente offnet 
+ ========== SDM ==========
+ 
+1.	Con la ampliación del Convenio sobre el ALLOT de Niquia realizar pruebas y aplicativos 
+confirmados con el cliente.
+
+
+ 
+ 
+ 
+============= SA =============
+ 
+Realizar pruebas de conectividad y entrega a satisfacción del cliente.
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 17/02/25 16:45
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8893049
+Datos - ADI Mod   **8893049*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 21/02/25 17:24
+Finished Step: Modificación Tercero·
+
+Se legaliza contratacion de aumento a 6 GB con UNE.
+
+
+
+This Order was automatically initiated by Order NO:8893066
+Activación Terceros ICT   **8893066*$*
+
+Workflow Initialization
