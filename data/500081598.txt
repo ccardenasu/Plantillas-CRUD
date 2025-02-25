@@ -1,0 +1,99 @@
+========== IPSA  ==========
+Se mantiene los mismos recursos lógicos, no cambian:
+
+DKO:8893304 (8899045)
+
+Comments: (Palmera Aguilera, Viviana) 17/02/25 18:07 Start DokuFlow.
+Scope:  TRASLADO ENLACES, SERVICIOS Y EQUIPOS  A NUEVA UBICACIÓN
+Con esta dko se traslada el enlace secundario  via ANS
+ 
+CONTACTO CLIENTE:
+Nestor Paez / nestor.paez@ocensa.com.co / Tel: +573138887844
+
+ 
+SDWAN IP VPN@50Mb
+XML: 8891367
+CFS  IP SDWAN VPN:  500081747
+CFS SDWAN SERVICES :  500081598
+
+ 
+Dirección nueva : OCENSA - TUNJA EDIFICIO NUEVO / Carrera 1 A Este 58 A 11 Oficina 301 / A0HN_VN_81-5SOPLTX
+Sede actual: Calle 49 #1-31 Tunja / A0HN_VN_1-39NG1F
+
+ 
+RFS:
+
+6000060540 ( RFS 3rd Party )
+6000060539 ( RFS NID ) 
+6000167638 ( IP Port )
+6000166909 ( SDWAN CPE )
+
+
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN  OFFNET
+
+
+
+
+========== CONVENIO ==========
+
+Se requiere solicitar traslado del convenio ANS  a nueva ubicación: 
+
+CONVENIO: ANS
+ID : UMLV0198
+BW: 10M
+TDG-152080020 
+DK-SURVEY-TDG-152080020-8885893
+
+Dirección nueva : OCENSA - TUNJA EDIFICIO NUEVO / Carrera 1 A Este 58 A 11 Oficina 301
+Sede actual: Calle 49 #1-31 Tunja 
+
+========== IPSA  ==========
+Se mantiene los mismos recursos lógicos, no cambian:
+
+mesc4.cen.bga
+Vlan servicio 2039
+Vlan Gestion ADVA 747
+
+psr1.bga2:ae3.2039
+Ip: 192.168.3.25/30
+vrf ocensa
+
+========== SDM  / S&A ==========
+
+1.  Una   vez convenios haya procedido con el movimiento del modem a la nueva ubicación, proceder con el traslado de los equipos actuales correspondientes al enlace  via ANS: NID ADVA y enrutador C1111.
+2.	Los recursos lógicos actuales no cambian, se mantienen las configuraciones de WAN y QoS
+3.	Realizar pruebas a nivel Wan y Lan.
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 17/02/25 18:19
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+Comments from Subprocess 8893331
+
+
+Workflow Initialization
+Comments: (Solano, Adriana) 17/02/25 19:07
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Solano, Adriana) 17/02/25 21:14
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Palmera Aguilera, Viviana) 18/02/25 19:44
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8893304
+Datos - IP VPN Mod   **8893304*$*
+
+Workflow Initialization
+Comments: (Alberto Quesada) 24/02/25 10:17
+Finished Step: Modificación Tercero
+Se solicita a ANS traslado externo.
+
+This Order was automatically initiated by Order NO:8894811
+Activación Terceros ICT   **8894811*$*
+
+Workflow Initialization

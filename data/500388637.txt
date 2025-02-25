@@ -1,0 +1,104 @@
+CFS: 500388637
+DKO: 8892259
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+SEDE: CSJ---MAGDALENA-PIVIJAY-CALLE-6---BARRIO-CENTRO
+RFS-IP-PORT: 6000297217
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/2/1.933121300
+BW: 17M
+VRF: CSJ
+LB CPE: 172.18.47.240 
+PE: psr2.bgo2
+Interface PE: ae11.3136
+
+DKO:8892259 (8899318)
+
+Comments: (Ramos, Juan) 14/02/25 19:49 Start DokuFlow.
+Actividad: Se requiere ampliación enlace VPN @17M vía acceso convenio UFINET COLOMBIA, NM APPLICATION
+
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+Sede:  CSJ - MAGDALENA PIVIJAY CALLE 6 - BARRIO CENTRO
+Dirección: Magdalena, Pivijay; Calle 6 # 13-37, barrio Centro
+
+DesignID: L63C_VN_81-5H9G2YK
+XML: 8889425
+CFS: 500388637
+RFS:
+6000297217 IP Port 
+6000297429 3rd Party
+6000297219 CPE
+6000297218 NID
+----------------------------------------------------------------
+DATOS DEL ENLACE: || FUENTE Archivo Maestro CD - CSJ 2024_2026||
+----------------------------------------------------------------
+CONSECUTIVO: 1513
+PIVOTE: 3518
+Tipo de Enlace: VPN
+BW:  17Mbps.
+
+============== OFFNET ====================
+
+- Solicitar ampliación convenio UFINET COLOMBIA, verificar en el archivo máster del proyecto si ya fue ampliado y regularizar.
+
+VENDOR: UFINET COLOMBIA
+VENDIR ID: COCOCIR10128664C
+BW: 17 Mbps
+ID ICT: 446093
+FACTIBILIDAD: TDG-152079597 
+
+============== IPSA ====================
+
+- Ampliar
+Tipo: VPN@ 17M
+
+BBIP:
+PE: psr2.bgo2
+Int: ae11.3136
+IP WAN BBIP: 10.101.57.149/31
+VRF: CSJ
+
+METRO:
+SW: BOGTCLFXNN002
+Int: TenGigE0/0/2/1.933121300
+SVLAN:3312
+CVLAN: 1300
+
+============== SDM / SA =================
+
+1. - Verificar recursos para ampliación del acceso por parte IPSA y OFFNET.
+2.- Mantener sobre el router la plantilla de configuración del proyecto CSJ. Garantizar que se tenga configurado la vrf lite creando la vrf CSJ DATOS y dentro de esta configurar un Tunel Gre Multipunto contra el router central Ppal de la solución en Colombia XV, habilitando encripción y enrutamiento dinámico BGP sobre este tunnel.
+
+Para la sede la interfaz tunnel principal asignada es:
+Int Tunnel 13 (Encripcion)
+Tunnel Ppal a sede Central Colombia XV
+IP 10.102.13.182 vrf CSJDATOS
+
+3.- Realizar prueba de esfuerzo, conmutación y garantizar BW contratado
+4.- Confirmar que los aplicativos y la navegación funcionen de manera correcta, que el tráfico este encriptado, la configuración de QoS correcta y que funcionen los enlaces PPAL y de BCK.
+5.- Actualizar la ingeniería.
+
+=================NETWORK MANAGEMENT=================
+- Ampliar a nueva capacidad NM APPLICATION
+LB CPE: 172.18.47.240
+
+
+Workflow Initialization
+Comments: (Ramos, Juan) 17/02/25 19:41
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8892259
+Datos - IP VPN Mod   **8892259*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 24/02/25 12:52
+Finished Step: Modificación Tercero·
+Se solicita a Ufinet modificacion a 17 Mbps
+
+This Order was automatically initiated by Order NO:8893466
+Activación Terceros ICT   **8893466*$*
+
+Workflow Initialization

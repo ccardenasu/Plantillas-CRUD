@@ -1,0 +1,100 @@
+DKO:8899398 (8899989)
+
+
+
+Comments: (Palmera Aguilera, Viviana) 24/02/25 13:49 Start DokuFlow.
+Actividad: Alta enlace de Datos a 20Mbps integrado a la red SD-WAN VIPTELA implementada al cliente.
+Esta sede corresponde al tipo: 2Enlaces + 1 Router 
+Technical Contact:
+Samuel Garibello / M:samuel.garibello@qdatacolombia.com / P:316 428 5309 o 302 285 0374
+Homero Garcia / M:homero.garcia@finanzauto.com.co / P:6017499000Ext210
+
+VPN@20Mbps
+XML 8895888
+CFS 500413683
+
+
+Dirección: AVENIDA DE LAS AMÉRICAS 50-50, Bogota,  Latitud 4.6279681 Longitud -74.1098857
+
+RFS:
+6000331471  (Ip port)
+--(3rd Party )
+6000331472  (NID)
+6000331465  (SDWAN CPE)
+
+Description of Service: ||
+
+En la sede del cliente se van a habilitar dos canales (Private 1 y Private 2), se debe validar por temas de disponibilidad que los mismos no compartan recursos de red (PE, SW Metro etc). El canal Principal será via F:O Propia dko 8899367  y el canal de backup será vía convenio que se solicita con esta  DKO.
+=========== OFFNET===========
+Se requiere instalar via convenio C&W un acceso   de 20Mbps 
+
+quoting: DK-SURVEY-TDG-152082412-8894846
+Handoff interface: [Electrical]
+Connector: [RJ45]
+
+Handoff interface: [Electrical,RJ45]
+=========== PROVISIONING IPSA ===========
+
+
+1. Asignar VLAN  y enrutar de acuerdo a información de OFFNET.
+2. Crear subinterface en PE asignado (diferente al PE asignado en la dko 8899367)con un BW @20Mbps y Routing:
+3. Asignar ip de monitoreo para NID, y Dar de Alta RFS 
+
+Type:VPN
+PE: ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 10.10.20.109/30
+Enrutamiento: Estatico
+BW: 20 Mbps
+VRF:  finanzauto
+RD: 
+
+***** SDM *****
+
+En el cliente se van a habilitar dos canales (Private 1 y Private 2), se debe validar por temas de disponibilidad que los mismos no compartan recursos de red (PE, SW Metro etc). 
+Realizar la instalación del enlace via convenio en la ubicación indicada, no olvidar dejar el equipo NID ADVA en gestión.
+Conectar el enlace hacia un puerto disponible del CPE SDWAN solicitado con la dko 8899367.
+Realizar prueba de saturación del canal y confirmar que el enlace alcance el nuevo BW contratado.
+Handoff interface POP: NNI
+Handoff interface CLIENT: [Electrical,RJ45]
+
+Request Equipment:
+|1|1469560| NID ADVA FSP 150CC-GE101Pro MicroNID, C-Temp, F150/ADV/GE101PRO, HW Rel 1.01
+
+**********SA**********
+1. Verificar la conectividad WAN en los dos sentidos, verificar que no se tengan pérdidas de paquetes, ni errores a nivel WAN.
+2. Acompañar configuración y validación de políticas de servicio en Vmanage (Plataforma Viptela Nube).
+3. Para el proyecto el cliente tendrá dos sedes centrales a las cuales se conectaran las demás sedes remotas.
+Datacenter Quantum - Sede Central Aplicativos
+Datacenter Colombia XV - Salida a Internet 
+Estas  dos sedes centrales funcionen como Hub y a las mismas las demás sedes remotas (Spoke) se conecten  via tuneles SDWAN.
+4. Realizar las configuraciones que dieran lugar para que el cliente tenga las VLANs de Finanzauto, Equirent, y Promotec 
+5. Hacer integración a la red LAN del cliente, validar que sobre el router se tenga conectividad contra los dos sitios centrales (Datacenter Quantum y Datacenter Colombia XV).
+Realizar pruebas de servicios del cliente (Datos, Aplicativos, Navegación etc) .
+6. Realizar pruebas sobre el esquema de alta disponibilidad validando que ante una caída del canal implementado en la presente dokuorden todo el tráfico del cliente sea soportado por el segundo canal habilitado en la sede del cliente.
+7. Actualizar la ingeniería, actualizar la configuración del acceso, del Nid Adva y del router SDWAN.
+**********NETWORK MANAGEMENT**********
+NM Aplication solucion SDWAN
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 24/02/25 14:22
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8899398
+Datos - IP VPN Add   **8899398*$*
+
+Workflow Initialization
+Comments: (Valbuena, Andrea) 24/02/25 19:08
+Finished Step: Alta Tercero·
+
+Se solicita a LIBERTY instalación de un canal 20 MB. Se asigna la SVLAN 1980 en la NNI M2 de Bogotá - BOGTCLFXNN001 - TENGIGA Interface: TE0/0/2/3.
+
+
+
+
+This Order was automatically initiated by Order NO:8899469
+Activación Terceros ICT   **8899469*$*
+
+Workflow Initialization

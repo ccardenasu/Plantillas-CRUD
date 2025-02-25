@@ -32,24 +32,16 @@ def ejecutar_enlace(cfs):
     except Exception as e:
         logging.error(f"Error al ejecutar el enlace: {e}")
 
-def buscar_sw_int(texto):
+def buscar_AZTECA_MEDELLIN_2_0(texto):
     if not texto:
         return "No encontrado"
     
-    patron_sw = r'SW:\s*([^\s,]+)'
-    patron_int = r'Int:\s*([^\s,]+)'
+    patron = r'(.*AZTECA.*ITX.*MEDELLIN.*2.0.*)'
+    match = re.search(patron, texto, re.IGNORECASE)
+    if match:
+        return True
+    return False
     
-    match_sw = re.search(patron_sw, texto)
-    if match_sw:
-        lineas = texto.split('\n')
-        for i, linea in enumerate(lineas):
-            if re.search(patron_sw, linea):
-                if i + 1 < len(lineas):
-                    match_int = re.search(patron_int, lineas[i + 1])
-                    if match_int:
-                        return match_int.group(1).strip()
-    return "No encontrado"
-
 def buscar_ufinet_nni_2_1(texto):
     if not texto:
         return "No encontrado"
@@ -110,7 +102,7 @@ def main(cfs):
         'bw_exchange': [r'(\d+)% E --'],
         'bw_plus': [r'(\d+)% P --'],
         'cfs': [r'CFS:\s*(\d+)',r'CFS :\s*(\d+)', r'CID-CFS :\s*(\d+)', r'CFS-CID:\s*(\d+)', r'CID-CFS:\s*(\d+)', r'CFS:\s*(\d+)', r'CFS\s+ID:\s*(\d+)', r'CFS\s*(\d+)', r'CFS.:\s*(\d+)'],
-        'cliente': [r'(?i)Customer:\s*(.*?)(?=\n)', r'(?i)CLIENTE:\s*(.*?)(?=\n)', r'(?i)Cliente:\s*(.*?)(?=\n)', r'(?i)CLIENT:\s*(.*?)(?=\n)'],
+        'cliente': [ r'(?i)CLIENTE:\s*(.*?)(?=\n)', r'(?i)Cliente:\s*(.*?)(?=\n)', r'(?i)CLIENT:\s*(.*?)(?=\n)',r'(?i)Customer:\s*(.*?)(?=\n)',],
         'configuracion': [r'(Alta)', r'(alta)', r'(ampliación)', r'(ampliacion)'],
         'cvlan': [r'Int:\s*ae-\d+:\d+\.(\d+)', r'Cvlan:\s*(\d+)'],
         'dko': [r'DKO:\s*(\d+)'],
@@ -130,18 +122,7 @@ def main(cfs):
         'sede': [r'(?i)Site:\s*(.*)', r'(?i)Sede\s*:\s*(.*)', r'(?i)SITE:\s*(.*)'],
         'sede_b': [r'(?i)Z-Side Site:\s*(.*)',],
         'svlan': [r'Int:\s*ae-\d+:(\d+)\.\d+', r'Svlan:\s*(\d+)', r'INT:\s*ae\d+\.(\d+)'],
-        'sw': [
-            r'NODO\s*(\d+)', 
-            r'SW:\s*([^\s,]+)\s*-\s*TEN GIGA\s*[^\s,]+', 
-            r'SW:\s*(\d+)', 
-            r'DEVICE:\s*([^\s,]+)', 
-            r'SW:\s*([^\s,]+)', 
-            r'ME2:\s*([^\s,]+)',
-            r'ME:\s*([^\s,]+)', 
-            r'DEVICE:\s*([^\s]+)', 
-            r'INTERCONEXION\s*-\s*([^\s,]+)', 
-            r'NNI\s*[^\s,]+\s*-\s*([^\s,]+)'
-        ],
+        'sw': [r'NODO\s*(\d+)', r'SW:\s*([^\s,]+)\s*-\s*TEN GIGA\s*[^\s,]+', r'SW:\s*(\d+)', r'DEVICE:\s*([^\s,]+)', r'SW:\s*([^\s,]+)', r'ME2:\s*([^\s,]+)',r'ME:\s*([^\s,]+)', r'DEVICE:\s*([^\s]+)', r'INTERCONEXION\s*-\s*([^\s,]+)', r'NNI\s*[^\s,]+\s*-\s*([^\s,]+)'],
         'tipo': [r'(VPN)', r'(Internet)', r'(EPL)', r'(EVPL)'],
         'vlan': [r'vlan\s*(\d+)', r'VLAN\s*(\d+)', r'S-VLAN:\s*(\d+)', r'VLAN ASIGNADA:\s*(\d+)'],
         'voz': [r'Voz\s*(\d+)%'],
@@ -196,17 +177,20 @@ def main(cfs):
         valores_unicos_sede = [palabra for palabra in sede_palabras if palabra not in cliente_palabras]
         resultados['sede'] = ' '.join(valores_unicos_sede) if valores_unicos_sede else "No encontrado"
 
+  
+
+    if buscar_AZTECA_MEDELLIN_2_0(texto):
+        resultados['sw'] = "MDLNCLAFNN002"
+        resultados['interface_sw'] = "TEN GIGA 0/0/0/1"
+
     if buscar_ufinet_nni_2_1(texto):
         resultados['sw'] = "BOGTCLFXNN002"
         resultados['interface_sw'] = "TEN GIGA 0/0/2/1"
-    else:
-        resultados['interface_sw'] = buscar_sw_int(texto)
 
     if buscar_ufinet_nni_BOGOTA_2_3(texto):
         resultados['sw'] = "BOGTCLFWNN003"
         resultados['interface_sw'] = "TEN GIGA 0/0/2/1"
-    else:
-        resultados['interface_sw'] = buscar_sw_int(texto)
+ 
 
     if buscar_LIBERTY_nni(texto):
         resultados['sw'] = "BOGTCLFXNN001"
@@ -246,6 +230,9 @@ def main(cfs):
     resultados['tipo_configuracion'] = tipo_configuracion
     resultados['be'] = be
 
+    if resultados['interface_sw'] == "No encontrado":
+        resultados['interface_sw'] = ""
+
     if resultados['be'] == "No encontrado":
         resultados['be'] = "1"
 
@@ -264,8 +251,7 @@ def main(cfs):
     if resultados['vlan'] == "No encontrado":
         resultados['vlan'] = ""
 
-    if resultados['interface_sw'] == "No encontrado":
-        resultados['interface_sw'] = ""
+
 
     if resultados['lnnid'] == "No encontrado":
         resultados['lnnid'] = ""

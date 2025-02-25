@@ -1,0 +1,108 @@
+CFS: 500402651
+DKO: 8894720
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA
+SEDE: CSJ---SUCRE-TOLU-VIEJO---JUZGADO-PALACIO-JUSTICIA
+RFS-IP-PORT: 6000317199
+Vlan Tercero: 342      
+SW: MDLNCLAFNN002
+Interface SW: TenGigE0/0/0/1.903421300
+BW: 25M
+Svlan: 555
+Cvlan: 1300
+VRF: CSJ
+RD: 16528:1103520
+WAN: 10.101.62.88/30
+LB CPE: 172.18.20.12 
+PE: psr1.mdc6
+Interface PE: ae11.555
+
+DKO:8894720 (8899347)
+
+Comments: (Palmera Aguilera, Viviana) 18/02/25 18:48 Start DokuFlow.
+NOTA!! Esta dko se genera fuera de tiempo por reproceso  de la dko 8728385
+
+Cliente: CONSEJO SUPERIOR DE LA JUDICATURA 
+Sede: CSJ - SUCRE TOLU VIEJO - JUZGADO PALACIO DE JUSTICIA
+Dirección: Diagonal 2 # 6-17		
+Coordenadas:	-75.437555,9.4512
+Ciudad:  Sucre	Tolú Viejo	
+
+DesignID: L63C_VN_81-4ZTQG31		
+Consectivo: 1260
+Pivot:  278-B
+
+CCM : Camilo Linares
+
+XML: 8685697
+CFS:  500402651
+Service ID: 81-5PD5555
+RFS: 
+ 
+6000317199  IP Port 
+6000024333 CPE    (shared)  
+
+============= OFFNET ==================
+- Contratar acceso de última milla convenio 
+Tipo: Capa 2 [L2]
+BW: 25M
+Factibilidad: TDG-152003282
+Handoff interface: GIGA Eletrical, RJ45
+- Asignar NNI y VLAN, en caso de que la red del proveedor no soporte configuración QnQ.  
+
+============== IPSA ====================
+- Asignar recursos en BBIP y Metro para dar de alta el siguiente enlace vía convenio:
+Tipo: VPN
+PE: Por Asignar , diferente a psr1.brq1 (ppal)
+Int. Por Asignar
+VRF: CSJ
+IP WAN PE: 10.101.62.88/30
+BW: 25M
+Enrutamiento: Estatico
+Hacia Interconexión convenio 
+
+============== SDM / SA =================
+
+- Configurar en el router que se solicito bajo la dko de ampl del enlace ppal  8728249, el nuevo acceso del  enlace de backup :
+IP WAN CPE: 10.101.62.90/30
+BW: 25Mb
+QoS: Critico 40%- Priotitario 20% (plantilla)
+ENRUTAMIENTO: Estático ruta por defecto al BBIP.
+IP Loopback : ASIGNAR BBIP.
+User / password = CRUD
+Verificar que el router tenga habilitada la licencia de encripción.
+- Cargar sobre el router la plantilla de configuración del proyecto CSJ tipo PLATA. Configurar vrf lite creando la vrf CSJ DATOS y dentro de esta configurar un Tunel Gre Multipunto contra el router central Ppal de la solución en Colombia XV, habilitando encripción y enrutamiento dinámico BGP sobre este tunnel.
+Para la sede las interfaces tunnel asignadas son:
+ZONA  NORTE; INT TUNNEL 13 (PPAL) e INT TUNNEL 23  (BCK)
+IP Tunnel BCK: 10.102.23.554 /24
+- Integrar la solución a la red del cliente y prestar soporte para la habilitación - migración de los servicios de red del cliente al nuevo enlace.
+- En la sede se implementará una solución tipo PLATA (2UK + 1CPE). Realizar pruebas de conmutación entre túneles. En estado normal el tráfico de la sede se debe establecer por el enlace Principal y ante una caída debe conmutar al enlace de Backup.
+- Confirmar que los aplicativos y la navegación funcionen de manera correcta, que el tráfico este encriptado, la configuración de QoS correcta y que funcionen los enlaces PPAL y de BCK.
+- Actualizar la ingeniería. 
+=============== NETWORK MANAGEMENT ================
+NM APPLICATION
+BW: 25M
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 19/02/25 17:33
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8894720
+Datos - IP VPN Add   **8894720*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 24/02/25 13:05
+AZTECA, confirma instalación de canal a 25M, se anexa correo a la DKO y se da continuidad a la orden.
+Comments: (Wilches Rivera, Lesly Tatiana) 24/02/25 13:10
+Se solicita a AZTECA instalación a 25Mbps del canal en mención, Se asigna la Svlan 342 Datos, 343 Gestion ITX MEDELLIN 2.0 - SW MED 1 NODO MEDELLIN AZTECA - MDLNCLAFNN002 - TENGIGA 0/0/0/1
+Comments: (Wilches Rivera, Lesly Tatiana) 24/02/25 13:11
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8895844
+Activación Terceros ICT   **8895844*$*
+
+Workflow Initialization

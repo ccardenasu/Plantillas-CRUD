@@ -1,0 +1,72 @@
+CFS: 500383148
+DKO: 8899471
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: ADI
+Cliente: HDI SEGUROS COLOMBIA S.A
+SEDE: LIBERTY-SEGUROS-BOGOTÁ-GNO
+RFS-IP-PORT: 6000291787
+RFS-IP-PORT_NID: 6000291788
+SW: BOGTCLHAZG027
+Interface SW: GigabitEthernet0/0/4
+BW: 200M
+WAN: 190.217.60.244/31
+PE: ar1.sub1.bog
+Interface PE: ae6.1405
+
+DKO:8899471 (8899478)
+Comments: (Ever Contreras) 24/02/25 14:25 Start DokuFlow.
+
+Actividad: Se requiere ampliar enlace de Internet @200Mb vía FO-P2P.
+
+Customer: HDI SEGUROS COLOMBIA S.A
+A-Side Site: LIBERTY SEGUROS-BOGOTÁ GNO
+ADDRESS: Cra 29B 78-71, Bogotá, DC-Distrito Capital De Bogota, Colombia Latitud 4.671869 Longitud -74.06856
+
+Technical Contact:
+OLGABLANCO / M: laura.gonzalez@libertycolombia.com / P: 13765330 
+Validar datos adicionales del LCON con el CCM.
+
+CCM: TBD
+
+XML 8897820
+CFS 500383148
+*:RFS6000291788 ( NID )
+*:RFS6000291789 ( CPE )
+*:RFS6000291787 ( IP Port )
+*:RFS6000291786 ( Fiber Chain )
+
+========= IPSA =========
+
+Ampliar los siguientes recursos IP y Metro:
+
+PE: ar1.sub1.bog
+Int.: ae6.1405
+IPv4 WAN: 190.217.60.244/31
+BW: Ampliar a 200Mb
+
+BOGTCLHAZG027
+GigabitEthernet0/0/4
+BD: 3549_409253
+
+========= SDM / SA =========
+
+1. Validar ampliación de recursos por parte de IPSA.
+2. Ajustar Policer BW @200Mb sobre el NID | LB 10.226.147.72 y CPE | WAN: 190.217.60.245.
+3. Realizar prueba de esfuerzo del enlace.
+4. Entregar ampliación al cliente.
+5. Documentar ingeniería.
+
+========= NETWORK MANAGEMENT =========
+
+Garantizar NM A&C
+WAN CPE: 190.217.60.245
+
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8899471
+Datos - ADI Mod   **8899471*$*
+
+Workflow Initialization

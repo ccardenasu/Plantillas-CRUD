@@ -1,0 +1,94 @@
+CFS: 500023585
+DKO: 8891205
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: MUNDIAL DE TORNILLOS S. A.
+SEDE: TORINILLOS---PALOQUEMADO-PPAL
+RFS-IP-PORT: 6000097709
+RFS-IP-PORT_NID: 6000110727
+SW: BOGTCLHCZG004
+Interface SW: GigabitEthernet0/0/17
+BW: 385M
+Svlan: 174
+Cvlan: None
+PE: psr1.sub1.bog
+Interface PE: ae10.174
+
+DKO:8891205 (8899298)
+
+Comments: (Ariza, Jorge) 13/02/25 22:58 Start DokuFlow.
+----------------------------------------------------------------------------------
+GENERAL INFORMATION
+
+SCOPE: Se requiere ampliación de VPN a 385Mb vía Fibra PAP en actual NID y nuevo CPE
+
+CUSTOMER TECHNICAL CONTACT:
+Alexander Cardona / sistemas@mundialdetornillos.com / 3112752088
+VPN @385Mb
+XML 8885243
+CFS 500023585
+
+CLIENT: MUNDIAL DE TORNILLOS S. A.
+SITE: MUNDIAL DE TORINILLOS - PALOQUEMADO PPAL
+ADDRESS: CR 22 # 19 - 63, BOGOTA, COLOMBIA [LATITUD 4.6157703 LONGITUD -74.0830288]
+
+RFS:
+*:RFS 6000097709 ( IP Port )
+*:RFS 6000211693 ( Fiber Chain )
+*:RFS 6000110727 ( NID )
+*:RFS 6000054610 ( CPE )
+----------------------------------------------------------------------------------
+DESCRIPTION OF SERVICE
+
+Se requiere ampliación de VPN a 385Mb vía Fibra PAP en actual NID y nuevo CPE, garantizando que cumpla con la velocidad contratada y los estándares de configuración del proyecto
+----------------------------------------------------------------------------------
+PROVISIONING IPSA
+
+1. Realizar ampliación para
+TYPE: VPN
+PE: PSR1.SUB1.BOG
+INT: ae10.174
+IP: 192.168.110.1/30
+DES: CUSTOMER: MUNDIAL DE TORNILLOS S. A. (CFS:500023585) (RFS:6000097709)
+ME: BOGTCLHCZG004
+INT: GigaE0/0/17
+DES: 12/LATAM/6000006588/SVC MUNDIAL DE TORNILLOS S. A. 1-3GYIH (500023585) BOG.CRA22N19.63
+BW: 385Mb
+----------------------------------------------------------------------------------
+SDM
+
+1. Validar ampliación de recursos por parte de IPSA
+2. Agendar ventana con el cliente para realizar ampliación de VPN a 385Mb vía Fibra PAP en actual NID y nuevo CPE. (Se adjunta la configuración completa del router en uso actualmente)
+3. Garantizar que los equipos continuen en gestión y con acceso remoto
+4. Realizar prueba de esfuerzo del canal
+5. Documentar ingeniería
+
+Handoff interface CLIENT: Electrical, RJ45
+
+REQUEST EQUIPMENT:
+|1|1404090|CISCO ISR 4451 AX BUNDLE WITH APP AND SEC LICENSE ISR4451-X-AX/K9 CSCO|
++ LICENSE PERFORMANCE
+----------------------------------------------------------------------------------
+SA
+
+1. Realizar pruebas con el cliente garantizando el cumplimiento de los estándares establecidos en las plantillas de configuración y en el diseño del proyecto
+2. Entregar la solución al cliente a total satisfacción
+3. Documentar ingeniería
+----------------------------------------------------------------------------------
+NM
+
+CPE NM Application (Nuevo BW)
+LB Asignada IPSA
+----------------------------------------------------------------------------------
+
+
+Workflow Initialization
+Comments: (Diego Rubiano) 14/02/25 14:57
+Finished Step: Asignación de CCM·
+
+
+This Order was automatically initiated by Order NO:8891205
+Datos - IP VPN Mod   **8891205*$*
+
+Workflow Initialization
