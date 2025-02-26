@@ -1,0 +1,104 @@
+DKO:8893178 (8901418)
+
+Comments: (Palmera Aguilera, Viviana) 17/02/25 17:30 Start DokuFlow.
+Scope:  TRASLADO ENLACES, SERVICIOS Y EQUIPOS  A NUEVA UBICACIÓN
+Con esta dko se traslada el enlace ppal via MC
+ 
+CONTACTO CLIENTE:
+Nestor Paez / nestor.paez@ocensa.com.co / Tel: +573138887844
+
+ 
+SDWAN IP VPN@50Mb
+XML: 8891367
+CFS  VPN: 500043057
+CFS SDWAN SERVICES : 500081597
+
+ 
+Dirección nueva : OCENSA - TUNJA EDIFICIO NUEVO / Carrera 1 A Este 58 A 11 Oficina 301 / A0HN_VN_81-5SOPLTX
+Sede actual: Calle 49 #1-31 Tunja / A0HN_VN_1-39NG1F
+
+ 
+RFS:
+
+6000060522 ( RFS 3rd Party )
+6000060521 ( RFS NID )
+6000060520 ( RFS CPE )
+6000167640 (RFS IPPORT)
+
+
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN  OFFNET
+
+
+
+
+========== CONVENIO ==========
+
+Se requiere solicitar traslado del convenio MC  a nueva ubicación: 
+
+CONVENIO: MC
+ID : 2232
+BW: 50M
+TDG-152080024
+DK-SURVEY-TDG-152080024-8885889
+
+Dirección nueva : OCENSA - TUNJA EDIFICIO NUEVO / Carrera 1 A Este 58 A 11 Oficina 301
+Sede actual: Calle 49 #1-31 Tunja 
+
+========== IPSA  ==========
+Se mantiene los mismos recursos lógicos, no cambian:
+
+NNI BOGTCLFWNN001 :Vlan  2507
+psr2.cxv1.bog: ae10.1559 
+Ip: 192.168.1.41/30
+vrf ocensa
+
+
+========== SDM  / S&A ==========
+
+1.  Una   vez convenios haya procedido con el movimiento del modem a la nueva ubicación, proceder con el traslado de los equipos actuales correspondientes al enlace  via MC: NID ADVA y enrutador C1111.
+2.	Los recursos lógicos actuales no cambian, se mantienen las configuraciones de WAN y QoS
+3.	Realizar pruebas a nivel Wan y Lan.
+4.	También se require el traslado de los equipos R2VIAS Y LAN provisionados:
+Traslado  de los SW C9200 de la sede
+Traslado  de los AP Indoor de la sede
+Traslado  solución de radio DGR6175 (repetidora), Radiobase x 3 (DGM6100) y radios portátiles
+
+
+Workflow Initialization
+Comments: (Palmera Aguilera, Viviana) 18/02/25 19:46
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+Comments from Subprocess 8894821
+
+
+Workflow Initialization
+Comments: (Carlos Poveda) 24/02/25 19:26
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Solano, Adriana) 25/02/25 15:05
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Solano, Adriana) 25/02/25 16:58
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Palmera Aguilera, Viviana) 25/02/25 17:25
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8893178
+Datos - IP VPN Mod   **8893178*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 25/02/25 20:01
+
+Se solicita a MC  traslado externo del canal en mención.
+Comments: (Wilches Rivera, Lesly Tatiana) 25/02/25 20:02
+Finished Step: Modificación Tercero·
+
+
+This Order was automatically initiated by Order NO:8901101
+Activación Terceros ICT   **8901101*$*
+
+Workflow Initialization

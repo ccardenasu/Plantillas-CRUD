@@ -1,0 +1,122 @@
+DKO:8900535 (8903164)
+
+Comments: (Ramos, Juan) 25/02/25 13:08 Start DokuFlow.
+Actividad:  PROYECTO BANCOLOMBIA - UNDERLAY NEW RFP_2025-2027. Alta  @5Mbps e implementar Nueva plantilla mon NID
+ 
+
+CONTACTO CLIENTE:
+Sergio Martínez Serna / 3113800392  / 604-4042736 / sergmart@bancolombia.com.co
+
+SE: Rafael Roman	
+CCM: Jaime Caro	
+ 
+VPN@5Mb
+
+XML: 8898615
+
+CFS : 500414092
+Desing ID: QEAA_VN_81-5SMTJZO
+
+ 
+Dirección : CALLE 1C # 6-16 , RESTREPO, MET-Meta, Colombia Latitude 4.250627 Longitude -73.568191
+
+ 
+RFS:
+RFS IP PORT: 6000331635
+
+RFS NID : 6000331634
+
+RFS 3rd PARTY:   ICT
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN  OFF NET  BW: 5  Mbps.
+
+
+======= SOLICITUD EQUIPOS =============
+
+SAP: 1384691
+Descripción: F150/ADV/GE114PRO/AC/811.
+Cantidad: 1.
+ 
+SAP: 1362830
+Descripción: F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN.
+Cantidad: 1.
+ 
+SAP: 1429801
+Descripción: AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT.
+Cantidad: 1.
+
+======== OFFNET ========
+
+Contratar el siguiente circuito:
+
+Client: BANCOLOMBIA
+SEDE: BANCOLOMBIA-CAJUDL2-9010-MALL BALCONES PLAZA
+
+ 
+Proveedor: MEDIA COMMERCE COLOMBIA
+Tipo: Capa 2 [L2]
+BW:5 Mb
+Handoff interface: Eletrical, RJ45
+FACTIBILIDAD: TDG-152068717 |
+
+
+========== IPSA=========
+ 
+1. Asignar recursos para servicio MPLS en BBIP y Metro según recursos indicados por OFFNET.
+2. Asignar y enrutar IP de gestión para ADVA.
+3. De ser posible Incluir en la descripción: BANCOLOMBIA-CAJUDL2-9010-MALL BALCONES PLAZA para PE, Crud e Incognito.
+NOTA: Tomar direccionamiento publico siguiendo la siguiente ruta en herramienta Incognito:
+Level3->Latam-3549->Colombia-3549->Bancolombia->sucursales.
+ 
+PE: Asignar
+Interface: Asignar
+BW: 5 Mbps
+WAN IPv4: Asignar segmento publico/30 (Direccionamiento público para proyecto de Bancolombia)
+VRF: BANCOL_UNDERLAY
+Enrutamiento: Estático.
+ 
+ ========== SDM ==========
+
+NOTA: La nueva plantilla que se implementara al NID se implementara una vez se haya definido por detalles tecnicos de configuracion de acuerdo  a lo acordado con Rafael Roman, Juan Aicardo y perosnal de arquitectura
+
+1.	- Coordinar ventana con el cliente para la instalación de la ultima milla por parte del convenio y el NID  por parte de Cirion.
+2.	- Garantizar gestión remota del NID.
+3.	- Sobre el NID instalado permitir la VLAN asignada por IPSA para el acceso de datos y configurarla sobre un nuevo puerto de este.
+4.	- Se debe implementar la nueva plantilla al NID ADVA instalado en sitio de acuerdo a la nueva 
+Configuración de monitoreo Dying Gasp, de manera que se refleje en el sistema de monitoreo  SOLAR WINS De Bancolombia.
+5.	- Se debe activar el NID en la herramienta Laser para su monitoreo.
+6.	- Los NID deben quedar entregados al grupo de operación de Bancolombia en Laser para ellos configurar en la consola SolarWinds (para pings a las IPs públicas). 
+7.	- Realizar pruebas  de ancho de banda a 5 Mbps.
+
+
+============= SA =============
+ 
+Realizar pruebas de conectividad y entrega a satisfacción del cliente.
+ 
+=========== NETWORK MANAGMENT  ==========
+Validar NETWORK MANAGMENT Aplication  sobre NID.
+
+
+
+Workflow Initialization
+Comments: (Ramos, Juan) 26/02/25 17:31
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8900535
+Datos - IP VPN Add   **8900535*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 26/02/25 18:22
+
+Se solicita a MC instalación a 5Mbps del canal en mención, Se asigna la Svlan 521 ITX BOGOTA M2,1 BOGTCLFWNN002 - TENGIGA 0/0/1/3   
+Comments: (Wilches Rivera, Lesly Tatiana) 26/02/25 18:24
+Finished Step: Alta Tercero·
+
+
+This Order was automatically initiated by Order NO:8903004
+Activación Terceros ICT   **8903004*$*
+
+Workflow Initialization

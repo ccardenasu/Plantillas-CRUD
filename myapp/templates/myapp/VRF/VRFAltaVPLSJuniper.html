@@ -1,6 +1,8 @@
 {% load custom_filters %}
 {% load network_filters %}
 
+{% if datos.pe  %}
+
 PE {{ datos.pe }}
 
 set routing-instances {{ datos.vrf }} interface {{ datos.interface_pe }}.{{ datos.unit }}
@@ -11,6 +13,8 @@ set routing-instances {{ datos.vrf }} protocols vpls no-tunnel-services
 set routing-instances {{ datos.vrf }} protocols vpls vpls-id {{ datos.cfs }}
 set routing-instances {{ datos.vrf }}  protocols vpls mtu 9000
 set routing-instances {{ datos.vrf }} protocols vpls neighbor
+
+{% endif %}
 
 {% if datos.pe_b %}
 

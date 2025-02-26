@@ -1,18 +1,21 @@
 {% load custom_filters %}
 {% load network_filters %}
 
-PE {{ datos.pe }}
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }} (CFS:{{ datos.cfs }}) (RFS:{{ datos.rfs_ip_port }})"
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} encapsulation vlan-vpls
-{% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-id {{ datos.sv }} {% endif %}
-{% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
-{% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} input-vlan-map pop {% endif %}
-{% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} input-vlan-map pop-pop{% endif %}
-{% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-vlan-map push {% endif %}
-{% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-vlan-map push-push{% endif %}
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls filter input {{ datos.interface_pe }}.{{ datos.unit }}-cos-i
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls filter output {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e
-set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls policer input {{ datos.interface_pe }}.{{ datos.unit }}-cir-in
+{% if datos.pe  %}
+
+    PE {{ datos.pe }}
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} description "CUSTOMER:{{ datos.cliente }} (CFS:{{ datos.cfs }}) (RFS:{{ datos.rfs_ip_port }})"
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} encapsulation vlan-vpls
+    {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-id {{ datos.sv }} {% endif %}
+    {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} vlan-tags outer 0x8100.{{ datos.sv }} inner 0x8100.{{ datos.cv }}{% endif %}
+    {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} input-vlan-map pop {% endif %}
+    {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} input-vlan-map pop-pop{% endif %}
+    {% if datos.sv == datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-vlan-map push {% endif %}
+    {% if datos.sv != datos.cv %}set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} output-vlan-map push-push{% endif %}
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls filter input {{ datos.interface_pe }}.{{ datos.unit }}-cos-i
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls filter output {{ datos.interface_pe }}.{{ datos.unit }}-vpls-e
+    set interfaces {{ datos.interface_pe }} unit {{ datos.unit }} family vpls policer input {{ datos.interface_pe }}.{{ datos.unit }}-cir-in
+{% endif %}
 
 {% if datos.pe_b %} #####{% endif %}
 

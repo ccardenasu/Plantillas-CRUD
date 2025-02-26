@@ -1,0 +1,131 @@
+CFS: 500061181
+DKO: 8902421
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: CARVAJAL SOLUCIONES DE COMUNICACION S.AS.
+SEDE: BOGOTA---TECIMPRE-81-1EG5YPU
+RFS-IP-PORT: 6000091664
+SW: BOGTCLGWZG014
+Interface SW: GigabitEthernet0/0/0
+BW: 120M
+Svlan: 1055
+Cvlan: 1300
+VRF: carvajal
+PE: psr1.sub1.bog
+Interface PE: ae10.1055
+
+
+DKO:8902421 (8902427)
+
+Comments: (Palmera Aguilera, Viviana) 26/02/25 14:51 Start DokuFlow.
+Scope:  AMPLIACION VPN ONNET @150M
+ 
+CONTACTO CLIENTE:
+Rodrigo Polania/ M: rodrigo.polania@carvajal.com / P: 316 2728095
+Yhonatan Moreno Gonzalez / M: Eyhonatanstiven.morenogonzalez.ext@ciriontechnologies.com /   P: 3173684461
+
+ 
+VPN@150Mb
+XML: 8899786
+CFS : 500061181
+
+
+ 
+Dirección : CALLE 17 No 69-85, Bogota.
+ 
+RFS:
+6000091664  (IP PORT) 
+6000115827 ( Fiber Chain )
+6000035687 ( RFS NID )
+6000035688 ( RFS CPE )
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN ONNET: 150 Mbps.
+
+
+ 
+========== IPSA=========
+ 
+1. Se requiere ampliar   los siguientes recursos de 120Mbps a  150Mbps:
+ 
+Type:VPN
+
+PE: psr1.sub1.bog
+INT: ae10.1055
+IP: 10.1.1.201/30
+VRF: carvajal
+RD: 16528:1101925
+EQUIPO: BOGTCLGWZG014
+Puerto: GigabitEthernet000
+Cvlan:1300 
+ Svlan:1055
+
+ ========== SA ==========
+ 
+1.	Verificar que la subinterface en PE este configurado el BW a 150Mbps.
+2.	Realizar pruebas  de ancho de banda a 150Mbps. Se deja el mismo CPE 4331 que tiene su licencia de performance hasta 150M
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8902421
+Datos - IP VPN Mod   **8902421*$*
+
+Workflow InitializationComments: (Palmera Aguilera, Viviana) 26/02/25 14:51 Start DokuFlow.
+Scope:  AMPLIACION VPN ONNET @150M
+ 
+CONTACTO CLIENTE:
+Rodrigo Polania/ M: rodrigo.polania@carvajal.com / P: 316 2728095
+Yhonatan Moreno Gonzalez / M: Eyhonatanstiven.morenogonzalez.ext@ciriontechnologies.com /   P: 3173684461
+
+ 
+VPN@150Mb
+XML: 8899786
+CFS : 500061181
+
+
+ 
+Dirección : CALLE 17 No 69-85, Bogota.
+ 
+RFS:
+6000091664  (IP PORT) 
+6000115827 ( Fiber Chain )
+6000035687 ( RFS NID )
+6000035688 ( RFS CPE )
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN ONNET: 150 Mbps.
+
+
+ 
+========== IPSA=========
+ 
+1. Se requiere ampliar   los siguientes recursos de 120Mbps a  150Mbps:
+ 
+Type:VPN
+
+PE: psr1.sub1.bog
+INT: ae10.1055
+IP: 10.1.1.201/30
+VRF: carvajal
+RD: 16528:1101925
+EQUIPO: BOGTCLGWZG014
+Puerto: GigabitEthernet000
+Cvlan:1300 
+ Svlan:1055
+
+ ========== SA ==========
+ 
+1.	Verificar que la subinterface en PE este configurado el BW a 150Mbps.
+2.	Realizar pruebas  de ancho de banda a 150Mbps. Se deja el mismo CPE 4331 que tiene su licencia de performance hasta 150M
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8902421
+Datos - IP VPN Mod   **8902421*$*
+
+Workflow Initialization

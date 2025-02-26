@@ -1,0 +1,88 @@
+DKO:8903331 (8903338)
+
+Comments: (Ever Contreras) 26/02/25 19:44 Start DokuFlow.
+##
+Actualmente, COMPUNET cuenta con dos enlaces VPN en DC ETIX para su cliente final, LEVAPAN, que se migrarán a Internet. LEVAPAN a su vez también es cliente de Cirion, con quien ha contratado la solución SDWAN, pero sin todos Accesos de última milla, los cuales también contrata a otros proveedores; en este caso, a COMPUNET y este, a su vez, subcontrata dichos enlaces a Cirion.
+##
+
+Actividad: Se requiere dar de alta enlace de Internet #2 @2Mb vía red Onnet local.
+
+COMPUNET S.A.
+ COMPUNET - ETIX CALI
+ADDRESS: ETIX CALI ZONAMERICA NA, CALI, VAL-Valle del Cauca, Colombia Latitud 3.329302 Longitud -76.518855
+
+Technical Contact:
+KatheryneDaza / M: katheryne.daza@grupocnet.com / P: N/D
+Validar datos adicionales del LCON con el CCM.
+
+CCM: Reyes, Omar
+
+XML 8893405
+CFS 500413482
+*:RFS6000331973 ( IP Port )
+
+========= IPSA =========
+
+Asignar recursos IP y Metro para dar de alta el siguiente enlace:
+
+CLLI: CALICLBZ | Nodo Dc Etix Zonamerica
+
+SW ME: CALICLBZZG001
+Int. Por Asignar [Giga, Electrical, RJ45]
+
+Tipo: Internet
+PE: EDGE1.CAL1
+Int. Por Asignar
+IPv4 WAN: Asignar /31
+IPv4 LAN: None [SDWAN]
+BW: 2Mb
+
+*: Solución NIDLESS.
+
+========= SDM / SA =========
+
+***Leer la cabecera de esta DKO para mayor contexto.
+
+1. Validar asignación de recursos por parte de IPSA.
+2. Agendar actividades para dar de alta el enlace de Internet #2 @2Mb vía red Onnet local:
+- Este enlace se tiene que conectar al equipo *:RFS6000329604 ( SDWAN CPE ) de LEVAPAN que se está instalando bajo la DKO 8714253, y se ubicará en el mismo Rack que el Switch Metro (Rack 0026).
+- Se debe coordinar con el SDM de la DKO 8714253 para realizar la XConnection local en dicho Rack.
+- Solución NIDLESS.
+- Handoff Interface: Giga, Electrical, RJ45.
+3. Realizar prueba de esfuerzo del enlace. 
+4. Programar PEM garantizando navegación exitosa hacia Internet:
+- El correcto funcionamiento del servicio SDWAN debe garantizarse con la DKO 8714253 de LEVAPAN.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+========= NETWORK MANAGEMENT =========
+
+Configurar NM Monitor/ Notify
+- Configurarlo sobre el recurso del PE/Interface que asigne IPSA como reemplazo de la LB 172.18.115.117 que se desaprovisionará.
+
+========= CD =========
+
+Dar de baja los siguientes recursos al finalizar esta DKO:
+
+CFS VPN: 500341126
+
+PE: psr3.cal1 - ae10.1873
+IPv4 WAN: 172.7.40.49/30
+VRF: levapan
+LB CPE: 172.18.115.117
+
+Eliminar el flujo de este servicio sobre el CPE concentrador:
+LB: 172.18.115.117
+
+Eliminar Service Instance de este servicio sobre el SW Metro:
+CALICLBZZG002
+Int: GigabitEthernet0/0/21
+bridge-domain 290
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8903331
+Datos - ADI Add   **8903331*$*
+
+Workflow Initialization

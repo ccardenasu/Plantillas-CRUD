@@ -10,21 +10,37 @@ import subprocess
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def ejecutar_ipsa(request):
     cfs = request.GET.get('cfs', '')
     try:
-        # Actualiza la ruta al archivo IPSA.py
-        result = subprocess.run(['python', '/home/carlos/githut/Plantillas-CRUD/myapp/templates/myapp/IPSA.py', cfs], capture_output=True, text=True)
+        # Ensure the cfs parameter is safe to use
+        if not cfs.isalnum():
+            return JsonResponse({'success': False, 'error': 'Invalid input'})
+
+        # Update the path to the IPSA.py file
+        result = subprocess.run(
+            ['python', '/home/carlos/githut/Plantillas-CRUD/myapp/templates/myapp/IPSA.py', cfs],
+            capture_output=True, text=True
+        )
+        print("Salida del script:", result.stdout)
+
         if result.returncode == 0:
             output = result.stdout.strip()
-            data = json.loads(output)
-            return JsonResponse({'success': True, 'data': data})
+            if not output:
+                return JsonResponse({'success': False, 'error': 'Empty output from script'})
+            try:
+                data = json.loads(output)
+                return JsonResponse({'success': True, 'data': data})
+            except json.JSONDecodeError:
+                return JsonResponse({'success': False, 'error': 'Failed to parse JSON output'})
         else:
             return JsonResponse({'success': False, 'error': result.stderr})
+    except subprocess.CalledProcessError as e:
+        return JsonResponse({'success': False, 'error': str(e)})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-
+    
 def datos_view(request):
     if request.method == "POST":
         form = DatosForm(request.POST)

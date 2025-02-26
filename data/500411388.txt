@@ -1,0 +1,105 @@
+CFS: 500411388
+DKO: 8876320
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: TECNOQUIMICAS S.A.
+SEDE: EL-SALVADOR-PLANTA-BONIMA
+RFS-IP-PORT: 6000327933
+BW: 70M
+Vlan: 3049
+PE: psr1.xcr3
+Interface PE: ae4.3049
+
+DKO:8876320 (8901384)
+
+Comments: (Yajamin, Andres) 29/01/25 13:56 Start DokuFlow.
+Tipo Actividad: Regularización de servicio SDWAN + ampliación acceso convenio.
+
+Cliente: TECNOQUIMICAS S.A.    
+Sede: TECNOQUIMICAS - EL SALVADOR PLANTA BONIMA
+Dirección: BULEVAR DEL EJERCITO NACIONAL KM 11.5, ILOPANGO, SS-San Salvador, El Salvador Latitud 13.698548 Longitud -89.108314
+DesignID: VAD6_VN_81-1ASLENE
+
+Contacto: ANDRESES CARRIA 	E-Mail	aescarria@tecnoquimicas.com 	Phone	+576028825555 
+
+XML: 8871772
+CID-CFS: 500411388	
+SD WAN VPN@70Mbps
+
+RFS:
+6000327933	IP Port	
+6000021812	3rd Party
+6000102185	SDWAN CPE
+--------------------------
+Description of Service: ||
+--------------------------
+Regularización de servicio SDWAN + ampliación acceso convenio.
+=============================================================
+COG
+- Por favor cotizar ampliación canal de TELEMOVIL EL SALVADOR (TIGO)
+BW:70M
+ID:412315
+LL3-<USLV157>.0001
+============================================================
+ a.- Recursos de UM, (OFFNET):
+- Contratar ampiacion proveedor TIGO@70M
+ID:412315
+LL3-<USLV157>.0001
+============================================================
+ b.- Recursos Lógicos (IP SA):
+Ampliar:
+Type: VPN
+BW:70M
+Interface:  ae0.3049 
+Device:  pr1.esc1.sjo (juniper) 
+EON:1064464/3
+=============================================================
+ c.- Actividades SDM / S&A.
+1. Realizar prueba de esfuerzo del canal. Programar ventana de Activación conjunta con cliente, garantizando que el servicio quede operativo.
+2. Realizar en compañía del cliente pruebas de Conectividad desde y hacia esta sede que garanticen que quedan totalmente operativos y hacer entrega formal al cliente.
+3. Documentar ingeniería con los cambios realizados
+
+Workflow Initialization
+Comments: (Yajamin, Andres) 29/01/25 14:11
+================== ACTUALIZACION a IPSA =====================
+ b.- Recursos Lógicos (IP SA):
+Ampliar:
+Type: VPN
+BW:70M
+PSR1.XCR3
+ae4.3049
+=============================================================
+Comments: (Yajamin, Andres) 30/01/25 12:46
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+Comments: (Lima, Sthefanny) 03/02/25 12:01
+Finished Step: Asignación de CCM·
+Comments from Subprocess 8877989
+
+
+Workflow Initialization
+Comments: (Bermudez, Diana) 14/02/25 13:02
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Bermudez, Diana) 14/02/25 13:21
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Yajamin, Andres) 19/02/25 19:09
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8876320
+Datos - IP VPN Mod   **8876320*$*
+
+Workflow Initialization
+Comments: (Lozano, Paula) 25/02/25 19:44
+Ojo esta regularizacion es con el proveedor de Ufinet hacia el ID CRSVCIR10129349C, EL CDdebe hacer las correciones en  sus notas. 
+Comments: (Lozano, Paula) 25/02/25 19:47
+Finished Step: Modificación Tercero·
+
+
+This Order was automatically initiated by Order NO:8896076
+Activación Terceros ICT   **8896076*$*
+
+Workflow Initialization

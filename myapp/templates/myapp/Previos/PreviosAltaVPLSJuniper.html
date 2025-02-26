@@ -1,13 +1,15 @@
 {% load custom_filters %}
 {% load network_filters %}
 
+{% if datos.pe  %}
 
-ssh -l EA-CO11455  {{ datos.pe }}
-configure private
-#
-#
+    ssh -l EA-CO11455  {{ datos.pe }}
+    configure private
+    #
+    #
 
-show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+    show interfaces {{ datos.interface_pe }}.{{ datos.unit }} | display set | no
+{% endif %}
 
 {% if datos.rfs_ip_port_b %}
     

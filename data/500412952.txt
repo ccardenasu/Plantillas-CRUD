@@ -1,0 +1,161 @@
+CFS: 500412952
+DKO: 8891701
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: VIRREY SOLIS I.P.S. S.A.
+SEDE: UAB-CERRITOS-PEREIRA-81-5T59N2G
+RFS-IP-PORT: 6000329686
+RFS-IP-PORT_NID: 6000329688
+Vlan Tercero: 1084      
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/0/3.910841300
+BW: 20M
+Svlan: 619
+Cvlan: 1300
+VRF: saludtot2
+RD: 16528:1120543
+ASN: 65357
+WAN: 10.144.11.4/30
+LB CPE: 172.18.48.249 
+LB NID: 10.226.167.21  
+PE: psr2.bgo2
+Interface PE: ae14.619
+
+DKO:8891701 (8900315)
+
+Comments: (Vallejo Caguenas, Sergio) 14/02/25 13:51 Start DokuFlow.
+*********** se realiza cancelacion de la DKO 8887096, ya que en el relevamiento de PLEX se confirma que la direccion es errada y adicional no hay cobertura en la zona de la direccion correcta, se genera esta nueva DKO para contratar convenio. ***********
+
+Scope: Se requiere realizar ALTA canal VPN @20Mbps por convenio, NM Application
+
+Customer Technical Contact:
+YEZID MORENO / M: yesidhernanm@saludtotal.com.co /P: 13725028
+
+VPN @20Mb
+XML 8884892
+CFS 500412952
+
+Address: AVENIDA 30 DE AGOSTO 2166, 660002 PEREIRA, COLOMBIA NA, Pereira, RIS-Risaralda, Colombia
+
+RFS: 
+*:RFS6000329686 ( IP Port )
+*:RFS  --- ICT  ( 3rd Party )
+*:RFS6000329688 ( NID )
+*:RFS6000329689 ( CPE )
+--------------------------
+Description of Service: ||
+--------------------------
+Se requiere realizar ALTA canal VPN @20Mbps por convenio, NM Application
+======================
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+Proveedor: TBD
+Tipo: Capa 2 [L2]
+BW: 20Mb
+
+quoting: TDG-152079424 -> SE SOLICITA RECOTIZAR POR QUE LA TDG ES ONNET
+Handoff interface: Eletrical, RJ45
+
+============= IPSA =============
+
+1. Asignar VLAN en Interconexión indicada por OFFNET y dirección IP de monitoreo para NID,
+2. Crear subinterface en PE asignado con un BW @20Mbps y Routing:
+3. Asignar ip de monitoreo para NID, para CPE y Dar de Alta RFS CPE
+
+RECURSO:
+---------------------
+PE:  ASIGNAR
+Interface: ASIGNAR
+IP_WAN: 10.144.11.5/30
+VRF: saludtot2
+QoS; default
+LBK_Gestión: ASIGNAR
+Enrutamiento: BGP; # AS_BGP: 65357 - overwrite
+BW @20Mbps
+
+3. Asignar ip de monitoreo para NID, para CPE y Dar de Alta RFS CPE
+
+============= SDM =============
+
+1. Validar asignación de recursos por parte de IPSA y OFFNET
+2. Agendar ventana con Lumen y  el cliente para dar de Alta enlace VPN @20Mbps:
+- Garantizar que el NID quede en gestión y con acceso remoto.
+- Tener en cuenta que la interface de entrega a nivel LAN sera Eletrical, RJ45
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+Solicitar los siguientes equipos:
+P/N Descripción Cantidad 
+1466410|F150/ADV/GE114PRO/AC FSP 150-GE114PRO I-TEMP WITH INTEGRATED AC PSU 1078904720-02 ADVA|1|
+1384891|F150/ADV/OT/MK-19 MOUNTING KIT 19 IN. RACK SINGLE-UNIT MOUNT GE110PRO 1013904010 ADVA|1|
+1463297|ISR 1100 8 Ports Dual GE WAN Ethernet Router C1111-8P |1|
+1453279|Cisco 1100 Series Router Rackmount Wallmount Kit ACS-1100-RM-19 |1|
+
+Si no se tiene Router Cisco se debe remplazar por un CPE Junipper:
+
+1343900|HW ONLY REQUIRE SRX300 JSB OR JSE SRX300 JPNW |1|
+1004662|SRX300 rack mount kit with adaptor tray |1|
+
+============= SA =============
+
+3. Realizar prueba de esfuerzo del canal.
+4. Programar ventana de Activación conjunta con cliente , garantizando que el servicio quede operativo.
+5. Entregar enlace al cliente.
+6. Documentar ingeniería.
+
+=========== NETWORK MANAGMENT  ==========
+Configurar NETWORK MANAGMENT Application
+
+LP: Asignada IPSA
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 14/02/25 14:01
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Diego Rubiano) 14/02/25 16:45
+Finished Step: Asignación de CCM·
+Comments from Subprocess 8891732
+
+
+Workflow Initialization
+Comments: (Rodriguez, Douglas) 18/02/25 10:05
+Finished Step: OffNet Survey Request ICTProducto
+
+Comments: (Solano, Adriana) 18/02/25 11:31
+Finished Step: OffNet Survey Request ICT·
+
+Comments: (Solano, Adriana) 21/02/25 18:12
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Vallejo Caguenas, Sergio) 24/02/25 17:28
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+********** ACTUALIZACION DKO **********
+
+Se confirma Vendor con COG: UFINET
+
+=========== OFFNET ===========
+
+Contratar el siguiente circuito:
+Proveedor: UFINET
+Tipo: Capa 2 [L2]
+BW: 20Mb
+
+quoting: TDG-152079424 -> Cotizada LCM 8891701 (8891732)
+Handoff interface: Eletrical, RJ45
+
+This Order was automatically initiated by Order NO:8891701
+Datos - IP VPN Add   **8891701*$*
+
+Workflow Initialization
+Comments: (Moreno, Diana) 25/02/25 10:08
+Finished Step: Alta Tercero·
+Se solicita a UFINET instalación de canal a 20 MBPS. Se asigna la SVLAN 1084 NNI METRO 2.4 BOGTCLFXNN001 - TEN GIGA 0/0/0/3                                           
+
+
+
+This Order was automatically initiated by Order NO:8899803
+Activación Terceros ICT   **8899803*$*
+
+Workflow Initialization

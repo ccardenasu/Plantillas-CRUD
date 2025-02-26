@@ -1,0 +1,94 @@
+CFS: 500331737
+DKO: 8892010
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: ADI
+Cliente: CASA LUKER S.A.
+SEDE: Pereira-1-3O6C3
+RFS-IP-PORT: 6000218114
+SW: BOGTCLFXNN002
+Interface SW: TenGigE0/0/0/1.913581200
+BW: 30M
+Vlan: 880
+PE: ar1.sub1.bog
+Interface PE: ae6.880
+
+DKO:8892010 (8900572)
+
+Comments: (Ramirez Sanchez, Tania) 14/02/25 17:21 Start DokuFlow.
+Actividad: Ampliación  SD WAN Internet enlace MEDICOMMERCE a 30 MB
+
+Technical Contact: NORBERTO ALONSO GÓMEZ Q - Phone: +573113344284 - Email: ngomez@casaluker.com.co 
+ 
+Sede Pereira
+Direccion: Avenida las Americas No. 97-73, PEREIRA
+Vista en DokuViz: LUKE_VN_PERE
+
+SD WAN Internet@30Mb
+XML: 8887835
+CFS:   	
+RFS:
+6000218108	SDWAN CPE
+6000043523	3rd Party
+6000218114	IP Port
+6000218115	NID
+6000232596	Ethernet
+--------------------------
+Description of Service: ||
+--------------------------
+En la  red SDWAN internet,  ampliar a 30Mbps  el  acceso  CID: 500013094, teniendo  presente  que  la  última  milla  es  tercerizada con UFINET: COCO07390026 en la sede CASA LUKER FUNZA En la red SDWAN internet, ampliar a 30Mbps el acceso CID: 500331737, teniendo presente que la ultima milla es tercerizada con MC: 2075 en la sede CASA LUKER-PEREIRA-BODEGA -00210897 (LUKE_VN_PERE)
+--------------------------
+=========== OFFNET ===========
+Ampliar convenio a 30M.
+DK-SURVEY-TDG-152079730-8884177
+MEDIACOMMERCE
+ID MC: 2075
+============= IPSA =============
+Ampliar a 30Mbps:
+Type: SDWAN internet
+PE: ar1.sub1.bog
+INT: ae6.880
+IP WAN : 8.242.86.34/31
+FG: https://8.242.86.35:25443/
+UM:
+NE BOGTCLFXNN002
+INTERFACE TenGigabitEthernet0/0/0/1
+
+ ========== SDM ==========
+1. Seguimiento a la modificacion del canal parte de MC y IPSA.
+2. hacer ampliación en el CPE SDWAN.
+FortiGate  FG-40F
+NAME: CASA_LUKER_PEI_PEREIRA_U
+SN : FGT40FTK22062986
+3. Verificar que se haya realizado la configuración solicitada a BBIP.
+============= SA =============
+
+Realizar pruebas de conectividad y saturación a nivel WAN y LAN, Verificar que alcance el BW solicitado, validar que no se presenten errores sobre todas las Interfaces.
+
+=========== NETWORK MANAGMENT  ==========
+Configurar NETWORK MANAGMENT NM ADVANCED MANAGEMENT solución SDWAN FORTINET.
+FG: https://8.242.86.35:25443/
+Se configura si este Cliente tiene equipos SDWAN en gestión, si cerrar la tareas para que facture.
+============
+
+
+Workflow Initialization
+Comments: (Ramirez Sanchez, Tania) 24/02/25 17:02
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8892010
+Datos - ADI Mod   **8892010*$*
+
+Workflow Initialization
+Comments: (Wilches Rivera, Lesly Tatiana) 25/02/25 13:23
+
+Se solicita a MC aumento a 30 Mb del  canal en mención.
+Comments: (Wilches Rivera, Lesly Tatiana) 25/02/25 13:30
+Finished Step: Modificación Tercero·
+
+
+This Order was automatically initiated by Order NO:8899712
+Activación Terceros ICT   **8899712*$*
+
+Workflow Initialization

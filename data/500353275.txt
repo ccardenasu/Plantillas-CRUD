@@ -1,0 +1,69 @@
+DKO:8900126 (8900133)
+
+	Comments: (Ever Contreras) 24/02/25 21:04 Start DokuFlow.
+
+Actividad: Se requiere agregar un bloque /29 al servicio DIA con CFS-ID 500353275 | FRO2007158335. No se realizarán cambios en el BW ni en la Última Milla [UM]. 
+
+NOTA: Este enlace fue entregado en JUN-2021 con una configuración WAN/30 y LAN/29 [EON 1146901]. Sin embargo, al revisar su funcionamiento y contrastarlo con el EON, no se ha detectado uso del segmento LAN/29. Por lo tanto, la propuesta desde CD es reutilizar este segmento LAN/29 y reconfigurarlo como WAN. Esto permitirá optimizar los recursos IP y cumplir con el nuevo requerimiento del cliente. Para más detalles, consultar la sección de IPSA en esta DKO.
+
+#######################
+*B:ar3.mex1# ping 204.199.197.129 source 204.199.192.201 rapid 
+PING 204.199.197.129 56 data bytes
+
+---- 204.199.197.129 PING Statistics ----
+5 packets transmitted, 161 packets bounced, 0 packets received, 100% packet loss
+*B:ar3.mex1# 
+#######################
+
+NTT GLOBAL NETWORKS INCORPORATED
+ NTT GLOBAL - TOLUCA, MEXICO - NUEVA
+ADDRESS: CARRETERA TOLUCA - MÉXICO KM 45 NA, OCOYOACAC, NA, Mexico Latitud 19.2831 Longitud -99.46963
+
+Technical Contact:
+Tammi Thomas / M: tlane@nttglobal.net / P: +1-720-475-4076
+Validar datos adicionales del LCON con el CCM.
+
+CCM: Chasampi, Mauricio
+
+XML 8895568
+CFS 500353275
+*:6000271829 (3rd Party)
+*:RFS6000331544 ( Ethernet )
+*:6000250949 (IP Port)
+
+========= IPSA =========
+
+Realizar la modificación del siguiente recurso IP en ventana controlada y aprobada por el cliente, no antes:
+
+Tipo: Internet
+PE: ar3.mex1
+Int. lag-16:3256.* | Ajustar el PORT DESCRIPTION usando el CFS + RFS.
+IPv4 WAN: Pasa de /30 a /29. Actualmente configurada como 204.199.192.201/30, debe ser modificada a 204.199.197.128/29 [.129], la cual está enrutada estáticamente como LAN, aunque en desuso por parte del cliente, por lo que se propone reutilizar la LAN como WAN. Al finalizar, se debe liberar el segmento /30. 
+BW: 50Mb [Se conserva]
+Routing: Directly Connected
+
+- CPE del cliente.
+
+========= SDM / SA =========
+
+1. Programar, en coordinación con el cliente y Cirion, una ventana de cambios para ajustar la configuración del recurso IP, según lo especificado en la sección IPSA de esta DKO. Revisar la cabecera de esta DKO para obtener mayor contexto.
+2. Realizar prueba de funcionalidad del enlace una vez finalizada la modificación.
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+========= CD =========
+
+Verificar la liberación del segmento WAN/30:
+
+ar3.mex1
+Int. lag-16:3256.*
+WAN: 204.199.192.200/30
+
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8900126
+Datos - ADI Mod   **8900126*$*
+
+Workflow Initialization

@@ -1,0 +1,87 @@
+DKO:8900158 (8901132)
+
+Comments: (Ever Contreras) 24/02/25 21:41 Start DokuFlow.
+
+Actividad: Se requiere dar de alta enlace Wavelength @10GE entre ARG y USA.
+
+A LOC: TATA - VRIO - EDM ENCOMPASS - MARTINEZ - BS AS : Los recursos se pedirán con la DKO 8896973.
+Z LOC: TATA-LA CORSITE-624 ONE WILSHIRE BLVD : Los recursos se pedirán con esta DKO.
+
+TATA COMMUNICATIONS (AMERICAS) INC
+ TATA-LA CORSITE-624 ONE WILSHIRE BLVD
+ADDRESS: 624 SOUTH GRAND SUITE SUITE 1020, LOS ANGELES, CA-California, USA Latitud 34.048116 Longitud -118.255625
+
+Technical Contact:
+ShajuBabu / M: shaju.babu@tatacommunications.com / P: N/D
+Validar datos adicionales del LCON con el CCM.
+
+CCM: Menuzzo Semeghini, Joao	
+
+XML 8895486
+CFS 500413659
+*:RFS6000331492 ( SubSea ) | EON Subsea 1217917/1 | FRO2007603838
+
+============== OFFNET ==============
+
+Contratar el siguiente enlace:
+
+Tipo: Wavelength
+Proveedor: LUMEN
+Speed/Bandwidth: 10GE | NOT PROTECTED | NOT DIVERSE | XC INCLUDED.
+Customer Interface: LR4-ETH
+A LOC: SNDACAGL | San Diego Pop
+Z LOC: CORESITE | 624 SOUTH GRAND SUITE SUITE 1020, LOS ANGELES, CA-California, USA Latitud 34.048116 Longitud -118.255625
+
+- Se anexa TIF Wavelength.
+- Lumen debe proveer LOA para que el cliente contrate la XCON. 
+- El recurso Lumen debe conectarse con el EON Subsea 1217917/1
+
+============ IPSA/TXSA ============
+
+[Extremos finales del Wavelength]
+A LOC: TATA - VRIO - EDM ENCOMPASS - MARTINEZ - BS AS : Los recursos se pedirán con la DKO 8896973.
+Z LOC: TATA-LA CORSITE-624 ONE WILSHIRE BLVD : Los recursos se pedirán con esta DKO.
+
+Hacer seguimiento al aprovisionamiento del tramo Subsea:
+*:RFS6000331492 ( SubSea ) | EON Subsea 1217917/1 | FRO2007603838
+
+============== SDM / SA ==============
+
+1. Dar seguimiento a Offnet con el aprovisionamiento del Wavelength por parte de Lumen.
+2. Agendar actividades para integrar este extremo del Wavelength @10GE via LUMEN con el otro extremo de este servicio en ARGENTINA, el cual se trabajará con la DKO 8896973. La porción Subsea se aprovisionará vía EON 1217917/1 | FRO2007603838.
+3. Realizar pruebas de funcionalidad de Wavelength de extremo a extremo, cuando ambos lados estén aprovisionados.
+4. Entregar enlace al cliente.
+5. Documentar ingeniería.
+
+
+
+Workflow Initialization
+Comments: (Ever Contreras) 24/02/25 21:57
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8900158
+Datos - Wavelength Add   **8900158*$*
+Comments: (Ever Contreras) 24/02/25 22:01
+OFFNET:
+Se confirma TDG:
+DK-SURVEY-TDG-152082672-8895152
+Comments: (Bravomalo, María Elena) 25/02/25 11:42
+Por favor considera la siguiente TDG para la DKO en referencia:
+
+TATA COMMUNICATIONS (AMERICAS) INC
+TATA-LA CORSITE-624 ONE WILSHIRE BLVD
+ADDRESS: 624 SOUTH GRAND SUITE SUITE 1020, LOS ANGELES, CA-California, USA Latitud 34.048116 Longitud -118.255625
+
+DK-SURVEY-TDG-152082672-8895152
+
+
+
+Comments: (Bravomalo, María Elena) 25/02/25 17:32
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8900171
+Activación Terceros ICT   **8900171*$*
+
+Workflow Initialization

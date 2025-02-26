@@ -1,0 +1,95 @@
+DKO:8891213 (8902363)
+
+
+Comments: (Vallejo Caguenas, Sergio) 13/02/25 23:37 Start DokuFlow.
+********** SE GENERA FUERA DE LOS SLA POR INFORMACION DE IDENTIFICADOR POR PARTE DEL CLIENTE ********** 
+Actividad:  Se requiere realizar la ampliacion instalación Cloud Connect MPLS/IP VPN IBM Version 1.0 BW 100Mbps por Tercero Lumen 
+
+Technical Contact:
+Carlos Pizano / M: carlos.pizano@yanbal.com / P: 5134881998
+
+Cloud Connect MPLS/IP VPN IBM @100M
+XML 8860552
+CFS 500064048500064048
+
+UNIQUE - SOFTLAYER DALLAS - USA
+ADDRESS: 1950 N STEMMONS FWY 1950, DALLAS, TX-Texas, USA
+
+RFS:
+*:RFS ------- ICT ( 3rd Party )
+--------------------------
+Description of Service: ||
+--------------------------
+Se requiere realizar la ampliacion instalación Cloud Connect MPLS/IP VPN IBM Version 1.0 BW 100Mbps por Tercero Lumen, Tener presente que de lado de Lumen se realizara un ADD/DISC Lumen debe asegurar liberar el recurso actual luego de la alta de este servicio.
+============== OFFNET ==============
+
+Solicitar Ampliacion Canal Cloud Connect IBM a @100 Mbps, se tramita como Nuevo ya que Lumen realizara un ADD/DISC para levantar servicio en paralelo y dar de baja al actual posterior a las pruebas exitosas con cliente.
+*:Se anexa TIF-Cloud.
+*:tener presente que sera un Cloud Connect MPLS/IP VPN IBM Version 1.0
+
+
+Cloud Provider: IBM DALLAS 3
+Proveedor: Lumen
+Tipo: Cloud Connect MPLS/IP VPN
+BW: 100M
+TDG-152037221 -> SE SOLICITA COTIZAR YA QUE LLEGO COMO ONNET
+
+============== IPSA ==============
+
+NO SE REALIZAN CONFIGURACION POR PARTE DE IPSA, SE REALIZARAN CONFIGURACIONS POR PARTE DE LUMEN AL SER UNA VRF ACTUAL Y AMPLIACION add/disc DE ENLACE ACTUAL.
+
+IP WAN PE: 100.65.128.45/30
+IP WAN CLIENTE: 100.65.128.46/30
+VRF: 14917-1-GCAMERICASSOLUTIONSINC-2004534246-L3VPN
+RT: 6745:110014917
+
+============== SDM / SA ==============
+
+1. Dar seguimiento a la implementación del servicio Cloud IBM DALLAS @100Mb vía Tercero.
+1.1 En ventana de Activacion validar con cliente el BGP en caso de ser necesario cambiarlo.
+1.1 Confirmar los segmentos WAN para configuracion del cliente.
+2. Validar conectividad con el cliente desde las sede de COL
+3. Entregar enlace al cliente.
+4. Documentar ingeniería.
+
+============== CD ==============
+Una vez que el cliente tenga el canal en paralelo en funcionamiento solicitar baja a Lumen del canal actual:
+
+RFS: 6000329469
+vendor: Lumen
+ID: BDSL0456
+BW: 50 Mbps 
+Tipo: Cloud Connect MPLS/IP VPN
+
+Workflow Initialization
+Comments: (Vallejo Caguenas, Sergio) 14/02/25 14:05
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+Comments from Subprocess 8891728
+
+
+Workflow Initialization
+Comments: (Solari, Enrique) 14/02/25 17:13
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Costa, Jonathas) 21/02/25 14:26
+Finished Step: OffNet Survey Request ICT
+
+Comments: (Costa, Jonathas) 21/02/25 15:03
+Finished Step: OffNet Survey Response ICT
+
+Comments: (Vallejo Caguenas, Sergio) 24/02/25 19:32
+Finished Step: Solicitud de alta de circuito de Terceros ICT
+
+
+This Order was automatically initiated by Order NO:8891213
+Datos - IP VPN Add   **8891213*$*
+
+Workflow Initialization
+Comments: (Bravomalo, María Elena) 26/02/25 14:15
+Finished Step: Alta Tercero
+
+
+This Order was automatically initiated by Order NO:8900035
+Activación Terceros ICT   **8900035*$*
+
+Workflow Initialization

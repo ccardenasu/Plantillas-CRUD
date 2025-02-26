@@ -33,7 +33,10 @@
             margin-bottom: 5px;
         }
     </style>
-    <script src="{% static 'js/crud.js' %}"></script>
+    <script type="module" src="{% static 'js/functions.js' %}"></script>
+    <script type="module" src="{% static 'js/eventHandlers.js' %}"></script>
+    <script type="module" src="{% static 'js/init.js' %}"></script>
+    <script type="module" src="{% static 'js/crud.js' %}"></script>
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -70,7 +73,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        console.log(`interface_sw: ${data.data.interface_sw}`);
+                        console.log(`interface_pe_b: ${data.data.interface_pe_b}`);
 
                         console.log("IPSA.py ejecutado - correctamente capturar_datos.html 73:"); // Mensaje de éxito
                         console.log("Salida del script - capturar_datos.html 74:", data.data); // Mostrar la salida del script
@@ -110,11 +113,7 @@
                         document.getElementById('id_vt').value = data.data.vlan;
                         document.getElementById('id_wan').value = data.data.wan;
                         document.getElementById('id_wanv6').value = data.data.wanv6;
-
-
-
-                        
-                        
+                       
                     } else {
                         console.error("Error al ejecutar IPSA.py:", data.error); // Mensaje de error
                     }

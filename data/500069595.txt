@@ -1,0 +1,144 @@
+DKO:8898217 (8903292)
+
+Comments: (Rojas, Carlos) 21/02/25 15:57 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar la mudanza del servicio de INTERNET via Fibra Optica PAP a nueva sede del cliente
+NOTA: Posterior a la entrega del servicio via Fibra Optica PAP en la nueva sede, se solicitarÃ¡ la liberaciÃ³n de los recursos asignados para el servicio IPVPN de la sede actual y que no se encuentren en uso
+
+Cliente: ESCUELA DE TECNOLOGIAS DE ANTIOQUIA ETA 	
+Sede:    ETA-MEDELLIN-CENTRO	
+	
+DirecciÃ³n actual: Cr 80B # 32EE-61, LAURELES, MEDELLIN
+Design ID actual:  WB88_VN_81-NT313I
+Nueva direcciÃ³n (Posterior a la mudanza): CALLE 56 40-93, MEDELLIN
+Nuevo Design ID (Posterior a la mudanza):  WB88_VN_81-KHI847	
+
+SE: Rodriguez, Douglas 
+CCM: Caro, Jaime	
+
+Nombre del contacto:  IsaiasHerrera 
+Email del contacto: tecnologia@etdea.edu.co 	
+TelÃ©fono del contacto: +57 604 4445016 
+
+Project ID (XML): 8892764
+Service Instance: Internet
+CFS-CID: 500069595
+
+RFS IP Port: 6000331331
+RFS Fiber Chain: 6000331332
+RFS NID: 6000331333
+RFS CPE: 6000331334
+
+=============== SOLICITUD DE EQUIPOS ===============
+DescripciÃ³n: CISCO ISR 4321 AX BUNDLE WITH APP SEC LIC ISR4321-AX/K9 CSCO
+Item SAP: 1373572
+Parte numero: ISR4321-AX/K9
+Cantidad: 1
+
+DescripciÃ³n: CISCO PERFORMANCE ON DEMAND LICENSE FOR 4320 SERIES FL-4320-PERF-K9= CSCO
+Item SAP: 1377809
+Parte numero: FL-4320-PERF-K9=
+Cantidad: 1
+
+DescripciÃ³n: CONSOLE CABLE WITH RJ45 AND DB9F 6FT CAB-CONSOLE-RJ45 CISCO
+Item SAP: 1120227
+Parte numero: CAB-CONSOLE-RJ45
+Cantidad: 1
+
+DescripciÃ³n: CABLE STRAIGHT THROUGH RJ45 FOR ETHERNET 6FT YELLOW CAB-ETH-S-RJ45 CISCO
+Item SAP: 1088148
+Parte numero: CAB-ETH-S-RJ45
+Cantidad: 1
+
+DescripciÃ³n: NID ADVA FSP 150CC-GE101Pro MicroNID, C-Temp, F150/ADV/GE101PRO, HW Rel 1.01
+Item SAP: 1469560
+Parte numero: 1078904820-01
+Cantidad: 1
+
+DescripciÃ³n: 20KM SINGLE FIBER SFP 1310NM TX SMF LC -5 TO 75 C TX PWR -7 TO 1000SFP31B20L CHAMPION ONE
+Item SAP: 1248720
+Parte numero: 1000SFP31B20L
+Cantidad: 1 (WAN)
+
+================= PLANTA EXTERNA ==================
+1. Realizar relevamiento de Fibra PAP hasta ubicaciÃ³n de equipos en la nueva direcciÃ³n de la sede e informar costos al SE y CCM para su aprobaciÃ³n.
+
+NOTA: En la nueva direccion se tenia instalado un servicio via FO PAP, por lo cual es posible que solo seria necesario habilitar nuevos hilos en el cable de fibra que ya se tenga instalado
+
+2. Asignar recursos de planta externa con el fin de habilitar un enlace Punto a Punto
+3. Realizar tendido de fibra hasta rack del cliente 
+4. Solo en caso de que con esta mudanza sea necesario cambiar el servicio a un NODO diferente del actual, entonces por favor informar al CD y SDM para que se genere soporte a IPSA y se asignen nuevos recursos de BBIP y metro
+
+INFORMACION DE NODO ACTUAL:
+PLANTA EXTERNA
+GCO:GCO BELEN
+Hilo:245
+Fiber Tray:FT05
+Hilo:5
+
+PLANTA INTERNA
+Fiber Tray:FT15
+Puerto:6
+EQUIPO: sw1.mdc2
+Puerto: ge-0/0/24.3004
+
+2. Asignar LB NID y dar de Alta RFS NID. 
+3. Asignar LB CPE y dar de Alta RFS CPE.
+
+======================= IP SA =======================
+Hacer seguimiento a PLANTA EXTERNA y en caso de que se realice el cambio de nodo de acceso (NODO PARQUE BERRIO) entonces realizar asignaciÃ³n de nuevos recursos  en red metro.
+
+RECURSOS ACTUALES EN BBIP DEL ENLACE IPVPN EN LA DIRECCION ACTUAL:
+ar3.mdc2
+ae5:3004.1200
+WANIPV4: 67.73.158.96/30
+LANIPV4: 190.217.58.120/29
+
+RECURSOS ACTUALES  EN RED METRO DEL ENLACE IPVPN EN LA DIRECCION ACTUAL:
+SW: sw1.mdc2
+Puerto: ge-0/0/24.3004
+
+
+Workflow Initialization
+Comments: (Rojas, Carlos) 21/02/25 15:58
+===================== SDM/SA ======================
+1. Validar asignaciÃ³n de recursos por parte de IPSA y planta externa para realizar CrossconexiÃ³n en nodo
+2. Programar ventana de activaciÃ³n y de pruebas con el cliente para dar de Alta el enlace de INTERNET via fibra PaP a 25Mbps y mudar equipos desde la antigua sede a la nueva sede
+3. Una vez que planta externa haya finalizado la instalacion de la fibra, solicitar a planta interna realizar instalaciÃ³n de equipos solicitados con esta DKO o reubicaciÃ³n de los equipos (Router y ADVA) en la nueva sede y su marcaciÃ³n correspondiente
+4. Asegurar que se tenga respuesta, gestiÃ³n y acceso remoto de los equipos instalados en la nueva sede (Router y ADVA)
+5. Realizar prueba de esfuerzo del canal con el cliente y garantizar correcto funcionamiento de sus aplicativos y conectividad contra su sede central.
+6. Entregar enlace a satisfacciÃ³n del cliente.
+7. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+======================= CD ========================
+Dar de baja los siguientes recursos al finalizar esta orden (Confirmar que ya no estÃ©n en uso):
+
+RECURSOS ACTUALES EN BBIP DEL ENLACE IPVPN EN LA DIRECCION ACTUAL:
+ar3.mdc2
+ae5:3004.1200
+WANIPV4: 67.73.158.96/30
+LANIPV4: 190.217.58.120/29
+
+RECURSOS ACTUALES  EN RED METRO DEL ENLACE IPVPN EN LA DIRECCION ACTUAL:
+SW: sw1.mdc2
+Puerto: ge-0/0/24.3004
+
+============== NETWORK MANAGMENT ===============
+Garantizar NM de tipo: Monitor/ Notify 
+LB CPE: SegÃºn asignaciÃ³n de IPSA
+LB ADVA: SegÃºn asignaciÃ³n de IPSA
+
+This Order was automatically initiated by Order NO:8898217
+Datos - ADI Mod   **8898217*$*
+
+Workflow Initialization
+Comments: (Correa Munoz, Alejandro) 26/02/25 19:15
+NODO DE COBERTURA: NODO PARQUE BERRIO
+Comments: (Correa Munoz, Alejandro) 26/02/25 19:15
+Finished Step: Análisis y Validación de la Información
+
+
+This Order was automatically initiated by Order NO:8898232
+Ingeniería de acceso Fibra Optica (1)   **8898232*$*
+
+Workflow Initialization

@@ -1,0 +1,36 @@
+DKO:8902800 (8902837)
+
+Comments: (Ramirez Sanchez, Tania) 26/02/25 17:02 Start DokuFlow.
+Actividad:  FW-MOD. Ajuste de configuracion de los nuevos canales al FW 1xFG600E
+Technical Contact: Sandra Arias - Phone: 4473232Ext2423 - Email: CentroD@saludtotal.com.co 
+
+Managed Security Services
+Service ID:  81-2TM941W
+ 
+
+XML: 8899235
+
+Cliente: SALUD TOTAL EPS-S S.A 
+Sede: SALUD TOTAL - CALI DC CALI
+Direccion: AVENIDA 6 NORTE 28 NORTE 24, CALI, VAL-Valle del Cauca, Colombia Latitud 3.469583 Longitud -76.528036
+Design ID: SALT_VN_81-2SX8JSG
+CFS : 500218869
+--------------------
+Description of Service:
+Sevicios profesionales para asignación, configuración de puerto en FW 600E en DC Santa Mónica, conexión, y pruebas de enlace hacia Emtelco-Salud Total MRC: 1.767.550 24/02/2025 
+--------------------
+======================
+ ========== SECURITY-SOC ==========
+Realizar la configuración necesaria en el Firewall 
+Se requiere la habilitación de un nuevo puerto en el Firewall de Salud Total ubicado en el DC de Cali de Cirion.
+============
+
+
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8902800
+Datos - ADI Add   **8902800*$*
+
+Workflow Initialization

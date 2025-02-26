@@ -1,3 +1,24 @@
+CFS: 500413683
+DKO: 8899398
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: FINANZAUTO S.A.
+SEDE: PRINCIPAL-AMERICAS-81-21AJYGY
+RFS-IP-PORT: 6000331471
+Vlan Tercero: 1980      
+SW: BOGTCLFXNN001
+Interface SW: TenGigE0/0/2/3.919801300
+BW: 20M
+Svlan: 618
+Cvlan: 1300
+VRF: finanzauto
+RD: 16528:1104088
+WAN: 10.10.20.108/30
+LB NID: 10.226.203.254  
+PE: psr2.bgo2
+Interface PE: ae14.618
+
 DKO:8899398 (8899989)
 
 

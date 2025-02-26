@@ -1,0 +1,124 @@
+CFS: 500413670
+DKO: 8900549
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPLS
+Cliente: ORACLE COLOMBIA LIMITADA
+SEDE: OFICINA-PRINCIPAL-BOGOTA-CALLE-127-81-5TH2S1D
+SEDE_B: LIMITADA-BOGOTA-EQUINIX - MANZANA 6 LOTE 27
+RFS-IP-PORT: 6000331590
+RFS-IP-PORT_B: 6000331589
+BW: 1000M
+SW_B: CLMBABZSYJ001
+Interface SW_B: TenGigE0/0/0/0
+Slan_B: 241
+Clan_B: 1100
+VRF: 500413670-ORACLE-COLOMBIA-LIMITADA
+PE_B: psr3.bgo1
+Interface PE_B: ae14.241
+
+
+DKO:8900549 (8900558)
+
+Comments: (Rojas, Carlos) 26/02/25 12:06
+*************************
+ACTUALIZACION DE DKO:
+*************************
+
+======================= IP SA =======================
+1. Realizar alta del servicio EVPL para entregar servicio en EQUINIX BG2 (CLLI: CLMBABZS)  a 1Gbps sobre puerto TENGIGA en red Metro
+
+NOTA: Esta DKO se genera para realizar el alta del EVPL en el LADO Z, el LADO A de la EVPL se darÃ¡ de alta bajo la DKO 8900532
+>> LADO A:  ORACLE - OFICINA PRINCIPAL BOGOTA CALLE 127	
+>> LADO Z:  ORACLE COLOMBIA LIMITADA-BOGOTA-EQUINIX - MANZANA 6 LOTE 27
+
+>>> PUNTA Z:
+SW Metro: Por asignar
+Interface de SW: Por asignar - Asignar puerto TENGIGA con SFP para FO Monomodo  2 hilos
+VLAN: Por asignar
+
+2. Compartir con OFFNET recursos de red metro asignados para realizar XCON correspondiente
+
+*************************
+Comments: (Rojas, Carlos) 25/02/25 13:16 Start DokuFlow.
+=============== DESCRIPCION GENERAL ===============
+Actividad: Se requiere realizar Alta de servicio EVPL via Fibra Optica PaP sobre red Metro 2.0 a 1Gbps
+ 
+NOTA: Esta DKO se genera para realizar el alta del EVPL en el LADO Z, el LADO A de la EVPL se darÃ¡ de alta bajo la DKO 8900532
+>> LADO A:  ORACLE - OFICINA PRINCIPAL BOGOTA CALLE 127	
+>> LADO Z:  ORACLE COLOMBIA LIMITADA-BOGOTA-EQUINIX - MANZANA 6 LOTE 27	
+ 
+Cliente: ORACLE COLOMBIA LIMITADA 	
+Sede:  ORACLE COLOMBIA LIMITADA-BOGOTA-EQUINIX - MANZANA 6 LOTE 27		
+DirecciÃ³n: AVENIDA CARRERA 106 NO. 15A-25, MANZANA 6, LOTE 27 15A-25 NA, BOGOTA, Latitud 4.67161 Longitud -74.16191
+Design ID:  GCA8_VN_81-51VIOAA
+
+SE: Paulo Medeiros 
+CCM: Hess, Munique	
+
+Nombre del contacto:  JoÃ£o Paulo Lunardelli 
+Email del contacto: joao.lunardelli@oracle.com 
+
+Project ID (XML): 8895636
+Service Instance:  Private LAN P2P (EVPL)	
+CFS-CID: 500413670	
+
+RFS IP Port de VPLS - Punta Z: 6000331589
+RFS Ethernet - Punta Z: A GENERARSE DURANTE DELIVERY
+RFS Crossconection - Punta Z: 6000331600
+
+=============== SOLICITUD DE EQUIPOS ===============
+No se requiere envio de equipos
+
+====================== OFFNET =====================
+1. Confirmar con IPSA los recursos de red metro asignados en DC EQUINIX BG2 y realizar la siguiente Crossconexion hasta el MPR. SE ADJUNTA A LA DKO LA LOA COMPARTIDA POR PARTE DEL CLIENTE
+
+NOTA: Se genera flujo en paralelo a OFFNET y IPSA para que se asignen recursos en red metro
+
+CABLEADO: Fibra Monomodo Doble Hilo (Duplex) - Conectores LC
+
+ORIGEN: 
+Equipo: SW metro segÃºn asignacion de IPSA
+Puerto: SegÃºn asignacion de IPSA - Asignar puerto con SFP para FO Monomodo Doble Hilo (TX+RX)
+
+DESTINO: Meet Point Room [MPR]
+Pannel: CP:0001:1328040
+Puerto: 4
+
+======================= IP SA =======================
+1. Realizar alta del servicio EVPL via fibra optica PaP a 1Gbps sobre red Metro 2.0.
+
+NOTA: Esta DKO se genera para realizar el alta del EVPL en el LADO Z, el LADO A de la EVPL se darÃ¡ de alta bajo la DKO 8900532
+>> LADO A:  ORACLE - OFICINA PRINCIPAL BOGOTA CALLE 127	
+>> LADO Z:  ORACLE COLOMBIA LIMITADA-BOGOTA-EQUINIX - MANZANA 6 LOTE 27
+
+>>> PUNTA Z:
+SW Metro: Por asignar
+Interface de SW: Por asignar - Asignar puerto con SFP para FO SMF 1 hilo
+VLAN: Por asignar
+
+2. Compartir con OFFNET recursos de red metro asignados para realizar XCON correspondiente
+
+===================== SDM/SA ======================
+NOTA: Esta DKO se genera para realizar el alta del EVPL en el LADO Z, el LADO A de la EVPL se darÃ¡ de alta bajo la DKO 8900532
+>> LADO A:  ORACLE - OFICINA PRINCIPAL BOGOTA CALLE 127	
+>> LADO Z:  ORACLE COLOMBIA LIMITADA-BOGOTA-EQUINIX - MANZANA 6 LOTE 27
+
+1. Validar asignaciÃ³n de recursos en BBIP y red Metro a 1Gbps realizada por parte de IPSA para realizar crossconexion que corresponda en el nodo
+2. Programar con el cliente ventana de trabajo para alta del servicio
+3. Instalar ADVA solicitado con esta DKO en sede del cliente
+4. Una vez que se haya realizado la instalaciÃ³n del enlace EVPL tanto en la PUNTA A como en la PUNTA Z, proceder a realizar pruebas en conjunto con el cliente garantizando el correcto funcionamiento de todos sus servicios 
+5. Realizar prueba de esfuerzo del canal para garantizar la capacidad contratada
+6. Entregar enlace a satisfacciÃ³n del cliente.
+7. Actualizar ingenierÃ­a y documentar configuraciÃ³n de equipos
+
+============== NETWORK MANAGMENT ===============
+NO SE SOLICITA NM YA QUE NO SE RECIBIERON INSTANCIAS DE MANAGED SERVICES
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8900549
+Datos - EVPL Add   **8900549*$*
+
+Workflow Initialization

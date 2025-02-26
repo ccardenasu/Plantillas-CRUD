@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Datos Guardados</title>
+        
         <script>
             function multiplicarValores() {
                 var shapingRate = {{ shaping_rate }};
@@ -21,6 +22,8 @@
                 link.click();
             }
         </script>
+
+
         {% load static %}  <!-- Cargar la etiqueta static -->
         {% load custom_filters %}
 
@@ -76,7 +79,7 @@
                         {% if datos.bw_video and datos.bw_video != '0' %}BW: {{ datos.bw_video }}M{% endif %}
                         {% if datos.sw_b %}SW_B: {{ datos.sw_b }}{% endif %}
                         {% if datos.interface_sw_b %}Interface SW_B: {{ datos.interface_sw_b }}{% endif %}
-                        {% if datos.sv == datos.cv and  datos.unit_b %}Vlan: {{ datos.sv }}{% endif %}
+                        {% if datos.sv == datos.cv and  datos.unit %}Vlan: {{ datos.unit }}{% endif %}
                         {% if datos.sv != datos.cv %}Svlan: {{ datos.sv }}{% endif %}
                         {% if datos.sv != datos.cv %}Cvlan: {{ datos.cv }}{% endif %}
                         {% if datos.sv_b == datos.cv_b and  datos.unit_b %}Vlan_B: {{ datos.sv_b }}{% endif %}
@@ -94,11 +97,13 @@
                         {% if datos.lbcpe %}LB CPE: {{ datos.lbcpe }}{% endif %} 
                         {% if datos.lnnid %}LB NID: {{ datos.lnnid }}{% endif %}  
                         {% if datos.pe %}PE: {{ datos.pe }}{% endif %}
+                        {% if datos.interface_pe %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
+
                         {% if "mesc20.baq.baq" in datos.sw|strip %}Interface PE: {{ datos.interface_pe }}:{{ datos.cv }}.{{ datos.cv }}
-                        Interface PE_VPLS_A: {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}
-                        Interface PE_VPLS_B: {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}
+                            Interface PE_VPLS_A: {{ datos.interface_pe_vpls_a }}.{{ datos.cv }}
+                            Interface PE_VPLS_B: {{ datos.interface_pe_vpls_b }}.{{ datos.cv }}
                         {% elif datos.sv and  datos.tipo_equipo == 'ALCATEL' or datos.tipo_equipo == 'ALCATEL_V' %}Interface PE: {{ datos.interface_pe }}:{{ datos.sv }}.{{ datos.cv }}
-                        {% else %}Interface PE: {{ datos.interface_pe }}.{{ datos.unit }}{% endif %}
+                        {% endif %}
                         {% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
                         {% if datos.pe_vpls_a %}PE_VPLS_A: {{ datos.pe_vpls_a }}{% endif %}
                         {% if datos.pe_vpls_b %}PE_VPLS_B: {{ datos.pe_vpls_b }}{% endif %}                        
@@ -106,12 +111,6 @@
                         {% else %}
                         {% if datos.unit_nid and datos.unit_nid != "" %}Interface NID: {{ datos.interface_pe }}.{{ datos.unit_nid }} {% endif %}
                         {% endif %}
-                      
-                        
-                        
-                                            
-                        
-                        {% if datos.pe_b %}PE_B: {{ datos.pe_b }}{% endif %}
                         {% if datos.interface_pe_b %}Interface PE_B: {{ datos.interface_pe_b }}.{{datos.unit_b }}{% endif %}
                        
                     </textarea>

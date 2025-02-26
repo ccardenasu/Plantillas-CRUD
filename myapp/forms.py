@@ -209,12 +209,17 @@ class DatosForm(forms.ModelForm):
             raise ValidationError("El campo BW debe contener solo números.")
 
         return cleaned_data
-
-    def clean_interface_pe(self):
-        interface_pe = self.cleaned_data.get("interface_pe")
-        match = re.search(r"\d+", interface_pe)
-        if match:
-            self.cleaned_data["num_puertos_lag"] = match.group()
-        else:
-            raise ValidationError("No se encontró un número en la interfaz PE.")
+def clean_interface_pe(self):
+    interface_pe = self.cleaned_data.get("interface_pe")
+    
+    # Verificar si el campo está vacío
+    if not interface_pe:
         return interface_pe
+    
+    match = re.search(r"\d+", interface_pe)
+    if match:
+        self.cleaned_data["num_puertos_lag"] = match.group()
+    else:
+        raise ValidationError("No se encontró un número en la interfaz PE.")
+    
+    return interface_pe

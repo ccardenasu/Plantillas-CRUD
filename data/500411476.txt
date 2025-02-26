@@ -1,0 +1,138 @@
+CFS: 500411476
+DKO: 8879105
+tipo_configuracion: Alta
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: BANCOLOMBIA S.A.
+SEDE: CAJUDL2-3261-PLAZA-AMERICAS-5
+RFS-IP-PORT: 6000328262
+RFS-IP-PORT_NID: 6000328264
+SW: BOGTCLGWZG004
+Interface SW: GigabitEthernet0/0/16
+BW: 5M
+Svlan: 622
+Cvlan: 1302
+VRF: BANCOL_UNDERLAY
+RD: 16528:4800321
+WAN: 8.242.135.220/30
+LB NID: 10.235.89.179  
+PE: psr2.bgo2
+Interface PE: ae14.622
+
+
+DKO:8879105 (8900661)
+
+Comments: (Ocampo, John Jairo) 30/01/25 19:49 Start DokuFlow.
+Actividad:  PROYECTO BANCOLOMBIA - UNDERLAY NEW RFP_2025-2027. Alta  @5Mbps e implementar 
+Nueva plantilla mon NID
+ 
+CONTACTO CLIENTE:
+Sergio Martínez Serna / 3113800392  / 604-4042736 / sergmart@bancolombia.com.co
+
+SE: Rafael Roman	
+CCM: Jaime Caro	
+ 
+VPN@5Mb
+
+XML: 8872005
+
+CFS : 500411476
+Desing ID: QEAA_VN_81-5SD86WF
+
+ 
+Dirección : CARRERA 71D # 6-94 SUR
+
+ 
+RFS:
+RFS IP PORT: 6000328262
+
+RFS FIBER CHAIN: 6000328266
+
+RFS NID : 6000328264
+
+RFS CPE: --
+--------------------
+Description of Service:||
+--------------------
+Tipo de Enlace: VPN  ON NET  BW: 5  Mbps.
+
+
+======= SOLICITUD EQUIPOS =============
+
+AP: 1384691
+Descripción: F150/ADV/GE114PRO/AC/811.
+Cantidad: 1.
+ 
+SAP: 1362830
+Descripción: F150/ADV/OT/MK-DUAL MOUNTING KIT 19IN.
+Cantidad: 1.
+ 
+SAP: 1429801
+Descripción: AC POWER CABLE US 2.5M STRAIGHT EQUIPMENT.
+Cantidad: 1.
+
+======== ONNET ========
+Habilitar un hilo de fibra para el acceso de un enlace F.O PaP 
+
+Client: BANCOLOMBIA
+SEDE: BANCOLOMBIA-CAJUDL2-3261-PLAZA AMERICAS 5
+Direccion: CARRERA 71D # 6-94 SUR
+
+
+
+ 
+========== IPSA=========
+ 
+1. Asignar recursos para servicio MPLS en BBIP y Metro según recursos indicados por PLEX.
+2. Asignar y enrutar IP de gestión para ADVA.
+3. De ser posible Incluir en la descripción: BANCOLOMBIA-CAJUDL2-3261-PLAZA AMERICAS 5 para PE, Crud e Incognito.
+NOTA: Tomar direccionamiento publico siguiendo la siguiente ruta en herramienta Incognito:
+Level3->Latam-3549->Colombia-3549->Bancolombia->sucursales.
+ 
+PE: Asignar
+Interface: Asignar
+BW: 5 Mbps
+WAN IPv4: Asignar segmento publico/30 (Direccionamiento público para proyecto de Bancolombia)
+VRF: BANCOL_UNDERLAY
+Enrutamiento: Estático.
+ 
+ ========== SDM ==========
+
+1.	Coordinar ventana con el cliente para la instalación de la fibra y el NID.
+2.	Garantizar gestión remota del NID.
+3.	Sobre el NID instalado permitir la VLAN asignada por IPSA para el acceso de datos y configurarla sobre 
+un nuevo puerto de este.
+4.	Se debe implementar la nueva plantilla al NID ADVA instalado en sitio de acuerdo a la nueva 
+Configuración de monitoreo Dying Gasp, de manera que se refleje en el sistema de monitoreo  SOLAR WINS
+De Bancolombia.
+5.	Se debe activar el NID en la herramienta Laser para su monitoreo.
+6.	Los NID deben quedar entregados al grupo de operación de Bancolombia en Laser para ellos configurar en la consola SolarWinds (para pings a las IPs públicas). 
+7.	Realizar pruebas  de ancho de banda a 5 Mbps.
+
+ 
+============= SA =============
+ 
+Realizar pruebas de conectividad y entrega a satisfacción del cliente.
+ 
+=========== NETWORK MANAGMENT  ==========
+Validar NETWORK MANAGMENT Aplication  sobre NID.
+
+
+
+Workflow Initialization
+
+This Order was automatically initiated by Order NO:8879105
+Datos - IP VPN Add   **8879105*$*
+
+Workflow Initialization
+Comments: (Cely Corredor, Jenny) 25/02/25 13:45
+Favor asignar recursos IPSA al nodo AMERICAS
+
+Comments: (Cely Corredor, Jenny) 25/02/25 13:51
+Finished Step: Análisis y Validación de la Información
+
+
+This Order was automatically initiated by Order NO:8879119
+Ingeniería de acceso Fibra Optica (1)   **8879119*$*
+
+Workflow Initialization

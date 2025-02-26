@@ -1,0 +1,77 @@
+CFS: 500141957
+DKO: 8767631
+tipo_configuracion: Ampliacion
+tipo_servicio: JUNIPER
+tipo_servicio: VPN
+Cliente: TRANSPORTADORA DE GAS INTERNACIONAL S.A. ESP - TGI S.A ESP
+SEDE: SCADA---ALTO-DE-TUNJA-81-1WDIAPF
+RFS-IP-PORT: 6000141462
+SW: BOGTCLFWNN002
+Interface SW: TenGigE0/0/2/1.905081300
+BW: 2M
+Vlan: 1866
+PE: psr2.cxv1.bog
+Interface PE: ae10.1866
+
+
+DKO:8767631 (8903328)
+
+Comments: (Juliano Fumes) 11/11/24 10:27 Start DokuFlow.
+Ampliación del Ancho de banda del servicio de IP VPN de 1Mbps a 2Mbps para sede SCADA - ALTO DE TUNJA
+
+Project ID.: 8745809       
+Producto.: L3 - IP VPN 
+CID-CFS: 			
+Ancho de Banda Actual.: 1Mbps
+Ancho de Banda Actual.: 2Mbps
+Dirección: LAT[5.5139]-LONG[-73.3946] TUNJA BY-Boyaca CO-Colombia SN, TUNJA, BY-Boyaca, Colombia Latitude 5.5139 Longitude -73.3946
+========================================================================
+[ IP SERVICE ACTIVATION ]
+Debido al aumento del ancho de banda es necesario actualizar la configurion en la Red Metro y PE:
+PE: psr2.cxv1.bog
+Int: ae10.1866 
+========================================================================
+[ OFFNET QUOTING ]
+Debido al aumento del ancho de banda de 1Mbps para 2Mbps es necesario cotizar en Delivery con INTERNEXA COLOMBIA - ID: 33414
+========================================================================
+[ IP NETWORK MANAGMENT ]
+Activar Network Managment Tipo Performance
+
+Workflow Initialization
+Comments: (Juliano Fumes) 11/11/24 11:04
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+Comments: (Gabriel Ernesto Cardenas) 18/11/24 14:24
+Finished Step: Asignación de SDM·
+Comments from Subprocess 8767776
+
+
+Workflow Initialization
+Comments: (Juliano Fumes) 11/11/24 12:08
+Finished Step: ICT Follow up Cotizar ICT - CD·
+
+Comments: (Julio Peña) 04/02/25 12:51
+Finished Step: OffNet Survey Request ICTProducto·
+
+Comments: (Solano, Adriana) 21/02/25 17:44
+Finished Step: OffNet Survey Request ICT
+
+Comments: (Solano, Adriana) 21/02/25 18:02
+Finished Step: OffNet Survey Response ICT·
+
+Comments: (Juliano Fumes) 24/02/25 09:17
+Finished Step: Solicitud de alta de circuito de Terceros ICT·
+
+
+This Order was automatically initiated by Order NO:8767631
+Datos - IP VPN Mod   **8767631*$*
+
+Workflow Initialization
+Comments: (Alberto Quesada) 26/02/25 19:38
+Finished Step: Modificación Tercero
+Se solicita a Internexa aumento de 1 MB a 5 MB. Por respuesta comercial, no ofertan 2 MB, lo mínimo son 5 MB.
+
+This Order was automatically initiated by Order NO:8898985
+Activación Terceros ICT   **8898985*$*
+
+Workflow Initialization
